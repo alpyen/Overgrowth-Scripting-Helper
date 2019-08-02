@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Overgrowth__")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Overgrowth++")]
+[assembly: AssemblyDescription("Overgrowth Helper plugin for Notepad++")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("MyName")]
-[assembly: AssemblyProduct("Overgrowth__")]
-[assembly: AssemblyCopyright("Copyright © MyName 2011")]
+[assembly: AssemblyCompany("alpines")]
+[assembly: AssemblyProduct("Overgrowth++")]
+[assembly: AssemblyCopyright("Copyright © alpines 2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.*")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.0.0")]
+[assembly: AssemblyFileVersion("1.0.0")]

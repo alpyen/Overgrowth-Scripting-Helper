@@ -12,28 +12,45 @@ namespace Overgrowth__
     class Main
     {
         #region " Fields "
-        internal const string PluginName = "Overgrowth__";
-        static string iniFilePath = null;
-        static bool someSetting = false;
-        static frmMyDlg frmMyDlg = null;
+        internal const string PluginName = "Overgrowth++";
+        internal static string PluginVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString().Substring(0, 5);
+
+        static HelperWindow helperWindow; //= new HelperWindow();
+        static SettingsWindow settingsWindow; //= new SettingsWindow();
+
+        static bool docked = false;
+
+        static string settingsFilePath = null;
+        
         static int idMyDlg = -1;
-        static Bitmap tbBmp = Properties.Resources.star;
-        static Bitmap tbBmp_tbTab = Properties.Resources.star_bmp;
+
+        static Bitmap tbBmp = Properties.Resources.rabbit_png_small;
+        static Bitmap tbBmp_tbTab = Properties.Resources.rabbit_bmp_small;
         static Icon tbIcon = null;
         #endregion
 
         #region " StartUp/CleanUp "
         internal static void CommandMenuInit()
         {
-            StringBuilder sbIniFilePath = new StringBuilder(Win32.MAX_PATH);
-            Win32.SendMessage(PluginBase.nppData._nppHandle, NppMsg.NPPM_GETPLUGINSCONFIGDIR, Win32.MAX_PATH, sbIniFilePath);
-            iniFilePath = sbIniFilePath.ToString();
-            if (!Directory.Exists(iniFilePath)) Directory.CreateDirectory(iniFilePath);
-            iniFilePath = Path.Combine(iniFilePath, PluginName + ".ini");
-            someSetting = (Win32.GetPrivateProfileInt("SomeSection", "SomeKey", 0, iniFilePath) != 0);
+            StringBuilder sb = new StringBuilder(Win32.MAX_PATH);
+            Win32.SendMessage(PluginBase.nppData._nppHandle, NppMsg.NPPM_GETPLUGINSCONFIGDIR, Win32.MAX_PATH, sb);
 
-            PluginBase.SetCommand(0, "MyMenuCommand", myMenuFunction, new ShortcutKey(false, false, false, Keys.None));
-            PluginBase.SetCommand(1, "MyDockableDialog", myDockableDialog); idMyDlg = 1;
+            settingsFilePath = sb.ToString();
+
+            if (!Directory.Exists(settingsFilePath + "\\")) Directory.CreateDirectory(settingsFilePath);
+            settingsFilePath = settingsFilePath + "\\Overgrowth++";
+
+            if (!Directory.Exists(settingsFilePath + "\\")) Directory.CreateDirectory(settingsFilePath);
+            settingsFilePath = settingsFilePath + "\\Overgrowth++.xml";
+
+            PluginBase.SetCommand(0, "Show Helper Sidebar", myDockableDialog, new ShortcutKey(false, false, false, Keys.None));
+            PluginBase.SetCommand(1, "Settings", showSettings);
+            PluginBase.SetCommand(2, "About Overgrowth++", aboutPlugin);
+            idMyDlg = 0;
+
+            Config.Load(settingsFilePath);
+            helperWindow = new HelperWindow();
+            settingsWindow = new SettingsWindow();
         }
         internal static void SetToolBarIcon()
         {
@@ -46,20 +63,32 @@ namespace Overgrowth__
         }
         internal static void PluginCleanUp()
         {
-            Win32.WritePrivateProfileString("SomeSection", "SomeKey", someSetting ? "1" : "0", iniFilePath);
+
         }
         #endregion
 
         #region " Menu functions "
-        internal static void myMenuFunction()
+        internal static void aboutPlugin()
         {
-            MessageBox.Show("Hello N++!");
+            MessageBox.Show(
+                PluginName + " " + PluginVersion + " by alpines.\r\n" +
+                "\r\n" +
+                "Overgrowth++ helps you to write better Angelscript code for the game " +
+                "by providing documentation of the game API so you can easily navigate through it."
+            );
         }
+
+        internal static void showSettings()
+        {
+            settingsWindow.ShowDialog();
+            Config.Save();
+        }
+
         internal static void myDockableDialog()
         {
-            if (frmMyDlg == null)
+            if (!docked)
             {
-                frmMyDlg = new frmMyDlg();
+                docked = true;
 
                 using (Bitmap newBmp = new Bitmap(16, 16))
                 {
@@ -75,8 +104,8 @@ namespace Overgrowth__
                 }
 
                 NppTbData _nppTbData = new NppTbData();
-                _nppTbData.hClient = frmMyDlg.Handle;
-                _nppTbData.pszName = "My dockable dialog";
+                _nppTbData.hClient = helperWindow.Handle;
+                _nppTbData.pszName = helperWindow.Text;
                 _nppTbData.dlgID = idMyDlg;
                 _nppTbData.uMask = NppTbMsg.DWS_DF_CONT_RIGHT | NppTbMsg.DWS_ICONTAB | NppTbMsg.DWS_ICONBAR;
                 _nppTbData.hIconTab = (uint)tbIcon.Handle;
@@ -88,7 +117,7 @@ namespace Overgrowth__
             }
             else
             {
-                Win32.SendMessage(PluginBase.nppData._nppHandle, NppMsg.NPPM_DMMSHOW, 0, frmMyDlg.Handle);
+                Win32.SendMessage(PluginBase.nppData._nppHandle, NppMsg.NPPM_DMMSHOW, 0, helperWindow.Handle);
             }
         }
         #endregion

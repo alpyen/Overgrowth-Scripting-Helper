@@ -63,9 +63,29 @@ namespace Overgrowth__.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap star {
+        internal static System.Drawing.Bitmap background {
             get {
-                object obj = ResourceManager.GetObject("star", resourceCulture);
+                object obj = ResourceManager.GetObject("background", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Icon ähnlich wie (Symbol).
+        /// </summary>
+        internal static System.Drawing.Icon rabbit {
+            get {
+                object obj = ResourceManager.GetObject("rabbit", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap rabbit_bmp_small {
+            get {
+                object obj = ResourceManager.GetObject("rabbit_bmp_small", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +93,9 @@ namespace Overgrowth__.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap star_bmp {
+        internal static System.Drawing.Bitmap rabbit_png_small {
             get {
-                object obj = ResourceManager.GetObject("star_bmp", resourceCulture);
+                object obj = ResourceManager.GetObject("rabbit_png_small", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
