@@ -81,7 +81,10 @@ namespace Overgrowth__
                         rewriteSettings = true;
                     }
 
-                    if (node.Name != "FontName")
+                    // Keys which are not booleans can be saved without lowercasing them.
+                    // Infact this way the Font Name does not get destroyed.
+
+                    if (Keys[i, 2] == "true" || Keys[i, 2] == "false")
                         Storage.Add(Keys[i, 1], node.InnerText.ToLower());
                     else
                         Storage.Add(Keys[i, 1], node.InnerText);

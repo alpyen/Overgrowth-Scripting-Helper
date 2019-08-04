@@ -15,10 +15,10 @@ namespace Overgrowth__
         internal const string PluginName = "Overgrowth++";
         internal static string PluginVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString().Substring(0, 5);
 
-        static HelperWindow helperWindow; //= new HelperWindow();
-        static SettingsWindow settingsWindow; //= new SettingsWindow();
+        static HelperWindow helperWindow;
+        static SettingsWindow settingsWindow;
 
-        static bool docked = false;
+        static bool helperWindowDocked = false;
 
         static string settingsFilePath = null;
         
@@ -43,14 +43,17 @@ namespace Overgrowth__
             if (!Directory.Exists(settingsFilePath + "\\")) Directory.CreateDirectory(settingsFilePath);
             settingsFilePath = settingsFilePath + "\\Overgrowth++.xml";
 
-            PluginBase.SetCommand(0, "Show Helper Sidebar", myDockableDialog, new ShortcutKey(false, false, false, Keys.None));
-            PluginBase.SetCommand(1, "Settings", showSettings);
-            PluginBase.SetCommand(2, "About Overgrowth++", aboutPlugin);
+            PluginBase.SetCommand(0, "Show Helper Sidebar", ToggleHelperWindow, new ShortcutKey(false, false, false, Keys.None));
+            PluginBase.SetCommand(1, "Settings", ShowSettings);
+            PluginBase.SetCommand(2, "About Overgrowth++", AboutPlugin);
             idMyDlg = 0;
 
             Config.Load(settingsFilePath);
             helperWindow = new HelperWindow();
             settingsWindow = new SettingsWindow();
+
+            if (Config.Get("ShowHelperWindowOnStartup") == "true")
+                ToggleHelperWindow();
         }
         internal static void SetToolBarIcon()
         {
@@ -68,7 +71,7 @@ namespace Overgrowth__
         #endregion
 
         #region " Menu functions "
-        internal static void aboutPlugin()
+        internal static void AboutPlugin()
         {
             MessageBox.Show(
                 PluginName + " " + PluginVersion + " by alpines.\r\n" +
@@ -78,37 +81,23 @@ namespace Overgrowth__
             );
         }
 
-        internal static void showSettings()
+        internal static void ShowSettings()
         {
             settingsWindow.ShowDialog();
             Config.Save();
         }
 
-        internal static void myDockableDialog()
+        internal static void ToggleHelperWindow()
         {
-            if (!docked)
+            if (!helperWindowDocked)
             {
-                docked = true;
-
-                using (Bitmap newBmp = new Bitmap(16, 16))
-                {
-                    Graphics g = Graphics.FromImage(newBmp);
-                    ColorMap[] colorMap = new ColorMap[1];
-                    colorMap[0] = new ColorMap();
-                    colorMap[0].OldColor = Color.Fuchsia;
-                    colorMap[0].NewColor = Color.FromKnownColor(KnownColor.ButtonFace);
-                    ImageAttributes attr = new ImageAttributes();
-                    attr.SetRemapTable(colorMap);
-                    g.DrawImage(tbBmp_tbTab, new Rectangle(0, 0, 16, 16), 0, 0, 16, 16, GraphicsUnit.Pixel, attr);
-                    tbIcon = Icon.FromHandle(newBmp.GetHicon());
-                }
+                helperWindowDocked = true;
 
                 NppTbData _nppTbData = new NppTbData();
                 _nppTbData.hClient = helperWindow.Handle;
                 _nppTbData.pszName = helperWindow.Text;
                 _nppTbData.dlgID = idMyDlg;
                 _nppTbData.uMask = NppTbMsg.DWS_DF_CONT_RIGHT | NppTbMsg.DWS_ICONTAB | NppTbMsg.DWS_ICONBAR;
-                _nppTbData.hIconTab = (uint)tbIcon.Handle;
                 _nppTbData.pszModuleName = PluginName;
                 IntPtr _ptrNppTbData = Marshal.AllocHGlobal(Marshal.SizeOf(_nppTbData));
                 Marshal.StructureToPtr(_nppTbData, _ptrNppTbData, false);

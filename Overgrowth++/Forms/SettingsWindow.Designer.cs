@@ -64,7 +64,7 @@
             this.groupAppearance.Size = new System.Drawing.Size(368, 120);
             this.groupAppearance.TabIndex = 4;
             this.groupAppearance.TabStop = false;
-            this.groupAppearance.Text = "Appearance";
+            this.groupAppearance.Text = "Appearance (requires restart of N++)";
             // 
             // cbShowIconsForEachNode
             // 
@@ -181,7 +181,7 @@
             this.lblAbout.AutoSize = true;
             this.lblAbout.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAbout.ForeColor = System.Drawing.Color.White;
-            this.lblAbout.Location = new System.Drawing.Point(446, 344);
+            this.lblAbout.Location = new System.Drawing.Point(441, 344);
             this.lblAbout.Name = "lblAbout";
             this.lblAbout.Size = new System.Drawing.Size(203, 13);
             this.lblAbout.TabIndex = 6;
@@ -189,13 +189,12 @@
             // 
             // lblHorizontalLine
             // 
-            this.lblHorizontalLine.AutoSize = true;
+            this.lblHorizontalLine.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblHorizontalLine.ForeColor = System.Drawing.Color.White;
-            this.lblHorizontalLine.Location = new System.Drawing.Point(13, 340);
+            this.lblHorizontalLine.Location = new System.Drawing.Point(14, 351);
             this.lblHorizontalLine.Name = "lblHorizontalLine";
-            this.lblHorizontalLine.Size = new System.Drawing.Size(427, 13);
+            this.lblHorizontalLine.Size = new System.Drawing.Size(422, 2);
             this.lblHorizontalLine.TabIndex = 7;
-            this.lblHorizontalLine.Text = "______________________________________________________________________";
             // 
             // groupGeneral
             // 
