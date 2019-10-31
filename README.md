@@ -1,5 +1,5 @@
 ﻿# <img width=32 height=32 src="Overgrowth++/Resources/rabbit.ico" /> Overgrowth++
-Scripting Helper for the Overgrowth API as a Notepad++ plugin.
+Scripting Helper for the Overgrowth API as a Notepad++ plugin. (netFX4 required)
 
 Overgrowth++ provides helpful tools to assist in developing AngelScript code for Overgrowth.<br>
 Because of the game's nature, there exist hundreds of classes, functions, enumerations and variables
@@ -15,18 +15,13 @@ If you don't know how to handle a Visual Studio project I'd recommend you to dow
 already pre-compiled and ready-to-go version on my website: https://ag.systems/projects/overgrowth++
 
 There's also a tutorial on how to install it properly, it's very easy - don't worry.
+All you need is 5 minutes.
 <br><br>
 
-## Install
-If you would like to compile it yourself you need Microsoft's Visual Studio (project was developed with VS2017)
-and have the C++ developing enabled (so you can develop projects in C# and C++).
-
-The latter is necessary because the NppPluginNET uses resources from that.<br>
-If you don't want to install the C++ part you can download the needed leptonlib.dll and lib.exe and place
-them inside ``C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\bin``.
-
-Once you have set it up you can simply use "Rebuild Solution" and your DLL should be located here:<br>
-``Overgrowth++\Overgrowth++\bin\x86\Release``
+## Install Project Solution
+Clone the repo and open the solution with Visual Studio.<br>
+After you've done that, you can simply hit 'Rebuild Solution' and your DLL should be located here:<br>
+``Overgrowth++\bin\x64\Release``
 
 Now simply drop the Database.xml and Overgrowth++.dll into the plugin folder of Notepad++:
 ``Notepad++\plugins\Overgrowth++``
@@ -38,19 +33,32 @@ Now you can start Notepad++ and your plugin should appear in the toolbar and the
 Once you have set up your developing environment you can start modiyfing the code which is kept
 nice and clean so you can navigate through it pretty easily.
 
-<p style="color: red;">Please note that using the "execute commands post-build" in the project properties
-does not work because the dll is moved to quickly before Visual Studio is completely done with it.<br><br>
-You will get error messages so I recommend to copy it a second after the build was finished if you
-try to automate it somehow with a helping script or some sort.</p>
+For better debugging the plugin a post-build command is issued in the ``Overgrowth++\PluginInfrastructure\DllExport\NppPlugin.DllExport.targets`` file to move the plugin automatically into the plugin folder of Notepad++ and run it with the external program option in the solution settings.
+<p style="color: red;">Adjust the path for the plugin destination according to your install!</p>
+
+I recommend to use a portable version of N++ because the standard installation required elevated privileges for Visual Studio to move files into the ProgramFiles directory.
+Once you did that, you can simply hit 'Start Debugging' in Visual Studio and the plugin will be automatically moved into the N++ plugin folder and gets executed!
+
+<p style="color: orange;">Writing Npp-Plugin Code in .NET is tedious because you have no way to debug your plugins in any way.
+You are bound to using MessageBoxes if it seems to crash at random.</p>
 <br>
 
-### ToDo-List:
-- Correct Icons in TreeView (specialize more)
-- Show Overgrowth AngelScript in language menu so we don't need to misuse the C++ settings
-- Cleanup Code
-- Rework Calltips
-- Use the last TreeView State for live filtering so it doesn't reconstruct the whole TreeView when a search expression is entered
-- Write README.MD
-- find more todos
+This project is in its early steps, don't expect these bugs to be fixed individually since a solid base will be established first.
+When that is finished, many of these bugs will be no issue anymore.
+Now that the migration to Windows 10 is done I'm trying to rework everything from scratch with error handlers to begin with, so I don't need to add them afterwards.
 
- 
+ ### Known Bugs/ToDo-List:
+- Tab Scriptable UI crashes on search (because tagname != dict key)
+- Live Search reconstructs full TreeView on each input change (should use last treeview though (while typing, not removing), much faster)
+- Live Search ignores last character
+- Live Search reacts on every keyhit, but should only on changed input
+- type of variables are not shown
+- symbols are buggy, get mixed up sometimes and Correct Icons (specialize more)
+- parameters are being split wrong if they have defaults like uv_a = vec2(0, 0) (needs fix in Calltips too)
+- search filters too everything, even the parameters of a matched function (although it should show all)
+- Add Docs2XML (Calltip-Parser)
+- Rework Calltips (correct parsing)
+- Add Description to Calltips
+- Cleanup Code
+- ERROR HANDLING duuuude
+- Rework the appearance? Remove standard title bar and make it more appealing?
