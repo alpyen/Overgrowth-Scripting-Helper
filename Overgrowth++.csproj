@@ -58,30 +58,35 @@
     <Compile Include="PluginInfrastructure\Preference_h.cs" />
     <Compile Include="PluginInfrastructure\Resource_h.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PluginInfrastructure\UnmanagedExports.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="PluginInfrastructure\UnmanagedExports.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Forms\HelperWindow.resx">
+      <DependentUpon>HelperWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\background.jpg" />
-    <Content Include="Resources\classes.png" />
-    <Content Include="Resources\enums.png" />
-    <Content Include="Resources\methods.png" />
+    <Content Include="Resources\overload.png" />
+    <Content Include="Resources\class.png" />
+    <Content Include="Resources\enumeration_member.png" />
+    <Content Include="Resources\enumeration.png" />
+    <Content Include="Resources\group.png" />
+    <Content Include="Resources\function.png" />
     <Content Include="Resources\rabbit.ico" />
     <Content Include="Resources\rabbit_bmp_small.bmp" />
     <Content Include="Resources\rabbit_png_small.png" />
-    <Content Include="Resources\types.png" />
-    <Content Include="Resources\variables.png" />
+    <Content Include="Resources\variable.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />

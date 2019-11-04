@@ -14,69 +14,170 @@ namespace Overgrowth__
     public partial class HelperWindow : Form
     {
         private Dictionary<string, List<TreeNode>> clonedBackup = new Dictionary<string, List<TreeNode>>();
-        private ImageList treeViewIcons = new ImageList();
+        private ImageList treeViewImageList = new ImageList();
 
         public HelperWindow()
         {
-            // Tabs und Treeviews automatisch erzeugen je nachdem was im XML zu finden ist
-
             InitializeComponent();
+            
+            // Add the icons to the TreeView ImageList, so we later only need to assign the ImageKey.
+            treeViewImageList.ImageSize = new Size(16, 16);
+            treeViewImageList.Images.Add("Group", Properties.Resources.group);
+            treeViewImageList.Images.Add("Class", Properties.Resources._class);
+            treeViewImageList.Images.Add("Function", Properties.Resources.function);
+            treeViewImageList.Images.Add("Overload", Properties.Resources.overload);
+            treeViewImageList.Images.Add("Parameter", Properties.Resources.variable);
+            treeViewImageList.Images.Add("Enumeration", Properties.Resources.enumeration);
+            treeViewImageList.Images.Add("EnumerationMember", Properties.Resources.enumeration_member);
+            treeViewImageList.Images.Add("Variable", Properties.Resources.variable);
 
-            treeViewIcons.ImageSize = new Size(16, 16);
-            treeViewIcons.Images.Add("Class", Properties.Resources.classes);
-            treeViewIcons.Images.Add("Function", Properties.Resources.functions);
-            treeViewIcons.Images.Add("Enumeration", Properties.Resources.enums);
-            treeViewIcons.Images.Add("Variable", Properties.Resources.variables);
-            treeViewIcons.Images.Add("Type", Properties.Resources.types);
-
-            string[] types = new string[] { "Character", "Level", "Hotspot", "Camera", "ScriptableCampaign", "ScriptableUI" };
-            TreeView[] typeTreeViews = new TreeView[] { tvCharacter, tvLevel, tvHotspot, tvCamera, tvScriptableCampaign, tvScriptableUI };
-
+            // Loading the Database.xml file (which needs to be placed right beside the Overgrowth++.dll in the Npp Plugin folder)
             XmlDocument database = new XmlDocument();
 
-            database.Load(@"C:\Users\fractal\Desktop\Notepad++ Overgrowth Angelscript\plugins\Overgrowth++\Database.xml");
-
-            for (int i = 0; i < types.Length; i++)
-            {
-                typeTreeViews[i].ImageList = treeViewIcons;
-
-                if (Config.Get("UseCustomFont") == "true")
-                    typeTreeViews[i].Font = new System.Drawing.Font(Config.Get("FontName"), System.Convert.ToSingle(Config.Get("FontSize")));
-
-                XmlNode currentTypeNode = database.SelectSingleNode("/Scripts/" + types[i]);
-                if (currentTypeNode == null) continue;
-
-                typeTreeViews[i].BeginUpdate();
-
-                TreeNode rootTreeNode = typeTreeViews[i].Nodes.Add(types[i]);
-
-                clonedBackup.Add(types[i], new List<TreeNode>());
-
-                foreach (XmlNode childNode in currentTypeNode.ChildNodes)
-                {
-                    appendChildren(childNode, rootTreeNode, childNode.Name);
-                    TreeNode currentTypeTreeNode = rootTreeNode.Nodes[0];
-                    AssignImageKey(currentTypeTreeNode, rootTreeNode.Nodes[0].Name);
-                    rootTreeNode.Nodes[0].Remove();
-                    typeTreeViews[i].Nodes.Add(currentTypeTreeNode);
-                }
-
-                rootTreeNode.Remove();
-
-                typeTreeViews[i].EndUpdate();
+            try
+            { 
+                database.Load(@"C:\Users\fractal\Desktop\Notepad++ Overgrowth Angelscript\plugins\Overgrowth++\Database.xml"); 
             }
-
-            for (int i = 0; i < types.Length; i++)
+            catch (Exception e)
             {
-                foreach (TreeNode rootNode in typeTreeViews[i].Nodes)
-                {
-                    TreeNode cloned = new TreeNode(rootNode.Text); // (TreeNode)rootNode.Clone();
-                    cloneNode(cloned, rootNode);
+                MessageBox.Show("There seems to be something wrong with loading the Database.xml file!" + "\r\n\r\n" +
+                    "Error Message: " + e.Message, "Oops! An error occured :(", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                    clonedBackup[types[i]].Add(cloned);
+                this.Close();
+            }
+            
+            // Create tabs for each Tag find under <Scripts> which represent the Script-Type (Character, Level, Hotspot, ...)
+            try
+            {
+                XmlNodeList scripts = database.SelectNodes("/Scripts/*");
+
+                // Go through each scripttype (Character, Level, Hotspot, ...)
+                foreach (XmlNode script in scripts)
+                {
+                    // Create a new tab page for the script type
+                    TabPage tabPage = new TabPage(script.Name);
+                    tabScriptTypes.TabPages.Add(tabPage);
+
+                    // Create the TreeView for the script type
+                    TreeView treeView = new TreeView();
+                    treeView.Dock = DockStyle.Fill;
+
+                    if (Config.Get("UseCustomFont") == "true")
+                        treeView.Font = new Font(Config.Get("FontName"), Convert.ToSingle(Config.Get("FontSize")));
+                    
+                    treeView.ImageList = treeViewImageList;
+                    tabPage.Controls.Add(treeView); 
+
+                    // We create the Classes/Enumerations/Functions/Variables (the topmost ones in the file) separate
+                    // because this way we don't have to move the Nodes later since we will be using recursive functions to build the TreeView
+                    foreach (XmlNode currentElement in script.ChildNodes)
+                    {
+                        TreeNode treeNode = new TreeNode(currentElement.Name);
+                        treeView.Nodes.Add(treeNode);
+
+                        AssignImageKey(treeNode, currentElement.Name);
+
+                        foreach (XmlNode childElement in currentElement.ChildNodes)
+                        {
+                            string childType = "";
+
+                            switch (currentElement.Name)
+                            {
+                                case "Classes": childType = "Class"; break;
+                                case "Enumerations": childType = "Enumeration"; break;
+                                case "Functions": childType = "Function"; break;
+                                case "Variables": childType = "Variable"; break;
+                            }
+
+                            MakeTreeNode(childElement, treeNode, childType);
+                        }
+                    }
                 }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("An error occured while parsing the Database.xml file." + "\r\n\r\n" +
+                    "Error Message: " + e.Message, "Oops! An error occured :(", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                this.Close();
             }
         }
+
+        /* This is where the TreeNode-Creation magic happens.
+         * 
+         * For the database to make its way into the TreeView we need to step through it and add each item.
+         * Using a recursive function will save us a lot of trouble since we only need to provide a template on how one XmlNode should be handled.
+         * Once that is done, we simply need to call the function for its child nodes and we will automatically step through the whole database.
+         * 
+         * Since our Database is not very deep (recursively) we don't need to worry about overflowing our stack.
+         */
+        private void MakeTreeNode(XmlNode xmlNode, TreeNode parentTreeNode, string nodeType)
+        {
+            string nodeText = ((XmlElement)xmlNode).HasAttribute("Name") ? ((XmlElement)xmlNode).GetAttribute("Name") : xmlNode.Name;
+            TreeNode currentTreeNode = new TreeNode(nodeText);
+            parentTreeNode.Nodes.Add(currentTreeNode);
+
+            AssignImageKey(currentTreeNode, nodeType);
+
+            string childType = "";
+
+            switch (nodeType)
+            {
+                case "Group":
+                    switch (xmlNode.Name)
+                    {
+                        case "Classes": childType = "Class"; break;
+                        case "Enumerations": childType = "Enumeration"; break;
+                        case "Functions": childType = "Function"; break;
+                        case "Variables": childType = "Variable"; break;
+                    }
+                    break;
+
+                case "Class": childType = "Group"; break;
+                case "Enumeration": childType = "EnumerationMember"; break;
+                case "Function": childType = "Overload"; break;
+                case "Overload": childType = "Parameter"; break;
+
+                // Variable and Parameter have no children, therefore it will not run the foreach loop which means we don't have to set a childType.
+            }
+
+            foreach (XmlNode childNode in xmlNode.ChildNodes)
+            {
+                MakeTreeNode(childNode, currentTreeNode, childType);
+            }
+        }
+
+        // Assigns the correct ImageKey to a treeNode identified by the node type
+        private void AssignImageKey(TreeNode treeNode, string nodeType)
+        {
+            string imageKey = "";
+
+            switch (nodeType)
+            {
+                case "Group":
+                case "Classes":
+                case "Functions":
+                case "Enumerations":
+                case "Variables":
+                    imageKey = "Group";
+                    break;
+
+                case "Class": imageKey = "Class"; break;
+                case "Function": imageKey = "Function"; break;
+                case "Overload": imageKey = "Overload"; break;
+                case "Parameter": imageKey = "Parameter"; break;
+                case "Enumeration": imageKey = "Enumeration"; break;
+                case "EnumerationMember": imageKey = "EnumerationMember"; break;
+                case "Variable": imageKey = "Variable"; break;
+
+                default: throw new Exception("Unbekannter Node Type \"" + nodeType + "\" parentNode.Text=" + treeNode.Parent.Text);
+            }
+
+            treeNode.ImageKey = imageKey;
+            treeNode.SelectedImageKey = imageKey;
+        }
+
+        /////////////////////// ALTER SHIT
 
         private void cloneNode(TreeNode clone, TreeNode original)
         {
@@ -129,7 +230,7 @@ namespace Overgrowth__
             }
         }
 
-        private void AssignImageKey(TreeNode node, string type)
+        private void AssignImageKey1(TreeNode node, string type)
         {
             switch (type)
             {

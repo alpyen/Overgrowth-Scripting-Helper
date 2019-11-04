@@ -48,17 +48,16 @@ When that is finished, many of these bugs will be no issue anymore.
 Now that the migration to Windows 10 is done I'm trying to rework everything from scratch with error handlers to begin with, so I don't need to add them afterwards.
 
  ### Known Bugs/ToDo-List:
-- Tab Scriptable UI crashes on search (because tagname != dict key)
 - Live Search reconstructs full TreeView on each input change (should use last treeview though (while typing, not removing), much faster)
 - Live Search ignores last character
 - Live Search reacts on every keyhit, but should only on changed input
-- type of variables are not shown
 - symbols are buggy, get mixed up sometimes and Correct Icons (specialize more)
 - parameters are being split wrong if they have defaults like uv_a = vec2(0, 0) (needs fix in Calltips too)
 - search filters too everything, even the parameters of a matched function (although it should show all)
 - Add Docs2XML (Calltip-Parser)
-- Rework Calltips (correct parsing)
+- type of variables are not shown (Docs2XML needs to parse the type)
+- Functions/Classes etc. are not sorted by Docs2XML
+- Rework Calltips (correct parsing, Docs2XML?)
 - Add Description to Calltips
 - Cleanup Code
-- ERROR HANDLING duuuude
 - Rework the appearance? Remove standard title bar and make it more appealing?

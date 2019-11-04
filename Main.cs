@@ -83,10 +83,15 @@ namespace Overgrowth__
         internal static void AboutPlugin()
         {
             MessageBox.Show(
-                PluginName + " " + PluginVersion + " by alpines.\r\n" +
+                PluginName + " " + PluginVersion + " programmed by alpines.\r\n" +
                 "\r\n" +
                 "Overgrowth++ helps you to write better Angelscript code for the game " +
-                "by providing documentation of the game API so you can easily navigate through it."
+                "by providing documentation of the game API so you can easily navigate through it." +
+                "\r\n\r\n" +
+                "Do you like the plugin? Let me know!\r\n" +
+                "https://ag.systems/" + "\r\n\r\n" +
+                "Icons from the 'Silk Icon Set 1.3' by Mark James https://www.famfamfam.com/lab/icons/silk/" + "\r\n" +
+                "Licensed as CC-BY 2.5 - check it out, it's really neat!", "About Overgrowth++", MessageBoxButtons.OK, MessageBoxIcon.Information
             );
         }
         internal static void ShowSettings()

@@ -63,6 +63,16 @@ namespace Overgrowth__.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _class {
+            get {
+                object obj = ResourceManager.GetObject("_class", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap background {
             get {
                 object obj = ResourceManager.GetObject("background", resourceCulture);
@@ -73,9 +83,9 @@ namespace Overgrowth__.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap classes {
+        internal static System.Drawing.Bitmap enumeration {
             get {
-                object obj = ResourceManager.GetObject("classes", resourceCulture);
+                object obj = ResourceManager.GetObject("enumeration", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +93,9 @@ namespace Overgrowth__.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap enums {
+        internal static System.Drawing.Bitmap enumeration_member {
             get {
-                object obj = ResourceManager.GetObject("enums", resourceCulture);
+                object obj = ResourceManager.GetObject("enumeration_member", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,9 +103,29 @@ namespace Overgrowth__.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap functions {
+        internal static System.Drawing.Bitmap function {
             get {
-                object obj = ResourceManager.GetObject("functions", resourceCulture);
+                object obj = ResourceManager.GetObject("function", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap group {
+            get {
+                object obj = ResourceManager.GetObject("group", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap overload {
+            get {
+                object obj = ResourceManager.GetObject("overload", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -123,19 +153,9 @@ namespace Overgrowth__.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap types {
+        internal static System.Drawing.Bitmap variable {
             get {
-                object obj = ResourceManager.GetObject("types", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap variables {
-            get {
-                object obj = ResourceManager.GetObject("variables", resourceCulture);
+                object obj = ResourceManager.GetObject("variable", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
