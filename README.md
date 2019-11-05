@@ -51,13 +51,14 @@ Now that the migration to Windows 10 is done I'm trying to rework everything fro
 - Live Search reconstructs full TreeView on each input change (should use last treeview though (while typing, not removing), much faster)
 - Live Search ignores last character
 - Live Search reacts on every keyhit, but should only on changed input
-- symbols are buggy, get mixed up sometimes and Correct Icons (specialize more)
+- HelperWindow Font is not accepting styles like bold,italic etc.
+- Rewrite Config.cs
 - parameters are being split wrong if they have defaults like uv_a = vec2(0, 0) (needs fix in Calltips too)
 - search filters too everything, even the parameters of a matched function (although it should show all)
 - Add Docs2XML (Calltip-Parser)
 - type of variables are not shown (Docs2XML needs to parse the type)
-- Functions/Classes etc. are not sorted by Docs2XML
 - Rework Calltips (correct parsing, Docs2XML?)
+- Many unparsable lines in Docs2XML
 - Add Description to Calltips
 - Cleanup Code
 - Rework the appearance? Remove standard title bar and make it more appealing?

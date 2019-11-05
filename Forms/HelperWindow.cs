@@ -13,7 +13,7 @@ namespace Overgrowth__
 {
     public partial class HelperWindow : Form
     {
-        private Dictionary<string, List<TreeNode>> clonedBackup = new Dictionary<string, List<TreeNode>>();
+        private Dictionary<string, List<TreeNode>> treeNodesBackup = new Dictionary<string, List<TreeNode>>();
         private ImageList treeViewImageList = new ImageList();
 
         public HelperWindow()
@@ -36,7 +36,7 @@ namespace Overgrowth__
 
             try
             { 
-                database.Load(@"C:\Users\fractal\Desktop\Notepad++ Overgrowth Angelscript\plugins\Overgrowth++\Database.xml"); 
+                database.Load("plugins\\Overgrowth++\\Database.xml"); 
             }
             catch (Exception e)
             {
@@ -66,7 +66,10 @@ namespace Overgrowth__
                         treeView.Font = new Font(Config.Get("FontName"), Convert.ToSingle(Config.Get("FontSize")));
                     
                     treeView.ImageList = treeViewImageList;
-                    tabPage.Controls.Add(treeView); 
+                    tabPage.Controls.Add(treeView);
+
+                    // Prepare the backup dictionary entry
+                    treeNodesBackup.Add(script.Name, new List<TreeNode>());
 
                     // We create the Classes/Enumerations/Functions/Variables (the topmost ones in the file) separate
                     // because this way we don't have to move the Nodes later since we will be using recursive functions to build the TreeView
@@ -91,6 +94,9 @@ namespace Overgrowth__
 
                             MakeTreeNode(childElement, treeNode, childType);
                         }
+
+                        // Add the node to the backup which will be used later while filtering
+                        treeNodesBackup[script.Name].Add(CloneTreeNode(treeNode));
                     }
                 }
             }
@@ -148,6 +154,7 @@ namespace Overgrowth__
         }
 
         // Assigns the correct ImageKey to a treeNode identified by the node type
+        // We will use this also to recognise what Node we are currently on while filtering to match our settings
         private void AssignImageKey(TreeNode treeNode, string nodeType)
         {
             string imageKey = "";
@@ -177,19 +184,22 @@ namespace Overgrowth__
             treeNode.SelectedImageKey = imageKey;
         }
 
-        /////////////////////// ALTER SHIT
-
-        private void cloneNode(TreeNode clone, TreeNode original)
+        // Clone the TreeNodes which will be helpful to create a backup of the TreeViews
+        // because once we are filtering, we can't get the deleted items back, and we can't hide them
+        private TreeNode CloneTreeNode(TreeNode original)
         {
-            foreach (TreeNode childOfOriginal in original.Nodes)
-            {
-                TreeNode childClone = new TreeNode(childOfOriginal.Text);// (TreeNode)childOfOriginal.Clone();
+            TreeNode clone = new TreeNode(original.Text);
+            clone.ImageKey = original.ImageKey;
+            clone.SelectedImageKey = original.SelectedImageKey;
 
-                clone.Nodes.Add(childClone);
-                cloneNode(childClone, childOfOriginal);
-            }
+            foreach (TreeNode childNode in original.Nodes)
+                clone.Nodes.Add(CloneTreeNode(childNode));
+
+            return clone;
         }
 
+        /////////////////////// ALTER SHIT
+        
         /*
          * We are letting the parent node set the children items because
          * we have no root element in this TreeView.
@@ -336,7 +346,7 @@ namespace Overgrowth__
             if (e.KeyCode == Keys.Enter || Config.Get("LiveFilteringMode") == "true")
             {
                 TreeView currentTV = (TreeView)tabScriptTypes.SelectedTab.Controls[0];
-                reconstructTreeView(currentTV, clonedBackup[tabScriptTypes.SelectedTab.Text]);
+                reconstructTreeView(currentTV, treeNodesBackup[tabScriptTypes.SelectedTab.Text]);
 
                 if (tbFilter.Text != "")
                 {
