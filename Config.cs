@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using System.Drawing;
 using System.IO;
 using System.Xml;
 
@@ -26,22 +27,19 @@ namespace Overgrowth__
             { "Appearance", "ShowIconsForEachNode", "true" },
             { "Appearance", "UseCustomFont", "false" },
             { "Appearance", "FontName", "MS Sans Serif" },
-            { "Appearance", "FontSize", "8.25" }
+            { "Appearance", "FontSize", "8.25" },
+            { "Appearance", "FontBold", "false" },
+            { "Appearance", "FontItalic", "false" }
         };
 
-        public static void Load(string path)
+        public static bool Load(string path)
         {
             SettingsPath = path;
 
-            if (!File.Exists(path))
-            {
-                FileStream settingsFile = File.Create(path);
-                settingsFile.Close();
-            }
-            else
-            {
-                try { SettingsXML.Load(path); } catch (Exception) { SettingsXML = new XmlDocument(); }
-            }
+            bool settingsFileExists = File.Exists(path);
+
+            if (!settingsFileExists) File.Create(path).Close();
+            else try { SettingsXML.Load(path); } catch (Exception) { SettingsXML = new XmlDocument(); settingsFileExists = false; }
 
             XmlNode rootNode = SettingsXML.SelectSingleNode("/Settings");
 
@@ -94,6 +92,31 @@ namespace Overgrowth__
             }
 
             if (rewriteSettings) Save();
+            return settingsFileExists;
+        }
+
+        public static bool GetBool(string key)
+        {
+            return Convert.ToBoolean(Storage[key]);
+        }
+
+        public static void SetFont(Font font)
+        {
+            Storage["FontName"] = font.Name;
+            Storage["FontSize"] = font.Size.ToString();
+            Storage["FontBold"] = font.Bold.ToString();
+            Storage["FontItalic"] = font.Italic.ToString();
+        }
+
+        public static Font GetFont()
+        {
+            Font font = new Font(
+                Storage["FontName"],
+                Convert.ToSingle(Storage["FontSize"]),
+                (Config.GetBool("FontBold") ? FontStyle.Bold : 0) | (Config.GetBool("FontItalic") ? FontStyle.Italic : 0)
+            );
+
+            return font;
         }
 
         public static string Get(string key)

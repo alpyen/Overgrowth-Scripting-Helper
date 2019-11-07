@@ -62,9 +62,8 @@ namespace Overgrowth__
                     TreeView treeView = new TreeView();
                     treeView.Dock = DockStyle.Fill;
 
-                    if (Config.Get("UseCustomFont") == "true")
-                        treeView.Font = new Font(Config.Get("FontName"), Convert.ToSingle(Config.Get("FontSize")));
-                    
+                    if (Config.Get("UseCustomFont") == "true") treeView.Font = Config.GetFont();
+
                     treeView.ImageList = treeViewImageList;
                     tabPage.Controls.Add(treeView);
 

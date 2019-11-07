@@ -40,15 +40,18 @@ namespace Overgrowth__
                 {
                     if (c is CheckBox)
                     {
-                        ((CheckBox)c).Checked = ((Config.Get(Settings[key]) == "true") ? true : false);
+                        ((CheckBox)c).Checked = Config.GetBool(Settings[key]);
                     }
                 }
             }
 
-            cbCustomFont.Text = "Custom Font: " + Config.Get("FontName") + " " + Config.Get("FontSize");
+            cbCustomFont.Text = "Use Custom Font";
         }
 
-        private void SetBackgroundTransparent(Control c)
+        // Since the Designer has no option to set the parent of a control directly, we need to specify this value manually.
+        // The parent value for the group needs to stay the same otherwise some controls within them will disappear due to
+        // the order they were created in.
+        private void SetBackgroundTransparent(Control c)    
         {
             foreach (Control child in c.Controls)
                 SetBackgroundTransparent(child);
@@ -59,12 +62,12 @@ namespace Overgrowth__
 
         private void btnChangeFont_Click(object sender, EventArgs e)
         {
+            fontDialog.Font = Config.GetFont();
+
             if (fontDialog.ShowDialog() == DialogResult.OK)
             {
-                cbCustomFont.Text = "Custom Font: " + fontDialog.Font.Name + " " + fontDialog.Font.Size;
                 Config.Set(Settings[cbCustomFont.Name], cbCustomFont.Checked ? "true" : "false");
-                Config.Set("FontName", fontDialog.Font.Name);
-                Config.Set("FontSize", fontDialog.Font.Size.ToString());
+                Config.SetFont(fontDialog.Font);
             }
         }
 
