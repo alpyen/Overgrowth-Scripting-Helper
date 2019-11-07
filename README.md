@@ -53,6 +53,7 @@ Now that the migration to Windows 10 is done I'm trying to rework everything fro
 - Live Search reacts on every keyhit, but should only on changed input
 - HelperWindow Font is not accepting styles like bold,italic etc.
 - Rewrite Config.cs
+- Add Check if Config.Load was true/false and showing a corresponding message that settings have been created.
 - No icons on SettingsWindow etc.
 - parameters are being split wrong if they have defaults like uv_a = vec2(0, 0) (needs fix in Calltips too)
 - search filters too everything, even the parameters of a matched function (although it should show all)
