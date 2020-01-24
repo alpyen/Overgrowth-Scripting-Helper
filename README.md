@@ -34,13 +34,14 @@ Once you have set up your developing environment you can start modiyfing the cod
 nice and clean so you can navigate through it pretty easily.
 
 For better debugging the plugin a post-build command is issued in the ``Overgrowth++\PluginInfrastructure\DllExport\NppPlugin.DllExport.targets`` file to move the plugin automatically into the plugin folder of Notepad++ and run it with the external program option in the solution settings.
-<p style="color: red;">Adjust the path for the plugin destination according to your install!</p>
+
+**Adjust the path for the plugin destination according to your install!**
 
 I recommend to use a portable version of N++ because the standard installation required elevated privileges for Visual Studio to move files into the ProgramFiles directory.
 Once you did that, you can simply hit 'Start Debugging' in Visual Studio and the plugin will be automatically moved into the N++ plugin folder and gets executed!
 
-<p style="color: orange;">Writing Npp-Plugin Code in .NET is tedious because you have no way to debug your plugins in any way.
-You are bound to using MessageBoxes if it seems to crash at random.</p>
+Writing Npp-Plugin Code in .NET is tedious because you have no way to debug your plugins in any way.
+You are bound to using MessageBoxes if it seems to crash at random.
 <br>
 
 This project is in its early steps, don't expect these bugs to be fixed individually since a solid base will be established first.
@@ -51,10 +52,7 @@ Now that the migration to Windows 10 is done I'm trying to rework everything fro
 - Live Search reconstructs full TreeView on each input change (should use last treeview though (while typing, not removing), much faster)
 - Live Search ignores last character
 - Live Search reacts on every keyhit, but should only on changed input
-- HelperWindow Font is not accepting styles like bold,italic etc.
-- Rewrite Config.cs
-- Add Check if Config.Load was true/false and showing a corresponding message that settings have been created.
-- No icons on SettingsWindow etc.
+- No icons on SettingsWindow (titlebar) etc.
 - parameters are being split wrong if they have defaults like uv_a = vec2(0, 0) (needs fix in Calltips too)
 - search filters too everything, even the parameters of a matched function (although it should show all)
 - Add Docs2XML (Calltip-Parser)

@@ -61,8 +61,7 @@ namespace Overgrowth__
             helperWindow = new HelperWindow();
             settingsWindow = new SettingsWindow();
 
-            if (Config.Get("ShowHelperWindowOnStartup") == "true")
-                ToggleHelperWindow();
+            if (Config.General.ShowHelperWindowOnStartup) ToggleHelperWindow();
         }
 
         internal static void SetToolBarIcon()

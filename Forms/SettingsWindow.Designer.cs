@@ -32,7 +32,7 @@
             this.fontDialog = new System.Windows.Forms.FontDialog();
             this.groupAppearance = new System.Windows.Forms.GroupBox();
             this.cbShowIconsForEachNode = new System.Windows.Forms.CheckBox();
-            this.cbCustomFont = new System.Windows.Forms.CheckBox();
+            this.cbUseCustomFont = new System.Windows.Forms.CheckBox();
             this.cbShowBackgroundImage = new System.Windows.Forms.CheckBox();
             this.btnChangeFont = new System.Windows.Forms.Button();
             this.cbShowParameterNamesInFunctionSignatures = new System.Windows.Forms.CheckBox();
@@ -55,7 +55,7 @@
             // groupAppearance
             // 
             this.groupAppearance.Controls.Add(this.cbShowIconsForEachNode);
-            this.groupAppearance.Controls.Add(this.cbCustomFont);
+            this.groupAppearance.Controls.Add(this.cbUseCustomFont);
             this.groupAppearance.Controls.Add(this.cbShowBackgroundImage);
             this.groupAppearance.Controls.Add(this.btnChangeFont);
             this.groupAppearance.Controls.Add(this.cbShowParameterNamesInFunctionSignatures);
@@ -80,17 +80,17 @@
             this.cbShowIconsForEachNode.UseVisualStyleBackColor = true;
             this.cbShowIconsForEachNode.CheckedChanged += new System.EventHandler(this.SettingChanged);
             // 
-            // cbCustomFont
+            // cbUseCustomFont
             // 
-            this.cbCustomFont.AutoSize = true;
-            this.cbCustomFont.ForeColor = System.Drawing.Color.White;
-            this.cbCustomFont.Location = new System.Drawing.Point(19, 92);
-            this.cbCustomFont.Name = "cbCustomFont";
-            this.cbCustomFont.Size = new System.Drawing.Size(167, 17);
-            this.cbCustomFont.TabIndex = 4;
-            this.cbCustomFont.Text = "Custom Font: Consolas, 12.75";
-            this.cbCustomFont.UseVisualStyleBackColor = true;
-            this.cbCustomFont.CheckedChanged += new System.EventHandler(this.SettingChanged);
+            this.cbUseCustomFont.AutoSize = true;
+            this.cbUseCustomFont.ForeColor = System.Drawing.Color.White;
+            this.cbUseCustomFont.Location = new System.Drawing.Point(19, 92);
+            this.cbUseCustomFont.Name = "cbUseCustomFont";
+            this.cbUseCustomFont.Size = new System.Drawing.Size(107, 17);
+            this.cbUseCustomFont.TabIndex = 4;
+            this.cbUseCustomFont.Text = "Use Custom Font";
+            this.cbUseCustomFont.UseVisualStyleBackColor = true;
+            this.cbUseCustomFont.CheckedChanged += new System.EventHandler(this.SettingChanged);
             // 
             // cbShowBackgroundImage
             // 
@@ -285,7 +285,7 @@
         private System.Windows.Forms.CheckBox cbShowBackgroundImage;
         private System.Windows.Forms.GroupBox groupGeneral;
         private System.Windows.Forms.CheckBox cbLiveFilteringMode;
-        private System.Windows.Forms.CheckBox cbCustomFont;
+        private System.Windows.Forms.CheckBox cbUseCustomFont;
         private System.Windows.Forms.CheckBox cbShowIconsForEachNode;
         private System.Windows.Forms.CheckBox cbShowHelperWindowOnStartup;
     }

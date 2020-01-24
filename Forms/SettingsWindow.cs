@@ -10,42 +10,30 @@ namespace Overgrowth__
 {
     public partial class SettingsWindow : Form
     {
-        private Dictionary<string, string> Settings = new Dictionary<string, string>();
-
+        private bool loaded = false;
         public SettingsWindow()
         {
             InitializeComponent();
 
             Control[] list = new Control[] { groupGeneral, groupAppearance, groupFilter, lblHorizontalLine, lblAbout };
 
-            Settings.Add(cbShowHelperWindowOnStartup.Name, "ShowHelperWindowOnStartup");
-            Settings.Add(cbLiveFilteringMode.Name, "LiveFilteringMode");
+            cbShowHelperWindowOnStartup.Checked = Config.General.ShowHelperWindowOnStartup;
+            cbLiveFilteringMode.Checked = Config.General.LiveFilteringMode;
 
-            Settings.Add(cbMatchFunctionNames.Name, "MatchFunctionNames");
-            Settings.Add(cbMatchParameterNames.Name, "MatchParameterNames");
-            Settings.Add(cbMatchParameterTypes.Name, "MatchParameterTypes");
+            cbMatchFunctionNames.Checked = Config.Filter.MatchFunctionNames;
+            cbMatchParameterNames.Checked = Config.Filter.MatchParameterNames;
+            cbMatchParameterTypes.Checked = Config.Filter.MatchParameterTypes;
 
-            Settings.Add(cbShowParameterNamesInFunctionSignatures.Name, "ShowParameterNamesInFunctionSignatures");
-            Settings.Add(cbShowBackgroundImage.Name, "ShowBackgroundImage");
-            Settings.Add(cbShowIconsForEachNode.Name, "ShowIconsForEachNode");
-            Settings.Add(cbCustomFont.Name, "UseCustomFont");
-
+            cbShowParameterNamesInFunctionSignatures.Checked = Config.Appearance.ShowParameterNamesInFunctionSignatures;
+            cbShowBackgroundImage.Checked = Config.Appearance.ShowBackgroundImage;
+            cbShowIconsForEachNode.Checked = Config.Appearance.ShowIconsForEachNode;
+            cbUseCustomFont.Checked = Config.Appearance.UseCustomFont;
+            fontDialog.Font = Config.Appearance.CustomFont;
+            
             foreach (Control c in list)
                 SetBackgroundTransparent(c);
 
-            foreach (string key in Settings.Keys)
-            {
-                Control[] controls = this.Controls.Find(key, true);
-                foreach (Control c in controls)
-                {
-                    if (c is CheckBox)
-                    {
-                        ((CheckBox)c).Checked = Config.GetBool(Settings[key]);
-                    }
-                }
-            }
-
-            cbCustomFont.Text = "Use Custom Font";
+            loaded = true;
         }
 
         // Since the Designer has no option to set the parent of a control directly, we need to specify this value manually.
@@ -62,19 +50,27 @@ namespace Overgrowth__
 
         private void btnChangeFont_Click(object sender, EventArgs e)
         {
-            fontDialog.Font = Config.GetFont();
-
-            if (fontDialog.ShowDialog() == DialogResult.OK)
-            {
-                Config.Set(Settings[cbCustomFont.Name], cbCustomFont.Checked ? "true" : "false");
-                Config.SetFont(fontDialog.Font);
-            }
+            fontDialog.Font = Config.Appearance.CustomFont;
+            if (fontDialog.ShowDialog() == DialogResult.OK) Config.Appearance.CustomFont = fontDialog.Font;
         }
 
         private void SettingChanged(object sender, EventArgs e)
         {
-            CheckBox clicked = (CheckBox)sender;
-            Config.Set(Settings[clicked.Name], clicked.Checked ? "true" : "false");
+            // If we don't check if the form is loaded, then settings the checked-attributes in the construction
+            // will result in triggering this event!
+            if (!loaded) return;
+
+            Config.General.ShowHelperWindowOnStartup = cbShowHelperWindowOnStartup.Checked;
+            Config.General.LiveFilteringMode = cbLiveFilteringMode.Checked;
+
+            Config.Filter.MatchFunctionNames = cbMatchFunctionNames.Checked;
+            Config.Filter.MatchParameterNames = cbMatchParameterNames.Checked;
+            Config.Filter.MatchParameterTypes = cbMatchParameterTypes.Checked;
+
+            Config.Appearance.ShowParameterNamesInFunctionSignatures = cbShowParameterNamesInFunctionSignatures.Checked;
+            Config.Appearance.ShowBackgroundImage = cbShowBackgroundImage.Checked;
+            Config.Appearance.ShowIconsForEachNode = cbShowIconsForEachNode.Checked;
+            Config.Appearance.UseCustomFont = cbUseCustomFont.Checked;
         }
     }
 }

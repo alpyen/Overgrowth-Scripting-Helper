@@ -62,7 +62,7 @@ namespace Overgrowth__
                     TreeView treeView = new TreeView();
                     treeView.Dock = DockStyle.Fill;
 
-                    if (Config.Get("UseCustomFont") == "true") treeView.Font = Config.GetFont();
+                    if (Config.Appearance.UseCustomFont) treeView.Font = Config.Appearance.CustomFont;
 
                     treeView.ImageList = treeViewImageList;
                     tabPage.Controls.Add(treeView);
@@ -197,92 +197,7 @@ namespace Overgrowth__
             return clone;
         }
 
-        /////////////////////// ALTER SHIT
-        
-        /*
-         * We are letting the parent node set the children items because
-         * we have no root element in this TreeView.
-         */
-
-        private void appendChildren(XmlNode currentNode, TreeNode parentNode, string currentType)
-        {
-            TreeNode currentTreeNode = new TreeNode();
-            AssignImageKey(currentTreeNode, currentType);
-
-            string childType = "";
-
-            switch (currentType)
-            {
-                case "Classes": childType = "Class"; currentTreeNode.Text = currentNode.Name; break;
-                case "Functions": childType = "Function"; currentTreeNode.Text = currentNode.Name; break;
-                case "Enumerations": childType = "Enumeration"; currentTreeNode.Text = currentNode.Name; break;
-                case "Variables": childType = "Variable"; currentTreeNode.Text = currentNode.Name; break;
-
-                case "Class": childType = "ClassMember"; currentTreeNode.Text = currentNode.Name; break;
-                case "Function": childType = "Overload"; currentTreeNode.Text = currentNode.Name; break;
-                case "Enumeration": childType = "EnumMember"; currentTreeNode.Text = currentNode.Name; break;
-                case "Variable": childType = ""; currentTreeNode.Text = currentNode.InnerText; break;
-
-                case "ClassMember": childType = GetClassChildType(currentNode.Name); currentTreeNode.Text = currentNode.Name; break;
-                case "EnumMember": childType = ""; currentTreeNode.Text = currentNode.Name + " = " + currentNode.InnerText; break;
-                case "Overload": childType = "Param"; currentTreeNode.Text = currentNode.Attributes["Signature"].Value; break;
-                case "Param": childType = ""; currentTreeNode.Text = currentNode.InnerText; break;
-            }
-
-            parentNode.Nodes.Add(currentTreeNode);
-
-            if (currentType == "EnumMember" || currentType == "Param" || currentType == "Variable") return;
-
-            foreach (XmlNode childNode in currentNode.ChildNodes)
-            {
-                appendChildren(childNode, currentTreeNode, childType);
-            }
-        }
-
-        private void AssignImageKey1(TreeNode node, string type)
-        {
-            switch (type)
-            {
-                case "Classes":
-                case "Functions":
-                case "Enumerations":
-                case "Variables":
-                    type = "Class"; break;
-
-                case "Function":
-                case "Overload":
-                    type = "Function"; break;
-
-                case "Class":
-                    type = "Class"; break;
-
-                case "Enumeration":
-                case "EnumMember":
-                    type = "Enumeration"; break;
-
-                case "Variable":
-                    type = "Variable"; break;
-
-                default:
-                    type = ""; break;
-            }
-
-            node.ImageKey = type;
-            node.SelectedImageKey = type;
-        }
-
-        private string GetClassChildType(string s)
-        {
-            switch (s)
-            {
-                case "Functions": return "Function";
-                case "Classes": return "Class";
-                case "Enumerations": return "Enumeration";
-                case "Variables": return "Variable";
-            }
-
-            return "";
-        }
+        ////////////// ALTER SHIT
 
         private bool checkAndExpand(TreeNode node, string filter)
         {
@@ -342,7 +257,7 @@ namespace Overgrowth__
 
         private void tbFilter_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter || Config.Get("LiveFilteringMode") == "true")
+            if (e.KeyCode == Keys.Enter || Config.General.LiveFilteringMode)
             {
                 TreeView currentTV = (TreeView)tabScriptTypes.SelectedTab.Controls[0];
                 reconstructTreeView(currentTV, treeNodesBackup[tabScriptTypes.SelectedTab.Text]);

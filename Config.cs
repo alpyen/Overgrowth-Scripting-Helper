@@ -9,137 +9,154 @@ using System.Xml;
 
 namespace Overgrowth__
 {
-    class Config
+    public static class Config
     {
         private static XmlDocument SettingsXML = new XmlDocument();
         private static string SettingsPath;
         private static Dictionary<string, string> Storage = new Dictionary<string, string>();
 
-        public static string[,] Keys = new string[,]
-        {
-            { "General", "ShowHelperWindowOnStartup", "false" },
-            { "General", "LiveFilteringMode", "false" },
-            { "Filter", "MatchFunctionNames", "true" },
-            { "Filter", "MatchParameterNames", "false" },
-            { "Filter", "MatchParameterTypes", "false" },
-            { "Appearance", "ShowParameterNamesInFunctionSignatures", "false" },
-            { "Appearance", "ShowBackgroundImage", "true" },
-            { "Appearance", "ShowIconsForEachNode", "true" },
-            { "Appearance", "UseCustomFont", "false" },
-            { "Appearance", "FontName", "MS Sans Serif" },
-            { "Appearance", "FontSize", "8.25" },
-            { "Appearance", "FontBold", "false" },
-            { "Appearance", "FontItalic", "false" }
-        };
+        /*
+         * Why is there no generic Save/Load class?
+         * 
+         * Writing a generic Save/Load class to support different types of classes is just too much work.
+         * Since we are dealing wiht just a handful of settings we can easily store them separately.
+         * 
+         * It might look bad and be considered not future-proof (if we need way more settings to store)
+         * but it will serve as a good base without bloating the code that is accessing it with specific overloads or casts.
+         * 
+         * I know that it would be much shorter but I don't wanna bother spending time with such feature which has almost no benefits (in this scale!)
+         */
 
-        public static bool Load(string path)
+        public static class General
+        {
+            public static bool ShowHelperWindowOnStartup = false;
+            public static bool LiveFilteringMode = false;
+        }
+
+        public static class Filter
+        {
+            public static bool MatchFunctionNames = true;
+            public static bool MatchParameterNames = false;
+            public static bool MatchParameterTypes = false;
+        }
+
+        public static class Appearance
+        {
+            public static bool ShowParameterNamesInFunctionSignatures = false;
+            public static bool ShowBackgroundImage = true;
+            public static bool ShowIconsForEachNode = true;
+            public static bool UseCustomFont = false;
+            public static Font CustomFont = new Font("Microsoft Sans Serif", 8.25f, FontStyle.Regular);
+        }
+
+        public static void Load(string path)
         {
             SettingsPath = path;
 
             bool settingsFileExists = File.Exists(path);
 
-            if (!settingsFileExists) File.Create(path).Close();
-            else try { SettingsXML.Load(path); } catch (Exception) { SettingsXML = new XmlDocument(); settingsFileExists = false; }
-
-            XmlNode rootNode = SettingsXML.SelectSingleNode("/Settings");
-
-            // Build XML Structure
-            if (rootNode == null)
+            if (!settingsFileExists)
             {
-                rootNode = SettingsXML.CreateElement("Settings");
-                SettingsXML.AppendChild(rootNode);
-            }
-            for (int i = 0; i < Keys.GetLength(0); i++)
-            {
-                if (rootNode.SelectSingleNode(Keys[i, 0]) == null)
-                {
-                    rootNode.AppendChild(SettingsXML.CreateElement(Keys[i, 0]));
-                }
+                System.Windows.Forms.MessageBox.Show("A default settings file has been created!", "Overgrowth++", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Information);
+                File.Create(path).Close();
+
+                SettingsXML = CreateDefaultXML();
+                Save();
             }
 
-            bool rewriteSettings = false;
-
-            for (int i = 0; i < Keys.GetLength(0); i++)
+            try
             {
-                XmlNode node = rootNode.SelectSingleNode(Keys[i, 0] + "/" + Keys[i, 1]);
+                SettingsXML.Load(path);
 
-                if (node == null)
-                {
-                    Storage.Add(Keys[i, 1], Keys[i, 2]);
+                General.ShowHelperWindowOnStartup = Convert.ToBoolean(SettingsXML.SelectSingleNode("/Settings/General/ShowHelperWindowOnStartup").InnerText);
+                General.LiveFilteringMode = Convert.ToBoolean(SettingsXML.SelectSingleNode("/Settings/General/LiveFilteringMode").InnerText);
 
-                    XmlNode saveNode = SettingsXML.CreateElement(Keys[i, 1]);
-                    saveNode.InnerText = Keys[i, 2];
+                Filter.MatchFunctionNames = Convert.ToBoolean(SettingsXML.SelectSingleNode("/Settings/Filter/MatchFunctionNames").InnerText);
+                Filter.MatchParameterNames = Convert.ToBoolean(SettingsXML.SelectSingleNode("/Settings/Filter/MatchParameterNames").InnerText);
+                Filter.MatchParameterTypes = Convert.ToBoolean(SettingsXML.SelectSingleNode("/Settings/Filter/MatchParameterTypes").InnerText);
 
-                    rootNode.SelectSingleNode(Keys[i, 0]).AppendChild(saveNode);
-                    rewriteSettings = true;
-                }
-                else
-                {
-                    if (node.InnerText == "")
-                    {
-                        node.InnerText = Keys[i, 2];
-                        rewriteSettings = true;
-                    }
+                Appearance.ShowParameterNamesInFunctionSignatures = Convert.ToBoolean(SettingsXML.SelectSingleNode("/Settings/Appearance/ShowParameterNamesInFunctionSignatures").InnerText);
+                Appearance.ShowBackgroundImage = Convert.ToBoolean(SettingsXML.SelectSingleNode("/Settings/Appearance/ShowBackgroundImage").InnerText);
+                Appearance.ShowIconsForEachNode = Convert.ToBoolean(SettingsXML.SelectSingleNode("/Settings/Appearance/ShowIconsForEachNode").InnerText);
+                Appearance.UseCustomFont = Convert.ToBoolean(SettingsXML.SelectSingleNode("/Settings/Appearance/UseCustomFont").InnerText);
 
-                    // Keys which are not booleans can be saved without lowercasing them.
-                    // Infact this way the Font Name does not get destroyed.
+                string fontName = SettingsXML.SelectSingleNode("/Settings/Appearance/FontName").InnerText;
+                float fontSize = Convert.ToSingle(SettingsXML.SelectSingleNode("/Settings/Appearance/FontSize").InnerText);
+                FontStyle fontStyle = (FontStyle) Enum.Parse(typeof(FontStyle), SettingsXML.SelectSingleNode("/Settings/Appearance/FontStyle").InnerText);
 
-                    if (Keys[i, 2] == "true" || Keys[i, 2] == "false")
-                        Storage.Add(Keys[i, 1], node.InnerText.ToLower());
-                    else
-                        Storage.Add(Keys[i, 1], node.InnerText);
-                }
+                Appearance.CustomFont = new Font(fontName, fontSize, fontStyle);
             }
-
-            if (rewriteSettings) Save();
-            return settingsFileExists;
-        }
-
-        public static bool GetBool(string key)
-        {
-            return Convert.ToBoolean(Storage[key]);
-        }
-
-        public static void SetFont(Font font)
-        {
-            Storage["FontName"] = font.Name;
-            Storage["FontSize"] = font.Size.ToString();
-            Storage["FontBold"] = font.Bold.ToString();
-            Storage["FontItalic"] = font.Italic.ToString();
-        }
-
-        public static Font GetFont()
-        {
-            Font font = new Font(
-                Storage["FontName"],
-                Convert.ToSingle(Storage["FontSize"]),
-                (Config.GetBool("FontBold") ? FontStyle.Bold : 0) | (Config.GetBool("FontItalic") ? FontStyle.Italic : 0)
-            );
-
-            return font;
-        }
-
-        public static string Get(string key)
-        {
-            return Storage[key];
-        }
-
-        public static void Set(string key, string value)
-        {
-            Storage[key] = value;
-
-            for (int i = 0; i < Keys.GetLength(0); i++)
+            catch (Exception)
             {
-                if (Keys[i, 1] == key)
-                {
-                    SettingsXML.SelectSingleNode("/Settings/" + Keys[i, 0] + "/" + Keys[i, 1]).InnerText = value;
-                    break;
-                }
+                System.Windows.Forms.MessageBox.Show("Error loading the settings file.\nDefault settings will be loaded and saved.", "Overgrowth++", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Exclamation);
+           
+                SettingsXML = CreateDefaultXML();
+                Save();
             }
         }
 
+        /*
+         * This function will create only a default XML if the values in the variables were not overwritten!
+         */
+        private static XmlDocument CreateDefaultXML()
+        {
+            XmlDocument settingsXML = new XmlDocument();
+
+            XmlNode nodeRoot = settingsXML.CreateElement("Settings");
+            settingsXML.AppendChild(nodeRoot);
+
+            XmlNode nodeGeneral = AppendChildWithTextToXmlNode(nodeRoot, "General");
+
+            AppendChildWithTextToXmlNode(nodeGeneral, "ShowHelperWindowOnStartup", General.ShowHelperWindowOnStartup.ToString());
+            AppendChildWithTextToXmlNode(nodeGeneral, "LiveFilteringMode", General.LiveFilteringMode.ToString());
+
+            XmlNode nodeFilter = AppendChildWithTextToXmlNode(nodeRoot, "Filter");
+
+            AppendChildWithTextToXmlNode(nodeFilter, "MatchFunctionNames", Filter.MatchFunctionNames.ToString());
+            AppendChildWithTextToXmlNode(nodeFilter, "MatchParameterNames", Filter.MatchParameterNames.ToString());
+            AppendChildWithTextToXmlNode(nodeFilter, "MatchParameterTypes", Filter.MatchParameterTypes.ToString());
+
+            XmlNode nodeAppearance = AppendChildWithTextToXmlNode(nodeRoot, "Appearance");
+
+            AppendChildWithTextToXmlNode(nodeAppearance, "ShowParameterNamesInFunctionSignatures", Appearance.ShowParameterNamesInFunctionSignatures.ToString());
+            AppendChildWithTextToXmlNode(nodeAppearance, "ShowBackgroundImage", Appearance.ShowBackgroundImage.ToString());
+            AppendChildWithTextToXmlNode(nodeAppearance, "ShowIconsForEachNode", Appearance.ShowIconsForEachNode.ToString());
+            AppendChildWithTextToXmlNode(nodeAppearance, "UseCustomFont", Appearance.UseCustomFont.ToString());
+
+            AppendChildWithTextToXmlNode(nodeAppearance, "FontName", Appearance.CustomFont.FontFamily.Name);
+            AppendChildWithTextToXmlNode(nodeAppearance, "FontSize", Appearance.CustomFont.Size.ToString());
+            AppendChildWithTextToXmlNode(nodeAppearance, "FontStyle", Appearance.CustomFont.Style.ToString());
+
+            return settingsXML;
+        }
+
+        private static XmlNode AppendChildWithTextToXmlNode(XmlNode parent, string nodeTag, string nodeText = "")
+        {
+            XmlNode childNode = parent.OwnerDocument.CreateElement(nodeTag);
+            childNode.InnerText = nodeText;
+
+            parent.AppendChild(childNode);
+            return childNode;
+        }
+        
         public static void Save()
         {
+            SettingsXML.SelectSingleNode("/Settings/General/ShowHelperWindowOnStartup").InnerText = General.ShowHelperWindowOnStartup.ToString();
+            SettingsXML.SelectSingleNode("/Settings/General/LiveFilteringMode").InnerText = General.LiveFilteringMode.ToString();
+
+            SettingsXML.SelectSingleNode("/Settings/Filter/MatchFunctionNames").InnerText = Filter.MatchFunctionNames.ToString();
+            SettingsXML.SelectSingleNode("/Settings/Filter/MatchParameterNames").InnerText = Filter.MatchParameterNames.ToString();
+            SettingsXML.SelectSingleNode("/Settings/Filter/MatchParameterTypes").InnerText = Filter.MatchParameterTypes.ToString();
+
+            SettingsXML.SelectSingleNode("/Settings/Appearance/ShowParameterNamesInFunctionSignatures").InnerText = Appearance.ShowParameterNamesInFunctionSignatures.ToString();
+            SettingsXML.SelectSingleNode("/Settings/Appearance/ShowBackgroundImage").InnerText = Appearance.ShowBackgroundImage.ToString();
+            SettingsXML.SelectSingleNode("/Settings/Appearance/ShowIconsForEachNode").InnerText = Appearance.ShowIconsForEachNode.ToString();
+            SettingsXML.SelectSingleNode("/Settings/Appearance/UseCustomFont").InnerText = Appearance.UseCustomFont.ToString();
+
+            SettingsXML.SelectSingleNode("/Settings/Appearance/FontName").InnerText = Appearance.CustomFont.FontFamily.Name;
+            SettingsXML.SelectSingleNode("/Settings/Appearance/FontSize").InnerText = Appearance.CustomFont.Size.ToString();
+            SettingsXML.SelectSingleNode("/Settings/Appearance/FontStyle").InnerText = Appearance.CustomFont.Style.ToString();
+            
             SettingsXML.Save(SettingsPath);
         }
     }
