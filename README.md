@@ -1,4 +1,4 @@
-﻿# <img width=32 height=32 src="Resources/rabbit.ico" /> Overgrowth++
+# <img width=32 height=32 src="Resources/rabbit.ico" /> Overgrowth++
 Scripting Helper for the Overgrowth API as a Notepad++ plugin. (netFX4 required)
 
 Overgrowth++ provides helpful tools to assist in developing AngelScript code for Overgrowth.<br>
