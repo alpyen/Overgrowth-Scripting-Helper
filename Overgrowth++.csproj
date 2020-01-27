@@ -86,6 +86,8 @@
     <Content Include="Resources\rabbit.ico" />
     <Content Include="Resources\rabbit_bmp_small.bmp" />
     <Content Include="Resources\rabbit_png_small.png" />
+    <None Include="Resources\settings.png" />
+    <None Include="Resources\settings.ico" />
     <Content Include="Resources\variable.png" />
   </ItemGroup>
   <ItemGroup>

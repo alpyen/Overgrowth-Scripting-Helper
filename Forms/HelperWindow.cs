@@ -205,7 +205,6 @@ namespace Overgrowth__
 
             if (node.Nodes.Count > 0)
             {
-                //foreach (TreeNode childNode in node.Nodes)
                 for (int i = node.Nodes.Count - 1; i >= 0; i--)
                 {
                     if (checkAndExpand(node.Nodes[i], filter))
