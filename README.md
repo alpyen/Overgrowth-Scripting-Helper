@@ -1,4 +1,4 @@
-# <img width=32 height=32 src="Resources/rabbit.ico" /> Overgrowth++
+# <img width=32 height=32 src="Overgrowth++/Resources/rabbit.ico" /> Overgrowth++
 Scripting Helper for the Overgrowth API as a Notepad++ plugin. (netFX4 required)
 
 Overgrowth++ provides helpful tools to assist in developing AngelScript code for Overgrowth.<br>
@@ -49,16 +49,19 @@ When that is finished, many of these bugs will be no issue anymore.
 Now that the migration to Windows 10 is done I'm trying to rework everything from scratch with error handlers to begin with, so I don't need to add them afterwards.
 
  ### Known Bugs/ToDo-List:
-- Live Search reconstructs full TreeView on each input change (should use last treeview though (while typing, not removing), much faster)
-- Live Search ignores last character
-- Live Search reacts on every keyhit, but should only on changed input
-- No icons on SettingsWindow (titlebar) etc.
-- parameters are being split wrong if they have defaults like uv_a = vec2(0, 0) (needs fix in Calltips too)
-- search filters too everything, even the parameters of a matched function (although it should show all)
-- Add Docs2XML (Calltip-Parser)
-- type of variables are not shown (Docs2XML needs to parse the type)
-- Rework Calltips (correct parsing, Docs2XML?)
-- Many unparsable lines in Docs2XML
-- Add Description to Calltips
-- Cleanup Code
-- Rework the appearance? Remove standard title bar and make it more appealing?
+
+- **Overgrowth++ (Notepad++ Plugin)**
+  - Live Search reconstructs full TreeView on each input change (should use last treeview though (while typing, not removing), much faster)
+  - Live Search ignores last character
+  - Live Search reacts on every keyhit, but should only on changed input
+  - parameters are being split wrong if they have defaults like uv_a = vec2(0, 0) (needs fix in Calltips too)
+  - search filters too everything, even the parameters of a matched function (although it should show all) (???)
+  - Cleanup Code
+  - Rework the appearance? Remove standard title bar and make it more appealing?
+
+- **AsDocs2XML (Calltip-Parser)**
+  - type of variables are not shown (Docs2XML needs to parse the type)
+  - Rework Calltips (correct parsing, Docs2XML?)
+  - Many unparsable lines in Docs2XML
+  - Add Description to Calltips
+  - Finalize resulting database.xml structure
