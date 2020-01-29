@@ -21,7 +21,7 @@ namespace AsDocs2XML
 
         // Don't judge me for these patterns! I barely know enough Regex to keep my head above the water level x)
         private static Regex rxIgnorable = new Regex(@"^\s*(?:\/\/.*)?$");
-        private static Regex rxFunction = new Regex(@"^\s*(const)?\s*([^,\s]+?)\s*([^,\s]+?)\s*\(([^\)]*?)\)\s*(const)?.*?$");
+        private static Regex rxFunction = new Regex(@"^\s*\s*((?:const)?\s*[^,\s]+?)\s*([^,\s]+?)\s*\(([^\)]*?)\)\s*(const)?.*?$");
         private static Regex rxVariable = new Regex(@"^\s*(const)?\s*([^,\s}]+?)\s*([^,\s*\(};]+?)\s*;\s*$");
         private static Regex rxClassBegin = new Regex(@"^\s*class\s*(.+?)\s*{\s*.*?$");
         private static Regex rxEnumerationBegin = new Regex(@"^\s*enum\s*(.+?)\s*{\s*.*?$");
@@ -105,9 +105,13 @@ namespace AsDocs2XML
                 foreach(ASOverload asOverload in asFunction.overloads)
                 {
                     // TODO: Generate full overload for SetAttribute(Name)
+                    IEnumerable<string> parameters = asOverload.parameters.Select((parameter) => (parameter.type + " " + parameter.name));
+                    string fullName = asOverload.returnType + " " + asOverload.name + "(" + string.Join(", ", parameters) + ")" + (asOverload.isConst ? " const" : "");
 
                     XmlElement xmlOverload = xmlDocument.CreateElement("Overload");
-                    xmlOverload.SetAttribute("Name", "To be filled by O.E.M.");
+                    xmlOverload.SetAttribute("Type", asOverload.returnType);
+                    xmlOverload.SetAttribute("Name", fullName);
+                    xmlOverload.SetAttribute("Const", asOverload.isConst.ToString());
                     xmlFunction.AppendChild(xmlOverload);
 
                     foreach(ASParameter asParameter in asOverload.parameters)
@@ -304,23 +308,32 @@ namespace AsDocs2XML
              */
             Match matchFunction = rxFunction.Match(script[lineIndex]);
             
-            bool isConst;
             string returnType;
             string functionName;
             string parameters;
+            bool constMethod;
 
-            // The Regex will capture at most 5 groups.
-            // (const) (returnType) (functionName) (params) (const)
-            
-            isConst = matchFunction.Groups[1].Value == "const" || matchFunction.Groups[5].Value == "const";
-            returnType = matchFunction.Groups[2].Value;
-            functionName = matchFunction.Groups[3].Value;
-            parameters = matchFunction.Groups[4].Value;
+            // The Regex will capture at most 4 groups.
+            // (returnType) (functionName) (params) (const)
 
-            ASOverload asOverload = new ASOverload(isConst, returnType, functionName);
+            returnType = matchFunction.Groups[1].Value;
+            functionName = matchFunction.Groups[2].Value;
+            parameters = matchFunction.Groups[3].Value;
+            constMethod = matchFunction.Groups[4].Value == "const";
+
+            if (functionName.Substring(0, 1) == "&" || functionName.Substring(0, 1) == "@")
+            {
+                returnType += functionName.Substring(0, 1);
+                functionName = functionName.Substring(1);
+            }
+
+            ASOverload asOverload = new ASOverload(returnType, functionName, constMethod);
 
             // Parsing Parameters
             // TODO: Implement parameter parsing
+
+            asOverload.parameters.Add(new ASParameter("int", "lol"));
+            asOverload.parameters.Add(new ASParameter("string", "notsolol"));
 
             return asOverload;
         }
@@ -426,16 +439,16 @@ namespace AsDocs2XML
 
     struct ASOverload
     {
-        public bool isConst;
         public string returnType;
         public string name;
         public List<ASParameter> parameters;
+        public bool isConst;
 
-        public ASOverload(bool isConst, string returnType, string name)
+        public ASOverload(string returnType, string name, bool isConst)
         {
-            this.isConst = isConst;
             this.returnType = returnType;
             this.name = name;
+            this.isConst = isConst;
 
             this.parameters = new List<ASParameter>();
         }
@@ -443,16 +456,14 @@ namespace AsDocs2XML
 
     struct ASParameter
     {
-        public bool isConst;
         public string type;
         public string name;
 
         //const string &in key
         //Campaign& opAssign(const Campaign &in other
 
-        public ASParameter(bool isConst, string type, string name)
+        public ASParameter(string type, string name)
         {
-            this.isConst = isConst;
             this.type = type;
             this.name = name;
         }
