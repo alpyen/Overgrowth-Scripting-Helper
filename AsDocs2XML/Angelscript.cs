@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using System.Text.RegularExpressions;
+using System.Xml;
 
 namespace AsDocs2XML
 {
@@ -20,8 +21,8 @@ namespace AsDocs2XML
 
         // Don't judge me for these patterns! I barely know enough Regex to keep my head above the water level x)
         private static Regex rxIgnorable = new Regex(@"^\s*(?:\/\/.*)?$");
-        private static Regex rxFunction = new Regex(@"^\s*((const)?\s*([^,\s]+?)\s*([^,\s]+?)\s*\(([^\)]*?)\)\s*(const)?).*?$");
-        private static Regex rxVariable = new Regex(@"^\s*(const)?\s*([^,\s}]+?)\s*([^,\s*\(}]+?)\s*$");
+        private static Regex rxFunction = new Regex(@"^\s*(const)?\s*([^,\s]+?)\s*([^,\s]+?)\s*\(([^\)]*?)\)\s*(const)?.*?$");
+        private static Regex rxVariable = new Regex(@"^\s*(const)?\s*([^,\s}]+?)\s*([^,\s*\(};]+?)\s*;\s*$");
         private static Regex rxClassBegin = new Regex(@"^\s*class\s*(.+?)\s*{\s*.*?$");
         private static Regex rxEnumerationBegin = new Regex(@"^\s*enum\s*(.+?)\s*{\s*.*?$");
         private static Regex rxScopeEnding = new Regex(@"^\s*\};(?:\/\/.*)?\s*$");
@@ -29,16 +30,129 @@ namespace AsDocs2XML
         private static Regex rxParameters = new Regex(@"\s*((?:[^,\s]+\s*)+)\s*,?");
         private static Regex rxEnumerationValue = new Regex(@"^\s*([^,\s=]+)\s*=\s*-?(\d+)\s*,?\s*$");
 
-        private static LineType GetLineType(string line)
+        public static void AppendScriptAsXmlElement(XmlElement nodeAppend, dynamic asElement)
         {
-            if (rxIgnorable.IsMatch(line)) return LineType.Ignorable;
-            if (rxFunction.IsMatch(line)) return LineType.Function;
-            if (rxVariable.IsMatch(line)) return LineType.Variable;
-            if (rxClassBegin.IsMatch(line)) return LineType.ClassBegin;
-            if (rxEnumerationBegin.IsMatch(line)) return LineType.EnumerationBegin;
-            if (rxScopeEnding.IsMatch(line)) return LineType.ScopeEnding;
+            XmlDocument xmlDocument = nodeAppend.OwnerDocument;
 
-            return LineType.Unknown;
+            if (asElement.GetType() == typeof(ASScript))
+            {
+                ASScript asScript = (ASScript)asElement;
+                XmlElement xmlScript = xmlDocument.CreateElement("Script");
+                xmlScript.SetAttribute("Name", asScript.name);
+                nodeAppend.AppendChild(xmlScript);
+
+                XmlElement xmlClasses = xmlDocument.CreateElement("Classes");
+                XmlElement xmlEnumerations = xmlDocument.CreateElement("Enumerations");
+                XmlElement xmlFunctions = xmlDocument.CreateElement("Functions");
+                XmlElement xmlVariables = xmlDocument.CreateElement("Variables");
+
+                xmlScript.AppendChild(xmlClasses);
+                xmlScript.AppendChild(xmlEnumerations);
+                xmlScript.AppendChild(xmlFunctions);
+                xmlScript.AppendChild(xmlVariables);
+
+                foreach (ASClass asClass in asScript.classes.Values) AppendScriptAsXmlElement(xmlClasses, asClass);
+                foreach (ASEnumeration asEnumeration in asScript.enumerations.Values) AppendScriptAsXmlElement(xmlEnumerations, asEnumeration);
+                foreach (ASFunction asFunction in asScript.functions.Values) AppendScriptAsXmlElement(xmlFunctions, asFunction);
+                foreach (ASVariable asVariable in asScript.variables.Values) AppendScriptAsXmlElement(xmlVariables, asVariable);
+            }
+            else if (asElement.GetType() == typeof(ASClass))
+            {
+                ASClass asClass = (ASClass)asElement;
+                XmlElement xmlClass = xmlDocument.CreateElement("Class");
+                xmlClass.SetAttribute("Name", asClass.name);
+                nodeAppend.AppendChild(xmlClass);
+
+                XmlElement xmlClasses = xmlDocument.CreateElement("Classes");
+                XmlElement xmlEnumerations = xmlDocument.CreateElement("Enumerations");
+                XmlElement xmlFunctions = xmlDocument.CreateElement("Functions");
+                XmlElement xmlVariables = xmlDocument.CreateElement("Variables");
+
+                xmlClass.AppendChild(xmlClasses);
+                xmlClass.AppendChild(xmlEnumerations);
+                xmlClass.AppendChild(xmlFunctions);
+                xmlClass.AppendChild(xmlVariables);
+
+                foreach (ASClass asClassInClass in asClass.classes.Values) AppendScriptAsXmlElement(xmlClasses, asClassInClass);
+                foreach (ASEnumeration asEnumeration in asClass.enumerations.Values) AppendScriptAsXmlElement(xmlEnumerations, asEnumeration);
+                foreach (ASFunction asFunction in asClass.functions.Values) AppendScriptAsXmlElement(xmlFunctions, asFunction);
+                foreach (ASVariable asVariable in asClass.variables.Values) AppendScriptAsXmlElement(xmlVariables, asVariable);
+            }
+            else if (asElement.GetType() == typeof(ASEnumeration))
+            {
+                ASEnumeration asEnumeration = (ASEnumeration)asElement;
+                XmlElement xmlEnumeration = xmlDocument.CreateElement("Enumeration");
+                xmlEnumeration.SetAttribute("Name", asEnumeration.name);
+                nodeAppend.AppendChild(xmlEnumeration);
+
+                foreach (KeyValuePair<string, int> enumerationMember in asEnumeration.enumerationMembers)
+                {
+                    // TODO: Append by Value not by String sorting!
+
+                    XmlElement xmlEnumerationMember = xmlDocument.CreateElement("EnumerationMember");
+                    xmlEnumerationMember.SetAttribute("Name", enumerationMember.Key);
+                    xmlEnumerationMember.SetAttribute("Value", enumerationMember.Value.ToString());
+                    xmlEnumeration.AppendChild(xmlEnumerationMember);
+                }
+            }
+            else if (asElement.GetType() == typeof(ASFunction))
+            {
+                ASFunction asFunction = (ASFunction)asElement;
+                XmlElement xmlFunction = xmlDocument.CreateElement("Function");
+                xmlFunction.SetAttribute("Name", asFunction.name);
+                nodeAppend.AppendChild(xmlFunction);
+
+                foreach(ASOverload asOverload in asFunction.overloads)
+                {
+                    // TODO: Generate full overload for SetAttribute(Name)
+
+                    XmlElement xmlOverload = xmlDocument.CreateElement("Overload");
+                    xmlOverload.SetAttribute("Name", "To be filled by O.E.M.");
+                    xmlFunction.AppendChild(xmlOverload);
+
+                    foreach(ASParameter asParameter in asOverload.parameters)
+                    {
+                        // TODO: Print isConst, Name and Type in Parameter XML, not just the string
+
+                        XmlElement xmlParameter = xmlDocument.CreateElement("Parameter");
+                        xmlParameter.SetAttribute("Name", asParameter.name);
+                        xmlOverload.AppendChild(xmlParameter);
+                    }
+                }
+            }
+            else if (asElement.GetType() == typeof(ASVariable))
+            {
+                ASVariable asVariable = (ASVariable)asElement;
+                XmlElement xmlVariable = xmlDocument.CreateElement("Variable");
+                xmlVariable.SetAttribute("Name", asVariable.name);
+                nodeAppend.AppendChild(xmlVariable);
+            }
+
+            /*<Scripts>
+  <Camera>
+    <Classes>
+      <Class Name="ASCollisions">
+        <Classes />
+        <Enumerations />
+        <Functions>
+          <Function Name="CheckRayCollisionCharacters">
+            <Overload Name="void CheckRayCollisionCharacters(vec3 start, vec3 end)">
+              <Parameter Name="vec3 end" />
+              <Parameter Name="vec3 start" />
+            </Overload>
+          </Function>
+          
+             <Enumerations>
+      <Enumeration Name="CameraFlags">
+        <EnumerationMember Name="kEditorCamera" Value="1" />
+        <EnumerationMember Name="kPreviewCamera" Value="2" />
+      </Enumeration>
+
+      <Variables>
+      <Variable Name="_awake" />
+      <Variable Name="_collectable" />
+      <Variable Name="_dead" />
+             */
         }
 
         public static ASScript ParseScript(string scriptName, string[] script)
@@ -48,8 +162,8 @@ namespace AsDocs2XML
             for (int lineIndex = 0; lineIndex < script.Length; lineIndex++)
             {
                 LineType lineType = GetLineType(script[lineIndex]);
-                //Console.WriteLine("[" + (lineIndex + 1) + ", " + lineType + "] = " + script[lineIndex] + "");
-                
+                // Console.WriteLine("[" + (lineIndex + 1) + ", " + lineType + "] = " + script[lineIndex] + "");
+
                 switch (lineType)
                 {
                     case LineType.Unknown: break;
@@ -58,19 +172,29 @@ namespace AsDocs2XML
                     case LineType.ClassBegin:
                         ASClass parseClass = ParseClass(script, ref lineIndex);
                         asScript.classes.Add(parseClass.name, parseClass);
+
                         break;
 
                     case LineType.EnumerationBegin:
                         ASEnumeration parseEnumeration = ParseEnumeration(script, ref lineIndex);
                         asScript.enumerations.Add(parseEnumeration.name, parseEnumeration);
+
                         break;
 
                     case LineType.Function:
-                        ASFunction parseFunction = ParseFunction(asScript.functions, script, ref lineIndex);
+                        ASOverload parseOverload = ParseOverload(script, ref lineIndex);
 
-                        // See ParseFunction for further information
-                        //if (asScript.functions.ContainsKey(parseFunction.name)) asScript.functions[parseFunction.name] = parseFunction;
-                        //else asScript.functions.Add(parseFunction.name, parseFunction);
+                        // Check if the function already exists and then add the overload or create a new function first
+                        if (asScript.functions.ContainsKey(parseOverload.name))
+                        {
+                            asScript.functions[parseOverload.name].overloads.Add(parseOverload);
+                        }
+                        else
+                        {
+                            ASFunction asFunction = new ASFunction(parseOverload.name);
+                            asFunction.overloads.Add(parseOverload);
+                            asScript.functions.Add(asFunction.name, asFunction);
+                        }
 
                         break;
 
@@ -91,10 +215,11 @@ namespace AsDocs2XML
             ASClass asClass = new ASClass(matchClass.Groups[1].Value);
 
             lineIndex++;
+            LineType lineType = GetLineType(script[lineIndex]);
 
-            while (GetLineType(script[lineIndex]) != LineType.ScopeEnding)
+            while (lineType != LineType.ScopeEnding)
             {
-                LineType lineType = GetLineType(script[lineIndex]);
+                // Console.WriteLine("[" + (lineIndex + 1) + ", " + lineType + "] = " + script[lineIndex] + "");
 
                 switch (lineType)
                 {
@@ -112,11 +237,19 @@ namespace AsDocs2XML
                         break;
 
                     case LineType.Function:
-                        ASFunction parseFunction = ParseFunction(asClass.functions, script, ref lineIndex);
+                        ASOverload parseOverload = ParseOverload(script, ref lineIndex);
 
-                        // See ParseFunction for further information
-                        //if (asClass.functions.ContainsKey(parseFunction.name)) asClass.functions[parseFunction.name] = parseFunction;
-                        //else asClass.functions.Add(parseFunction.name, parseFunction);
+                        // See ParseScript LineType.Function for explanation
+                        if (asClass.functions.ContainsKey(parseOverload.name))
+                        {
+                            asClass.functions[parseOverload.name].overloads.Add(parseOverload);
+                        }
+                        else
+                        {
+                            ASFunction asFunction = new ASFunction(parseOverload.name);
+                            asFunction.overloads.Add(parseOverload);
+                            asClass.functions.Add(asFunction.name, asFunction);
+                        }
 
                         break;
 
@@ -128,6 +261,7 @@ namespace AsDocs2XML
                 }
 
                 lineIndex++;
+                lineType = GetLineType(script[lineIndex]);
             }
 
             return asClass;
@@ -137,7 +271,7 @@ namespace AsDocs2XML
         {
             Match match = rxEnumerationBegin.Match(script[lineIndex]);
             ASEnumeration asEnumeration = new ASEnumeration(match.Groups[1].Value);
-            
+
             lineIndex++;
 
             while (GetLineType(script[lineIndex]) != LineType.ScopeEnding)
@@ -155,19 +289,11 @@ namespace AsDocs2XML
             return asEnumeration;
         }
 
-        private static ASFunction ParseFunction(SortedList<string, ASFunction> functions, string[] script, ref int lineIndex)
+        private static ASOverload ParseOverload(string[] script, ref int lineIndex)
         {
-            // The ParseFunction is special since it needs to detect the overloading of functions.
-            // Therefore we pass the functions of the parent (ASScript/ASClass) so we can check it in here
-            // rather than duplicating the code for ParseScript and ParseClass!
-
-            // We take out the (possibly) existing function and add the overload to it.
-            // Although we shouldn't need to update the list in the parent loop (since it's a reference)
-            // we are still doing it for semantic understanding.
-
             /*
              *  void RibbonItemSetEnabled(const string &in, bool);
-             *  vec3 opMul(const vec3 &in) const;
+             *  const vec3 opMul(const vec3 &in) const;
              *  const string &GetString (const string &in key);
              *  const float &opIndex(uint) const;
              *  JSON& opAssign(const JSON &in other);
@@ -177,14 +303,26 @@ namespace AsDocs2XML
              *
              */
             Match matchFunction = rxFunction.Match(script[lineIndex]);
+            
+            bool isConst;
+            string returnType;
+            string functionName;
+            string parameters;
 
-            ASFunction asFunction = new ASFunction(matchFunction.Groups[1].Value);
+            // The Regex will capture at most 5 groups.
+            // (const) (returnType) (functionName) (params) (const)
+            
+            isConst = matchFunction.Groups[1].Value == "const" || matchFunction.Groups[5].Value == "const";
+            returnType = matchFunction.Groups[2].Value;
+            functionName = matchFunction.Groups[3].Value;
+            parameters = matchFunction.Groups[4].Value;
 
-            // TODO: Implement
+            ASOverload asOverload = new ASOverload(isConst, returnType, functionName);
 
-            // Wenn eine Funktion bereits vorhanden ist muss das überprüft werden! Überladung und so
+            // Parsing Parameters
+            // TODO: Implement parameter parsing
 
-            return asFunction;
+            return asOverload;
         }
 
         private static ASVariable ParseVariable(string[] script, ref int lineIndex)
@@ -210,7 +348,19 @@ namespace AsDocs2XML
 
             return new ASVariable(isConst, type, name);
         }
-    }
+
+        private static LineType GetLineType(string line)
+        {
+            if (rxIgnorable.IsMatch(line)) return LineType.Ignorable;
+            if (rxFunction.IsMatch(line)) return LineType.Function;
+            if (rxVariable.IsMatch(line)) return LineType.Variable;
+            if (rxClassBegin.IsMatch(line)) return LineType.ClassBegin;
+            if (rxEnumerationBegin.IsMatch(line)) return LineType.EnumerationBegin;
+            if (rxScopeEnding.IsMatch(line)) return LineType.ScopeEnding;
+
+            return LineType.Unknown;
+        }
+}
 
     /*
      * Mirroring the structure of the Angelscript scripts inside AsDocs2XML
@@ -278,12 +428,14 @@ namespace AsDocs2XML
     {
         public bool isConst;
         public string returnType;
+        public string name;
         public List<ASParameter> parameters;
 
-        public ASOverload(bool isConst, string returnType)
+        public ASOverload(bool isConst, string returnType, string name)
         {
             this.isConst = isConst;
             this.returnType = returnType;
+            this.name = name;
 
             this.parameters = new List<ASParameter>();
         }

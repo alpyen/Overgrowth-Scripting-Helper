@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using System.IO;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace AsDocs2XML
 {
@@ -42,7 +43,7 @@ namespace AsDocs2XML
             {
                 Console.WriteLine("Loading script: " + file);
 
-                string scriptName = Path.GetFileNameWithoutExtension(file).Replace(" ", "");
+                string scriptName = Path.GetFileNameWithoutExtension(file);
                 string[] scriptLines = File.ReadAllLines(file);
 
                 Console.WriteLine("Parsing script: " + scriptName);
@@ -53,10 +54,15 @@ namespace AsDocs2XML
                 Console.WriteLine();
             }
 
+            XmlDocument xmlDatabase = new XmlDocument();
+            XmlElement rootNode = xmlDatabase.CreateElement("Scripts");
+            xmlDatabase.AppendChild(rootNode);
+
+            foreach (ASScript currentScript in database.Values)
+                ASHelper.AppendScriptAsXmlElement(rootNode, currentScript);
+
+            xmlDatabase.Save("Database.xml");
             
-
-            Console.ReadLine();
-
             /*
             static Regex regExFunction = new Regex(@"^\s*((const)?\s*([^,\s]+?)\s*([^,\s]+?)\s*\(([^\)]*?)\)\s*(const)?).*?$");
             static Regex regExVariable = new Regex(@"^\s*(const)?\s*([^,\s}]+?)\s*([^,\s*\(}]+?)\s*$");
