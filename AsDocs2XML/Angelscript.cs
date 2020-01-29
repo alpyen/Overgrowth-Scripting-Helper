@@ -105,17 +105,8 @@ namespace AsDocs2XML
 
                 foreach (ASOverload asOverload in asFunction.overloads)
                 {
-                    // TODO: Full overload is badly formatted if parameters have no name => (Object@ )
-                    List<string> parameters = new List<string>();
-
-                    foreach (ASParameter asParameter in asOverload.parameters)
-                        parameters.Add(asParameter.type + " " + asParameter.name + (asParameter.defaultValue != "" ? " = " + asParameter.defaultValue : ""));
-
-                    string fullName = asOverload.returnType + " " + asOverload.name + "(" + string.Join(", ", parameters) + ")" + (asOverload.isConst ? " const" : "");
-
                     XmlElement xmlOverload = xmlDocument.CreateElement("Overload");
                     xmlOverload.SetAttribute("Type", asOverload.returnType);
-                    xmlOverload.SetAttribute("Name", fullName);
                     xmlOverload.SetAttribute("Const", asOverload.isConst.ToString());
                     xmlFunction.AppendChild(xmlOverload);
 
