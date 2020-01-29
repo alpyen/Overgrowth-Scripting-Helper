@@ -60,6 +60,5 @@ Now that the migration to Windows 10 is done I'm trying to rework everything fro
   - Rework the appearance? Remove standard title bar and make it more appealing?
 
 - **AsDocs2XML (Calltip-Parser)**
+  - Generate calltips XML
   - Add Description to Calltips
-  - Finalize resulting database.xml structure (pretty much done)
-  - Maybe kick out unnecessary capture groups (like return type const, NOT method const)
