@@ -308,7 +308,15 @@ namespace AsDocs2XML
             }
 
             ASOverload asOverload = new ASOverload(returnType, functionName, constMethod);
-            
+            asOverload.parameters = ParseParameters(parameters);
+
+            return asOverload;
+        }
+
+        private static List<ASParameter> ParseParameters(string parameters)
+        {
+            List<ASParameter> asParameters = new List<ASParameter>();
+
             // Since parameters can have defaultValues which might contain commas we can't simply split by a comma.
             // We need to split it by checking if the comma is inside a bracket, if it is, we don't split at that particular index.
 
@@ -336,51 +344,20 @@ namespace AsDocs2XML
 
             for (int i = 0; i < parameters.Length; i++)
             {
-                switch (parameters.Substring(i, 1))
+                if (parameters.Substring(i, 1) == "(")
                 {
-                    case "(": bracketLevel++; break;
-                    case ")": bracketLevel--; break;
-                    case ",":
-                        if (bracketLevel != 0) break; // Check if we are inside brackets
-
-                        string currentParameter = parameters.Substring(lastPos, i - lastPos);
-                        lastPos = i + 1;
-
-                        Match matchParameter = rxParameter.Match(currentParameter);
-
-                        string type;
-                        string name;
-                        string defaultValue;
-
-                        if (matchParameter.Groups[1].Value != "")
-                        {
-                            type = matchParameter.Groups[1].Value;
-                            name = matchParameter.Groups[2].Value;
-                            defaultValue = matchParameter.Groups[3].Value;
-                        }
-                        else if (matchParameter.Groups[4].Value != "")
-                        {
-                            type = matchParameter.Groups[4].Value;
-                            name = matchParameter.Groups[5].Value;
-                            defaultValue = "";
-                        }
-                        else // matchParameter.Groups[6].Value != ""
-                        {
-                            type = matchParameter.Groups[6].Value;
-                            name = "";
-                            defaultValue = "";
-                        }
-
-                        ASParameter asParameter = new ASParameter(type, name, defaultValue);
-                        asOverload.parameters.Add(asParameter);
-
-                        break;
+                    bracketLevel++;
                 }
-
-                // The last parameter obviously has no comma so we need to check it separately.
-                if (i == parameters.Length - 1)
+                else if (parameters.Substring(i, 1) == ")")
                 {
-                    string currentParameter = parameters.Substring(lastPos, i - lastPos + 1);
+                    bracketLevel--;
+                }
+                else if (parameters.Substring(i, 1) == "," || i == parameters.Length - 1)
+                {
+                    if (bracketLevel != 0) break; // Check if we are inside brackets
+
+                    string currentParameter = parameters.Substring(lastPos, i - lastPos + (i == parameters.Length - 1 ? 1 : 0));
+                    lastPos = i + 1;
 
                     Match matchParameter = rxParameter.Match(currentParameter);
 
@@ -408,11 +385,11 @@ namespace AsDocs2XML
                     }
 
                     ASParameter asParameter = new ASParameter(type, name, defaultValue);
-                    asOverload.parameters.Add(asParameter);
+                    asParameters.Add(asParameter);
                 }
             }
 
-            return asOverload;
+            return asParameters;
         }
 
         private static ASVariable ParseVariable(string[] script, ref int lineIndex)

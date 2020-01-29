@@ -17,7 +17,7 @@ namespace AsDocs2XML
         {
             Console.WriteLine("AsDocs2XML - please load your corrected asdocs header files!");
             Console.WriteLine();
-
+            
             /*
             OpenFileDialog fd = new OpenFileDialog();
             fd.Filter = "Overgrowth Angelscript Header Documentaion Files|*.txt;*.h";
