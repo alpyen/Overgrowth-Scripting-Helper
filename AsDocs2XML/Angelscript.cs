@@ -86,13 +86,35 @@ namespace AsDocs2XML
                 xmlEnumeration.SetAttribute("Name", asEnumeration.name);
                 nodeAppend.AppendChild(xmlEnumeration);
 
-                foreach (KeyValuePair<string, int> enumerationMember in asEnumeration.enumerationMembers)
+                // Adding the enumerations sorted by their actual value not their name.
+                // SortedList does not allow duplicate Keys therefore we use a normal list and sort it here.
+
+                bool[] elementsUsed = new bool[asEnumeration.enumerationMembers.Count];
+                int current = int.MinValue;
+                int added = 0;
+
+                while (added < asEnumeration.enumerationMembers.Count)
                 {
-                    // TODO: Append by Value not by String sorting!
+                    int nextSmallest = int.MaxValue;
+                    int nextSmallestIndex = -1;
+
+                    for (int i = 0; i < asEnumeration.enumerationMembers.Count; i++)
+                    {
+                        if (elementsUsed[i]) continue;
+                        if (asEnumeration.enumerationMembers.Values[i] <= nextSmallest)
+                        {
+                            nextSmallest = asEnumeration.enumerationMembers.Values[i];
+                            nextSmallestIndex = i;
+                        }
+                    }
+
+                    current = nextSmallest;
+                    elementsUsed[nextSmallestIndex] = true;
+                    added++;
 
                     XmlElement xmlEnumerationMember = xmlDocument.CreateElement("EnumerationMember");
-                    xmlEnumerationMember.SetAttribute("Name", enumerationMember.Key);
-                    xmlEnumerationMember.SetAttribute("Value", enumerationMember.Value.ToString());
+                    xmlEnumerationMember.SetAttribute("Name", asEnumeration.enumerationMembers.Keys[nextSmallestIndex]);
+                    xmlEnumerationMember.SetAttribute("Value", asEnumeration.enumerationMembers.Values[nextSmallestIndex].ToString());
                     xmlEnumeration.AppendChild(xmlEnumerationMember);
                 }
             }
@@ -283,9 +305,6 @@ namespace AsDocs2XML
             string functionName;
             string parameters;
             bool constMethod;
-
-            // The Regex will capture at most 4 groups.
-            // (returnType) (functionName) (params) (const)
 
             returnType = matchFunction.Groups[1].Value;
             functionName = matchFunction.Groups[2].Value;
