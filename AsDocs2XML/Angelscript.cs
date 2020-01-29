@@ -384,6 +384,12 @@ namespace AsDocs2XML
                         defaultValue = "";
                     }
 
+                    if (name.Length > 0  && (name.Substring(0, 1) == "&" || name.Substring(0, 1) == "@"))
+                    {
+                        type += name.Substring(0, 1);
+                        name = name.Substring(1);
+                    }
+
                     ASParameter asParameter = new ASParameter(type, name, defaultValue);
                     asParameters.Add(asParameter);
                 }
