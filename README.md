@@ -60,8 +60,6 @@ Now that the migration to Windows 10 is done I'm trying to rework everything fro
   - Rework the appearance? Remove standard title bar and make it more appealing?
 
 - **AsDocs2XML (Calltip-Parser)**
-  - type of variables are not shown (Docs2XML needs to parse the type)
-  - Rework Calltips (correct parsing, Docs2XML?)
-  - Many unparsable lines in Docs2XML
   - Add Description to Calltips
-  - Finalize resulting database.xml structure
+  - Finalize resulting database.xml structure (pretty much done)
+  - Maybe kick out unnecessary capture groups (like return type const, NOT method const)

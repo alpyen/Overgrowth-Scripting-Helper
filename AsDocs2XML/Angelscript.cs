@@ -21,13 +21,14 @@ namespace AsDocs2XML
 
         // Don't judge me for these patterns! I barely know enough Regex to keep my head above the water level x)
         private static Regex rxIgnorable = new Regex(@"^\s*(?:\/\/.*)?$");
-        private static Regex rxFunction = new Regex(@"^\s*\s*((?:const)?\s*[^,\s]+?)\s*([^,\s]+?)\s*\(([^\)]*?)\)\s*(const)?.*?$");
+        private static Regex rxFunction = new Regex(@"^\s*((?:const)?\s*[^,\s]+?)\s*([^,\s]+?)\s*\(([^\/]*)\)\s*(const)?.*?$");
         private static Regex rxVariable = new Regex(@"^\s*(const)?\s*([^,\s}]+?)\s*([^,\s*\(};]+?)\s*;\s*$");
         private static Regex rxClassBegin = new Regex(@"^\s*class\s*(.+?)\s*{\s*.*?$");
         private static Regex rxEnumerationBegin = new Regex(@"^\s*enum\s*(.+?)\s*{\s*.*?$");
         private static Regex rxScopeEnding = new Regex(@"^\s*\};(?:\/\/.*)?\s*$");
 
         private static Regex rxParameters = new Regex(@"\s*((?:[^,\s]+\s*)+)\s*,?");
+        private static Regex rxParameter = new Regex(@"^\s*(?:(?:(.+)\s+(.+?)\s*=\s*(.+))|(?:(.+)\s+(.+))|(.+))\s*$");
         private static Regex rxEnumerationValue = new Regex(@"^\s*([^,\s=]+)\s*=\s*-?(\d+)\s*,?\s*$");
 
         public static void AppendScriptAsXmlElement(XmlElement nodeAppend, dynamic asElement)
@@ -102,10 +103,14 @@ namespace AsDocs2XML
                 xmlFunction.SetAttribute("Name", asFunction.name);
                 nodeAppend.AppendChild(xmlFunction);
 
-                foreach(ASOverload asOverload in asFunction.overloads)
+                foreach (ASOverload asOverload in asFunction.overloads)
                 {
-                    // TODO: Generate full overload for SetAttribute(Name)
-                    IEnumerable<string> parameters = asOverload.parameters.Select((parameter) => (parameter.type + " " + parameter.name));
+                    // TODO: Full overload is badly formatted if parameters have no name => (Object@ )
+                    List<string> parameters = new List<string>();
+
+                    foreach (ASParameter asParameter in asOverload.parameters)
+                        parameters.Add(asParameter.type + " " + asParameter.name + (asParameter.defaultValue != "" ? " = " + asParameter.defaultValue : ""));
+
                     string fullName = asOverload.returnType + " " + asOverload.name + "(" + string.Join(", ", parameters) + ")" + (asOverload.isConst ? " const" : "");
 
                     XmlElement xmlOverload = xmlDocument.CreateElement("Overload");
@@ -116,10 +121,10 @@ namespace AsDocs2XML
 
                     foreach(ASParameter asParameter in asOverload.parameters)
                     {
-                        // TODO: Print isConst, Name and Type in Parameter XML, not just the string
-
                         XmlElement xmlParameter = xmlDocument.CreateElement("Parameter");
+                        xmlParameter.SetAttribute("Type", asParameter.type);
                         xmlParameter.SetAttribute("Name", asParameter.name);
+                        xmlParameter.SetAttribute("Value", asParameter.defaultValue);
                         xmlOverload.AppendChild(xmlParameter);
                     }
                 }
@@ -131,32 +136,6 @@ namespace AsDocs2XML
                 xmlVariable.SetAttribute("Name", asVariable.name);
                 nodeAppend.AppendChild(xmlVariable);
             }
-
-            /*<Scripts>
-  <Camera>
-    <Classes>
-      <Class Name="ASCollisions">
-        <Classes />
-        <Enumerations />
-        <Functions>
-          <Function Name="CheckRayCollisionCharacters">
-            <Overload Name="void CheckRayCollisionCharacters(vec3 start, vec3 end)">
-              <Parameter Name="vec3 end" />
-              <Parameter Name="vec3 start" />
-            </Overload>
-          </Function>
-          
-             <Enumerations>
-      <Enumeration Name="CameraFlags">
-        <EnumerationMember Name="kEditorCamera" Value="1" />
-        <EnumerationMember Name="kPreviewCamera" Value="2" />
-      </Enumeration>
-
-      <Variables>
-      <Variable Name="_awake" />
-      <Variable Name="_collectable" />
-      <Variable Name="_dead" />
-             */
         }
 
         public static ASScript ParseScript(string scriptName, string[] script)
@@ -304,7 +283,8 @@ namespace AsDocs2XML
              *  
              *  const string &GetString (const string &in key);
              *  const string &GetString (const string &in key, const string &out bla);
-             *
+             *  bool ImGui_Begin(const string &in name, bool &inout is_open, int flags = 0); // bool ImGui_Begin(const string &in name, bool &inout is_open, ImGuiWindowFlags flags = 0)
+             *  bool ImGui_BeginChild(const string &in str_id, const vec2 &in size = vec2(0,0), bool border = false, int extra_flags = 0); // bool ImGui_BeginChild(const string &in str_id, const vec2 &in size = vec2(0,0), bool border = false, ImGuiWindowFlags extra_flags = 0)
              */
             Match matchFunction = rxFunction.Match(script[lineIndex]);
             
@@ -328,12 +308,109 @@ namespace AsDocs2XML
             }
 
             ASOverload asOverload = new ASOverload(returnType, functionName, constMethod);
+            
+            // Since parameters can have defaultValues which might contain commas we can't simply split by a comma.
+            // We need to split it by checking if the comma is inside a bracket, if it is, we don't split at that particular index.
 
-            // Parsing Parameters
-            // TODO: Implement parameter parsing
+            int bracketLevel = 0;
+            int lastPos = 0;
 
-            asOverload.parameters.Add(new ASParameter("int", "lol"));
-            asOverload.parameters.Add(new ASParameter("string", "notsolol"));
+            /*
+             * rxParmeter matches different styles of parameters. If a certain style is not met the indices stay empty
+             * and it will fill the indices with the matching style.
+             * 
+             * 1st Style: int a = 5
+             * 2nd Style: int a
+             * 3rd Style: int
+             * 
+             * [1] = type
+             * [2] = name
+             * [3] = defaultValue
+             * 
+             * [4] = type
+             * [5] = name
+             * 
+             * [6] = type
+             * 
+             */
+
+            for (int i = 0; i < parameters.Length; i++)
+            {
+                switch (parameters.Substring(i, 1))
+                {
+                    case "(": bracketLevel++; break;
+                    case ")": bracketLevel--; break;
+                    case ",":
+                        if (bracketLevel != 0) break; // Check if we are inside brackets
+
+                        string currentParameter = parameters.Substring(lastPos, i - lastPos);
+                        lastPos = i + 1;
+
+                        Match matchParameter = rxParameter.Match(currentParameter);
+
+                        string type;
+                        string name;
+                        string defaultValue;
+
+                        if (matchParameter.Groups[1].Value != "")
+                        {
+                            type = matchParameter.Groups[1].Value;
+                            name = matchParameter.Groups[2].Value;
+                            defaultValue = matchParameter.Groups[3].Value;
+                        }
+                        else if (matchParameter.Groups[4].Value != "")
+                        {
+                            type = matchParameter.Groups[4].Value;
+                            name = matchParameter.Groups[5].Value;
+                            defaultValue = "";
+                        }
+                        else // matchParameter.Groups[6].Value != ""
+                        {
+                            type = matchParameter.Groups[6].Value;
+                            name = "";
+                            defaultValue = "";
+                        }
+
+                        ASParameter asParameter = new ASParameter(type, name, defaultValue);
+                        asOverload.parameters.Add(asParameter);
+
+                        break;
+                }
+
+                // The last parameter obviously has no comma so we need to check it separately.
+                if (i == parameters.Length - 1)
+                {
+                    string currentParameter = parameters.Substring(lastPos, i - lastPos + 1);
+
+                    Match matchParameter = rxParameter.Match(currentParameter);
+
+                    string type;
+                    string name;
+                    string defaultValue;
+
+                    if (matchParameter.Groups[1].Value != "")
+                    {
+                        type = matchParameter.Groups[1].Value;
+                        name = matchParameter.Groups[2].Value;
+                        defaultValue = matchParameter.Groups[3].Value;
+                    }
+                    else if (matchParameter.Groups[4].Value != "")
+                    {
+                        type = matchParameter.Groups[4].Value;
+                        name = matchParameter.Groups[5].Value;
+                        defaultValue = "";
+                    }
+                    else // matchParameter.Groups[6].Value != ""
+                    {
+                        type = matchParameter.Groups[6].Value;
+                        name = "";
+                        defaultValue = "";
+                    }
+
+                    ASParameter asParameter = new ASParameter(type, name, defaultValue);
+                    asOverload.parameters.Add(asParameter);
+                }
+            }
 
             return asOverload;
         }
@@ -458,14 +535,16 @@ namespace AsDocs2XML
     {
         public string type;
         public string name;
+        public string defaultValue;
 
         //const string &in key
         //Campaign& opAssign(const Campaign &in other
 
-        public ASParameter(string type, string name)
+        public ASParameter(string type, string name, string defaultValue)
         {
             this.type = type;
             this.name = name;
+            this.defaultValue = defaultValue;
         }
     }
 

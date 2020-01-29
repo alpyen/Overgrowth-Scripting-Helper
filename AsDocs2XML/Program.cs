@@ -62,16 +62,6 @@ namespace AsDocs2XML
                 ASHelper.AppendScriptAsXmlElement(rootNode, currentScript);
 
             xmlDatabase.Save("Database.xml");
-            
-            /*
-            static Regex regExFunction = new Regex(@"^\s*((const)?\s*([^,\s]+?)\s*([^,\s]+?)\s*\(([^\)]*?)\)\s*(const)?).*?$");
-            static Regex regExVariable = new Regex(@"^\s*(const)?\s*([^,\s}]+?)\s*([^,\s*\(}]+?)\s*$");
-            static Regex regExClass = new Regex(@"^\s*class\s*(.+?)\s*{\s*.*?$");
-            static Regex regExEnum = new Regex(@"^\s*enum\s*(.+?)\s*{\s*.*?$");
-
-            static Regex regExParams = new Regex(@"\s*((?:[^,\s]+\s*)+)\s*,?");
-            static Regex regExEnumValue = new Regex(@"^\s*([^,\s=]+)\s*=\s*-?(\d+)\s*,?\s*$");
-            */
         }
     }
 }
