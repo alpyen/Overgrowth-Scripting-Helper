@@ -1,4 +1,4 @@
-﻿----- FUNCTIONS -----
+﻿// ----- FUNCTIONS -----
 //Mandatory functions in script
 
 
@@ -681,7 +681,7 @@ string FindFilePath(const string &in path);
 
 vec3 LineLineIntersect(vec3 start_a, vec3 end_a, vec3 start_b, vec3 end_b); // Get closest point between two line segments
 
------ VARIABLES -----
+// ----- VARIABLES -----
 
 
 
@@ -750,7 +750,7 @@ SphereCollision sphere_col; // Stores results of collision functions
 ScriptParams params;
 Hotspot hotspot;
 
------ ENUMS -----
+// ----- ENUMS -----
 
 enum LogType {
     fatal = 32,
@@ -1129,7 +1129,7 @@ enum CollisionSides {
 
 
 
------ CLASSES -----
+// ----- CLASSES -----
 class Object {
 	class AnimationClient {
 		float GetAnimationEventTime(const string &in event);

@@ -1,4 +1,4 @@
-﻿----- VARIABLES -----
+﻿// ----- VARIABLES -----
 
 uint UINT32MAX;
 
@@ -51,7 +51,7 @@ SaveFile save_file;
 
 
 
------ ENUMS -----
+// ----- ENUMS -----
 
 
 
@@ -487,7 +487,7 @@ enum SplitScreenMode {
 };
 
 
------ FUNCTIONS -----
+// ----- FUNCTIONS -----
 
 //Mandatory functions in script
 void Initialize()
@@ -1156,7 +1156,7 @@ void DisposeIMUIContext(int id);
 
 
 
------ CLASSES -----
+// ----- CLASSES -----
 
 
 class vec2 {

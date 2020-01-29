@@ -1,4 +1,4 @@
-﻿----- FUNCTIONS -----
+﻿// ----- FUNCTIONS -----
 //Mandatory functions in script
 void Init(string level_name)
 
@@ -729,7 +729,7 @@ vec3 LineLineIntersect(vec3 start_a, vec3 end_a, vec3 start_b, vec3 end_b); // G
 
 
 
------ VARIABLES -----
+// ----- VARIABLES -----
 
 uint UINT32MAX;
 
@@ -800,7 +800,7 @@ SphereCollision sphere_col; // Stores results of collision functions
 
 
 
------ ENUMS -----
+// ----- ENUMS -----
 
 enum LogType {
     fatal = 32,
@@ -1252,7 +1252,7 @@ enum CollisionSides {
 
 
 
------ CLASSES -----
+// ----- CLASSES -----
 
 class vec2 {
     float x;

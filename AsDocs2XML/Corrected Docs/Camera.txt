@@ -1,11 +1,11 @@
-﻿----- FUNCTIONS -----
+﻿// =========== FUNCTIONS ==============
 
 //Mandatory functions in script
 void Init()
 void FrameSelection(bool)
 
 //Optional functions in script
---- NONE ----
+// none
 
 //Interface
 void push_back(const T&in);
@@ -387,8 +387,7 @@ int atoi(const string &in str);
 
 vec3 LineLineIntersect(vec3 start_a, vec3 end_a, vec3 start_b, vec3 end_b); // Get closest point between two line segments
 
------ ENUMS -----
-
+// ============= ENUMS ==============
 
 enum LogType {
     fatal = 32,
@@ -535,8 +534,8 @@ enum CollisionSides {
     SINGLE_SIDED = 0
 };
 
------ VARIABLES -----
 
+// ============= VARIABLES ================
 
 uint UINT32MAX;
 
@@ -596,7 +595,7 @@ SphereCollision sphere_col; // Stores results of collision functions
 CameraObject co;
 
 
------ CLASSES -----
+// =========== CLASSES ============
 
 class vec2 {
     float x;

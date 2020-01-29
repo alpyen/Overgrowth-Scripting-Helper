@@ -1,4 +1,4 @@
-﻿----- VARIABLES -----
+﻿// ----- VARIABLES -----
 
 uint UINT32MAX;
 float time_step; // Time in seconds between engine time steps
@@ -68,7 +68,7 @@ CharacterScriptGetter character_getter;
 
 ReactionScriptGetter reaction_getter;
 
------ FUNCTIONS -----
+// ----- FUNCTIONS -----
 
 //Mandatory functions in script
 bool Init(string)
@@ -491,7 +491,7 @@ void SetPaused(bool paused);
 int FindFirstCharacterInGroup(int id);
 float GetAnimationEventTime( string &in anim_path, string &in event_label );
 
------ ENUMS -----
+// ----- ENUMS -----
 
 enum LogType {
     fatal = 32,
@@ -662,8 +662,7 @@ enum SplitScreenMode {
     kModeSplit = 2
 };
 
------ CLASSES -----
-
+// ----- CLASSES -----
 
 class vec2 {
     float x;

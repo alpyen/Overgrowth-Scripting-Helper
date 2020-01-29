@@ -1,4 +1,4 @@
-﻿----- VARIABLES -----
+﻿// ----- VARIABLES -----
 
 uint UINT32MAX;
 
@@ -34,7 +34,7 @@ SaveFile save_file;
 
 
 
------ ENUMS -----
+// ----- ENUMS -----
 
 enum LogType {
     fatal = 32,
@@ -168,7 +168,7 @@ enum SplitScreenMode {
 
 
 
------ FUNCTIONS -----
+// ----- FUNCTIONS -----
 //Mandatory functions in script
 void Update()
 void Dispose()
@@ -510,7 +510,7 @@ void SetSplitScreenMode(SplitScreenMode mode);
 
 
 
------ CLASSES -----
+// ----- CLASSES -----
 
 class vec2 {
     float x;
