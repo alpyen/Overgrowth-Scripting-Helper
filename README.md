@@ -59,5 +59,11 @@ Now that the migration to Windows 10 is done I'm trying to rework everything fro
   - Cleanup Code
   - Rework the appearance? Remove standard title bar and make it more appealing?
 
-- **AsDocs2XML (Calltip-Parser)**
-  - Add Description to Calltips (How to tackle this the best way??)
+- **AsDocs2XML (Database generator and Calltip-Parser)**
+  - (Maybe) Add Description to Calltips?
+  - (Maybe) Add variables to calltips?
+
+### Testing needed:
+- Does the "auto" declaration for variables work in Overgrowth? Change UDL accordingly.
+- C_ACCELL is this a parameter type or a parameter name? Change UDL accordingly.
+- CItem is this a parameter type or a parameter name? Change UDL accordingly.

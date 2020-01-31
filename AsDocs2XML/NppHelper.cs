@@ -8,6 +8,11 @@ using System.Xml;
 
 namespace AsDocs2XML
 {
+	/*
+	 * Just a small helper class to keep the Program.cs organized.
+	 * It helps with generating a ready-to-save XmlDocument for the Notepad++ Angelscript calltips file.
+	 *  
+	 */
     static class NppHelper
     {
         public static XmlDocument GenerateXmlCalltipDefinition(List<ASScript> scripts)
