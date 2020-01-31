@@ -62,6 +62,18 @@ namespace AsDocs2XML
                 ASHelper.AppendScriptAsXmlElement(rootNode, currentScript);
 
             xmlDatabase.Save("Database.xml");
+
+            Console.WriteLine("All scripts have been parsed and the Database.xml has been written.");
+            Console.WriteLine("Now writing calltips definition for the Angelscript UDL in Notepad++");
+
+            XmlDocument xmlCalltips = NppHelper.GenerateXmlCalltipDefinition(database.Values.ToList());
+
+            xmlCalltips.Save("angelscript.xml");
+
+            Console.WriteLine();
+            Console.WriteLine("Done!");
+
+            Console.ReadLine();
         }
     }
 }

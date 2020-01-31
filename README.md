@@ -60,5 +60,4 @@ Now that the migration to Windows 10 is done I'm trying to rework everything fro
   - Rework the appearance? Remove standard title bar and make it more appealing?
 
 - **AsDocs2XML (Calltip-Parser)**
-  - Generate calltips XML
-  - Add Description to Calltips
+  - Add Description to Calltips (How to tackle this the best way??)
