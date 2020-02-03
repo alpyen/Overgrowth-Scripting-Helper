@@ -44,7 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Angelscript.cs" />
+    <Compile Include="ASHelper.cs" />
     <Compile Include="NppHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -53,6 +53,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CalltipsDescription.xml" />
     <Content Include="Corrected Docs\Camera.txt" />
     <Content Include="Corrected Docs\Character.txt" />
     <Content Include="Corrected Docs\Hotspot.txt" />

@@ -62,6 +62,14 @@ Now that the migration to Windows 10 is done I'm trying to rework everything fro
 - **AsDocs2XML (Database generator and Calltip-Parser)**
   - (Maybe) Add Description to Calltips?
   - (Maybe) Add variables to calltips?
+  - Add additional parameter information to CalltipsDescription.xml which can be added after parsing the asdocs? Some information is available on the Overgrowth wiki.
+  - Add AngelScript standard library calltips
+
+- **Notepad++**
+  - Wrong calltips gets displayed if function names have a plural.
+    - DebugDrawLine(a, b, c)
+    - DebugDrawLines(a)
+    - If you type the first command and erase it all and write the second then the calltip for the first one still gets shown. However this does not happen when you directly use the second function.
 
 ### Testing needed:
 - Does the "auto" declaration for variables work in Overgrowth? Change UDL accordingly.

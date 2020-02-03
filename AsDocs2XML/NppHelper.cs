@@ -42,11 +42,21 @@ namespace AsDocs2XML
 			// distinguish on an object what type it is and display the correct calltips like Visual Studio!
 
 			SortedList<string, ASFunction> allAsFunctions = new SortedList<string, ASFunction>();
+			SortedList<string, List<string>> supportedScriptsByFunction = new SortedList<string, List<string>>();
 
 			foreach (ASScript asScript in scripts)
 			{
 				foreach (ASFunction asFunction in asScript.functions.Values)
 				{
+					if (!supportedScriptsByFunction.ContainsKey(asFunction.name))
+					{
+						supportedScriptsByFunction.Add(asFunction.name, new List<string>() { asScript.name });
+					}
+					else
+					{
+						supportedScriptsByFunction[asFunction.name].Add(asScript.name);
+					}
+
 					// Does the function exist already?
 					if (!allAsFunctions.ContainsKey(asFunction.name))
 					{
@@ -95,6 +105,7 @@ namespace AsDocs2XML
 				{
 					XmlElement xmlOverload = xmlCalltipDefinition.CreateElement("Overload");
 					xmlOverload.SetAttribute("retVal", asOverload.returnType);
+					xmlOverload.SetAttribute("descr", "" + Environment.NewLine + "Supported Scripts: " + string.Join(", ", supportedScriptsByFunction[asFunction.name]));
 					xmlKeyWord.AppendChild(xmlOverload);
 					
 					foreach (ASParameter asParameter in asOverload.parameters)
