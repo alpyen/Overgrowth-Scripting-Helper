@@ -52,9 +52,15 @@ namespace Overgrowth__
             if (!Directory.Exists(settingsFilePath + "\\")) Directory.CreateDirectory(settingsFilePath);
             settingsFilePath = settingsFilePath + "\\Overgrowth++.xml";
 
-            PluginBase.SetCommand(0, "Show Helper Sidebar", ToggleHelperWindow, new ShortcutKey(false, false, false, Keys.None));
-            PluginBase.SetCommand(1, "Settings", ShowSettings);
-            PluginBase.SetCommand(2, "About Overgrowth++", AboutPlugin);
+            PluginBase.SetCommand(0, "Show Helper Sidebar", ToggleHelperWindow);//, new ShortcutKey(false, false, false, Keys.None));
+            PluginBase.SetCommand(1, "", null);
+            PluginBase.SetCommand(3, "Insert Camera Script Template", InsertCameraScriptTemplate);
+            PluginBase.SetCommand(4, "Insert Character Script Template", InsertCharacterScriptTemplate);
+            PluginBase.SetCommand(5, "Insert Hotspot Script Template", InsertHotspotScriptTemplate);
+            PluginBase.SetCommand(6, "Insert Level Script Template", InsertLevelScriptTemplate);
+            PluginBase.SetCommand(7, "", null);
+            PluginBase.SetCommand(8, "Settings", ShowSettings);
+            PluginBase.SetCommand(9, "About Overgrowth++", AboutPlugin);
             idMyDlg = 0;
 
             Config.Load(settingsFilePath);
@@ -77,6 +83,27 @@ namespace Overgrowth__
         internal static void PluginCleanUp()
         {
 
+        }
+
+        // We are using the user32.dll SendMessage since its encoding matches, the function from NppPluginNET does not do that!
+        [DllImport("user32.dll")]
+        internal static extern int SendMessage(IntPtr hWnd, SciMsg wMsg, int wParam, string lParam);
+
+        internal static void InsertCameraScriptTemplate()
+        {
+            SendMessage(PluginBase.GetCurrentScintilla(), SciMsg.SCI_INSERTTEXT, -1, Templates.CameraScript);
+        }
+        internal static void InsertCharacterScriptTemplate()
+        {
+            SendMessage(PluginBase.GetCurrentScintilla(), SciMsg.SCI_INSERTTEXT, -1, Templates.CharacterScript);
+        }
+        internal static void InsertHotspotScriptTemplate()
+        {
+            SendMessage(PluginBase.GetCurrentScintilla(), SciMsg.SCI_INSERTTEXT, -1, Templates.HotspotScript);
+        }
+        internal static void InsertLevelScriptTemplate()
+        {
+            SendMessage(PluginBase.GetCurrentScintilla(), SciMsg.SCI_INSERTTEXT, -1, Templates.LevelScript);
         }
 
         internal static void AboutPlugin()

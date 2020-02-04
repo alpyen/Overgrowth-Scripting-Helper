@@ -12,7 +12,7 @@ assets by the API sorted by script type (Character, Level, ...) with an addition
 
 ## Download & Usage
 If you don't know how to handle a Visual Studio project I'd recommend you to download an
-already pre-compiled and ready-to-go version on my website: https://ag.systems/projects/overgrowth++
+already pre-compiled and ready-to-go version on my website: https://ag.systems/projects/overgrowth++ (Not online yet)
 
 There's also a tutorial on how to install it properly, it's very easy - don't worry.
 All you need is 5 minutes.
@@ -21,7 +21,7 @@ All you need is 5 minutes.
 ## Install Project Solution
 Clone the repo and open the solution with Visual Studio.<br>
 After you've done that, you can simply hit 'Rebuild Solution' and your DLL should be located here:<br>
-``Overgrowth++\bin\x64\Release``
+``Overgrowth++\Overgrowth++\bin\x64\Release``
 
 Now simply drop the Database.xml and Overgrowth++.dll into the plugin folder of Notepad++:
 ``Notepad++\plugins\Overgrowth++``
@@ -33,7 +33,7 @@ Now you can start Notepad++ and your plugin should appear in the toolbar and the
 Once you have set up your developing environment you can start modiyfing the code which is kept
 nice and clean so you can navigate through it pretty easily.
 
-For better debugging the plugin a post-build command is issued in the ``Overgrowth++\PluginInfrastructure\DllExport\NppPlugin.DllExport.targets`` file to move the plugin automatically into the plugin folder of Notepad++ and run it with the external program option in the solution settings.
+For better debugging the plugin a post-build command is issued in the ``Overgrowth++\Overgrowth++\PluginInfrastructure\DllExport\NppPlugin.DllExport.targets`` file to move the plugin automatically into the plugin folder of Notepad++ and run it with the external program option in the solution settings.
 
 **Adjust the path for the plugin destination according to your install!**
 
@@ -51,6 +51,7 @@ Now that the migration to Windows 10 is done I'm trying to rework everything fro
  ### Known Bugs/ToDo-List:
 
 - **Overgrowth++ (Notepad++ Plugin)**
+  - Cheat sheet (what the rootfolder of some XML tags are Data/ or Data/Images etc.)
   - Live Search reconstructs full TreeView on each input change (should use last treeview though (while typing, not removing), much faster)
   - Live Search ignores last character
   - Live Search reacts on every keyhit, but should only on changed input
@@ -60,10 +61,10 @@ Now that the migration to Windows 10 is done I'm trying to rework everything fro
   - Rework the appearance? Remove standard title bar and make it more appealing?
 
 - **AsDocs2XML (Database generator and Calltip-Parser)**
-  - (Maybe) Add Description to Calltips?
-  - (Maybe) Add variables to calltips?
+  - **(IN PROGRESS)** Add Description to Calltips?
+  - Add variables to calltips?
   - Add additional parameter information to CalltipsDescription.xml which can be added after parsing the asdocs? Some information is available on the Overgrowth wiki.
-  - Add AngelScript standard library calltips
+  - Add AngelScript standard library calltips (needs thorough testing since not everything might be enabled in Overgrowth)
 
 - **Notepad++**
   - Wrong calltips gets displayed if function names have a plural.

@@ -64,6 +64,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Templates.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Forms\SettingsWindow.resx">
