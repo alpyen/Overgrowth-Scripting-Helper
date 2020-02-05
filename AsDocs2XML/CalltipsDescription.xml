@@ -129,41 +129,41 @@
   <Function Name="GetFileLine" Description="Returns the current line of an already openend file handle." />
   <Function Name="GetFontFaceID" Description="Returns the ID of a FontFace identified by its path and pixel height." />
   <Function Name="GetFriction" Description="????? Returns the friction of a given vec3 position." />
-  <Function Name="GetHDRBlackPoint" Description="" />
-  <Function Name="GetHDRBloomMult" Description="" />
-  <Function Name="GetHDRWhitePoint" Description="" />
-  <Function Name="GetIMUIContext" Description="" />
-  <Function Name="GetInputDown" Description="" />
-  <Function Name="GetInputDownFiltered" Description="" />
-  <Function Name="GetInputMode" Description="" />
-  <Function Name="GetInputPressed" Description="" />
-  <Function Name="GetInputPressedFiltered" Description="" />
-  <Function Name="GetInterlevelData" Description="" />
-  <Function Name="GetLayerGain" Description="" />
-  <Function Name="GetLayerNames" Description="" />
-  <Function Name="GetLengthInBytesForNCodepoints" Description="" />
-  <Function Name="GetLevelName" Description="" />
-  <Function Name="GetLocaleNames" Description="" />
-  <Function Name="GetLocaleShortcodes" Description="" />
-  <Function Name="GetLocaleStringForScancode" Description="" />
-  <Function Name="GetLocalizedDialoguePath" Description="" />
-  <Function Name="GetLocalizedLevelName" Description="" />
-  <Function Name="GetLookXAxis" Description="" />
-  <Function Name="GetLookYAxis" Description="" />
-  <Function Name="GetMenuPaused" Description="" />
-  <Function Name="GetModSIDs" Description="" />
-  <Function Name="GetMonitorCount" Description="" />
-  <Function Name="GetMoveXAxis" Description="" />
-  <Function Name="GetMoveYAxis" Description="" />
-  <Function Name="GetNavPoint" Description="" />
-  <Function Name="GetNavPointPos" Description="" />
-  <Function Name="GetNumCharacters" Description="" />
-  <Function Name="GetNumHotspots" Description="" />
-  <Function Name="GetNumItems" Description="" />
-  <Function Name="GetObjectIDs" Description="" />
-  <Function Name="GetObjectIDsType" Description="" />
-  <Function Name="GetObjectsInHull" Description="" />
-  <Function Name="GetPath" Description="" />
+  <Function Name="GetHDRBlackPoint" Description="Returns the HDR blackpoint of the curent level." />
+  <Function Name="GetHDRBloomMult" Description="Returns the HDR bloom multiplier of the current level." />
+  <Function Name="GetHDRWhitePoint" Description="Returns the HDR whitepoint of the current level." />
+  <Function Name="GetIMUIContext" Description="DEPRECATED - DO NOT USE - Returns the IMUIContext identified by a given ID." />
+  <Function Name="GetInputDown" Description="Checks if a given key is currently being pressed down by passing the controller ID and they key." />
+  <Function Name="GetInputDownFiltered" Description="Checks if a given key is currently being pressed down by passing the controlelr ID and the key along with a filter." />
+  <Function Name="GetInputMode" Description="????? Returns the current input mode." />
+  <Function Name="GetInputPressed" Description="Checks if a given key was pressed by passing the controller ID and the key." />
+  <Function Name="GetInputPressedFiltered" Description="Checks if a given key was pressed by passing the controller ID and the key along with a filter." />
+  <Function Name="GetInterlevelData" Description="?????" />
+  <Function Name="GetLayerGain" Description="?????" />
+  <Function Name="GetLayerNames" Description="?????" />
+  <Function Name="GetLengthInBytesForNCodepoints" Description="?????" />
+  <Function Name="GetLevelName" Description="Returns the name of the level located by the given path." />
+  <Function Name="GetLocaleNames" Description="????? Returns an arary of strings containing the names of all locales (languages)." />
+  <Function Name="GetLocaleShortcodes" Description="????? Returns an array of strings containing the short codes of all locales (languages)." />
+  <Function Name="GetLocaleStringForScancode" Description="????? Returns the localized string for a given scancode (keystroke)." />
+  <Function Name="GetLocalizedDialoguePath" Description="?????" />
+  <Function Name="GetLocalizedLevelName" Description="?????" />
+  <Function Name="GetLookXAxis" Description="????? Returns the value on which a given controller ID looks corresponding to the x-axis." />
+  <Function Name="GetLookYAxis" Description="????? Returns the value on which a given controller ID looks corresponding to the y-axis." />
+  <Function Name="GetMenuPaused" Description="????? Checks if the game is paused by being in the menu." />
+  <Function Name="GetModSIDs" Description="????? Returns an array containing all ModIDs." />
+  <Function Name="GetMonitorCount" Description="????? Returns the count of connected monitors to the computer." />
+  <Function Name="GetMoveXAxis" Description="????? Returns the value on which a given controller ID moves corresponding to the x-axis." />
+  <Function Name="GetMoveYAxis" Description="????? Returns the value on which a given controller ID moves corresponding to the y-axis." />
+  <Function Name="GetNavPoint" Description="?????" />
+  <Function Name="GetNavPointPos" Description="?????" />
+  <Function Name="GetNumCharacters" Description="????? Returns the amount of characters present in the current level." />
+  <Function Name="GetNumHotspots" Description="????? Returns the amount of hotspots present in the current level." />
+  <Function Name="GetNumItems" Description="????? Returns the amount of items present in the current level." />
+  <Function Name="GetObjectIDs" Description="Returns an array of integers containing all object IDs in the current level." />
+  <Function Name="GetObjectIDsType" Description="Returns an array of integers containing all object IDs of a given type in the current level." />
+  <Function Name="GetObjectsInHull" Description="Queries an array of integers containing all object IDs inside a given hull identified by its path and mat4 transformation information." />
+  <Function Name="GetPath" Description="?????" />
   <Function Name="GetPerformanceCounter" Description="" />
   <Function Name="GetPerformanceFrequency" Description="" />
   <Function Name="GetPossibleResolutions" Description="" />
