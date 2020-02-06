@@ -67,6 +67,9 @@
     <Compile Include="Templates.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Forms\HelperWindow.resx">
+      <DependentUpon>HelperWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\SettingsWindow.resx">
       <DependentUpon>SettingsWindow.cs</DependentUpon>
     </EmbeddedResource>

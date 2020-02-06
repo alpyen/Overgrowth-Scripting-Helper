@@ -95,7 +95,7 @@ namespace Overgrowth__
                         }
 
                         // Add the node to the backup which will be used later while filtering
-                        treeNodesBackup[currentScript.GetAttribute("Name")].Add(CloneTreeNode(treeNode));
+                        treeNodesBackup[currentScript.GetAttribute("Name")].Add((TreeNode)treeNode.Clone()) ;
                     }
                 }
             }
@@ -255,73 +255,68 @@ namespace Overgrowth__
                 case "EnumerationMember": imageKey = "EnumerationMember"; break;
                 case "Variable": imageKey = "Variable"; break;
 
-                default: throw new Exception("Unbekannter Node Type \"" + nodeType + "\" parentNode.Text=" + treeNode.Parent.Text);
+                default: throw new Exception("Unknown Node Type \"" + nodeType + "\" parentNode.Text=" + treeNode.Parent.Text);
             }
 
             treeNode.ImageKey = imageKey;
             treeNode.SelectedImageKey = imageKey;
         }
 
-        // Clone the TreeNodes which will be helpful to create a backup of the TreeViews
-        // because once we are filtering, we can't get the deleted items back, and we can't hide them
-        private TreeNode CloneTreeNode(TreeNode original)
+        private void tbFilter_TextChanged(object sender, EventArgs e)
         {
-            TreeNode clone = new TreeNode(original.Text);
-            clone.ImageKey = original.ImageKey;
-            clone.SelectedImageKey = original.SelectedImageKey;
-
-            foreach (TreeNode childNode in original.Nodes)
-                clone.Nodes.Add(CloneTreeNode(childNode));
-
-            return clone;
+            if (Config.General.LiveFilteringMode) ApplyFilterToListView();
         }
 
-        ////////////// ALTER SHIT
+        private void tbFilter_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '\r') ApplyFilterToListView();
+        }
 
-        private void reconstructTreeView(TreeView tv, List<TreeNode> nodes)
+        private void ApplyFilterToListView()
+        {
+            TreeView currentTV = (TreeView)tabScriptTypes.SelectedTab.Controls[0];
+
+            // Disable UI Updates for the TreeView while we are performing operations on it.
+            // This way it won't perform any unnecessary refreshes while adding/removing nodes.
+            currentTV.BeginUpdate();
+
+            ReconstructTreeView(currentTV, treeNodesBackup[tabScriptTypes.SelectedTab.Text]);
+
+            if (tbFilter.Text != "")
+            {
+                // Go backwards because we are deleting nodes.  
+                for (int i = currentTV.Nodes.Count - 1; i >= 0; i--)
+                {
+                    TreeNode node = currentTV.Nodes[i];
+                    ExpandNodeOnFilterMatch(node, tbFilter.Text);
+                }
+            }
+
+            currentTV.EndUpdate();
+        }
+
+        private bool ExpandNodeOnFilterMatch(TreeNode node, string filter)
+        {
+            // Check what filter matching settings are valid.
+            bool found = false;
+            
+            if (node.Text.ToLower().Contains(filter.ToLower())) found = true;
+
+            for (int i = node.Nodes.Count - 1; i >= 0; i--)
+                if (ExpandNodeOnFilterMatch(node.Nodes[i], filter)) found = true;
+
+            if (found) node.Expand();
+            else node.Remove();
+            
+            return found;
+        }
+
+        private void ReconstructTreeView(TreeView tv, List<TreeNode> nodes)
         {
             tv.Nodes.Clear();
 
             foreach (TreeNode node in nodes)
-            {
-                // We don't use node.Clone because it takes longer than creating a new one with the same text.
-                // And since we don't set custom font this is OK.
-                TreeNode clone = new TreeNode(node.Text);// (TreeNode)node.Clone();
-                reconstructTreeNode(clone, node);
-
-                tv.Nodes.Add(clone);
-            }
-        }
-
-        private void reconstructTreeNode(TreeNode clone, TreeNode original)
-        {
-            foreach (TreeNode child in original.Nodes)
-            {
-                TreeNode childClone = new TreeNode(child.Text);// (TreeNode)child.Clone();
-                reconstructTreeNode(childClone, child);
-
-                clone.Nodes.Add(childClone);
-            }
-        }
-
-        private void tbFilter_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter || Config.General.LiveFilteringMode)
-            {
-                TreeView currentTV = (TreeView)tabScriptTypes.SelectedTab.Controls[0];
-                reconstructTreeView(currentTV, treeNodesBackup[tabScriptTypes.SelectedTab.Text]);
-
-                if (tbFilter.Text != "")
-                {
-                    for (int i = currentTV.Nodes.Count - 1; i >= 0; i--)
-                    {
-                        TreeNode node = currentTV.Nodes[i];
-
-                        //if (node != null) checkAndExpand(node, tbFilter.Text);
-                        //else System.Diagnostics.Debug.WriteLine("Null found!");
-                    }
-                }
-            }
+                tv.Nodes.Add((TreeNode)node.Clone());
         }
     }
 }
