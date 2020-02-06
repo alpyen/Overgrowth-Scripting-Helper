@@ -350,7 +350,7 @@ namespace AsDocs2XML
              * 
              * [6] = type
              * 
-             */
+            */
 
             for (int i = 0; i < parameters.Length; i++)
             {
@@ -364,7 +364,7 @@ namespace AsDocs2XML
                 }
                 else if (parameters.Substring(i, 1) == "," || i == parameters.Length - 1)
                 {
-                    if (bracketLevel != 0) break; // Check if we are inside brackets
+                    if (bracketLevel != 0) continue; // Check if we are inside brackets
 
                     string currentParameter = parameters.Substring(lastPos, i - lastPos + (i == parameters.Length - 1 ? 1 : 0));
                     lastPos = i + 1;

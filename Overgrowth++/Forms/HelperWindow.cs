@@ -107,9 +107,7 @@ namespace Overgrowth__
                 this.Close();
             }
         }
-
-        // TODO: MakeTreeNode does not show values of enums
-
+        
         /* This is where the TreeNode-Creation magic happens.
          * 
          * For the database to make its way into the TreeView we need to step through it and add each item.
@@ -154,8 +152,9 @@ namespace Overgrowth__
         {
             string nodeText;
 
-            // Overload has no name since we can save the full overload in the XML file by constructing it ourselves.
-            // This way we save some disk space and increase parsing performance.
+            // Different node types in the TreeView have different display text.
+            // A function only needs to show the name whereas the overload needs to fully display the overload.
+            // We switch the type here and print each TreeNode text according to the type.
             switch (nodeType)
             {
                 case "Group":
@@ -236,7 +235,7 @@ namespace Overgrowth__
         // We will use this also to recognise what Node we are currently on while filtering to match our settings
         private void AssignImageKey(TreeNode treeNode, string nodeType)
         {
-            string imageKey = "";
+            string imageKey;
 
             switch (nodeType)
             {

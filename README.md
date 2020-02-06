@@ -59,7 +59,6 @@ Now that the migration to Windows 10 is done I'm trying to rework everything fro
 
 - **AsDocs2XML (Database generator and Calltip-Parser)**
   - **(IN PROGRESS)** Add Description to Calltips?
-  - **(IN PROGRESS)** Parameters with default values are not parsed correclty (see uv_a at ImGui_AddImage)
   - Add variables to calltips?
   - Add additional parameter information to CalltipsDescription.xml which can be added after parsing the asdocs? Some information is available on the Overgrowth wiki.
   - Add AngelScript standard library calltips (needs thorough testing since not everything might be enabled in Overgrowth)
