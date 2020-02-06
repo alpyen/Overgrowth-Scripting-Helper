@@ -52,10 +52,10 @@ namespace Overgrowth__
                 XmlNodeList scripts = database.SelectNodes("/Scripts/*");
 
                 // Go through each scripttype (Character, Level, Hotspot, ...)
-                foreach (XmlNode script in scripts)
+                foreach (XmlElement currentScript in scripts)
                 {
                     // Create a new tab page for the script type
-                    TabPage tabPage = new TabPage(script.Name);
+                    TabPage tabPage = new TabPage(currentScript.GetAttribute("Name"));
                     tabScriptTypes.TabPages.Add(tabPage);
 
                     // Create the TreeView for the script type
@@ -68,18 +68,18 @@ namespace Overgrowth__
                     tabPage.Controls.Add(treeView);
 
                     // Prepare the backup dictionary entry
-                    treeNodesBackup.Add(script.Name, new List<TreeNode>());
+                    treeNodesBackup.Add(currentScript.GetAttribute("Name"), new List<TreeNode>());
 
                     // We create the Classes/Enumerations/Functions/Variables (the topmost ones in the file) separate
                     // because this way we don't have to move the Nodes later since we will be using recursive functions to build the TreeView
-                    foreach (XmlNode currentElement in script.ChildNodes)
+                    foreach (XmlNode currentElement in currentScript.ChildNodes)
                     {
                         TreeNode treeNode = new TreeNode(currentElement.Name);
                         treeView.Nodes.Add(treeNode);
 
                         AssignImageKey(treeNode, currentElement.Name);
 
-                        foreach (XmlNode childElement in currentElement.ChildNodes)
+                        foreach (XmlElement childElement in currentElement.ChildNodes)
                         {
                             string childType = "";
 
@@ -95,7 +95,7 @@ namespace Overgrowth__
                         }
 
                         // Add the node to the backup which will be used later while filtering
-                        treeNodesBackup[script.Name].Add(CloneTreeNode(treeNode));
+                        treeNodesBackup[currentScript.GetAttribute("Name")].Add(CloneTreeNode(treeNode));
                     }
                 }
             }
@@ -108,6 +108,8 @@ namespace Overgrowth__
             }
         }
 
+        // TODO: MakeTreeNode does not show values of enums
+
         /* This is where the TreeNode-Creation magic happens.
          * 
          * For the database to make its way into the TreeView we need to step through it and add each item.
@@ -115,10 +117,88 @@ namespace Overgrowth__
          * Once that is done, we simply need to call the function for its child nodes and we will automatically step through the whole database.
          * 
          * Since our Database is not very deep (recursively) we don't need to worry about overflowing our stack.
+         * 
+         * How does database look?
+         * 
+         * <Scripts>
+         *  <Script Name="Camera">
+         *      <Classes>
+         *          <Class Name="ASCollision">
+         *              <Classes />
+         *              <Enumerations />
+         *              <Functions>
+         *                  <Function Name="CheckRayCollisionCharacters">
+         *                      <Overload Type="void" Const="False">
+         *                          <Parameter Type="vec3" Name="start" Value="" />
+         *                          <Parameter Type="vec3" Name="end" Value="" />
+         *                      </Overload>
+         *                  </Function>
+         *              <Functions>
+         *              <Variables />
+         *          </Class>
+         *     <Enumerations>
+         *      <Enumeration Name="CameraFlags">
+         *          <EnumerationMember Name="kEditorCamera" Value="1" />
+         *          <EnumerationMember Name="kPreviewCamera" Value="2" />
+         *      </Enumeration>
+         *     </Enumerations>
+         *     <Functions />
+         *     <Variables>
+         *      <Variable Name="_awake" />
+         *      <Variable Name="_collectable" />
+         *     </Variables>
+         *  </Script>
+         * </Scripts>
          */
-        private void MakeTreeNode(XmlNode xmlNode, TreeNode parentTreeNode, string nodeType)
+        private void MakeTreeNode(XmlElement xmlElement, TreeNode parentTreeNode, string nodeType)
         {
-            string nodeText = ((XmlElement)xmlNode).HasAttribute("Name") ? ((XmlElement)xmlNode).GetAttribute("Name") : xmlNode.Name;
+            string nodeText;
+
+            // Overload has no name since we can save the full overload in the XML file by constructing it ourselves.
+            // This way we save some disk space and increase parsing performance.
+            switch (nodeType)
+            {
+                case "Group":
+                    nodeText = xmlElement.Name;
+                    break;
+
+                case "Overload":
+                    nodeText = xmlElement.GetAttribute("Type") + " " + ((XmlElement)xmlElement.ParentNode).GetAttribute("Name");
+
+                    // Add the parameters
+                    nodeText += "(";
+
+                    for (int i = 0; i < xmlElement.ChildNodes.Count; i++)
+                    {
+                        XmlElement currentParameter = (XmlElement)xmlElement.ChildNodes[i];
+
+                        nodeText += currentParameter.GetAttribute("Type");
+                        if (currentParameter.GetAttribute("Name") != "") nodeText += " " + currentParameter.GetAttribute("Name");
+                        if (currentParameter.GetAttribute("Value") != "") nodeText += " = " + currentParameter.GetAttribute("Value");
+
+                        if (i < xmlElement.ChildNodes.Count - 1) nodeText += ", ";
+                    }
+
+                    nodeText += ")";
+                    if (xmlElement.GetAttribute("Const") == "True") nodeText += " const";
+                    break;
+
+                case "Parameter":
+                    nodeText = xmlElement.GetAttribute("Type");
+                    if (xmlElement.GetAttribute("Name") != "") nodeText += " " + xmlElement.GetAttribute("Name");
+                    if (xmlElement.GetAttribute("Value") != "") nodeText += " = " + xmlElement.GetAttribute("Value");
+
+                    break;
+
+                case "EnumerationMember":
+                    nodeText = xmlElement.GetAttribute("Name") + " = " + xmlElement.GetAttribute("Value");
+                    break;
+
+                default:
+                    nodeText = xmlElement.GetAttribute("Name");
+                    break;
+            }
+
             TreeNode currentTreeNode = new TreeNode(nodeText);
             parentTreeNode.Nodes.Add(currentTreeNode);
 
@@ -129,7 +209,7 @@ namespace Overgrowth__
             switch (nodeType)
             {
                 case "Group":
-                    switch (xmlNode.Name)
+                    switch (xmlElement.Name)
                     {
                         case "Classes": childType = "Class"; break;
                         case "Enumerations": childType = "Enumeration"; break;
@@ -146,9 +226,9 @@ namespace Overgrowth__
                 // Variable and Parameter have no children, therefore it will not run the foreach loop which means we don't have to set a childType.
             }
 
-            foreach (XmlNode childNode in xmlNode.ChildNodes)
+            foreach (XmlElement childElement in xmlElement.ChildNodes)
             {
-                MakeTreeNode(childNode, currentTreeNode, childType);
+                MakeTreeNode(childElement, currentTreeNode, childType);
             }
         }
 
@@ -199,35 +279,6 @@ namespace Overgrowth__
 
         ////////////// ALTER SHIT
 
-        private bool checkAndExpand(TreeNode node, string filter)
-        {
-            bool returnValue = false;
-
-            if (node.Nodes.Count > 0)
-            {
-                for (int i = node.Nodes.Count - 1; i >= 0; i--)
-                {
-                    if (checkAndExpand(node.Nodes[i], filter))
-                    {
-                        returnValue = true;
-                    }
-                }
-            }
-
-            if (node.Text.ToLower().Contains(filter.ToLower())) returnValue = true;
-
-            if (returnValue)
-            {
-                node.Expand();
-                return true;
-            }
-            else
-            {
-                node.Remove();
-                return false;
-            }
-        }
-
         private void reconstructTreeView(TreeView tv, List<TreeNode> nodes)
         {
             tv.Nodes.Clear();
@@ -267,8 +318,8 @@ namespace Overgrowth__
                     {
                         TreeNode node = currentTV.Nodes[i];
 
-                        if (node != null) checkAndExpand(node, tbFilter.Text);
-                        else System.Diagnostics.Debug.WriteLine("Null found!");
+                        //if (node != null) checkAndExpand(node, tbFilter.Text);
+                        //else System.Diagnostics.Debug.WriteLine("Null found!");
                     }
                 }
             }

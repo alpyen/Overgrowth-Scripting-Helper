@@ -53,16 +53,13 @@ Now that the migration to Windows 10 is done I'm trying to rework everything fro
 - **Overgrowth++ (Notepad++ Plugin)**
   - Cheat sheet (what the rootfolder of some XML tags are Data/ or Data/Images etc.)
   - Better "About Overgrowth++" screen (use a custom GUI instead of a MessageBox)
-  - Live Search reconstructs full TreeView on each input change (should use last treeview though (while typing, not removing), much faster)
-  - Live Search ignores last character
-  - Live Search reacts on every keyhit, but should only on changed input
-  - parameters are being split wrong if they have defaults like uv_a = vec2(0, 0) (needs fix in Calltips too)
-  - search filters too everything, even the parameters of a matched function (although it should show all) (???)
+  - Implement Search/Filtering function (react on input, NOT keyhit)
   - **(IN PROGRESS)** Cleanup Code
   - Rework the appearance? Remove standard title bar and make it more appealing?
 
 - **AsDocs2XML (Database generator and Calltip-Parser)**
   - **(IN PROGRESS)** Add Description to Calltips?
+  - **(IN PROGRESS)** Parameters with default values are not parsed correclty (see uv_a at ImGui_AddImage)
   - Add variables to calltips?
   - Add additional parameter information to CalltipsDescription.xml which can be added after parsing the asdocs? Some information is available on the Overgrowth wiki.
   - Add AngelScript standard library calltips (needs thorough testing since not everything might be enabled in Overgrowth)
@@ -77,3 +74,4 @@ Now that the migration to Windows 10 is done I'm trying to rework everything fro
 - Does the "auto" declaration for variables work in Overgrowth? Change UDL accordingly.
 - C_ACCELL is this a parameter type or a parameter name? Change UDL accordingly.
 - CItem is this a parameter type or a parameter name? Change UDL accordingly.
+- Multiline strings being compatable? The UDL does not accept multiline strings, but the compiler should.
