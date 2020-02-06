@@ -34,7 +34,7 @@
             this.groupAppearance = new System.Windows.Forms.GroupBox();
             this.cbShowIconsForEachNode = new System.Windows.Forms.CheckBox();
             this.cbUseCustomFont = new System.Windows.Forms.CheckBox();
-            this.cbShowBackgroundImage = new System.Windows.Forms.CheckBox();
+            this.cbShowTooltipsWhileHoveringOverTreeViewNodes = new System.Windows.Forms.CheckBox();
             this.btnChangeFont = new System.Windows.Forms.Button();
             this.cbShowParameterNamesInFunctionSignatures = new System.Windows.Forms.CheckBox();
             this.groupFilter = new System.Windows.Forms.GroupBox();
@@ -57,7 +57,7 @@
             // 
             this.groupAppearance.Controls.Add(this.cbShowIconsForEachNode);
             this.groupAppearance.Controls.Add(this.cbUseCustomFont);
-            this.groupAppearance.Controls.Add(this.cbShowBackgroundImage);
+            this.groupAppearance.Controls.Add(this.cbShowTooltipsWhileHoveringOverTreeViewNodes);
             this.groupAppearance.Controls.Add(this.btnChangeFont);
             this.groupAppearance.Controls.Add(this.cbShowParameterNamesInFunctionSignatures);
             this.groupAppearance.Location = new System.Drawing.Point(12, 217);
@@ -93,19 +93,19 @@
             this.cbUseCustomFont.UseVisualStyleBackColor = true;
             this.cbUseCustomFont.CheckedChanged += new System.EventHandler(this.SettingChanged);
             // 
-            // cbShowBackgroundImage
+            // cbShowTooltipsWhileHoveringOverTreeViewNodes
             // 
-            this.cbShowBackgroundImage.AutoSize = true;
-            this.cbShowBackgroundImage.Checked = true;
-            this.cbShowBackgroundImage.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbShowBackgroundImage.ForeColor = System.Drawing.Color.White;
-            this.cbShowBackgroundImage.Location = new System.Drawing.Point(19, 46);
-            this.cbShowBackgroundImage.Name = "cbShowBackgroundImage";
-            this.cbShowBackgroundImage.Size = new System.Drawing.Size(144, 17);
-            this.cbShowBackgroundImage.TabIndex = 3;
-            this.cbShowBackgroundImage.Text = "Show background image";
-            this.cbShowBackgroundImage.UseVisualStyleBackColor = true;
-            this.cbShowBackgroundImage.CheckedChanged += new System.EventHandler(this.SettingChanged);
+            this.cbShowTooltipsWhileHoveringOverTreeViewNodes.AutoSize = true;
+            this.cbShowTooltipsWhileHoveringOverTreeViewNodes.Checked = true;
+            this.cbShowTooltipsWhileHoveringOverTreeViewNodes.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbShowTooltipsWhileHoveringOverTreeViewNodes.ForeColor = System.Drawing.Color.White;
+            this.cbShowTooltipsWhileHoveringOverTreeViewNodes.Location = new System.Drawing.Point(19, 46);
+            this.cbShowTooltipsWhileHoveringOverTreeViewNodes.Name = "cbShowTooltipsWhileHoveringOverTreeViewNodes";
+            this.cbShowTooltipsWhileHoveringOverTreeViewNodes.Size = new System.Drawing.Size(259, 17);
+            this.cbShowTooltipsWhileHoveringOverTreeViewNodes.TabIndex = 3;
+            this.cbShowTooltipsWhileHoveringOverTreeViewNodes.Text = "Show tooltips while hovering over treeview nodes";
+            this.cbShowTooltipsWhileHoveringOverTreeViewNodes.UseVisualStyleBackColor = true;
+            this.cbShowTooltipsWhileHoveringOverTreeViewNodes.CheckedChanged += new System.EventHandler(this.SettingChanged);
             // 
             // btnChangeFont
             // 
@@ -284,7 +284,7 @@
         private System.Windows.Forms.CheckBox cbMatchFunctionNames;
         private System.Windows.Forms.Label lblAbout;
         private System.Windows.Forms.Label lblHorizontalLine;
-        private System.Windows.Forms.CheckBox cbShowBackgroundImage;
+        private System.Windows.Forms.CheckBox cbShowTooltipsWhileHoveringOverTreeViewNodes;
         private System.Windows.Forms.GroupBox groupGeneral;
         private System.Windows.Forms.CheckBox cbLiveFilteringMode;
         private System.Windows.Forms.CheckBox cbUseCustomFont;

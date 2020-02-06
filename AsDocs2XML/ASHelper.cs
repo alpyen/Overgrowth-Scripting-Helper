@@ -30,7 +30,7 @@ namespace AsDocs2XML
         private static Regex rxParameters = new Regex(@"\s*((?:[^,\s]+\s*)+)\s*,?");
         private static Regex rxParameter = new Regex(@"^\s*(?:(?:(.+)\s+(.+?)\s*=\s*(.+))|(?:(.+)\s+(.+))|(.+))\s*$");
         private static Regex rxEnumerationValue = new Regex(@"^\s*([^,\s=]+)\s*=\s*-?(\d+)\s*,?\s*$");
-
+        
         public static void AppendScriptAsXmlElement(XmlElement nodeAppend, dynamic asElement)
         {
             XmlDocument xmlDocument = nodeAppend.OwnerDocument;

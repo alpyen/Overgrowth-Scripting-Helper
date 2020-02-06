@@ -94,7 +94,7 @@
   <Function Name="ForceApplied" Description="?????" />
   <Function Name="fpFromIEEE" Description="Converts a given integer in IEEE 754 representation to its float representation." />
   <Function Name="fpToIEEE" Description="Converts a given float value in float representation to its IEEE 754 representation." />
-  <Function Name="FrameSelection" Description="FrameSelection is called when the \"frame selection\" action called in editor." />
+  <Function Name="FrameSelection" Description="FrameSelection is called when the &quot;frame selection&quot; action called in editor." />
   <Function Name="GetActiveModSIDs" Description="Returns an array of ModIDs of those mods which are currently active." />
   <Function Name="GetAnimationEventTime" Description="Query the time an animation event occurs in an animation" />
   <Function Name="GetAvailableBindingCategories" Description="?????" />

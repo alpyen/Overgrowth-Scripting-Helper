@@ -57,10 +57,10 @@ namespace AsDocs2XML
             XmlDocument xmlDatabase = new XmlDocument();
             XmlElement rootNode = xmlDatabase.CreateElement("Scripts");
             xmlDatabase.AppendChild(rootNode);
-
+            
             foreach (ASScript currentScript in database.Values)
                 ASHelper.AppendScriptAsXmlElement(rootNode, currentScript);
-
+            
             xmlDatabase.Save("Database.xml");
 
             Console.WriteLine("All scripts have been parsed and the Database.xml has been written.");

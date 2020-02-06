@@ -62,11 +62,12 @@ namespace Overgrowth__
                     TreeView treeView = new TreeView();
                     treeView.Dock = DockStyle.Fill;
 
+                    if (Config.Appearance.ShowTooltipsWhileHoveringOverTreeViewNodes) treeView.ShowNodeToolTips = true;
                     if (Config.Appearance.UseCustomFont) treeView.Font = Config.Appearance.CustomFont;
+                    if (Config.Appearance.ShowIconsForEachNode) treeView.ImageList = treeViewImageList;
 
-                    treeView.ImageList = treeViewImageList;
                     tabPage.Controls.Add(treeView);
-
+                    
                     // Prepare the backup dictionary entry
                     treeNodesBackup.Add(currentScript.GetAttribute("Name"), new List<TreeNode>());
 
@@ -151,6 +152,9 @@ namespace Overgrowth__
         private void MakeTreeNode(XmlElement xmlElement, TreeNode parentTreeNode, string nodeType)
         {
             string nodeText;
+            string nodeDescription = "To Be Filled By O.E.M." + xmlElement.GetAttribute("Description");
+
+            // TODO: Comment for each type of node
 
             // Different node types in the TreeView have different display text.
             // A function only needs to show the name whereas the overload needs to fully display the overload.
@@ -199,6 +203,7 @@ namespace Overgrowth__
             }
 
             TreeNode currentTreeNode = new TreeNode(nodeText);
+            currentTreeNode.ToolTipText = nodeDescription;
             parentTreeNode.Nodes.Add(currentTreeNode);
 
             AssignImageKey(currentTreeNode, nodeType);

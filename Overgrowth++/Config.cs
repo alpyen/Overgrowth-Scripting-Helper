@@ -43,7 +43,7 @@ namespace Overgrowth__
         public static class Appearance
         {
             public static bool ShowParameterNamesInFunctionSignatures = false;
-            public static bool ShowBackgroundImage = true;
+            public static bool ShowTooltipsWhileHoveringOverTreeViewNodes = true;
             public static bool ShowIconsForEachNode = true;
             public static bool UseCustomFont = false;
             public static Font CustomFont = new Font("Microsoft Sans Serif", 8.25f, FontStyle.Regular);
@@ -76,7 +76,7 @@ namespace Overgrowth__
                 Filter.MatchParameterTypes = Convert.ToBoolean(SettingsXML.SelectSingleNode("/Settings/Filter/MatchParameterTypes").InnerText);
 
                 Appearance.ShowParameterNamesInFunctionSignatures = Convert.ToBoolean(SettingsXML.SelectSingleNode("/Settings/Appearance/ShowParameterNamesInFunctionSignatures").InnerText);
-                Appearance.ShowBackgroundImage = Convert.ToBoolean(SettingsXML.SelectSingleNode("/Settings/Appearance/ShowBackgroundImage").InnerText);
+                Appearance.ShowTooltipsWhileHoveringOverTreeViewNodes = Convert.ToBoolean(SettingsXML.SelectSingleNode("/Settings/Appearance/ShowTooltipsWhileHoveringOverTreeViewNodes").InnerText);
                 Appearance.ShowIconsForEachNode = Convert.ToBoolean(SettingsXML.SelectSingleNode("/Settings/Appearance/ShowIconsForEachNode").InnerText);
                 Appearance.UseCustomFont = Convert.ToBoolean(SettingsXML.SelectSingleNode("/Settings/Appearance/UseCustomFont").InnerText);
 
@@ -119,7 +119,7 @@ namespace Overgrowth__
             XmlNode nodeAppearance = AppendChildWithTextToXmlNode(nodeRoot, "Appearance");
 
             AppendChildWithTextToXmlNode(nodeAppearance, "ShowParameterNamesInFunctionSignatures", Appearance.ShowParameterNamesInFunctionSignatures.ToString());
-            AppendChildWithTextToXmlNode(nodeAppearance, "ShowBackgroundImage", Appearance.ShowBackgroundImage.ToString());
+            AppendChildWithTextToXmlNode(nodeAppearance, "ShowTooltipsWhileHoveringOverTreeViewNodes", Appearance.ShowTooltipsWhileHoveringOverTreeViewNodes.ToString());
             AppendChildWithTextToXmlNode(nodeAppearance, "ShowIconsForEachNode", Appearance.ShowIconsForEachNode.ToString());
             AppendChildWithTextToXmlNode(nodeAppearance, "UseCustomFont", Appearance.UseCustomFont.ToString());
 
@@ -149,7 +149,7 @@ namespace Overgrowth__
             SettingsXML.SelectSingleNode("/Settings/Filter/MatchParameterTypes").InnerText = Filter.MatchParameterTypes.ToString();
 
             SettingsXML.SelectSingleNode("/Settings/Appearance/ShowParameterNamesInFunctionSignatures").InnerText = Appearance.ShowParameterNamesInFunctionSignatures.ToString();
-            SettingsXML.SelectSingleNode("/Settings/Appearance/ShowBackgroundImage").InnerText = Appearance.ShowBackgroundImage.ToString();
+            SettingsXML.SelectSingleNode("/Settings/Appearance/ShowTooltipsWhileHoveringOverTreeViewNodes").InnerText = Appearance.ShowTooltipsWhileHoveringOverTreeViewNodes.ToString();
             SettingsXML.SelectSingleNode("/Settings/Appearance/ShowIconsForEachNode").InnerText = Appearance.ShowIconsForEachNode.ToString();
             SettingsXML.SelectSingleNode("/Settings/Appearance/UseCustomFont").InnerText = Appearance.UseCustomFont.ToString();
 

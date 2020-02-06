@@ -25,7 +25,7 @@ namespace Overgrowth__
             cbMatchParameterTypes.Checked = Config.Filter.MatchParameterTypes;
 
             cbShowParameterNamesInFunctionSignatures.Checked = Config.Appearance.ShowParameterNamesInFunctionSignatures;
-            cbShowBackgroundImage.Checked = Config.Appearance.ShowBackgroundImage;
+            cbShowTooltipsWhileHoveringOverTreeViewNodes.Checked = Config.Appearance.ShowTooltipsWhileHoveringOverTreeViewNodes;
             cbShowIconsForEachNode.Checked = Config.Appearance.ShowIconsForEachNode;
             cbUseCustomFont.Checked = Config.Appearance.UseCustomFont;
             fontDialog.Font = Config.Appearance.CustomFont;
@@ -68,7 +68,7 @@ namespace Overgrowth__
             Config.Filter.MatchParameterTypes = cbMatchParameterTypes.Checked;
 
             Config.Appearance.ShowParameterNamesInFunctionSignatures = cbShowParameterNamesInFunctionSignatures.Checked;
-            Config.Appearance.ShowBackgroundImage = cbShowBackgroundImage.Checked;
+            Config.Appearance.ShowTooltipsWhileHoveringOverTreeViewNodes = cbShowTooltipsWhileHoveringOverTreeViewNodes.Checked;
             Config.Appearance.ShowIconsForEachNode = cbShowIconsForEachNode.Checked;
             Config.Appearance.UseCustomFont = cbUseCustomFont.Checked;
         }

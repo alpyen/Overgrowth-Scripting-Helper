@@ -53,12 +53,14 @@ Now that the migration to Windows 10 is done I'm trying to rework everything fro
 - **Overgrowth++ (Notepad++ Plugin)**
   - Cheat sheet (what the rootfolder of some XML tags are Data/ or Data/Images etc.)
   - Better "About Overgrowth++" screen (use a custom GUI instead of a MessageBox)
-  - **(IN PROGRESS)** Improve search filter speed by using the last valid and closest treeview instead of using the full backup. This should improve the performance of the live search dramatically.
+  - Improve search filter speed by using the last valid and closest treeview instead of using the full backup. This should improve the performance of the live search dramatically.
+  - Add filter appearance options (Unfolding completely, or only unfolding until search term is found)
   - Implement a node with a warning/error/information icon that says "No item matches filter" or some sort for the treeviews if a filter is not matching any item.
   - Rework the appearance? Remove standard title bar and make it more appealing?
 
 - **AsDocs2XML (Database generator and Calltip-Parser)**
   - **(IN PROGRESS)** Adding description manually to CalltipsDescription.xml
+  - **(IN PROGRESS)** Restructure CalltipsDescription.xml to incoorperate description for other elements (variables etc)
   - Incorperate CalltipsDescription.xml into the resulting angelscript.xml Notepad++ calltips file 
   - Enable loading in scripts by an OpenFileDialog etc. (final polish)
   - Add variables to calltips?
