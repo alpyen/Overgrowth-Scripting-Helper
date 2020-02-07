@@ -23,7 +23,7 @@
   <Function Name="CheckSaveLevelChanges" Description="????? Checks if there is no unsaved level changes." />
   <Function Name="ClearTemporaryDecals" Description="Clears temporary decals like blood splats and footprints." />
   <Function Name="ClearUndoHistory" Description="Clears the undo history in the editor." />
-  <Function Name="CollIDed" Description="Called when a collision just happened that is stronger than a very light tap (light and resting collisions will be filtered out by this, but won't be by Contact()." />
+  <Function Name="Collided" Description="Called when a collision just happened that is stronger than a very light tap (light and resting collisions will be filtered out by this, but won't be by Contact()." />
   <Function Name="ConfigHasKey" Description="Checks if the given value exists in the config as a key." />
   <Function Name="ConnectedFrom" Description="????? Connects from a given object reference to a hotspot." />
   <Function Name="ConnectParticles" Description="Connect two ribbon particles IDentified by their given IDs." />
@@ -95,7 +95,7 @@
   <Function Name="fpFromIEEE" Description="Converts a given integer in IEEE 754 representation to its float representation." />
   <Function Name="fpToIEEE" Description="Converts a given float value in float representation to its IEEE 754 representation." />
   <Function Name="FrameSelection" Description="FrameSelection is called when the &quot;frame selection&quot; action called in editor." />
-  <Function Name="GetActiveModSIDs" Description="Returns an array of ModIDs of those mods which are currently active." />
+  <Function Name="GetActiveModSids" Description="Returns an array of ModIDs of those mods which are currently active." />
   <Function Name="GetAnimationEventTime" Description="Query the time an animation event occurs in an animation" />
   <Function Name="GetAvailableBindingCategories" Description="?????" />
   <Function Name="GetAvailableBindings" Description="?????" />
@@ -151,7 +151,7 @@
   <Function Name="GetLookXAxis" Description="????? Returns the value on which a given controller ID looks corresponding to the x-axis." />
   <Function Name="GetLookYAxis" Description="????? Returns the value on which a given controller ID looks corresponding to the y-axis." />
   <Function Name="GetMenuPaused" Description="????? Checks if the game is paused by being in the menu." />
-  <Function Name="GetModSIDs" Description="????? Returns an array containing all ModIDs." />
+  <Function Name="GetModSids" Description="????? Returns an array containing all ModIDs." />
   <Function Name="GetMonitorCount" Description="????? Returns the count of connected monitors to the computer." />
   <Function Name="GetMoveXAxis" Description="????? Returns the value on which a given controller ID moves corresponding to the x-axis." />
   <Function Name="GetMoveYAxis" Description="????? Returns the value on which a given controller ID moves corresponding to the y-axis." />
@@ -164,28 +164,28 @@
   <Function Name="GetObjectIDsType" Description="Returns an array of integers containing all object IDs of a given type in the current level." />
   <Function Name="GetObjectsInHull" Description="Queries an array of integers containing all object IDs inside a given hull identified by its path and mat4 transformation information." />
   <Function Name="GetPath" Description="?????" />
-  <Function Name="GetPerformanceCounter" Description="" />
-  <Function Name="GetPerformanceFrequency" Description="" />
-  <Function Name="GetPossibleResolutions" Description="" />
-  <Function Name="GetRawControllerInputs" Description="" />
-  <Function Name="GetRawKeyboardInputs" Description="" />
-  <Function Name="GetRawMouseInputs" Description="" />
-  <Function Name="GetRotationBetweenVectors" Description="" />
-  <Function Name="GetScreenHeight" Description="" />
-  <Function Name="GetScreenWIDth" Description="" />
-  <Function Name="GetSegment" Description="" />
-  <Function Name="GetSelected" Description="" />
-  <Function Name="GetSkyTint" Description="" />
-  <Function Name="GetSong" Description="" />
-  <Function Name="GetSplitscreen" Description="" />
-  <Function Name="GetStringDescriptionForBinding" Description="" />
-  <Function Name="GetStringForControllerInput" Description="" />
-  <Function Name="GetStringForMouseButton" Description="" />
-  <Function Name="GetStringForMouseString" Description="" />
-  <Function Name="GetSunAmbient" Description="" />
-  <Function Name="GetSunColor" Description="" />
-  <Function Name="GetSunPosition" Description="" />
-  <Function Name="GetTempHealth" Description="" />
+  <Function Name="GetPerformanceCounter" Description="?????" />
+  <Function Name="GetPerformanceFrequency" Description="?????" />
+  <Function Name="GetPossibleResolutions" Description="????? Returns an array of vec2 resolutions which are available on the display." />
+  <Function Name="GetRawControllerInputs" Description="?????" />
+  <Function Name="GetRawKeyboardInputs" Description="?????" />
+  <Function Name="GetRawMouseInputs" Description="?????" />
+  <Function Name="GetRotationBetweenVectors" Description="?????" />
+  <Function Name="GetScreenHeight" Description="Returns the height of the screen." />
+  <Function Name="GetScreenWidth" Description="Returns the width of the screen" />
+  <Function Name="GetSegment" Description="?????" />
+  <Function Name="GetSelected" Description="Returns an array of IDs containing the currently selected objects in the editor." />
+  <Function Name="GetSkyTint" Description="Returns the vec3 tint of the sky in the current level." />
+  <Function Name="GetSong" Description="?????" />
+  <Function Name="GetSplitscreen" Description="Checks if the game is splitscreen mode is active." />
+  <Function Name="GetStringDescriptionForBinding" Description="?????" />
+  <Function Name="GetStringForControllerInput" Description="????? Returns the corresponding string for a controller input value." />
+  <Function Name="GetStringForMouseButton" Description="????? Returns the corresponding string for a mouse button input value." />
+  <Function Name="GetStringForMouseString" Description="?????" />
+  <Function Name="GetSunAmbient" Description="Returns the sun ambient value of the current level." />
+  <Function Name="GetSunColor" Description="Returns the vec3 sun color of the current level." />
+  <Function Name="GetSunPosition" Description="Returns the vec3 sun position of the current level." />
+  <Function Name="GetTempHealth" Description="Returns the temporary health of the character." />
   <Function Name="GetTextAtlasMetrics" Description="" />
   <Function Name="GetTextAtlasMetrics2" Description="" />
   <Function Name="GetTypeString" Description="" />
@@ -225,7 +225,7 @@
   <Function Name="ImDrawList_PathLineToMergeDuplicate" Description="" />
   <Function Name="ImDrawList_PathRect" Description="" />
   <Function Name="ImDrawList_PathStroke" Description="" />
-  <Function Name="ImGui_AlignFirstTextHeightToWIDgets" Description="" />
+  <Function Name="ImGui_AlignFirstTextHeightToWidgets" Description="" />
   <Function Name="ImGui_AlignTextToFramePadding" Description="" />
   <Function Name="ImGui_Begin" Description="" />
   <Function Name="ImGui_BeginChild" Description="" />
@@ -236,14 +236,14 @@
   <Function Name="ImGui_BeginMenuBar" Description="" />
   <Function Name="ImGui_BeginPopup" Description="" />
   <Function Name="ImGui_BeginPopupContextItem" Description="" />
-  <Function Name="ImGui_BeginPopupContextVoID" Description="" />
+  <Function Name="ImGui_BeginPopupContextVoid" Description="" />
   <Function Name="ImGui_BeginPopupContextWindow" Description="" />
   <Function Name="ImGui_BeginPopupModal" Description="" />
   <Function Name="ImGui_Bullet" Description="" />
   <Function Name="ImGui_BulletText" Description="" />
   <Function Name="ImGui_Button" Description="" />
   <Function Name="ImGui_CalcItemRectClosestPoint" Description="" />
-  <Function Name="ImGui_CalcItemWIDth" Description="" />
+  <Function Name="ImGui_CalcItemWidth" Description="" />
   <Function Name="ImGui_CalcListClipping" Description="" />
   <Function Name="ImGui_CalcTextSize" Description="" />
   <Function Name="ImGui_CaptureKeyboardFromApp" Description="" />
@@ -289,9 +289,9 @@
   <Function Name="ImGui_GetColumnIndex" Description="" />
   <Function Name="ImGui_GetColumnOffset" Description="" />
   <Function Name="ImGui_GetColumnsCount" Description="" />
-  <Function Name="ImGui_GetColumnWIDth" Description="" />
+  <Function Name="ImGui_GetColumnWidth" Description="" />
   <Function Name="ImGui_GetContentRegionAvail" Description="" />
-  <Function Name="ImGui_GetContentRegionAvailWIDth" Description="" />
+  <Function Name="ImGui_GetContentRegionAvailWidth" Description="" />
   <Function Name="ImGui_GetContentRegionMax" Description="" />
   <Function Name="ImGui_GetCursorPos" Description="" />
   <Function Name="ImGui_GetCursorPosX" Description="" />
@@ -324,11 +324,11 @@
   <Function Name="ImGui_GetTreeNodeToLabelSpacing" Description="" />
   <Function Name="ImGui_GetWindowContentRegionMax" Description="" />
   <Function Name="ImGui_GetWindowContentRegionMin" Description="" />
-  <Function Name="ImGui_GetWindowContentRegionWIDth" Description="" />
+  <Function Name="ImGui_GetWindowContentRegionWidth" Description="" />
   <Function Name="ImGui_GetWindowHeight" Description="" />
   <Function Name="ImGui_GetWindowPos" Description="" />
   <Function Name="ImGui_GetWindowSize" Description="" />
-  <Function Name="ImGui_GetWindowWIDth" Description="" />
+  <Function Name="ImGui_GetWindowWidth" Description="" />
   <Function Name="ImGui_Image" Description="" />
   <Function Name="ImGui_ImageButton" Description="" />
   <Function Name="ImGui_Indent" Description="" />
@@ -379,13 +379,13 @@
   <Function Name="ImGui_OpenPopupOnItemClick" Description="" />
   <Function Name="ImGui_PopAllowKeyboardFocus" Description="" />
   <Function Name="ImGui_PopButtonRepeat" Description="" />
-  <Function Name="ImGui_PopItemWIDth" Description="" />
+  <Function Name="ImGui_PopItemWidth" Description="" />
   <Function Name="ImGui_PopStyleColor" Description="" />
   <Function Name="ImGui_PopStyleVar" Description="" />
   <Function Name="ImGui_PopTextWrapPos" Description="" />
   <Function Name="ImGui_PushAllowKeyboardFocus" Description="" />
   <Function Name="ImGui_PushButtonRepeat" Description="" />
-  <Function Name="ImGui_PushItemWIDth" Description="" />
+  <Function Name="ImGui_PushItemWidth" Description="" />
   <Function Name="ImGui_PushStyleColor" Description="" />
   <Function Name="ImGui_PushStyleVar" Description="" />
   <Function Name="ImGui_PushTextWrapPos" Description="" />
@@ -397,7 +397,7 @@
   <Function Name="ImGui_Separator" Description="" />
   <Function Name="ImGui_SetClipboardText" Description="" />
   <Function Name="ImGui_SetColumnOffset" Description="" />
-  <Function Name="ImGui_SetColumnWIDth" Description="" />
+  <Function Name="ImGui_SetColumnWidth" Description="" />
   <Function Name="ImGui_SetCursorPos" Description="" />
   <Function Name="ImGui_SetCursorPosX" Description="" />
   <Function Name="ImGui_SetCursorPosY" Description="" />
@@ -408,7 +408,7 @@
   <Function Name="ImGui_SetNextTreeNodeOpen" Description="" />
   <Function Name="ImGui_SetNextWindowCollapsed" Description="" />
   <Function Name="ImGui_SetNextWindowContentSize" Description="" />
-  <Function Name="ImGui_SetNextWindowContentWIDth" Description="" />
+  <Function Name="ImGui_SetNextWindowContentWidth" Description="" />
   <Function Name="ImGui_SetNextWindowFocus" Description="" />
   <Function Name="ImGui_SetNextWindowPos" Description="" />
   <Function Name="ImGui_SetNextWindowPosCenter" Description="" />
@@ -424,15 +424,15 @@
   <Function Name="ImGui_SetWindowFontScale" Description="" />
   <Function Name="ImGui_SetWindowPos" Description="" />
   <Function Name="ImGui_SetWindowSize" Description="" />
-  <Function Name="ImGui_SlIDerAngle" Description="" />
-  <Function Name="ImGui_SlIDerFloat" Description="" />
-  <Function Name="ImGui_SlIDerFloat2" Description="" />
-  <Function Name="ImGui_SlIDerFloat3" Description="" />
-  <Function Name="ImGui_SlIDerFloat4" Description="" />
-  <Function Name="ImGui_SlIDerInt" Description="" />
-  <Function Name="ImGui_SlIDerInt2" Description="" />
-  <Function Name="ImGui_SlIDerInt3" Description="" />
-  <Function Name="ImGui_SlIDerInt4" Description="" />
+  <Function Name="ImGui_SliderAngle" Description="" />
+  <Function Name="ImGui_SliderFloat" Description="" />
+  <Function Name="ImGui_SliderFloat2" Description="" />
+  <Function Name="ImGui_SliderFloat3" Description="" />
+  <Function Name="ImGui_SliderFloat4" Description="" />
+  <Function Name="ImGui_SliderInt" Description="" />
+  <Function Name="ImGui_SliderInt2" Description="" />
+  <Function Name="ImGui_SliderInt3" Description="" />
+  <Function Name="ImGui_SliderInt4" Description="" />
   <Function Name="ImGui_SmallButton" Description="" />
   <Function Name="ImGui_Spacing" Description="" />
   <Function Name="ImGui_Text" Description="" />
@@ -453,7 +453,7 @@
   <Function Name="IsControllerConnected" Description="" />
   <Function Name="IsGroupDerived" Description="" />
   <Function Name="IsKeyDown" Description="" />
-  <Function Name="IsValIDSocketTCP" Description="" />
+  <Function Name="IsValidSocketTCP" Description="" />
   <Function Name="IsWorkshopAvailable" Description="" />
   <Function Name="IsWorkshopMod" Description="" />
   <Function Name="IsWorkshopSubscribed" Description="" />
@@ -499,18 +499,18 @@
   <Function Name="ModGetThumbnail" Description="" />
   <Function Name="ModGetThumbnailImage" Description="" />
   <Function Name="ModGetUserVote" Description="" />
-  <Function Name="ModGetValIDityString" Description="" />
+  <Function Name="ModGetValidityString" Description="" />
   <Function Name="ModGetVersion" Description="" />
   <Function Name="ModIsActive" Description="" />
   <Function Name="ModIsCore" Description="" />
   <Function Name="ModIsFavorite" Description="" />
-  <Function Name="ModIsValID" Description="" />
+  <Function Name="ModIsValid" Description="" />
   <Function Name="ModNeedsRestart" Description="" />
   <Function Name="MovementObjectDeleted" Description="" />
   <Function Name="MovementObjectExists" Description="" />
   <Function Name="Mult" Description="" />
   <Function Name="NavRaycast" Description="" />
-  <Function Name="NavRaycastSlIDe" Description="" />
+  <Function Name="NavRaycastSlide" Description="" />
   <Function Name="normalize" Description="" />
   <Function Name="NotifyItemDetach" Description="" />
   <Function Name="ObjectExists" Description="" />
