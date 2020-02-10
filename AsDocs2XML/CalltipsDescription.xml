@@ -186,21 +186,21 @@
   <Function Name="GetSunColor" Description="Returns the vec3 sun color of the current level." />
   <Function Name="GetSunPosition" Description="Returns the vec3 sun position of the current level." />
   <Function Name="GetTempHealth" Description="Returns the temporary health of the character." />
-  <Function Name="GetTextAtlasMetrics" Description="" />
-  <Function Name="GetTextAtlasMetrics2" Description="" />
-  <Function Name="GetTypeString" Description="" />
-  <Function Name="GetUserPickedReadPath" Description="" />
-  <Function Name="GetUserPickedWritePath" Description="" />
-  <Function Name="HandleAnimationEvent" Description="" />
-  <Function Name="HandleCollisionsBetweenTwoCharacters" Description="" />
-  <Function Name="HandleEditorAttachment" Description="" />
-  <Function Name="HandleEvent" Description="" />
-  <Function Name="HandleEventItem" Description="" />
-  <Function Name="HasFocus" Description="" />
-  <Function Name="HexColor" Description="" />
-  <Function Name="HitByItem" Description="" />
-  <Function Name="HotspotEnter" Description="" />
-  <Function Name="HotspotExit" Description="" />
+  <Function Name="GetTextAtlasMetrics" Description="?????" />
+  <Function Name="GetTextAtlasMetrics2" Description="?????" />
+  <Function Name="GetTypeString" Description="Called by other functions to retrieve the type of the functions owner hotspot." />
+  <Function Name="GetUserPickedReadPath" Description="?????" />
+  <Function Name="GetUserPickedWritePath" Description="?????" />
+  <Function Name="HandleAnimationEvent" Description="Animation events are created by the animation files themselves. For example, when the run animation is played, it calls HandleAnimationEvent(&quot;leftrunstep&quot;, left_foot_pos) when the left foot hits the ground." />
+  <Function Name="HandleCollisionsBetweenTwoCharacters" Description="Called when the game detects two characters have collided, so physics response impulses and possibly additional gameplay logic can be applied." />
+  <Function Name="HandleEditorAttachment" Description="Called when the player attaches an item to a character in the editor. (attachment_type is a member of the enum AttachmentType)" />
+  <Function Name="HandleEvent" Description="HandleEvent is triggered when a movement object (usually a character) interacts with this hotspot. For the most part, this is event = &quot;enter&quot; or event = &quot;exit&quot;, when a character enters or leaves the hotspot." />
+  <Function Name="HandleEventItem" Description="HandleEventItem is triggered when an item object interacts with this hotspot. For the most part, this is event = &quot;enter&quot; or event = &quot;exit&quot;, when an item enters or leaves the hotspot." />
+  <Function Name="HasFocus" Description="Return true from this function if you are going to handle mouse input in this level script. This is particularly useful for menus that you draw yourself, such as the challenge level UI." />
+  <Function Name="HexColor" Description="Returns the vec4 representation of a given hex color code in string representation." />
+  <Function Name="HitByItem" Description="Called when the character is hit by an item so it can react to the impact, take damage, etc." />
+  <Function Name="HotspotEnter" Description="Triggered when any hotspot is entered by a movement object (such as a character, but not items)." />
+  <Function Name="HotspotExit" Description="Triggered when any hotspot is exited by a movement object (such as a character, but not items)." />
   <Function Name="ImDrawList_AddBezierCurve" Description="" />
   <Function Name="ImDrawList_AddCircle" Description="" />
   <Function Name="ImDrawList_AddCircleFilled" Description="" />
@@ -446,66 +446,66 @@
   <Function Name="ImGui_TreePush" Description="" />
   <Function Name="ImGui_Unindent" Description="" />
   <Function Name="ImGui_WantCaptureMouse" Description="" />
-  <Function Name="IncomingTCPData" Description="" />
-  <Function Name="Init" Description="" />
-  <Function Name="Initialize" Description="" />
-  <Function Name="invert" Description="" />
-  <Function Name="IsControllerConnected" Description="" />
-  <Function Name="IsGroupDerived" Description="" />
-  <Function Name="IsKeyDown" Description="" />
-  <Function Name="IsValidSocketTCP" Description="" />
-  <Function Name="IsWorkshopAvailable" Description="" />
-  <Function Name="IsWorkshopMod" Description="" />
-  <Function Name="IsWorkshopSubscribed" Description="" />
-  <Function Name="LaunchCustomGUI" Description="" />
-  <Function Name="LayerRemoved" Description="" />
-  <Function Name="LeaveCampaign" Description="" />
-  <Function Name="LeaveLevel" Description="" />
-  <Function Name="LeaveTelemetryZone" Description="" />
-  <Function Name="length" Description="" />
-  <Function Name="length_squared" Description="" />
-  <Function Name="LineLineIntersect" Description="" />
-  <Function Name="LoadEditorLevel" Description="" />
-  <Function Name="LoadFile" Description="" />
-  <Function Name="LoadLevel" Description="" />
-  <Function Name="LoadLevelID" Description="" />
-  <Function Name="LoadTexture" Description="" />
-  <Function Name="log" Description="" />
-  <Function Name="Log" Description="" />
-  <Function Name="log10" Description="" />
-  <Function Name="MakeParticle" Description="" />
-  <Function Name="Mat3FromQuaternion" Description="" />
-  <Function Name="Mat4FromQuaternion" Description="" />
-  <Function Name="max" Description="" />
-  <Function Name="MediaMode" Description="" />
-  <Function Name="Menu" Description="" />
-  <Function Name="min" Description="" />
-  <Function Name="mix" Description="" />
-  <Function Name="ModActivation" Description="" />
-  <Function Name="ModActivationReload" Description="" />
-  <Function Name="ModCanActivate" Description="" />
-  <Function Name="ModGetAllSpawnerItems" Description="" />
-  <Function Name="ModGetAuthor" Description="" />
-  <Function Name="ModGetCampaignLevels" Description="" />
-  <Function Name="ModGetDescription" Description="" />
-  <Function Name="ModGetID" Description="" />
-  <Function Name="ModGetMenuItems" Description="" />
-  <Function Name="ModGetName" Description="" />
-  <Function Name="ModGetPath" Description="" />
-  <Function Name="ModGetSingleLevels" Description="" />
-  <Function Name="ModGetSource" Description="" />
-  <Function Name="ModGetSpawnerItems" Description="" />
-  <Function Name="ModGetTags" Description="" />
-  <Function Name="ModGetThumbnail" Description="" />
-  <Function Name="ModGetThumbnailImage" Description="" />
-  <Function Name="ModGetUserVote" Description="" />
-  <Function Name="ModGetValidityString" Description="" />
-  <Function Name="ModGetVersion" Description="" />
-  <Function Name="ModIsActive" Description="" />
-  <Function Name="ModIsCore" Description="" />
-  <Function Name="ModIsFavorite" Description="" />
-  <Function Name="ModIsValid" Description="" />
-  <Function Name="ModNeedsRestart" Description="" />
+  <Function Name="IncomingTCPData" Description="Networking hook function, for when network data comes in over a socket you've created." />
+  <Function Name="Init" Description="Called when a script is being initialized (loaded)." />
+  <Function Name="Initialize" Description="?????" />
+  <Function Name="invert" Description="Inverts a quaternion, mat4 or BoneTransform object." />
+  <Function Name="IsControllerConnected" Description="Check if a controller is connected to the PC." />
+  <Function Name="IsGroupDerived" Description="????? Check if a group of objects is derived from another (copied)." />
+  <Function Name="IsKeyDown" Description="Check if a given key specified by the key code is being held down." />
+  <Function Name="IsValidSocketTCP" Description="Checks if a given TCP socket identified by the socket ID is still valid." />
+  <Function Name="IsWorkshopAvailable" Description="Checks if the steam workshop is currently available." />
+  <Function Name="IsWorkshopMod" Description="Checks if a given mod specified by the ModID is a steam workshop mod." />
+  <Function Name="IsWorkshopSubscribed" Description="Checks if the user is subscribed to a given mod specified by the ModID on the steam workshop." />
+  <Function Name="LaunchCustomGUI" Description="?????" />
+  <Function Name="LayerRemoved" Description="?????" />
+  <Function Name="LeaveCampaign" Description="Leave the currently entered campaign." />
+  <Function Name="LeaveLevel" Description="Leave the currently entered level." />
+  <Function Name="LeaveTelemetryZone" Description="?????" />
+  <Function Name="length" Description="Returns the length of a vec2/vec3 vector." />
+  <Function Name="length_squared" Description="Returns the squared length of a vec2/vec3 vector (much faster because it doesn't get square-rooted)." />
+  <Function Name="LineLineIntersect" Description="?????" />
+  <Function Name="LoadEditorLevel" Description="?????" />
+  <Function Name="LoadFile" Description="Loads a file and keeps the handle open for further use with other fiel functions by specifynig the filepath." />
+  <Function Name="LoadLevel" Description="Loads a given level specified by the file path." />
+  <Function Name="LoadLevelID" Description="Loads a given level specified by the level id." />
+  <Function Name="LoadTexture" Description="Loads a given texture specified by the file path and handling flags." />
+  <Function Name="log" Description="Returns the natural logarithm of a given value." />
+  <Function Name="Log" Description="Prints a string into the log console along with a specified LogType log level (severity)." />
+  <Function Name="log10" Description="Returns the base-10 logarithm of a given value." />
+  <Function Name="MakeParticle" Description="Returns the ID of the particle to create by specifying the file path, its vec3 position, vec3 velocity and possible vec3 color." />
+  <Function Name="Mat3FromQuaternion" Description="?????" />
+  <Function Name="Mat4FromQuaternion" Description="?????" />
+  <Function Name="max" Description="Returns the larger value of two given integer or float values." />
+  <Function Name="MediaMode" Description="????? Checks or sets?" />
+  <Function Name="Menu" Description="?????" />
+  <Function Name="min" Description="Returns the smaller value of two given integer or float values." />
+  <Function Name="mix" Description="????? Mixes two values of various (but same) data types together by providing the values and the blend value how much of the first value should be replaced with the second one." />
+  <Function Name="ModActivation" Description="Activates or deactivates a mod by providing the ModID and the boolean if it should be activated or deactivated." />
+  <Function Name="ModActivationReload" Description="?????" />
+  <Function Name="ModCanActivate" Description="Checks if a given mod specified by the ModID can be activated (checks for file/id-collisions with other active mods)." />
+  <Function Name="ModGetAllSpawnerItems" Description="Returns an array of all added SpawnerItems of all mods, if necessary only by the active ones." />
+  <Function Name="ModGetAuthor" Description="Returns the author of a given mod specified by the ModID." />
+  <Function Name="ModGetCampaignLevels" Description="Returns an array of ModLevels of a given mod specified by the ModID." />
+  <Function Name="ModGetDescription" Description="Returns the description of a given mod specified by the ModID." />
+  <Function Name="ModGetID" Description="Returns the ID (unique mod ID) of a given mod specified by the ModID." />
+  <Function Name="ModGetMenuItems" Description="Returns an array of MenuItems of a given mod specified by the ModID." />
+  <Function Name="ModGetName" Description="Returns the name of a given mod specified by the ModID." />
+  <Function Name="ModGetPath" Description="Returns the path to a given mod specified by the ModID." />
+  <Function Name="ModGetSingleLevels" Description="Returns an array of ModLevels (single levels, NOT campaign levels) of a given mod specified by the ModID." />
+  <Function Name="ModGetSource" Description="????? Returns the source (local = 0, steam workshop = 1) of a given mod specified by the ModID." />
+  <Function Name="ModGetSpawnerItems" Description="Returns an array of SpawnerItems of a given mod specified by the ModID." />
+  <Function Name="ModGetTags" Description="Returns the tags of a given mod specified by the ModID." />
+  <Function Name="ModGetThumbnail" Description="????? Returns the path to the thumbnail of a given mod specified by the ModID." />
+  <Function Name="ModGetThumbnailImage" Description="Returns an IMImage reference tf the thumbnail image of a given mod specified by the ModID." />
+  <Function Name="ModGetUserVote" Description="Returns the UserVote to a given mod specified by the ModID." />
+  <Function Name="ModGetValidityString" Description="?????" />
+  <Function Name="ModGetVersion" Description="Returns the version of a given mod specified by the ModID." />
+  <Function Name="ModIsActive" Description="Checks if a given mod specified by the ModID is active or not." />
+  <Function Name="ModIsCore" Description="Checks if a given mod specified by the ModID is a core mod (built-in) or not." />
+  <Function Name="ModIsFavorite" Description="Checks if a given mod specified by the ModID was favorited on the steam workshop by the user." />
+  <Function Name="ModIsValid" Description="????? Checks if a given mod specified by the ModID is valid or not." />
+  <Function Name="ModNeedsRestart" Description="Checks if a given mod specified by the ModID needs a restart to work or not." />
   <Function Name="MovementObjectDeleted" Description="" />
   <Function Name="MovementObjectExists" Description="" />
   <Function Name="Mult" Description="" />
