@@ -506,56 +506,56 @@
   <Function Name="ModIsFavorite" Description="Checks if a given mod specified by the ModID was favorited on the steam workshop by the user." />
   <Function Name="ModIsValid" Description="????? Checks if a given mod specified by the ModID is valid or not." />
   <Function Name="ModNeedsRestart" Description="Checks if a given mod specified by the ModID needs a restart to work or not." />
-  <Function Name="MovementObjectDeleted" Description="" />
-  <Function Name="MovementObjectExists" Description="" />
-  <Function Name="Mult" Description="" />
-  <Function Name="NavRaycast" Description="" />
-  <Function Name="NavRaycastSlide" Description="" />
-  <Function Name="normalize" Description="" />
-  <Function Name="NotifyItemDetach" Description="" />
-  <Function Name="ObjectExists" Description="" />
-  <Function Name="ObjectInspectorReadOnly" Description="" />
-  <Function Name="OpenModAuthorWorkshopPage" Description="" />
-  <Function Name="OpenModWorkshopPage" Description="" />
-  <Function Name="OpenWorkshop" Description="" />
-  <Function Name="PlaySegment" Description="" />
-  <Function Name="PlaySong" Description="" />
-  <Function Name="PlaySound" Description="" />
-  <Function Name="PlaySoundGroup" Description="" />
-  <Function Name="PlaySoundLoop" Description="" />
-  <Function Name="PlaySoundLoopAtLocation" Description="" />
-  <Function Name="PostReset" Description="" />
-  <Function Name="PostScriptReload" Description="" />
-  <Function Name="pow" Description="" />
-  <Function Name="PreDraw" Description="" />
-  <Function Name="PreDrawCamera" Description="" />
-  <Function Name="PreDrawCameraNoCull" Description="" />
-  <Function Name="PreDrawFrame" Description="" />
-  <Function Name="PreScriptReload" Description="" />
-  <Function Name="PrintCallstack" Description="" />
-  <Function Name="push_back" Description="" />
-  <Function Name="QuaternionFromMat4" Description="" />
-  <Function Name="QueueDeleteObjectID" Description="" />
-  <Function Name="QueueSegment" Description="" />
-  <Function Name="rand" Description="" />
-  <Function Name="RangedRandomFloat" Description="" />
-  <Function Name="ReadCharacter" Description="" />
-  <Function Name="ReadCharacterID" Description="" />
-  <Function Name="ReadChunk" Description="" />
-  <Function Name="ReadEnvObjectID" Description="" />
-  <Function Name="ReadHotspot" Description="" />
-  <Function Name="ReadItem" Description="" />
-  <Function Name="ReadItemID" Description="" />
-  <Function Name="ReadObjectFromID" Description="" />
-  <Function Name="ReceiveMessage" Description="" />
-  <Function Name="reflect" Description="" />
-  <Function Name="ReloadMods" Description="" />
-  <Function Name="ReloadStaticValues" Description="" />
-  <Function Name="RemoveMusic" Description="" />
-  <Function Name="RequestModSetFavorite" Description="" />
-  <Function Name="RequestModSetUserVote" Description="" />
-  <Function Name="RequestWorkshopSubscribe" Description="" />
-  <Function Name="RequestWorkshopUnSubscribe" Description="" />
+  <Function Name="MovementObjectDeleted" Description="Callback to notify a character script that a different character got deleted, in case it was tracking that character and needs to stop tracking it." />
+  <Function Name="MovementObjectExists" Description="Checks if a given MovementObject specified by its ID exists." />
+  <Function Name="Mult" Description="?????" />
+  <Function Name="NavRaycast" Description="?????" />
+  <Function Name="NavRaycastSlide" Description="?????" />
+  <Function Name="normalize" Description="Normalizes a given vec2/vec3 vector so its length becomes 1." />
+  <Function Name="NotifyItemDetach" Description="Called when the player drops an item or weapon, or detaches it in the editor." />
+  <Function Name="ObjectExists" Description="????? Checks if a given object identified by its object ID exists." />
+  <Function Name="ObjectInspectorReadOnly" Description="?????" />
+  <Function Name="OpenModAuthorWorkshopPage" Description="Opens the steam workshop page of the author of a given mod specified by the ModID." />
+  <Function Name="OpenModWorkshopPage" Description="Opens the steam workshop page of the mod of a given mod specified by the ModID." />
+  <Function Name="OpenWorkshop" Description="Opens the steam workshop of Overgrowth." />
+  <Function Name="PlaySegment" Description="?????" />
+  <Function Name="PlaySong" Description="?????" />
+  <Function Name="PlaySound" Description="?????" />
+  <Function Name="PlaySoundGroup" Description="?????" />
+  <Function Name="PlaySoundLoop" Description="?????" />
+  <Function Name="PlaySoundLoopAtLocation" Description="?????" />
+  <Function Name="PostReset" Description="????? PostReset is called whenever the level is reset. This does not happen when a level is first loaded, or when undo/redo are fired in the editor." />
+  <Function Name="PostScriptReload" Description="????? Called inside a script when a script was reloaded." />
+  <Function Name="pow" Description="Returns the result of the power expression of a given value and an exponent." />
+  <Function Name="PreDraw" Description="PreDraw serves as a before-update function for script-defined drawing. This lets you correct properties of the object before draw is called, so movement, etc, doesn't lag behind by a frame." />
+  <Function Name="PreDrawCamera" Description="????? PreDrawCamera is called for characters in the scene that were not culled out of the view of this camera, in order to perform per-frame, per-camera functions. It is called for each character that didn't get culled immediately after the call to PreDrawCamera. Unlike PreDrawCamera, this function is only called if the character is not culled by occlusion or frustum culling in this camera's view." />
+  <Function Name="PreDrawCameraNoCull" Description="PreDrawCameraNoCull is called for all objects in the scene, to perform per-frame, per-camera functions. Unliked PreDrawCamera, this function is always called, even if the object is culled by occlusion or frustum culling for this camera." />
+  <Function Name="PreDrawFrame" Description="PreDrawFrame is called to let scripts perform per-frame work before anything in the frame is drawn. Note: After PreDrawFrame is called for this character, then all objects attached to this character are moved to their correct positions." />
+  <Function Name="PreScriptReload" Description="????? Called inside a script when a script is about to be reloaded." />
+  <Function Name="PrintCallstack" Description="????? Prints the callstack up until the current script state." />
+  <Function Name="push_back" Description="?????" />
+  <Function Name="QuaternionFromMat4" Description="?????" />
+  <Function Name="QueueDeleteObjectID" Description="????? Queues an given object to be deleted by specifying its ID." />
+  <Function Name="QueueSegment" Description="?????" />
+  <Function Name="rand" Description="?????" />
+  <Function Name="RangedRandomFloat" Description="????? Returns a random float between a given min and maximum value inclusively." />
+  <Function Name="ReadCharacter" Description="????? Returns the reference of a MovementObject to a given character identified by its index." />
+  <Function Name="ReadCharacterID" Description="Returns the reference of a MovementObject to a given character identified by its ID." />
+  <Function Name="ReadChunk" Description="?????" />
+  <Function Name="ReadEnvObjectID" Description="Returns the reference to an EnvObject to a given environment object identified by its ID." />
+  <Function Name="ReadHotspot" Description="Returns the reference to a Hotspot to a given hotspot identified by its ID." />
+  <Function Name="ReadItem" Description="Returns the reference to an ItemObject to a given item object identified by its index." />
+  <Function Name="ReadItemID" Description="Returns the reference to an ItemObject to a given item object identified by its ID." />
+  <Function Name="ReadObjectFromID" Description="Returns the reference to an Object to a given object identified by its ID." />
+  <Function Name="ReceiveMessage" Description="Called when messages have been sent by the engine, or by objects in levels." />
+  <Function Name="reflect" Description="????? Reflects (mirrors) a given vec2/vec3 vector along another vector." />
+  <Function Name="ReloadMods" Description="Reloads all mods." />
+  <Function Name="ReloadStaticValues" Description="?????" />
+  <Function Name="RemoveMusic" Description="?????" />
+  <Function Name="RequestModSetFavorite" Description="????? Requests the steam workshop page to (un)favorite a given mod specified by its ModID." />
+  <Function Name="RequestModSetUserVote" Description="????? Requests the steam workshop page to (dis)like a given mod specified by its ModID." />
+  <Function Name="RequestWorkshopSubscribe" Description="????? Requests the steam workshop page to subscribe to a given mod identified by its ModID." />
+  <Function Name="RequestWorkshopUnSubscribe" Description="????? Requests the steam workshop page to unsubscribe from a given mod identified by its ModID." />
   <Function Name="Reset" Description="" />
   <Function Name="ResetBinding" Description="" />
   <Function Name="ResetLevel" Description="" />
