@@ -57,6 +57,8 @@ Now that the migration to Windows 10 is done I'm trying to rework everything fro
   - Add filter appearance options (Unfolding completely, or only unfolding until search term is found)
   - Implement a node with a warning/error/information icon that says "No item matches filter" or some sort for the treeviews if a filter is not matching any item.
   - Rework the appearance? Remove standard title bar and make it more appealing?
+  - Add Enumerations somehow into calltips?
+  - Insert additional optional hotspot functions into the templates (included in the asdocs)
 
 - **AsDocs2XML (Database generator and Calltip-Parser)**
   - **(IN PROGRESS)** Adding description manually to CalltipsDescription.xml

@@ -556,31 +556,31 @@
   <Function Name="RequestModSetUserVote" Description="????? Requests the steam workshop page to (dis)like a given mod specified by its ModID." />
   <Function Name="RequestWorkshopSubscribe" Description="????? Requests the steam workshop page to subscribe to a given mod identified by its ModID." />
   <Function Name="RequestWorkshopUnSubscribe" Description="????? Requests the steam workshop page to unsubscribe from a given mod identified by its ModID." />
-  <Function Name="Reset" Description="" />
-  <Function Name="ResetBinding" Description="" />
-  <Function Name="ResetLevel" Description="" />
-  <Function Name="ResetWaypointTarget" Description="" />
-  <Function Name="Resize" Description="" />
-  <Function Name="RibbonItemFlash" Description="" />
-  <Function Name="RibbonItemSetEnabled" Description="" />
-  <Function Name="RibbonItemSetToggled" Description="" />
-  <Function Name="SaveConfig" Description="" />
-  <Function Name="SaveHistoryState" Description="" />
-  <Function Name="SaveModConfig" Description="" />
-  <Function Name="ScriptReloaded" Description="" />
-  <Function Name="ScriptSwap" Description="" />
-  <Function Name="SendGlobalMessage" Description="" />
-  <Function Name="SendLevelMessage" Description="" />
-  <Function Name="SendMessage" Description="" />
-  <Function Name="SetAirWhoosh" Description="" />
-  <Function Name="SetBindingValue" Description="" />
-  <Function Name="SetCampaignID" Description="" />
-  <Function Name="SetConfigValueBool" Description="" />
-  <Function Name="SetConfigValueFloat" Description="" />
-  <Function Name="SetConfigValueInt" Description="" />
-  <Function Name="SetConfigValueString" Description="" />
-  <Function Name="SetControllerBindingValue" Description="" />
-  <Function Name="SetEnabled" Description="" />
+  <Function Name="Reset" Description="?????" />
+  <Function Name="ResetBinding" Description="?????" />
+  <Function Name="ResetLevel" Description="Resets the currently loaded level." />
+  <Function Name="ResetWaypointTarget" Description="?????" />
+  <Function Name="Resize" Description="?????" />
+  <Function Name="RibbonItemFlash" Description="?????" />
+  <Function Name="RibbonItemSetEnabled" Description="?????" />
+  <Function Name="RibbonItemSetToggled" Description="?????" />
+  <Function Name="SaveConfig" Description="Saves the games general configuration keys and values. (Resolution, etc.)" />
+  <Function Name="SaveHistoryState" Description="?????" />
+  <Function Name="SaveModConfig" Description="Saves the mods configuration keys and values. (only the mod which called this function)" />
+  <Function Name="ScriptReloaded" Description="????? Called inside a script when a script was reloaded." />
+  <Function Name="ScriptSwap" Description="?????" />
+  <Function Name="SendGlobalMessage" Description="????? Sends a global message which every object can receive." />
+  <Function Name="SendLevelMessage" Description="????? Sends a levelwide message which every object active inside it can receive." />
+  <Function Name="SendMessage" Description="????? Sends a scriptwide message which the script ReceiveMessage function can receive." />
+  <Function Name="SetAirWhoosh" Description="????? Sets the volume and pitch of the whoosh sound while being mid-air after jumping." />
+  <Function Name="SetBindingValue" Description="?????" />
+  <Function Name="SetCampaignID" Description="?????" />
+  <Function Name="SetConfigValueBool" Description="Sets a given boolean inside the config identified by its string key." />
+  <Function Name="SetConfigValueFloat" Description="Sets a given float inside the config identified by its string key." />
+  <Function Name="SetConfigValueInt" Description="Sets a given integer inside the config identified by its string key." />
+  <Function Name="SetConfigValueString" Description="Sets a given string inside the config identified by its string key." />
+  <Function Name="SetControllerBindingValue" Description="?????" />
+  <Function Name="SetEnabled" Description="???? CALLED and callable (depending on overload) Enables or disables any given object in the level by specifying its id." />
   <Function Name="SetFlareDiffuse" Description="" />
   <Function Name="SetGrabMouse" Description="" />
   <Function Name="SetHDRBlackPoint" Description="" />
