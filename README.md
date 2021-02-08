@@ -3,7 +3,13 @@ Scripting Helper for the Overgrowth API as a Notepad++ plugin.
 
 ToDo-List:
 ---
-
+### README.md
+- Introduction
+- Requirements
+  - NetFX 4
+- How to download and install
+- How to develop
+  - plugins folder needs to be set writable if you don't want to start VS as admin (or use a portable n++ installation and adjust the build/copy paths)
 ### AsDocs2XML
 - Loading in Docs and converting them to XML
 - Add available Angelscript functions automatically to each XML (they are missing from the docs)

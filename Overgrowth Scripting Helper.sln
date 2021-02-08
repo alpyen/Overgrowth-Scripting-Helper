@@ -10,6 +10,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsDocs2XML", "AsDocs2XML\AsDocs2XML.csproj", "{346B623F-6D85-41DD-8067-5858824C6812}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -26,6 +28,14 @@ Global
 		{9B34A290-949C-4BD2-9F5D-3697DE217B1B}.Release|x64.Build.0 = Release|x64
 		{9B34A290-949C-4BD2-9F5D-3697DE217B1B}.Release|x86.ActiveCfg = Release|x86
 		{9B34A290-949C-4BD2-9F5D-3697DE217B1B}.Release|x86.Build.0 = Release|x86
+		{346B623F-6D85-41DD-8067-5858824C6812}.Debug|x64.ActiveCfg = Debug|x64
+		{346B623F-6D85-41DD-8067-5858824C6812}.Debug|x64.Build.0 = Debug|x64
+		{346B623F-6D85-41DD-8067-5858824C6812}.Debug|x86.ActiveCfg = Debug|x86
+		{346B623F-6D85-41DD-8067-5858824C6812}.Debug|x86.Build.0 = Debug|x86
+		{346B623F-6D85-41DD-8067-5858824C6812}.Release|x64.ActiveCfg = Release|x64
+		{346B623F-6D85-41DD-8067-5858824C6812}.Release|x64.Build.0 = Release|x64
+		{346B623F-6D85-41DD-8067-5858824C6812}.Release|x86.ActiveCfg = Release|x86
+		{346B623F-6D85-41DD-8067-5858824C6812}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
