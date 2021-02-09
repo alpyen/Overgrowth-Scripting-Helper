@@ -10,14 +10,15 @@ ToDo-List:
 - How to download and install
 - How to develop
   - plugins folder needs to be set writable if you don't want to start VS as admin (or use a portable n++ installation and adjust the build/copy paths)
-### AsDocs2XML
-- Loading in Docs and converting them to XML
-- Add available Angelscript functions automatically to each XML (they are missing from the docs)
+  - debug of AsDocs2XML has the corrected docs for Overgrowth 1.4 passed as arguments and will write them into the Calltips Definitions\Overgrowth 1.4 folder
 ---
 ### Scripting Helper Plugin
 
+##### AsDocs2XML
+- Adding the core Angelscript functions/classes/enums that are enabled in Overgrowth into the database and calltips.
+
 ##### Angelscript UDL
-- Creating the UDL
+- Adding the core Angelscript functions/classes/enums that are enabled in Overgrowth into the UDL.
 
 ##### Helper Window
 - Designing the dock window

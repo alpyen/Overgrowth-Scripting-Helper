@@ -1,0 +1,3625 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<NotepadPlus>
+  <AutoComplete language="Angelscript">
+    <Environment ignoreCase="no" startFunc="(" stopFunc=")" paramSeparator="," terminal=";" additionalWordChar="" />
+    <KeyWord name="AboutToBeHitByItem" func="yes">
+      <Overload retVal="int" descr="&#xD;&#xA;Supported Scripts: Character">
+        <Param name="int id" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="abs" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="float" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="AcceptConnectionsFrom" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot">
+        <Param name="ConnectionType type" />
+      </Overload>
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot">
+        <Param name="Object@ other" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="AcceptConnectionsTo" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot">
+        <Param name="Object@ other" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="acos" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="float" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ActivateKeyboardEvents" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="AddDebugDrawRibbonPoint" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="int which" />
+        <Param name="vec3 pos" />
+        <Param name="vec4 color" />
+        <Param name="float width" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="AddFileString" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Level, Scriptable Campaign, Scriptable UI">
+        <Param name="const string&amp; in" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="AddMusic" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="const string&amp; in" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="asin" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="float" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="assert" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="bool val" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="atan" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="float" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="atan2" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="float" />
+        <Param name="float" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="atof" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in str" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="atoi" func="yes">
+      <Overload retVal="int" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in str" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="AttachMisc" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Character">
+        <Param name="int" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="AttachWeapon" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Character">
+        <Param name="int" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="Breakpoint" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="int" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="CanGoBack" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ceil" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="float" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="CheckSaveLevelChanges" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level" />
+    </KeyWord>
+    <KeyWord name="ClearTemporaryDecals" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ClearUndoHistory" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level" />
+    </KeyWord>
+    <KeyWord name="Collided" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Character">
+        <Param name="float" />
+        <Param name="float" />
+        <Param name="float" />
+        <Param name="float" />
+        <Param name="float" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ConfigHasKey" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="string key" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ConnectedFrom" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot">
+        <Param name="Object@ other" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ConnectParticles" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="uint32 id_a" />
+        <Param name="uint32 id_b" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ConnectTo" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot">
+        <Param name="Object@ other" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="Contact" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Character" />
+    </KeyWord>
+    <KeyWord name="cos" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="float" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="CreateCustomHull" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level">
+        <Param name="const string &amp;in key" />
+        <Param name="const array&lt;vec3&gt;&amp; vertices" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="CreateIMGUI" func="yes">
+      <Overload retVal="IMGUI@" descr="&#xD;&#xA;Supported Scripts: Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="CreateIMUIContext" func="yes">
+      <Overload retVal="int" descr="&#xD;&#xA;Supported Scripts: Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="CreateObject" func="yes">
+      <Overload retVal="int" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level">
+        <Param name="const string &amp;in path" />
+        <Param name="bool exclude_from_save" />
+      </Overload>
+      <Overload retVal="int" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level">
+        <Param name="const string &amp;in path" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="CreateSocketTCP" func="yes">
+      <Overload retVal="uint" descr="&#xD;&#xA;Supported Scripts: Level">
+        <Param name="string&amp; host" />
+        <Param name="uint16 port" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="cross" func="yes">
+      <Overload retVal="vec3" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="const vec3&amp; in" />
+        <Param name="const vec3&amp; in" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="DeactivateAllMods" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="DeactivateKeyboardEvents" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="DebugDrawBillboard" func="yes">
+      <Overload retVal="int" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="const string &amp;in path" />
+        <Param name="vec3 center" />
+        <Param name="float scale" />
+        <Param name="vec4 color" />
+        <Param name="int lifespan" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="DebugDrawCircle" func="yes">
+      <Overload retVal="int" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="mat4 transform" />
+        <Param name="vec4 color" />
+        <Param name="int lifespan" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="DebugDrawLine" func="yes">
+      <Overload retVal="int" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="vec3 start" />
+        <Param name="vec3 end" />
+        <Param name="vec3 color" />
+        <Param name="int lifespan" />
+      </Overload>
+      <Overload retVal="int" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="vec3 start" />
+        <Param name="vec3 end" />
+        <Param name="vec3 start_color" />
+        <Param name="vec3 end_color" />
+        <Param name="int lifespan" />
+      </Overload>
+      <Overload retVal="int" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="vec3 start" />
+        <Param name="vec3 end" />
+        <Param name="vec4 start_color" />
+        <Param name="vec4 end_color" />
+        <Param name="int lifespan" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="DebugDrawLines" func="yes">
+      <Overload retVal="int" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="const array&lt;vec3&gt;&amp; vertices" />
+        <Param name="vec4 color" />
+        <Param name="int lifespan" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="DebugDrawPoint" func="yes">
+      <Overload retVal="int" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="vec3 pos" />
+        <Param name="vec4 color" />
+        <Param name="int lifespan" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="DebugDrawRemove" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="int id" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="DebugDrawRibbon" func="yes">
+      <Overload retVal="int" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="vec3 start" />
+        <Param name="vec3 end" />
+        <Param name="vec4 start_color" />
+        <Param name="vec4 end_color" />
+        <Param name="float start_width" />
+        <Param name="float end_width" />
+        <Param name="int lifespan" />
+      </Overload>
+      <Overload retVal="int" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="int lifespan" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="DebugDrawText" func="yes">
+      <Overload retVal="int" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="vec3 pos" />
+        <Param name="string text" />
+        <Param name="float scale" />
+        <Param name="bool screen_space" />
+        <Param name="int lifespan" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="DebugDrawWireBox" func="yes">
+      <Overload retVal="int" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="vec3 pos" />
+        <Param name="vec3 dimensions" />
+        <Param name="vec3 color" />
+        <Param name="int lifespan" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="DebugDrawWireCylinder" func="yes">
+      <Overload retVal="int" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="vec3 pos" />
+        <Param name="float radius" />
+        <Param name="float height" />
+        <Param name="vec3 color" />
+        <Param name="int lifespan" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="DebugDrawWireMesh" func="yes">
+      <Overload retVal="int" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="string path" />
+        <Param name="mat4 transform" />
+        <Param name="vec4 color" />
+        <Param name="int lifespan" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="DebugDrawWireScaledSphere" func="yes">
+      <Overload retVal="int" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="vec3 pos" />
+        <Param name="float radius" />
+        <Param name="vec3 scale" />
+        <Param name="vec3 color" />
+        <Param name="int lifespan" />
+      </Overload>
+      <Overload retVal="int" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="vec3 pos" />
+        <Param name="float radius" />
+        <Param name="vec3 scale" />
+        <Param name="vec4 color" />
+        <Param name="int lifespan" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="DebugDrawWireSphere" func="yes">
+      <Overload retVal="int" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="vec3 pos" />
+        <Param name="float radius" />
+        <Param name="vec3 color" />
+        <Param name="int lifespan" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="DebugKeysEnabled" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="DebugSetPosition" func="yes">
+      <Overload retVal="int" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="int id" />
+        <Param name="vec3 pos" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="DebugText" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="string key" />
+        <Param name="string display_text" />
+        <Param name="float lifetime" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="DeleteObjectID" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level">
+        <Param name="int" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="DeselectAll" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level" />
+    </KeyWord>
+    <KeyWord name="DestroySocketTCP" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Level">
+        <Param name="uint socket" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="DialogueCameraControl" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Level" />
+    </KeyWord>
+    <KeyWord name="DirectoryExists" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="string&amp; in" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="Disconnect" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot">
+        <Param name="Object@ other" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="DisconnectedFrom" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot">
+        <Param name="Object@ other" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="DisplayError" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="const string &amp;in title" />
+        <Param name="const string &amp;in contents" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="DisplayMatrixUpdate" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Character" />
+    </KeyWord>
+    <KeyWord name="Dispose" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Character, Hotspot, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="DisposeIMUIContext" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Level, Scriptable UI">
+        <Param name="int id" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="DisposeTextAtlases" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="distance" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="const vec2&amp; in" />
+        <Param name="const vec2&amp; in" />
+      </Overload>
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="const vec3&amp; in" />
+        <Param name="const vec3&amp; in" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="distance_squared" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="const vec2&amp; in" />
+        <Param name="const vec2&amp; in" />
+      </Overload>
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="const vec3&amp; in" />
+        <Param name="const vec3&amp; in" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="DoesItemFitInItem" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level">
+        <Param name="int item_id" />
+        <Param name="int holster_item_id" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="dot" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="const vec2&amp; in" />
+        <Param name="const vec2&amp; in" />
+      </Overload>
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="const vec3&amp; in" />
+        <Param name="const vec3&amp; in" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="Draw" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot" />
+    </KeyWord>
+    <KeyWord name="DrawEditor" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot" />
+    </KeyWord>
+    <KeyWord name="DrawGUI" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="DrawGUI2" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Level" />
+    </KeyWord>
+    <KeyWord name="DrawGUI3" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Level" />
+    </KeyWord>
+    <KeyWord name="DrawTextAtlas" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in path" />
+        <Param name="int pixel_height" />
+        <Param name="int flags" />
+        <Param name="const string &amp;in txt" />
+        <Param name="int x" />
+        <Param name="int y" />
+        <Param name="vec4 color" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="DrawTextAtlas2" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in path" />
+        <Param name="int pixel_height" />
+        <Param name="int flags" />
+        <Param name="const string &amp;in txt" />
+        <Param name="int x" />
+        <Param name="int y" />
+        <Param name="vec4 color" />
+        <Param name="uint char_limit" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="DuplicateObject" func="yes">
+      <Overload retVal="int" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level">
+        <Param name="Object@ obj" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="EditorEnabled" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="EditorModeActive" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="EnterCampaign" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Scriptable Campaign" />
+    </KeyWord>
+    <KeyWord name="EnterLevel" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Scriptable Campaign" />
+    </KeyWord>
+    <KeyWord name="EnterTelemetryZone" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="const string&amp; in name" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="FileExists" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="string&amp; in" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="FinalAnimationMatrixUpdate" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Character">
+        <Param name="int" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="FinalAttachedItemUpdate" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Character">
+        <Param name="int" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="FindFilePath" func="yes">
+      <Overload retVal="string" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in path" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="FindFirstCharacterInGroup" func="yes">
+      <Overload retVal="int" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level">
+        <Param name="int id" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="FindShortestPath" func="yes">
+      <Overload retVal="string" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in path" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="FloatString" func="yes">
+      <Overload retVal="string" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="float val" />
+        <Param name="int digits" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="floor" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="float" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ForceApplied" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Character">
+        <Param name="vec3 force" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="fpFromIEEE" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="uint" />
+      </Overload>
+      <Overload retVal="double" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="uint64" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="fpToIEEE" func="yes">
+      <Overload retVal="uint" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="float" />
+      </Overload>
+      <Overload retVal="uint64" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="double" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="FrameSelection" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera">
+        <Param name="bool" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="GetActiveModSids" func="yes">
+      <Overload retVal="array&lt;ModID&gt;@" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="GetAnimationEventTime" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Character">
+        <Param name="string &amp;in anim_path" />
+        <Param name="string &amp;in event_label " />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="GetAvailableBindingCategories" func="yes">
+      <Overload retVal="array&lt;string&gt;@" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="GetAvailableBindings" func="yes">
+      <Overload retVal="array&lt;string&gt;@" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="const string&amp; in" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="GetBaseSkyTint" func="yes">
+      <Overload retVal="vec3" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="GetBindingValue" func="yes">
+      <Overload retVal="string" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="string binding_category" />
+        <Param name="string binding" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="GetBloodLevel" func="yes">
+      <Overload retVal="int" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level" />
+    </KeyWord>
+    <KeyWord name="GetBloodTint" func="yes">
+      <Overload retVal="const vec3&amp;" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level" />
+    </KeyWord>
+    <KeyWord name="GetBuildTimestamp" func="yes">
+      <Overload retVal="string" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name=" " />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="GetBuildVersionFull" func="yes">
+      <Overload retVal="string" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name=" " />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="GetBuildVersionShort" func="yes">
+      <Overload retVal="string" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name=" " />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="GetCampaign" func="yes">
+      <Overload retVal="Campaign" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="string&amp; campaign_id" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="GetCampaigns" func="yes">
+      <Overload retVal="array&lt;Campaign&gt;@" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="GetCharacters" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level">
+        <Param name="array&lt;int&gt;@ id_array" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="GetCharactersInHull" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level">
+        <Param name="string model_path" />
+        <Param name="mat4" />
+        <Param name="array&lt;int&gt;@ id_array" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="GetCharactersInSphere" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level">
+        <Param name="vec3 position" />
+        <Param name="float radius" />
+        <Param name="array&lt;int&gt;@ id_array" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="GetCodeForKey" func="yes">
+      <Overload retVal="int" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="string key_name" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="GetCodepointCount" func="yes">
+      <Overload retVal="uint" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="const string&amp; in " />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="GetConfigValueBool" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="string index" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="GetConfigValueFloat" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="string index" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="GetConfigValueInt" func="yes">
+      <Overload retVal="int" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="string key" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="GetConfigValueOptions" func="yes">
+      <Overload retVal="array&lt;string&gt;@" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="string index" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="GetConfigValueString" func="yes">
+      <Overload retVal="string" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="string index" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="GetCurrCampaignID" func="yes">
+      <Overload retVal="string" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="GetCurrentLevelModsourceID" func="yes">
+      <Overload retVal="string" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="GetCurrentMenuModsourceID" func="yes">
+      <Overload retVal="string" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="GetCurrLevel" func="yes">
+      <Overload retVal="string" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="GetCurrLevelAbsPath" func="yes">
+      <Overload retVal="string" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="GetCurrLevelID" func="yes">
+      <Overload retVal="string" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="GetCurrLevelName" func="yes">
+      <Overload retVal="string" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="GetCurrLevelRelPath" func="yes">
+      <Overload retVal="string" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="GetFileLine" func="yes">
+      <Overload retVal="string" descr="&#xD;&#xA;Supported Scripts: Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="GetFontFaceID" func="yes">
+      <Overload retVal="int" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in path" />
+        <Param name="int pixel_height" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="GetFriction" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level">
+        <Param name="const vec3 &amp;in position" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="GetHDRBlackPoint" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="void" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="GetHDRBloomMult" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="void" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="GetHDRWhitePoint" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="void" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="GetIMUIContext" func="yes">
+      <Overload retVal="IMUIContext@" descr="&#xD;&#xA;Supported Scripts: Level, Scriptable UI">
+        <Param name="int id" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="GetInputDown" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="int controller_id" />
+        <Param name="const string &amp;in input_label" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="GetInputDownFiltered" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="int controller_id" />
+        <Param name="const string &amp;in input_label" />
+        <Param name="uint filter" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="GetInputMode" func="yes">
+      <Overload retVal="uint" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="GetInputPressed" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="int controller_id" />
+        <Param name="const string &amp;in input_label" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="GetInputPressedFiltered" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="int controller_id" />
+        <Param name="const string &amp;in input_label" />
+        <Param name="uint filter" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="GetInterlevelData" func="yes">
+      <Overload retVal="string" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="const string&amp; in" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="GetLayerGain" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="const string &amp;in layer" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="GetLayerNames" func="yes">
+      <Overload retVal="array&lt;string&gt;@" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="GetLengthInBytesForNCodepoints" func="yes">
+      <Overload retVal="uint" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="const string&amp; in" />
+        <Param name="uint codepoint_index " />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="GetLevelName" func="yes">
+      <Overload retVal="string" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="const string&amp; path" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="GetLocaleNames" func="yes">
+      <Overload retVal="array&lt;string&gt;@" descr="&#xD;&#xA;Supported Scripts: Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="GetLocaleShortcodes" func="yes">
+      <Overload retVal="array&lt;string&gt;@" descr="&#xD;&#xA;Supported Scripts: Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="GetLocaleStringForScancode" func="yes">
+      <Overload retVal="string" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="int scancode" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="GetLocalizedDialoguePath" func="yes">
+      <Overload retVal="string" descr="&#xD;&#xA;Supported Scripts: Level, Scriptable Campaign, Scriptable UI">
+        <Param name="const string&amp; in" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="GetLocalizedLevelName" func="yes">
+      <Overload retVal="string" descr="&#xD;&#xA;Supported Scripts: Level, Scriptable UI">
+        <Param name="const string &amp;in locale_shortcode" />
+        <Param name="const string &amp;in path" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="GetLookXAxis" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="int controller_id" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="GetLookYAxis" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="int controller_id" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="GetMenuPaused" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="GetModSids" func="yes">
+      <Overload retVal="array&lt;ModID&gt;@" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="GetMonitorCount" func="yes">
+      <Overload retVal="int" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="GetMoveXAxis" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="int controller_id" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="GetMoveYAxis" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="int controller_id" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="GetNavPoint" func="yes">
+      <Overload retVal="NavPoint" descr="&#xD;&#xA;Supported Scripts: Character">
+        <Param name="vec3" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="GetNavPointPos" func="yes">
+      <Overload retVal="vec3" descr="&#xD;&#xA;Supported Scripts: Character">
+        <Param name="vec3" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="GetNumCharacters" func="yes">
+      <Overload retVal="int" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level" />
+    </KeyWord>
+    <KeyWord name="GetNumHotspots" func="yes">
+      <Overload retVal="int" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level" />
+    </KeyWord>
+    <KeyWord name="GetNumItems" func="yes">
+      <Overload retVal="int" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level" />
+    </KeyWord>
+    <KeyWord name="GetObjectIDs" func="yes">
+      <Overload retVal="array&lt;int&gt;@" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level" />
+    </KeyWord>
+    <KeyWord name="GetObjectIDsType" func="yes">
+      <Overload retVal="array&lt;int&gt;@" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level">
+        <Param name="int type" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="GetObjectsInHull" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level">
+        <Param name="string model_path" />
+        <Param name="mat4" />
+        <Param name="array&lt;int&gt;@ id_array" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="GetPath" func="yes">
+      <Overload retVal="NavPath" descr="&#xD;&#xA;Supported Scripts: Character">
+        <Param name="vec3 start" />
+        <Param name="vec3 end" />
+      </Overload>
+      <Overload retVal="NavPath" descr="&#xD;&#xA;Supported Scripts: Character">
+        <Param name="vec3 start" />
+        <Param name="vec3 end" />
+        <Param name="uint16 include_poly_flags" />
+        <Param name="uint16 exclude_poly_flags" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="GetPerformanceCounter" func="yes">
+      <Overload retVal="uint64" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="GetPerformanceFrequency" func="yes">
+      <Overload retVal="uint64" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="GetPossibleResolutions" func="yes">
+      <Overload retVal="array&lt;vec2&gt;@" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="GetRawControllerInputs" func="yes">
+      <Overload retVal="array&lt;ControllerPress&gt;@" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="int which" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="GetRawKeyboardInputs" func="yes">
+      <Overload retVal="array&lt;KeyboardPress&gt;@" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="GetRawMouseInputs" func="yes">
+      <Overload retVal="array&lt;MousePress&gt;@" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="GetRotationBetweenVectors" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="const vec3 &amp;in start" />
+        <Param name="const vec3 &amp;in end" />
+        <Param name="quaternion &amp;out rotation" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="GetScreenHeight" func="yes">
+      <Overload retVal="int" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="GetScreenWidth" func="yes">
+      <Overload retVal="int" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="GetSegment" func="yes">
+      <Overload retVal="string" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="GetSelected" func="yes">
+      <Overload retVal="array&lt;int&gt;@" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level" />
+    </KeyWord>
+    <KeyWord name="GetSkyTint" func="yes">
+      <Overload retVal="vec3" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="GetSong" func="yes">
+      <Overload retVal="string" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="GetSplitscreen" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level" />
+    </KeyWord>
+    <KeyWord name="GetStringDescriptionForBinding" func="yes">
+      <Overload retVal="string" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="const string&amp; in" />
+        <Param name="const string&amp; in " />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="GetStringForControllerInput" func="yes">
+      <Overload retVal="string" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="int input" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="GetStringForMouseButton" func="yes">
+      <Overload retVal="string" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="int button" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="GetStringForMouseString" func="yes">
+      <Overload retVal="string" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="const string&amp; text" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="GetSunAmbient" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="GetSunColor" func="yes">
+      <Overload retVal="vec3" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="GetSunPosition" func="yes">
+      <Overload retVal="vec3" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="GetTempHealth" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Character" />
+    </KeyWord>
+    <KeyWord name="GetTextAtlasMetrics" func="yes">
+      <Overload retVal="TextMetrics" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in path" />
+        <Param name="int pixel_height" />
+        <Param name="int flags" />
+        <Param name="const string &amp;in txt " />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="GetTextAtlasMetrics2" func="yes">
+      <Overload retVal="TextMetrics" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in path" />
+        <Param name="int pixel_height" />
+        <Param name="int flags" />
+        <Param name="const string &amp;in txt" />
+        <Param name="uint char_limit " />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="GetTypeString" func="yes">
+      <Overload retVal="string" descr="&#xD;&#xA;Supported Scripts: Hotspot" />
+    </KeyWord>
+    <KeyWord name="GetUserPickedReadPath" func="yes">
+      <Overload retVal="string" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in suffix" />
+        <Param name="const string &amp;in default_path" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="GetUserPickedWritePath" func="yes">
+      <Overload retVal="string" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in suffix" />
+        <Param name="const string &amp;in default_path" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="HandleAnimationEvent" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Character">
+        <Param name="string" />
+        <Param name="vec3" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="HandleCollisionsBetweenTwoCharacters" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Character">
+        <Param name="MovementObject@ other" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="HandleEditorAttachment" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Character">
+        <Param name="int" />
+        <Param name="int" />
+        <Param name="bool" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="HandleEvent" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot">
+        <Param name="string event" />
+        <Param name="MovementObject@ mo" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="HandleEventItem" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot">
+        <Param name="string event" />
+        <Param name="ItemObject@ obj" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="HasFocus" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Level" />
+    </KeyWord>
+    <KeyWord name="HexColor" func="yes">
+      <Overload retVal="vec4" descr="&#xD;&#xA;Supported Scripts: Level, Scriptable UI">
+        <Param name="const string &amp;in hex" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="HitByItem" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Character">
+        <Param name="string material" />
+        <Param name="vec3 point" />
+        <Param name="int id" />
+        <Param name="int type" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="HotspotEnter" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Level">
+        <Param name="string event" />
+        <Param name="MovementObject@ mo" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="HotspotExit" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Level">
+        <Param name="string event" />
+        <Param name="MovementObject@ mo" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImDrawList_AddBezierCurve" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const vec2 &amp;in pos0" />
+        <Param name="const vec2 &amp;in cp0" />
+        <Param name="const vec2 &amp;in cp1" />
+        <Param name="const vec2 &amp;in pos1" />
+        <Param name="uint32 col" />
+        <Param name="float thickness" />
+        <Param name="int num_segments = 0" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImDrawList_AddCircle" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const vec2 &amp;in center" />
+        <Param name="float radius" />
+        <Param name="uint32 col" />
+        <Param name="int num_segments = 12" />
+        <Param name="float thickness = 1.0f" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImDrawList_AddCircleFilled" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const vec2 &amp;in center" />
+        <Param name="float radius" />
+        <Param name="uint32 col" />
+        <Param name="int num_segments = 12" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImDrawList_AddImage" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const TextureAssetRef &amp;in texture" />
+        <Param name="const vec2 &amp;in a" />
+        <Param name="const vec2 &amp;in b" />
+        <Param name="const vec2 &amp;in uv_a = vec2(0, 0)" />
+        <Param name="const vec2 &amp;in uv_b = vec2(1, 1)" />
+        <Param name="uint32 tint_color = 0xFFFFFFFF" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImDrawList_AddImageQuad" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const TextureAssetRef &amp;in texture" />
+        <Param name="const vec2 &amp;in a" />
+        <Param name="const vec2 &amp;in b" />
+        <Param name="const vec2 &amp;in c" />
+        <Param name="const vec2 &amp;in d" />
+        <Param name="const vec2 &amp;in uv_a = vec2(0, 0)" />
+        <Param name="const vec2 &amp;in uv_b = vec2(1, 0)" />
+        <Param name="const vec2 &amp;in uv_c = vec2(1, 1)" />
+        <Param name="const vec2 &amp;in uv_d = vec2(0, 1)" />
+        <Param name="uint32 tint_color = 0xFFFFFFFF" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImDrawList_AddImageRounded" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const TextureAssetRef &amp;in texture" />
+        <Param name="const vec2 &amp;in a" />
+        <Param name="const vec2 &amp;in b" />
+        <Param name="const vec2 &amp;in uv_a" />
+        <Param name="const vec2 &amp;in uv_b" />
+        <Param name="uint32 tint_color" />
+        <Param name="float rounding" />
+        <Param name="int rounding_corners = 0xF" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImDrawList_AddLine" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const vec2 &amp;in a" />
+        <Param name="const vec2 &amp;in b" />
+        <Param name="uint32 col" />
+        <Param name="float thickness = 1.0f" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImDrawList_AddQuad" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const vec2 &amp;in a" />
+        <Param name="const vec2 &amp;in b" />
+        <Param name="const vec2 &amp;in c" />
+        <Param name="const vec2 &amp;in d" />
+        <Param name="uint32 col" />
+        <Param name="float thickness = 1.0f" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImDrawList_AddQuadFilled" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const vec2 &amp;in a" />
+        <Param name="const vec2 &amp;in b" />
+        <Param name="const vec2 &amp;in c" />
+        <Param name="const vec2 &amp;in d" />
+        <Param name="uint32 col" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImDrawList_AddRect" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const vec2 &amp;in a" />
+        <Param name="const vec2 &amp;in b" />
+        <Param name="uint32 col" />
+        <Param name="float rounding = 0.0f" />
+        <Param name="int rounding_corners_flags = 0xF" />
+        <Param name="float thickness = 1.0f" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImDrawList_AddRectFilled" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const vec2 &amp;in a" />
+        <Param name="const vec2 &amp;in b" />
+        <Param name="uint32 col" />
+        <Param name="float rounding = 0.0f" />
+        <Param name="int rounding_corners_flags = 0xF" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImDrawList_AddRectFilledMultiColor" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const vec2 &amp;in a" />
+        <Param name="const vec2 &amp;in b" />
+        <Param name="uint32 col_upr_left" />
+        <Param name="uint32 col_upr_right" />
+        <Param name="uint32 col_bot_right" />
+        <Param name="uint32 col_bot_left" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImDrawList_AddText" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const vec2 &amp;in pos" />
+        <Param name="uint32 col" />
+        <Param name="const string &amp;in text" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImDrawList_AddTriangle" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const vec2 &amp;in a" />
+        <Param name="const vec2 &amp;in b" />
+        <Param name="const vec2 &amp;in c" />
+        <Param name="uint32 col" />
+        <Param name="float thickness = 1.0f" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImDrawList_AddTriangleFilled" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const vec2 &amp;in a" />
+        <Param name="const vec2 &amp;in b" />
+        <Param name="const vec2 &amp;in c" />
+        <Param name="uint32 col" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImDrawList_PathArcTo" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const vec2 &amp;in center" />
+        <Param name="float radius" />
+        <Param name="float a_min" />
+        <Param name="float a_max" />
+        <Param name="int num_segments = 10" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImDrawList_PathArcToFast" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const vec2 &amp;in center" />
+        <Param name="float radius" />
+        <Param name="int a_min_of_12" />
+        <Param name="int a_max_of_12" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImDrawList_PathBezierCurveTo" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const vec2 &amp;in p1" />
+        <Param name="const vec2 &amp;in p2" />
+        <Param name="const vec2 &amp;in p3" />
+        <Param name="int num_segments = 0" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImDrawList_PathClear" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImDrawList_PathFillConvex" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="uint32 col" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImDrawList_PathLineTo" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const vec2 &amp;in pos" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImDrawList_PathLineToMergeDuplicate" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const vec2 &amp;in pos" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImDrawList_PathRect" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const vec2 &amp;in rect_min" />
+        <Param name="const vec2 &amp;in rect_max" />
+        <Param name="float rounding = 0.0f" />
+        <Param name="int rounding_corners_flags = 0xF" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImDrawList_PathStroke" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="uint32 col" />
+        <Param name="bool closed" />
+        <Param name="float thickness = 1.0f" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_AlignFirstTextHeightToWidgets" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_AlignTextToFramePadding" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_Begin" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in name" />
+        <Param name="int flags = 0" />
+      </Overload>
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in name" />
+        <Param name="bool &amp;inout is_open" />
+        <Param name="int flags = 0" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_BeginChild" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in str_id" />
+        <Param name="const vec2 &amp;in size = vec2(0,0)" />
+        <Param name="bool border = false" />
+        <Param name="int extra_flags = 0" />
+      </Overload>
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="uint id" />
+        <Param name="const vec2 &amp;in size = vec2(0,0)" />
+        <Param name="bool border = false" />
+        <Param name="int extra_flags = 0" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_BeginChildFrame" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="uint id" />
+        <Param name="const vec2 &amp;in size" />
+        <Param name="int extra_flags = 0" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_BeginCombo" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+        <Param name="const string&amp; in preview_value" />
+        <Param name="int flags = 0" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_BeginGroup" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_BeginMenu" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+        <Param name="bool enabled = true" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_BeginMenuBar" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_BeginPopup" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in popup_id" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_BeginPopupContextItem" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in popup_id" />
+        <Param name="int mouse_button = 1" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_BeginPopupContextVoid" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="int mouse_button = 1" />
+      </Overload>
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in popup_id" />
+        <Param name="int mouse_button = 1" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_BeginPopupContextWindow" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="bool also_over_items = true" />
+        <Param name="int mouse_button = 1" />
+      </Overload>
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="bool also_over_items" />
+        <Param name="const string &amp;in popup_id" />
+        <Param name="int mouse_button = 1" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_BeginPopupModal" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in name" />
+        <Param name="int extra_flags = 0" />
+      </Overload>
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in name" />
+        <Param name="bool &amp;inout is_open" />
+        <Param name="int extra_flags = 0" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_Bullet" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_BulletText" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_Button" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string&amp; in" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_CalcItemRectClosestPoint" func="yes">
+      <Overload retVal="vec2" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const vec2 &amp;in pos" />
+        <Param name="bool on_edge = false" />
+        <Param name="float outward = 0.0f" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_CalcItemWidth" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_CalcListClipping" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="int items_count" />
+        <Param name="float items_height" />
+        <Param name="int &amp;out out_items_display_start" />
+        <Param name="int &amp;out out_items_display_end" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_CalcTextSize" func="yes">
+      <Overload retVal="vec2" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in text" />
+        <Param name="bool hide_text_after_double_hash = false" />
+        <Param name="float wrap_width = -1.0f" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_CaptureKeyboardFromApp" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="bool capture = true" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_CaptureMouseFromApp" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="bool capture = true" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_Checkbox" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+        <Param name="bool &amp;inout value" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_CheckboxFlags" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+        <Param name="uint &amp;inout flags" />
+        <Param name="uint flags_value" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_CloseCurrentPopup" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_CollapsingHeader" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+        <Param name="int flags = 0" />
+      </Overload>
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+        <Param name="bool &amp;inout is_open" />
+        <Param name="int flags = 0" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_ColorButton" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const vec4 &amp;in col" />
+        <Param name="bool small_height = false" />
+        <Param name="bool outline_border = true" />
+      </Overload>
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in desc" />
+        <Param name="const vec4 &amp;in col" />
+        <Param name="int flags = 0" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_ColorConvertFloat4ToU32" func="yes">
+      <Overload retVal="uint" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const vec4 &amp;in value" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_ColorConvertHSVtoRGB" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="float h" />
+        <Param name="float s" />
+        <Param name="float v" />
+        <Param name="float &amp;out out_r" />
+        <Param name="float &amp;out out_g" />
+        <Param name="float &amp;out out_b" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_ColorConvertRGBtoHSV" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="float r" />
+        <Param name="float g" />
+        <Param name="float b" />
+        <Param name="float &amp;out out_h" />
+        <Param name="float &amp;out out_s" />
+        <Param name="float &amp;out out_v" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_ColorConvertU32ToFloat4" func="yes">
+      <Overload retVal="vec4" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="uint value" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_ColorEdit3" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+        <Param name="vec3 &amp;inout color" />
+        <Param name="int flags = 0" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_ColorEdit4" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+        <Param name="vec4 &amp;inout color" />
+        <Param name="bool show_alpha = true" />
+      </Overload>
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+        <Param name="vec4 &amp;inout color" />
+        <Param name="int flags" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_ColorEditMode" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="int" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_ColorPicker3" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+        <Param name="vec3 &amp;inout color" />
+        <Param name="int flags = 0" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_ColorPicker4" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+        <Param name="vec4 &amp;inout color" />
+        <Param name="int flags = 0" />
+      </Overload>
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+        <Param name="vec4 &amp;inout color" />
+        <Param name="int flags" />
+        <Param name="vec4 ref_col" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_Columns" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="int count = 1" />
+        <Param name="bool border = true" />
+      </Overload>
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="int count" />
+        <Param name="const string &amp;in id" />
+        <Param name="bool border = true" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_Combo" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+        <Param name="int &amp;inout current_item" />
+        <Param name="const array&lt;string&gt; &amp;in items" />
+        <Param name="int popup_max_height_in_items = -1" />
+      </Overload>
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+        <Param name="int &amp;inout current_item" />
+        <Param name="const string &amp;in items_separated_by_zeros" />
+        <Param name="int popup_max_height_in_items = -1" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_DragFloat" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+        <Param name="float &amp;inout value" />
+        <Param name="float v_speed = 1.0f" />
+        <Param name="float v_min = 0.0f" />
+        <Param name="float v_max = 0.0f" />
+        <Param name="const string &amp;in display_format = &quot;%.3f&quot;" />
+        <Param name="float power = 1.0f" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_DragFloat2" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+        <Param name="vec2 &amp;inout value" />
+        <Param name="float v_speed = 1.0f" />
+        <Param name="float v_min = 0.0f" />
+        <Param name="float v_max = 0.0f" />
+        <Param name="const string &amp;in display_format = &quot;%.3f&quot;" />
+        <Param name="float power = 1.0f" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_DragFloat3" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+        <Param name="vec3 &amp;inout value" />
+        <Param name="float v_speed = 1.0f" />
+        <Param name="float v_min = 0.0f" />
+        <Param name="float v_max = 0.0f" />
+        <Param name="const string &amp;in display_format = &quot;%.3f&quot;" />
+        <Param name="float power = 1.0f" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_DragFloat4" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+        <Param name="vec4 &amp;inout value" />
+        <Param name="float v_speed = 1.0f" />
+        <Param name="float v_min = 0.0f" />
+        <Param name="float v_max = 0.0f" />
+        <Param name="const string &amp;in display_format = &quot;%.3f&quot;" />
+        <Param name="float power = 1.0f" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_DragFloatRange2" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+        <Param name="float &amp;inout v_current_min" />
+        <Param name="float &amp;inout v_current_max" />
+        <Param name="float v_speed = 1.0f" />
+        <Param name="float v_min = 0.0f" />
+        <Param name="float v_max = 0.0f" />
+        <Param name="const string &amp;in display_format = &quot;%.3f&quot;" />
+      </Overload>
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+        <Param name="float &amp;inout v_current_min" />
+        <Param name="float &amp;inout v_current_max" />
+        <Param name="float v_speed" />
+        <Param name="float v_min" />
+        <Param name="float v_max" />
+        <Param name="const string &amp;in display_format" />
+        <Param name="const string &amp;in display_format_max" />
+        <Param name="float power = 1.0f" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_DragInt" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+        <Param name="int &amp;inout value" />
+        <Param name="float v_speed = 1.0f" />
+        <Param name="int v_min = 0" />
+        <Param name="int v_max = 0" />
+        <Param name="const string &amp;in display_format = &quot;%.0f&quot;" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_DragInt2" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+        <Param name="ivec2 &amp;inout value" />
+        <Param name="float v_speed = 1.0f" />
+        <Param name="int v_min = 0" />
+        <Param name="int v_max = 0" />
+        <Param name="const string &amp;in display_format = &quot;%.0f&quot;" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_DragInt3" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+        <Param name="ivec3 &amp;inout value" />
+        <Param name="float v_speed = 1.0f" />
+        <Param name="int v_min = 0" />
+        <Param name="int v_max = 0" />
+        <Param name="const string &amp;in display_format = &quot;%.0f&quot;" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_DragInt4" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+        <Param name="ivec4 &amp;inout value" />
+        <Param name="float v_speed = 1.0f" />
+        <Param name="int v_min = 0" />
+        <Param name="int v_max = 0" />
+        <Param name="const string &amp;in display_format = &quot;%.0f&quot;" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_DragIntRange2" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+        <Param name="int &amp;inout v_current_min" />
+        <Param name="int &amp;inout v_current_max" />
+        <Param name="float v_speed = 1.0f" />
+        <Param name="int v_min = 0.0f" />
+        <Param name="int v_max = 0.0f" />
+        <Param name="const string &amp;in display_format = &quot;%.3f&quot;" />
+      </Overload>
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+        <Param name="int &amp;inout v_current_min" />
+        <Param name="int &amp;inout v_current_max" />
+        <Param name="float v_speed" />
+        <Param name="int v_min" />
+        <Param name="int v_max" />
+        <Param name="const string &amp;in display_format" />
+        <Param name="const string &amp;in display_format_max" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_DrawSettings" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_Dummy" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const vec2 &amp;in size" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_End" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_EndChild" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_EndChildFrame" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_EndCombo" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_EndGroup" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_EndMenu" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_EndMenuBar" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_EndPopup" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_GetClipboardText" func="yes">
+      <Overload retVal="string" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_GetColorU32" func="yes">
+      <Overload retVal="uint32" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="uint32 idx" />
+        <Param name="float alpha_mul = 1.0f" />
+      </Overload>
+      <Overload retVal="uint32" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const vec3 &amp;in col" />
+      </Overload>
+      <Overload retVal="uint32" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const vec4 &amp;in col" />
+      </Overload>
+      <Overload retVal="uint32" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="float r" />
+        <Param name="float g" />
+        <Param name="float b" />
+        <Param name="float alpha_mul = 1.0f" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_GetColumnIndex" func="yes">
+      <Overload retVal="int" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_GetColumnOffset" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="int column_index = -1" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_GetColumnsCount" func="yes">
+      <Overload retVal="int" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_GetColumnWidth" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="int column_index = -1" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_GetContentRegionAvail" func="yes">
+      <Overload retVal="vec2" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_GetContentRegionAvailWidth" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_GetContentRegionMax" func="yes">
+      <Overload retVal="vec2" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_GetCursorPos" func="yes">
+      <Overload retVal="vec2" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_GetCursorPosX" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_GetCursorPosY" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_GetCursorScreenPos" func="yes">
+      <Overload retVal="vec2" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_GetCursorStartPos" func="yes">
+      <Overload retVal="vec2" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_GetFrameCount" func="yes">
+      <Overload retVal="int" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_GetFrameHeight" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_GetFrameHeightWithSpacing" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_GetItemRectMax" func="yes">
+      <Overload retVal="vec2" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_GetItemRectMin" func="yes">
+      <Overload retVal="vec2" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_GetItemRectSize" func="yes">
+      <Overload retVal="vec2" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_GetItemsLineHeightWithSpacing" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_GetKeyIndex" func="yes">
+      <Overload retVal="int" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="int imgui_key" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_GetMouseCursor" func="yes">
+      <Overload retVal="int" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_GetMouseDragDelta" func="yes">
+      <Overload retVal="vec2" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="int button = 0" />
+        <Param name="float lock_threshold = -1.0f" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_GetMousePos" func="yes">
+      <Overload retVal="vec2" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_GetMousePosOnOpeningCurrentPopup" func="yes">
+      <Overload retVal="vec2" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_GetScrollMaxX" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_GetScrollMaxY" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_GetScrollX" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_GetScrollY" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_GetStyleColName" func="yes">
+      <Overload retVal="string" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="int idx" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_GetStyleColorName" func="yes">
+      <Overload retVal="string" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="int idx" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_GetStyleColorVec4" func="yes">
+      <Overload retVal="vec4" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="int idx" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_GetTextBuf" func="yes">
+      <Overload retVal="string" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_GetTextLineHeight" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_GetTextLineHeightWithSpacing" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_GetTime" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_GetTreeNodeToLabelSpacing" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_GetWindowContentRegionMax" func="yes">
+      <Overload retVal="vec2" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_GetWindowContentRegionMin" func="yes">
+      <Overload retVal="vec2" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_GetWindowContentRegionWidth" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_GetWindowHeight" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_GetWindowPos" func="yes">
+      <Overload retVal="vec2" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_GetWindowSize" func="yes">
+      <Overload retVal="vec2" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_GetWindowWidth" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_Image" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const TextureAssetRef &amp;in texture" />
+        <Param name="const vec2 &amp;in size" />
+        <Param name="const vec2 &amp;in uv0 = vec2(0,0)" />
+        <Param name="const vec2 &amp;in uv1 = vec2(1,1)" />
+        <Param name="const vec4 &amp;in tint_color = vec4(1,1,1,1)" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_ImageButton" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const TextureAssetRef &amp;in texture" />
+        <Param name="const vec2 &amp;in size" />
+        <Param name="const vec2 &amp;in uv0 = vec2(0,0)" />
+        <Param name="const vec2 &amp;in uv1 = vec2(1,1)" />
+        <Param name="int frame_padding = -1" />
+        <Param name="const vec4 &amp;in background_color = vec4(0,0,0,0)" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_Indent" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="float indent_w = 0.0f" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_InputFloat" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+        <Param name="float &amp;inout value" />
+        <Param name="float step = 0.0f" />
+        <Param name="float step_fast = 0.0f" />
+        <Param name="int decimal_precision = -1" />
+        <Param name="int extra_flags = 0" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_InputFloat2" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+        <Param name="vec2 &amp;inout value" />
+        <Param name="int decimal_precision = -1" />
+        <Param name="int extra_flags = 0" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_InputFloat3" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+        <Param name="vec3 &amp;inout value" />
+        <Param name="int decimal_precision = -1" />
+        <Param name="int extra_flags = 0" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_InputFloat4" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+        <Param name="vec4 &amp;inout value" />
+        <Param name="int decimal_precision = -1" />
+        <Param name="int extra_flags = 0" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_InputInt" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+        <Param name="int &amp;inout value" />
+        <Param name="int step = 1" />
+        <Param name="int step_fast = 100" />
+        <Param name="int extra_flags = 0" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_InputText" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+        <Param name="int flags = 0" />
+      </Overload>
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+        <Param name="string &amp;inout text_buffer" />
+        <Param name="int buffer_size" />
+        <Param name="int flags = 0" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_InputTextMultiline" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+        <Param name="const vec2 &amp;in size = vec2(0,0)" />
+        <Param name="int flags = 0" />
+      </Overload>
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+        <Param name="string &amp;inout text_buffer" />
+        <Param name="int buffer_size" />
+        <Param name="const vec2 &amp;in size = vec2(0,0)" />
+        <Param name="int flags = 0" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_InvisibleButton" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in str_id" />
+        <Param name="const vec2 &amp;in size" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_IsAnyItemActive" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_IsAnyItemHovered" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_IsItemActive" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_IsItemClicked" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="int mouse_button = 0" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_IsItemHovered" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_IsItemHoveredRect" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_IsItemVisible" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_IsKeyDown" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="int key_index" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_IsKeyPressed" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="int key_index" />
+        <Param name="bool repeat = true" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_IsKeyReleased" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="int key_index" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_IsMouseClicked" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="int button" />
+        <Param name="bool repeat = false" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_IsMouseDoubleClicked" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="int button" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_IsMouseDown" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="int button" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_IsMouseDragging" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="int button = 0" />
+        <Param name="float lock_threshold = -1.0f" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_IsMouseHoveringAnyWindow" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_IsMouseHoveringRect" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const vec2 &amp;in r_min" />
+        <Param name="const vec2 &amp;in r_max" />
+        <Param name="bool clip = true" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_IsMouseHoveringWindow" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_IsMouseReleased" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="int button" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_IsPopupOpen" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in str_id" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_IsPosHoveringAnyWindow" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const vec2 &amp;in pos" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_IsRectVisible" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const vec2 &amp;in size" />
+      </Overload>
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const vec2 &amp;in rect_min" />
+        <Param name="const vec2 &amp;in rect_max" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_IsRootWindowFocused" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_IsRootWindowOrAnyChildFocused" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_IsRootWindowOrAnyChildHovered" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_IsWindowAppearing" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_IsWindowCollapsed" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_IsWindowFocused" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_IsWindowHovered" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_LabelText" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in str" />
+        <Param name="const string &amp;in label" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_ListBox" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+        <Param name="int &amp;inout current_item" />
+        <Param name="const array&lt;string&gt; &amp;in items" />
+        <Param name="int height_in_items = -1" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_ListBoxFooter" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_ListBoxHeader" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+      </Overload>
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+        <Param name="const vec2 &amp;in size" />
+      </Overload>
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+        <Param name="int items_count" />
+        <Param name="int height_in_items = -1" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_MenuItem" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+        <Param name="bool selected = false" />
+        <Param name="bool enabled = true" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_NewLine" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_NextColumn" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_OpenPopup" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in popup_id" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_OpenPopupOnItemClick" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in popup_id" />
+        <Param name="int mouse_button = 1" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_PopAllowKeyboardFocus" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_PopButtonRepeat" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_PopItemWidth" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_PopStyleColor" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="int count = 1" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_PopStyleVar" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="int count = 1" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_PopTextWrapPos" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_PushAllowKeyboardFocus" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="bool allow_keyboard_focus" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_PushButtonRepeat" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="bool repeat" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_PushItemWidth" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="float item_width" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_PushStyleColor" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="int idx" />
+        <Param name="const vec4 &amp;in col" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_PushStyleVar" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="int idx" />
+        <Param name="float val" />
+      </Overload>
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="int idx" />
+        <Param name="const vec2 &amp;in val" />
+      </Overload>
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="int idx" />
+        <Param name="bool val" />
+      </Overload>
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="int idx" />
+        <Param name="int val" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_PushTextWrapPos" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="float wrap_pos_x = 0.0f" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_RadioButton" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+        <Param name="bool active" />
+      </Overload>
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+        <Param name="int &amp;inout value" />
+        <Param name="int v_button" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_ResetMouseDragDelta" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="int button = 0" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_SameLine" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="float pos_x = 0.0" />
+        <Param name="float spacing_w = -1.0" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_Selectable" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+        <Param name="bool selected = false" />
+        <Param name="int flags = 0" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_SelectableToggle" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+        <Param name="bool &amp;inout selected" />
+        <Param name="int flags = 0" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_Separator" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_SetClipboardText" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in value" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_SetColumnOffset" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="int column_index" />
+        <Param name="float offset_x" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_SetColumnWidth" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="int column_index" />
+        <Param name="float width" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_SetCursorPos" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const vec2 &amp;in local_pos" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_SetCursorPosX" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="float x" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_SetCursorPosY" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="float y" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_SetCursorScreenPos" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const vec2 &amp;in pos" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_SetItemAllowOverlap" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_SetKeyboardFocusHere" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="int offset = 0" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_SetMouseCursor" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="int type" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_SetNextTreeNodeOpen" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="bool is_open" />
+        <Param name="int cond = 0" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_SetNextWindowCollapsed" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="bool collapsed" />
+        <Param name="int cond = 0" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_SetNextWindowContentSize" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const vec2 &amp;in size" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_SetNextWindowContentWidth" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="float width" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_SetNextWindowFocus" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_SetNextWindowPos" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const vec2 &amp;in pos" />
+        <Param name="int cond = 0" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_SetNextWindowPosCenter" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="int cond = 0" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_SetNextWindowSize" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const vec2 &amp;in size" />
+        <Param name="int cond = 0" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_SetScrollFromPosY" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="float pos_y" />
+        <Param name="float center_y_ratio = 0.5f" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_SetScrollHere" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="float center_y_ratio = 0.5f" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_SetScrollX" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="float scroll_x" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_SetScrollY" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="float scroll_y" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_SetTextBuf" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in value" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_SetTooltip" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in text" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_SetWindowCollapsed" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="bool collapsed" />
+        <Param name="int cond = 0" />
+      </Overload>
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in name" />
+        <Param name="bool collapsed" />
+        <Param name="int cond = 0" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_SetWindowFocus" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in name" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_SetWindowFontScale" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="float scale" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_SetWindowPos" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const vec2 &amp;in pos" />
+        <Param name="int cond = 0" />
+      </Overload>
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in name" />
+        <Param name="const vec2 &amp;in pos" />
+        <Param name="int cond = 0" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_SetWindowSize" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const vec2 &amp;in size" />
+        <Param name="int cond = 0" />
+      </Overload>
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in name" />
+        <Param name="const vec2 &amp;in size" />
+        <Param name="int cond = 0" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_SliderAngle" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+        <Param name="float &amp;inout v_rad" />
+        <Param name="float v_degrees_min = -360.0f" />
+        <Param name="float v_degrees_max = +360.0f" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_SliderFloat" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+        <Param name="float &amp;inout v" />
+        <Param name="float v_min" />
+        <Param name="float v_max" />
+        <Param name="const string &amp;in display_format = &quot;%.3f&quot;" />
+        <Param name="float power = 1.0f" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_SliderFloat2" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+        <Param name="vec2 &amp;inout v" />
+        <Param name="float v_min" />
+        <Param name="float v_max" />
+        <Param name="const string &amp;in display_format = &quot;%.3f&quot;" />
+        <Param name="float power = 1.0f" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_SliderFloat3" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+        <Param name="vec3 &amp;inout v" />
+        <Param name="float v_min" />
+        <Param name="float v_max" />
+        <Param name="const string &amp;in display_format = &quot;%.3f&quot;" />
+        <Param name="float power = 1.0f" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_SliderFloat4" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+        <Param name="vec4 &amp;inout v" />
+        <Param name="float v_min" />
+        <Param name="float v_max" />
+        <Param name="const string &amp;in display_format = &quot;%.3f&quot;" />
+        <Param name="float power = 1.0f" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_SliderInt" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+        <Param name="int &amp;inout v" />
+        <Param name="int v_min" />
+        <Param name="int v_max" />
+        <Param name="const string &amp;in display_format = &quot;%.0f&quot;" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_SliderInt2" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+        <Param name="ivec2 &amp;inout v" />
+        <Param name="int v_min" />
+        <Param name="int v_max" />
+        <Param name="const string &amp;in display_format = &quot;%.0f&quot;" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_SliderInt3" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+        <Param name="ivec3 &amp;inout v" />
+        <Param name="int v_min" />
+        <Param name="int v_max" />
+        <Param name="const string &amp;in display_format = &quot;%.0f&quot;" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_SliderInt4" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+        <Param name="ivec4 &amp;inout v" />
+        <Param name="int v_min" />
+        <Param name="int v_max" />
+        <Param name="const string &amp;in display_format = &quot;%.0f&quot;" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_SmallButton" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_Spacing" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_Text" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_TextColored" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const vec4 &amp;in color" />
+        <Param name="const string &amp;in label" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_TextDisabled" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_TextWrapped" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_TreeAdvanceToLabelPos" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_TreeNode" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+      </Overload>
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in str_id" />
+        <Param name="const string &amp;in label" />
+      </Overload>
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const ? &amp;in ptr_id" />
+        <Param name="const string &amp;in label" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_TreeNodeEx" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in label" />
+        <Param name="int flags = 0" />
+      </Overload>
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in str_id" />
+        <Param name="int flags" />
+        <Param name="const string &amp;in label" />
+      </Overload>
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const ? &amp;in ptr_id" />
+        <Param name="int flags" />
+        <Param name="const string &amp;in label" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_TreePop" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ImGui_TreePush" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in str_id" />
+      </Overload>
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const ? &amp;in ptr_id" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_Unindent" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="float indent_w = 0.0f" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ImGui_WantCaptureMouse" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="IncomingTCPData" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Level">
+        <Param name="uint socket" />
+        <Param name="array&lt;uint8&gt;@ data" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="Init" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign" />
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign">
+        <Param name="string" />
+      </Overload>
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign">
+        <Param name="string level_name" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="Initialize" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="invert" func="yes">
+      <Overload retVal="quaternion" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="quaternion quat" />
+      </Overload>
+      <Overload retVal="mat4" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="mat4" />
+      </Overload>
+      <Overload retVal="BoneTransform" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="const BoneTransform&amp; in" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="IsControllerConnected" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="IsGroupDerived" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level">
+        <Param name="int id" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="IsKeyDown" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="int key_code" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="IsValidSocketTCP" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Level">
+        <Param name="uint socket" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="IsWorkshopAvailable" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="IsWorkshopMod" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="ModID&amp; id" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="IsWorkshopSubscribed" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="ModID&amp; id" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="LaunchCustomGUI" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot" />
+    </KeyWord>
+    <KeyWord name="LayerRemoved" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Character">
+        <Param name="int id" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="LeaveCampaign" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Scriptable Campaign" />
+    </KeyWord>
+    <KeyWord name="LeaveLevel" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Scriptable Campaign" />
+    </KeyWord>
+    <KeyWord name="LeaveTelemetryZone" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="length" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="const vec2&amp; in" />
+      </Overload>
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="const vec3&amp; in" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="length_squared" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="const vec2&amp; in" />
+      </Overload>
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="const vec3&amp; in" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="LineLineIntersect" func="yes">
+      <Overload retVal="vec3" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level">
+        <Param name="vec3 start_a" />
+        <Param name="vec3 end_a" />
+        <Param name="vec3 start_b" />
+        <Param name="vec3 end_b" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="LoadEditorLevel" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="LoadFile" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Level, Scriptable Campaign, Scriptable UI">
+        <Param name="const string&amp; in" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="LoadLevel" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="string level_path" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="LoadLevelID" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="string id" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="LoadTexture" func="yes">
+      <Overload retVal="TextureAssetRef" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level, Scriptable UI">
+        <Param name="const string &amp;in name" />
+        <Param name="uint32 texture_load_flags = 0" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="log" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="float" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="Log" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="LogType level" />
+        <Param name="const string &amp;in str " />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="log10" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="float" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="MakeParticle" func="yes">
+      <Overload retVal="uint32" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="string path" />
+        <Param name="vec3 pos" />
+        <Param name="vec3 vel" />
+      </Overload>
+      <Overload retVal="uint32" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="string path" />
+        <Param name="vec3 pos" />
+        <Param name="vec3 vel" />
+        <Param name="vec3 color" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="Mat3FromQuaternion" func="yes">
+      <Overload retVal="mat3" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="const quaternion&amp; in" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="Mat4FromQuaternion" func="yes">
+      <Overload retVal="mat4" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="const quaternion&amp; in" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="max" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="float" />
+        <Param name="float" />
+      </Overload>
+      <Overload retVal="int" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="int" />
+        <Param name="int" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="MediaMode" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level" />
+    </KeyWord>
+    <KeyWord name="Menu" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Level" />
+    </KeyWord>
+    <KeyWord name="min" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="float" />
+        <Param name="float" />
+      </Overload>
+      <Overload retVal="int" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="int" />
+        <Param name="int" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="mix" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="float a" />
+        <Param name="float b" />
+        <Param name="float amount" />
+      </Overload>
+      <Overload retVal="vec2" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="vec2 a" />
+        <Param name="vec2 b" />
+        <Param name="float alpha" />
+      </Overload>
+      <Overload retVal="vec3" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="vec3 a" />
+        <Param name="vec3 b" />
+        <Param name="float alpha" />
+      </Overload>
+      <Overload retVal="vec4" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="vec4 a" />
+        <Param name="vec4 b" />
+        <Param name="float alpha" />
+      </Overload>
+      <Overload retVal="quaternion" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="const quaternion &amp;in a" />
+        <Param name="const quaternion &amp;in b" />
+        <Param name="float alpha" />
+      </Overload>
+      <Overload retVal="mat4" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="const mat4 &amp;in a" />
+        <Param name="const mat4 &amp;in b" />
+        <Param name="float alpha" />
+      </Overload>
+      <Overload retVal="BoneTransform" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="const BoneTransform &amp;in a" />
+        <Param name="const BoneTransform &amp;in b" />
+        <Param name="float alpha" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ModActivation" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="ModID&amp; sid" />
+        <Param name="bool active" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ModActivationReload" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ModCanActivate" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="ModID&amp; id" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ModGetAllSpawnerItems" func="yes">
+      <Overload retVal="array&lt;SpawnerItem&gt;@" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="bool only_include_active = true" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ModGetAuthor" func="yes">
+      <Overload retVal="string" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="ModID&amp; id" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ModGetCampaignLevels" func="yes">
+      <Overload retVal="array&lt;ModLevel&gt;@" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="ModID&amp; sid" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ModGetDescription" func="yes">
+      <Overload retVal="string" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="ModID&amp; id" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ModGetID" func="yes">
+      <Overload retVal="string" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="ModID&amp; id" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ModGetMenuItems" func="yes">
+      <Overload retVal="array&lt;MenuItem&gt;@" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="ModID&amp; sid" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ModGetName" func="yes">
+      <Overload retVal="string" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="ModID&amp; id" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ModGetPath" func="yes">
+      <Overload retVal="string" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="ModID&amp; sid" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ModGetSingleLevels" func="yes">
+      <Overload retVal="array&lt;ModLevel&gt;@" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="ModID&amp; sid" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ModGetSource" func="yes">
+      <Overload retVal="int" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="ModID&amp; id" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ModGetSpawnerItems" func="yes">
+      <Overload retVal="array&lt;SpawnerItem&gt;@" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="ModID&amp; sid" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ModGetTags" func="yes">
+      <Overload retVal="string" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="ModID&amp; id" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ModGetThumbnail" func="yes">
+      <Overload retVal="string" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="ModID&amp; sid" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ModGetThumbnailImage" func="yes">
+      <Overload retVal="IMImage@" descr="&#xD;&#xA;Supported Scripts: Level, Scriptable UI">
+        <Param name="ModID&amp; sid" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ModGetUserVote" func="yes">
+      <Overload retVal="UserVote" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="ModID&amp; sid" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ModGetValidityString" func="yes">
+      <Overload retVal="string" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="ModID&amp; sid" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ModGetVersion" func="yes">
+      <Overload retVal="string" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="ModID&amp; id" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ModIsActive" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="ModID&amp; id" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ModIsCore" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="ModID&amp; id" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ModIsFavorite" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="ModID&amp; id" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ModIsValid" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="ModID&amp; id" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ModNeedsRestart" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="ModID&amp; id" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="MovementObjectDeleted" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Character">
+        <Param name="int id" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="MovementObjectExists" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level">
+        <Param name="int id" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="Mult" func="yes">
+      <Overload retVal="vec3" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="quaternion" />
+        <Param name="vec3" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="NavRaycast" func="yes">
+      <Overload retVal="vec3" descr="&#xD;&#xA;Supported Scripts: Character">
+        <Param name="vec3 start" />
+        <Param name="vec3 end" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="NavRaycastSlide" func="yes">
+      <Overload retVal="vec3" descr="&#xD;&#xA;Supported Scripts: Character">
+        <Param name="vec3 start" />
+        <Param name="vec3 end" />
+        <Param name="int depth" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="normalize" func="yes">
+      <Overload retVal="vec2" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="const vec2&amp; in" />
+      </Overload>
+      <Overload retVal="vec3" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="const vec3&amp; in" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="NotifyItemDetach" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Character">
+        <Param name="int" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ObjectExists" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level" />
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level">
+        <Param name="int id" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ObjectInspectorReadOnly" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Hotspot" />
+    </KeyWord>
+    <KeyWord name="OpenModAuthorWorkshopPage" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="ModID&amp; id" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="OpenModWorkshopPage" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="ModID&amp; id" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="OpenWorkshop" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="PlaySegment" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="const string&amp; in" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="PlaySong" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="const string&amp; in" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="PlaySound" func="yes">
+      <Overload retVal="int" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="string path" />
+      </Overload>
+      <Overload retVal="int" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="string path" />
+        <Param name="vec3 position" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="PlaySoundGroup" func="yes">
+      <Overload retVal="int" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="string path" />
+      </Overload>
+      <Overload retVal="int" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="string path" />
+        <Param name="float gain" />
+      </Overload>
+      <Overload retVal="int" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="string path" />
+        <Param name="vec3 position" />
+      </Overload>
+      <Overload retVal="int" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="string path" />
+        <Param name="vec3 position" />
+        <Param name="float gain" />
+      </Overload>
+      <Overload retVal="int" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="string path" />
+        <Param name="vec3 position" />
+        <Param name="int priority" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="PlaySoundLoop" func="yes">
+      <Overload retVal="int" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="const string &amp;in path" />
+        <Param name="float gain" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="PlaySoundLoopAtLocation" func="yes">
+      <Overload retVal="int" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="const string &amp;in path" />
+        <Param name="vec3 pos" />
+        <Param name="float gain" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="PostReset" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Character" />
+    </KeyWord>
+    <KeyWord name="PostScriptReload" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level" />
+    </KeyWord>
+    <KeyWord name="pow" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="float val" />
+        <Param name="float exponent" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="PreDraw" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot">
+        <Param name="float curr_game_time" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="PreDrawCamera" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Character">
+        <Param name="float curr_game_time" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="PreDrawCameraNoCull" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Character">
+        <Param name="float curr_game_time" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="PreDrawFrame" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Character">
+        <Param name="float curr_game_time" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="PreScriptReload" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Hotspot, Level" />
+    </KeyWord>
+    <KeyWord name="PrintCallstack" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="push_back" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="const T&amp;in" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="QuaternionFromMat4" func="yes">
+      <Overload retVal="quaternion" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="const mat4&amp; in" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="QueueDeleteObjectID" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level">
+        <Param name="int" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="QueueSegment" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="const string&amp; in" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="rand" func="yes">
+      <Overload retVal="int" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="RangedRandomFloat" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="float min" />
+        <Param name="float max" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ReadCharacter" func="yes">
+      <Overload retVal="MovementObject@" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level">
+        <Param name="int index" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ReadCharacterID" func="yes">
+      <Overload retVal="MovementObject@" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level">
+        <Param name="int id" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ReadChunk" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Level">
+        <Param name="SavedChunk@ chunk" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ReadEnvObjectID" func="yes">
+      <Overload retVal="EnvObject@" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level">
+        <Param name="int id" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ReadHotspot" func="yes">
+      <Overload retVal="Hotspot@" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level">
+        <Param name="int index" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ReadItem" func="yes">
+      <Overload retVal="ItemObject@" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level">
+        <Param name="int index" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ReadItemID" func="yes">
+      <Overload retVal="ItemObject@" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level">
+        <Param name="int id" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ReadObjectFromID" func="yes">
+      <Overload retVal="Object@" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level">
+        <Param name="int" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ReceiveMessage" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Character, Hotspot, Level, Scriptable Campaign">
+        <Param name="string" />
+      </Overload>
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Character, Hotspot, Level, Scriptable Campaign">
+        <Param name="string message" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="reflect" func="yes">
+      <Overload retVal="vec2" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="const vec2 &amp;in vec" />
+        <Param name="const vec2 &amp;in normal" />
+      </Overload>
+      <Overload retVal="vec3" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="const vec3 &amp;in vec" />
+        <Param name="const vec3 &amp;in normal" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ReloadMods" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ReloadStaticValues" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="RemoveMusic" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="const string&amp; in" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="RequestModSetFavorite" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="ModID&amp; id" />
+        <Param name="bool fav" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="RequestModSetUserVote" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="ModID&amp; id" />
+        <Param name="bool voteup" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="RequestWorkshopSubscribe" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="ModID&amp; id" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="RequestWorkshopUnSubscribe" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="ModID&amp; id" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="Reset" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Character, Hotspot" />
+    </KeyWord>
+    <KeyWord name="ResetBinding" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="string binding_category" />
+        <Param name="string binding" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ResetLevel" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level" />
+    </KeyWord>
+    <KeyWord name="ResetWaypointTarget" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Character" />
+    </KeyWord>
+    <KeyWord name="Resize" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="RibbonItemFlash" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level">
+        <Param name="const string&amp; in" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="RibbonItemSetEnabled" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level">
+        <Param name="const string&amp; in" />
+        <Param name="bool" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="RibbonItemSetToggled" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level">
+        <Param name="const string&amp; in" />
+        <Param name="bool" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="SaveConfig" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="SaveHistoryState" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Level">
+        <Param name="SavedChunk@ chunk" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="SaveModConfig" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ScriptReloaded" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="ScriptSwap" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Character" />
+    </KeyWord>
+    <KeyWord name="SendGlobalMessage" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level">
+        <Param name="string msg" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="SendLevelMessage" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Scriptable Campaign">
+        <Param name="const string&amp; in msg" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="SendMessage" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level">
+        <Param name="int target" />
+        <Param name="int type" />
+        <Param name="vec3 vec_a" />
+        <Param name="vec3 vec_b" />
+      </Overload>
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level">
+        <Param name="int type" />
+        <Param name="string msg" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="SetAirWhoosh" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="float volume" />
+        <Param name="float pitch" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="SetBindingValue" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="string binding_category" />
+        <Param name="string binding" />
+        <Param name="string value" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="SetCampaignID" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="string id" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="SetConfigValueBool" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="string key" />
+        <Param name="bool value" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="SetConfigValueFloat" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="string key" />
+        <Param name="float value" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="SetConfigValueInt" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="string key" />
+        <Param name="int value" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="SetConfigValueString" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="string key" />
+        <Param name="string value" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="SetControllerBindingValue" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="string binding_category" />
+        <Param name="string binding" />
+        <Param name="uint32 input" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="SetEnabled" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Character, Hotspot">
+        <Param name="bool" />
+      </Overload>
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Character, Hotspot">
+        <Param name="bool val" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="SetFlareDiffuse" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="float" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="SetGrabMouse" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="bool" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="SetHDRBlackPoint" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="float" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="SetHDRBloomMult" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="float" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="SetHDRWhitePoint" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="float" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="SetInterlevelData" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="const string&amp; in" />
+        <Param name="const string&amp; in" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="SetKeyboardBindingValue" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="string binding_category" />
+        <Param name="string binding" />
+        <Param name="uint32 scancode" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="SetLayerGain" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="const string &amp;in layer" />
+        <Param name="float gain" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="SetMediaMode" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level">
+        <Param name="bool" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="SetMouseBindingValue" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="string binding_category" />
+        <Param name="string binding" />
+        <Param name="uint32 button" />
+      </Overload>
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="string binding_category" />
+        <Param name="string binding" />
+        <Param name="string text" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="SetParameters" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Character, Hotspot" />
+    </KeyWord>
+    <KeyWord name="SetPaused" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level">
+        <Param name="bool paused" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="SetSegment" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="const string&amp; in" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="SetSkyTint" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="vec3" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="SetSong" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="const string&amp; in" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="SetSoundGain" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="int handle" />
+        <Param name="float gain" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="SetSoundPitch" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="int handle" />
+        <Param name="float pitch" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="SetSoundPosition" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="int handle" />
+        <Param name="vec3 pos" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="SetSplitScreenMode" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="SplitScreenMode mode" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="SetSunAmbient" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="float" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="SetSunColor" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="vec3" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="SetSunPosition" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="vec3" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="SetWindowDimensions" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Level, Scriptable Campaign">
+        <Param name="int width" />
+        <Param name="int height" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="sin" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="float" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="size" func="yes">
+      <Overload retVal="uint" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="SocketTCPSend" func="yes">
+      <Overload retVal="int" descr="&#xD;&#xA;Supported Scripts: Level">
+        <Param name="uint socket" />
+        <Param name="const array&lt;uint8&gt;&amp; data" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="sqrt" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="float" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="StartStopwatch" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="StartTextInput" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="StartWriteFile" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="StopAndReportStopwatch" func="yes">
+      <Overload retVal="uint64" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="StopSound" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="int handle" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="StopTextInput" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="StorageGetInt32" func="yes">
+      <Overload retVal="int" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="string index" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="StorageGetString" func="yes">
+      <Overload retVal="string" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="string index" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="StorageHasInt32" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="string index" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="StorageHasString" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="string index" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="StorageSetInt32" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="string index" />
+        <Param name="int value" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="StorageSetString" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="string index" />
+        <Param name="string value" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="tan" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="float" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="TimedSlowMotion" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="float target_time_scale" />
+        <Param name="float how_long" />
+        <Param name="float delay" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="TintParticle" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="uint32 id" />
+        <Param name="const vec3 &amp;in color" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="ToUpper" func="yes">
+      <Overload retVal="string" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="string&amp; in" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="transpose" func="yes">
+      <Overload retVal="mat4" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="mat4" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="Update" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="int" />
+      </Overload>
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Character, Hotspot, Level, Scriptable Campaign, Scriptable UI" />
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="int is_paused" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="UpdateListener" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="vec3 pos" />
+        <Param name="vec3 vel" />
+        <Param name="vec3 facing" />
+        <Param name="vec3 up" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="UpdatePaused" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Character" />
+    </KeyWord>
+    <KeyWord name="WasBlocked" func="yes">
+      <Overload retVal="void" descr="&#xD;&#xA;Supported Scripts: Character" />
+    </KeyWord>
+    <KeyWord name="WasHit" func="yes">
+      <Overload retVal="int" descr="&#xD;&#xA;Supported Scripts: Character">
+        <Param name="string type" />
+        <Param name="string attack_path" />
+        <Param name="vec3 dir" />
+        <Param name="vec3 pos" />
+        <Param name="int attacker_id" />
+        <Param name="float attack_damage_mult" />
+        <Param name="float attack_knockback_mult" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="WorkshopDownloadingCount" func="yes">
+      <Overload retVal="uint" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="WorkshopDownloadPendingCount" func="yes">
+      <Overload retVal="uint" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="WorkshopNeedsUpdateCount" func="yes">
+      <Overload retVal="uint" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="WorkshopSubscribedNotInstalledCount" func="yes">
+      <Overload retVal="uint" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="WorkshopTotalDownloadProgress" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI" />
+    </KeyWord>
+    <KeyWord name="WriteFile" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Level, Scriptable Campaign, Scriptable UI">
+        <Param name="const string&amp; in" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="WriteFileKeepBackup" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Level, Scriptable Campaign, Scriptable UI">
+        <Param name="const string&amp; in" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="WriteFileToWriteDir" func="yes">
+      <Overload retVal="bool" descr="&#xD;&#xA;Supported Scripts: Level, Scriptable Campaign, Scriptable UI">
+        <Param name="const string&amp; in" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="xz_distance" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="const vec3&amp; in" />
+        <Param name="const vec3&amp; in" />
+      </Overload>
+    </KeyWord>
+    <KeyWord name="xz_distance_squared" func="yes">
+      <Overload retVal="float" descr="&#xD;&#xA;Supported Scripts: Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI">
+        <Param name="const vec3&amp; in" />
+        <Param name="const vec3&amp; in" />
+      </Overload>
+    </KeyWord>
+  </AutoComplete>
+</NotepadPlus>
