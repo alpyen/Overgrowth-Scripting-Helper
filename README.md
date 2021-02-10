@@ -42,7 +42,8 @@ ToDo-List:
 
 ##### Cheat Sheet
 - Display root folders for various paths
-- Plugins Menu
+
+##### Plugins Menu
   - Toggle Helper Window
   - Insert empty script templates
     - Camera
