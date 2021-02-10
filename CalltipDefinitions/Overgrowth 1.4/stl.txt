@@ -114,6 +114,9 @@ class array<T> {
 
 	int findByRef(const T& in);
 	int findByRef(uint startAt, const T& in);
+	
+	void push_back(const T&in);
+	uint size() const;
 };
 
 

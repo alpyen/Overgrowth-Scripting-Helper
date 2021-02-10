@@ -11,6 +11,8 @@ ToDo-List:
 - How to develop
   - plugins folder needs to be set writable if you don't want to start VS as admin (or use a portable n++ installation and adjust the build/copy paths)
   - debug of AsDocs2XML has the corrected docs for Overgrowth 1.4 passed as arguments
+  - Docs in Overgrowth 1.4 lists push_back and size as functions, but they are methods from arrays.
+  - Docs in Overgrowth 1.4 list vec4 mix as a method of vec4 but it is a function. The docs altogether are badly formatted. Pay close attention when you want to correct them for AsDocs2XML to parse.
 ---
 ### Scripting Helper Plugin
 

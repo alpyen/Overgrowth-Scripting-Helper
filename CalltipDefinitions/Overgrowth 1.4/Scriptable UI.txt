@@ -506,8 +506,9 @@ void ScriptReloaded()
 
 
 //Interface
-    void push_back(const T&in);
-    uint size() const;
+// These two are methods from generic arrays. You can find them in stl.txt
+//void push_back(const T&in);
+//uint size() const;
 void StartStopwatch();
 uint64 StopAndReportStopwatch();
 void EnterTelemetryZone(const string& in name);
