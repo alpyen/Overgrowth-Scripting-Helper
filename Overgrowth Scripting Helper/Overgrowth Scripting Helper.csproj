@@ -97,8 +97,15 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Config.cs" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildProjectDirectory)\PluginInfrastructure\DllExport\NppPlugin.DllExport.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>copy "$(SolutionDir)\AsDocs2XML\bin\x64\Debug\angelscript.xml" "C:\Program Files\Notepad++\autoCompletion\angelscript.xml"
+copy "$(SolutionDir)\AsDocs2XML\bin\x64\Debug\database.xml" "C:\Program Files\Notepad++\plugins\Overgrowth Scripting Helper\database.xml"</PreBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

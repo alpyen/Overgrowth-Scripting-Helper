@@ -11,38 +11,47 @@ namespace Overgrowth_Scripting_Helper.NppPluginNET
 {
     class Main
     {
-        internal const string PluginName = "Overgrowth_Scripting_Helper";
-        static string iniFilePath = null;
-        static bool someSetting = false;
+        internal const string PluginName = "Overgrowth Scripting Helper";
+
         static frmMyDlg frmMyDlg = null;
         static int idMyDlg = -1;
         static Bitmap tbBmp = Properties.Resources.star;
         static Bitmap tbBmp_tbTab = Properties.Resources.star_bmp;
         static Icon tbIcon = null;
 
-        public static void OnNotification(ScNotification notification)
-        {  
-            // This method is invoked whenever something is happening in notepad++
-            // use eg. as
-            // if (notification.Header.Code == (uint)NppMsg.NPPN_xxx)
-            // { ... }
-            // or
-            //
-            // if (notification.Header.Code == (uint)SciMsg.SCNxxx)
-            // { ... }
-        }
-
         internal static void CommandMenuInit()
         {
-            StringBuilder sbIniFilePath = new StringBuilder(Win32.MAX_PATH);
-            Win32.SendMessage(PluginBase.nppData._nppHandle, (uint) NppMsg.NPPM_GETPLUGINSCONFIGDIR, Win32.MAX_PATH, sbIniFilePath);
-            iniFilePath = sbIniFilePath.ToString();
-            if (!Directory.Exists(iniFilePath)) Directory.CreateDirectory(iniFilePath);
-            iniFilePath = Path.Combine(iniFilePath, PluginName + ".ini");
-            someSetting = (Win32.GetPrivateProfileInt("SomeSection", "SomeKey", 0, iniFilePath) != 0);
+            StringBuilder sbSettingsPath = new StringBuilder(Win32.MAX_PATH);
+            Win32.SendMessage(PluginBase.nppData._nppHandle, (uint) NppMsg.NPPM_GETPLUGINSCONFIGDIR, Win32.MAX_PATH, sbSettingsPath);
 
-            PluginBase.SetCommand(0, "MyMenuCommand", myMenuFunction, new ShortcutKey(false, false, false, Keys.None));
-            PluginBase.SetCommand(1, "MyDockableDialog", myDockableDialog); idMyDlg = 1;
+            if (!Directory.Exists(sbSettingsPath.ToString()))
+                Directory.CreateDirectory(sbSettingsPath.ToString());
+
+            Config.Path = Path.Combine(sbSettingsPath.ToString(), PluginName + ".ini");
+            Config.Load();
+
+            // TODO: Implement startup routine
+
+                // TODO: Check config if helper window should show on start and show it accordingly.
+                // TODO: Remove standard pictures, add the old pictures again, don't forget to credit Silk icons in About
+
+            PluginBase.SetCommand(0, "Toggle Helper Window", ToggleHelperWindow);
+            PluginBase.SetCommand(1, "Toggle Cheat Sheet Window", ToggleCheatSheetWindow);
+            PluginBase.SetCommand(2, "", null);
+            PluginBase.SetCommand(3, "Insert Camera Script Template", InsertCameraTemplate);
+            PluginBase.SetCommand(4, "Insert Character Script Template", InsertCharacterTemplate);
+            PluginBase.SetCommand(5, "Insert Hotspot Template", InsertHotspotTemplate);
+            PluginBase.SetCommand(6, "Insert Level Script Template", InsertLevelTemplate);
+            PluginBase.SetCommand(7, "Insert Scriptable Campaign Script Template", InsertScriptableCampaignTemplate);
+            PluginBase.SetCommand(8, "Insert Scriptable UI Script Template", InsertScriptableUiTemplate);
+            PluginBase.SetCommand(9, "", null);
+            PluginBase.SetCommand(10, "Settings", OpenSettingsWindow);
+            PluginBase.SetCommand(11, "About Overgrowth Scripting Helper", OpenAboutWindow);
+
+            idMyDlg = 1;
+
+            //PluginBase.SetCommand(0, "MyMenuCommand", myMenuFunction, new ShortcutKey(false, false, false, Keys.None));
+            //PluginBase.SetCommand(1, "MyDockableDialog", myDockableDialog); idMyDlg = 1;
         }
 
         internal static void SetToolBarIcon()
@@ -55,15 +64,54 @@ namespace Overgrowth_Scripting_Helper.NppPluginNET
             Marshal.FreeHGlobal(pTbIcons);
         }
 
-        internal static void PluginCleanUp()
+        internal static void ToggleHelperWindow()
         {
-            Win32.WritePrivateProfileString("SomeSection", "SomeKey", someSetting ? "1" : "0", iniFilePath);
+            // TODO: implement
         }
 
-
-        internal static void myMenuFunction()
+        internal static void ToggleCheatSheetWindow()
         {
-            MessageBox.Show("Hello N++!");
+            // TODO: implement
+        }
+
+        internal static void InsertCameraTemplate()
+        {
+            // TODO: implement
+        }
+
+        internal static void InsertCharacterTemplate()
+        {
+            // TODO: implement
+        }
+
+        internal static void InsertHotspotTemplate()
+        {
+            // TODO: implement
+        }
+
+        internal static void InsertLevelTemplate()
+        {
+            // TODO: implement
+        }
+
+        internal static void InsertScriptableCampaignTemplate()
+        {
+            // TODO: implement
+        }
+
+        internal static void InsertScriptableUiTemplate()
+        {
+            // TODO: implement
+        }
+
+        internal static void OpenSettingsWindow()
+        {
+            // TODO: implement
+        }
+
+        internal static void OpenAboutWindow()
+        {
+            // TODO: implement
         }
 
         internal static void myDockableDialog()

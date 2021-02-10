@@ -54,12 +54,7 @@ namespace Overgrowth_Scripting_Helper.NppPluginNET
             }
             else if (notification.Header.Code == (uint)NppMsg.NPPN_SHUTDOWN)
             {
-                Main.PluginCleanUp();
                 Marshal.FreeHGlobal(_ptrPluginName);
-            }
-            else
-            {
-	            Main.OnNotification(notification);
             }
         }
     }

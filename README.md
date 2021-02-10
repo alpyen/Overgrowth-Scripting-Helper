@@ -9,7 +9,7 @@ ToDo-List:
   - NetFX 4
 - How to download and install
 - How to develop
-  - plugins folder needs to be set writable if you don't want to start VS as admin (or use a portable n++ installation and adjust the build/copy paths)
+  - autoComplete & plugins folder needs to be set writable if you don't want to start VS as admin (or use a portable n++ installation and adjust the build/copy paths). this is done to automatically move the angelscript.xml (calltips) and the database.xml into the notepad++ directory. the dll is moved by the targets file in the PluginInfrastructure/DllExport folder. Make sure that you ran AsDocs2XML and generated these files before you try to run the plugin.
   - debug of AsDocs2XML has the corrected docs for Overgrowth 1.4 passed as arguments
   - Docs in Overgrowth 1.4 lists push_back and size as functions, but they are methods from arrays.
   - Docs in Overgrowth 1.4 list vec4 mix as a method of vec4 but it is a function. The docs altogether are badly formatted. Pay close attention when you want to correct them for AsDocs2XML to parse.
@@ -17,6 +17,7 @@ ToDo-List:
 ### Scripting Helper Plugin
 
 ##### AsDocs2XML
+- Some parameters are wrongly parsed when there are spaces. `<Parameter Type="const T&amp;" Name="in" Value="" /> ` The in is not the actual name.
 
 ##### Angelscript UDL
 
@@ -44,6 +45,6 @@ ToDo-List:
     - Level
     - Scriptable Campaign(?)
     - Scriptable UI(?)
-    - Toggle Cheat Sheet
+  - Toggle Cheat Sheet
   - Open Settings
   - About
