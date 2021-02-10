@@ -10,15 +10,23 @@ ToDo-List:
 - How to download and install
 - How to develop
   - plugins folder needs to be set writable if you don't want to start VS as admin (or use a portable n++ installation and adjust the build/copy paths)
-  - debug of AsDocs2XML has the corrected docs for Overgrowth 1.4 passed as arguments and will write them into the Calltips Definitions\Overgrowth 1.4 folder
+  - debug of AsDocs2XML has the corrected docs for Overgrowth 1.4 passed as arguments
 ---
 ### Scripting Helper Plugin
 
 ##### AsDocs2XML
-- Adding the core Angelscript functions/classes/enums that are enabled in Overgrowth into the database and calltips.
+- Core functions + features added, need to add some primitives as pseudo-classes (string, array, ...) so that the operators don't show in the global functions.
+- Add unknown type (?) used for multiple types in a datastructure rather than a generic
+- Game (1.4) uses AS 2_32_0. Enabled features: 
+  - RegisterStdString (Fully enabled and usable)
+  - RegisterScriptArray (Fully enabled and usable)
+  - adds some methods to arrays (push_back) (these should be in the .h)
+  - RegisterScriptDictionary (Fully enabled and usable)
+  - RegisterStdStringUtils (Fully enabled and usable)
+  - string.findLastNotOf bugged (fixed in 2.33.0)
 
 ##### Angelscript UDL
-- Adding the core Angelscript functions/classes/enums that are enabled in Overgrowth into the UDL.
+- Adding the core Angelscript functions/classes/enums (also unknown types/generic types) that are enabled in Overgrowth into the UDL.
 
 ##### Helper Window
 - Designing the dock window

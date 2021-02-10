@@ -13,6 +13,7 @@ namespace AsDocs2XML
         static void Main(string[] args)
         {
             Console.WriteLine("AsDocs2XML - Convert Overgrowth Angelscript Docs to XML Database and Calltips.\n");
+            Console.WriteLine("If you pass a file with the name \"stl.txt\" it will be added to all scripts.\n");
 
             if (args.Length == 0)
             {
@@ -27,13 +28,30 @@ namespace AsDocs2XML
 
             SortedList<string, ASScript> database = new SortedList<string, ASScript>();
 
+            string[] stlContents = new string[] { };
+            for (int i = 0; i < args.Length; i++)
+            {
+                if (Path.GetFileName(args[i]) == "stl.txt")
+                {
+                    Console.WriteLine("STL found: " + (Path.GetDirectoryName(args[i]) != "" ? "..." : "") + Path.GetFileName(args[i]));
+
+                    stlContents = File.ReadAllLines(args[i]);
+                    List<string> tmp_args = new List<string>(args);
+                    tmp_args.RemoveAt(i);
+
+                    args = tmp_args.ToArray();
+
+                    break;
+                }
+            }
+
             foreach (string file in args)
             {
                 string scriptName = Path.GetFileNameWithoutExtension(file);
 
                 Console.WriteLine("Parsing script [" + scriptName + "]: " + (Path.GetDirectoryName(file) != "" ? "..." : "") + Path.GetFileName(file));
 
-                ASScript currentScript = ASHelper.ParseScript(scriptName, File.ReadAllLines(file));
+                ASScript currentScript = ASHelper.ParseScript(scriptName, stlContents.Concat(File.ReadAllLines(file)).ToArray());
                 database.Add(currentScript.name, currentScript);
             }
 
