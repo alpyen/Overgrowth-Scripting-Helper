@@ -138,6 +138,8 @@ namespace AsDocs2XML
             {
                 ASVariable asVariable = (ASVariable)asElement;
                 XmlElement xmlVariable = xmlDocument.CreateElement("Variable");
+                xmlVariable.SetAttribute("Const", asVariable.isConst.ToString());
+                xmlVariable.SetAttribute("Type", asVariable.type);
                 xmlVariable.SetAttribute("Name", asVariable.name);
                 nodeAppend.AppendChild(xmlVariable);
             }
@@ -408,18 +410,9 @@ namespace AsDocs2XML
             string type;
             string name;
 
-            if (match.Groups.Count == 4)
-            {
-                isConst = true;
-                type = match.Groups[2].Value;
-                name = match.Groups[3].Value;
-            }
-            else // match.Groups.Count == 3
-            {
-                isConst = false;
-                type = match.Groups[1].Value;
-                name = match.Groups[2].Value;
-            }
+            isConst = match.Groups[1].Value != "";
+            type = match.Groups[2].Value;
+            name = match.Groups[3].Value;
 
             return new ASVariable(isConst, type, name);
         }

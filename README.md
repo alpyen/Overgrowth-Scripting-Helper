@@ -17,10 +17,8 @@ ToDo-List:
 ### Scripting Helper Plugin
 
 ##### AsDocs2XML
-- Switch the return types of the class constructors (void f) to their respective class type (vec3 f)?
 
 ##### Angelscript UDL
-- Check if C_ACCEL is a bug, what is it used for?
 
 ##### Helper Window
 - Designing the dock window
