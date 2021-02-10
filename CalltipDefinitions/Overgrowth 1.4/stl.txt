@@ -1,59 +1,64 @@
 // StdString
 
-string opAssign(const string&in);
-string opAssign(double);
-string opAssign(float);
-string opAssign(int64);
-string opAssign(uint64);
-string opAssign(bool);
-string opAssign(vec3);
+// Note that string is not a real class and has no specific constructor or supports object handles.
+class string {
+	string opAssign(const string&in);
+	string opAssign(double);
+	string opAssign(float);
+	string opAssign(int64);
+	string opAssign(uint64);
+	string opAssign(bool);
+	string opAssign(vec3);
 
-string opAdd(const string&in) const;
-string opAdd(double) const;
-string opAdd(float) const;
-string opAdd(int64) const;
-string opAdd(uint64) const;
-string opAdd(bool) const;
-string opAdd(vec3) const;
+	string opAdd(const string&in) const;
+	string opAdd(double) const;
+	string opAdd(float) const;
+	string opAdd(int64) const;
+	string opAdd(uint64) const;
+	string opAdd(bool) const;
+	string opAdd(vec3) const;
 
-string opAdd_r(double) const;
-string opAdd_r(float) const;
-string opAdd_r(int64) const;
-string opAdd_r(uint64) const;
-string opAdd_r(bool) const;
-string opAdd_r(vec3) const;
+	string opAdd_r(double) const;
+	string opAdd_r(float) const;
+	string opAdd_r(int64) const;
+	string opAdd_r(uint64) const;
+	string opAdd_r(bool) const;
+	string opAdd_r(vec3) const;
 
-string opAddAssign(const string&in);
-string opAddAssign(double);
-string opAddAssign(float);
-string opAddAssign(int64);
-string opAddAssign(uint64);
-string opAddAssign(bool);
-string opAddAssign(vec3);
+	string opAddAssign(const string&in);
+	string opAddAssign(double);
+	string opAddAssign(float);
+	string opAddAssign(int64);
+	string opAddAssign(uint64);
+	string opAddAssign(bool);
+	string opAddAssign(vec3);
 
-bool opEquals(const string&in) const;
+	bool opEquals(const string&in) const;
 
-int opCmp(const &in) const;
+	int opCmp(const &in) const;
+	
+	uint8& opIndex(uint);
+	const uint8& opIndex(uint) const;
+	
+	uint length() const;
+	void resize(uint) const;
+	bool isEmpty() const;
 
-uint8& opIndex(uint);
-const uint8& opIndex(uint) const;
+	string substr(uint start = 0, int count = -1) const;
 
-// Methods
+	void insert(uint pos, const string &in other);
+	void erase(uint pos, int count = -1);
 
-uint length() const;
-void resize(uint) const;
-bool isEmpty() const;
-string substr(uint start = 0, int count = -1) const;
-void insert(uint pos, const string &in other);
-void erase(uint pos, int count = -1);
+	string[]@ split(const string&in) const; // enabled from StdStringUtils (also requires ScriptArray)
 
-int findFirst(const string &in str, uint start = 0) const;
-int findLast(const string &in str, int start = -1) const;
+	int findFirst(const string &in str, uint start = 0) const;
+	int findLast(const string &in str, int start = -1) const;
 
-int findFirstOf(const string &in chars, int start = 0) const;
-int findFirstNotOf(const string &in chars, int start = 0) const;
-int findLastOf(const string &in chars, int start = -1) const;
-int findLastNotOf(const string &in chars, int start = -1) const; // bugged in OG1.4 AS2.32.0, was fixed in AS2.33.0
+	int findFirstOf(const string &in chars, int start = 0) const;
+	int findFirstNotOf(const string &in chars, int start = 0) const;
+	int findLastOf(const string &in chars, int start = -1) const;
+	int findLastNotOf(const string &in chars, int start = -1) const; // bugged in OG1.4 AS2.32.0, was fixed in AS2.33.0
+};
 
 // Functions
 
@@ -69,56 +74,54 @@ string formatFloat(double val, const string &in options = '', uint width = 0, ui
 // ========================================
 // ScriptArray
 
-int[]& opAssign(const int[]&in)
+class array<T> {
+	void f();
+	void f(uint length);
+	void f(uint length, const T&in value);
 
-int& opIndex(uint index);
-const int& opIndex(uint index) const;
+	T[]& opAssign(const T[]&in)
 
-bool opEquals(const int[]&in) const;
+	T& opIndex(uint index);
+	const T& opIndex(uint index) const;
 
+	bool opEquals(const T[]&in) const;
+	
+	uint length() const;
+	void resize(uint);
+	void reverse();
 
-// Methods
+	void insertAt(uint index, const T& in value);
+	void insertAt(uint index, const array<T>& arr);
 
-uint length() const;
-void resize(uint);
-void reverse();
+	void insertLast(const T& in);
 
-void insertAt(uint index, const T& in value);
-void insertAt(uint index, const array<T>& arr);
+	void removeAt(uint index);
 
-void insertLast(const T& in);
+	void removeLast();
 
-void removeAt(uint index);
+	void removeRange(uint start, uint count);
 
-void removeLast();
+	void sortAsc();
+	void sortAsc(uint startAt, uint count);
 
-void removeRange(uint start, uint count);
+	void sortDesc();
+	void sortDesc(uint startAt, uint count);
 
-void sortAsc();
-void sortAsc(uint startAt, uint count);
+	void sort(const less &in compareFunc, uint startAt = 0, uint count = uint(-1));
 
-void sortDesc();
-void sortDesc(uint startAt, uint count);
+	int find(const T& in);
+	int find(uint startAt, const T& in);
 
-void sort(const less &in compareFunc, uint startAt = 0, uint count = uint(-1));
-
-int find(const T& in);
-int find(uint startAt, const T& in);
-
-int findByRef(const T& in);
-int findByRef(uint startAt, const T& in);
-
+	int findByRef(const T& in);
+	int findByRef(uint startAt, const T& in);
+};
 
 
 // ========================================
 // StdStringUtils
 
-// Methods
-
-array<string>@ split(const string &in delimiter) const;
-string join(const array<string> &in arr, const string &in delimiter);
-
-
+// the split method was added to the class at StdString further above
+string join(const string[]&in, const string&in);
 
 
 // ========================================

@@ -15,18 +15,10 @@ ToDo-List:
 ### Scripting Helper Plugin
 
 ##### AsDocs2XML
-- Core functions + features added, need to add some primitives as pseudo-classes (string, array, ...) so that the operators don't show in the global functions.
-- Add unknown type (?) used for multiple types in a datastructure rather than a generic
-- Game (1.4) uses AS 2_32_0. Enabled features: 
-  - RegisterStdString (Fully enabled and usable)
-  - RegisterScriptArray (Fully enabled and usable)
-  - adds some methods to arrays (push_back) (these should be in the .h)
-  - RegisterScriptDictionary (Fully enabled and usable)
-  - RegisterStdStringUtils (Fully enabled and usable)
-  - string.findLastNotOf bugged (fixed in 2.33.0)
+- Switch the return types of the class constructors (void f) to their respective class type (vec3 f)?
 
 ##### Angelscript UDL
-- Adding the core Angelscript functions/classes/enums (also unknown types/generic types) that are enabled in Overgrowth into the UDL.
+- Check if C_ACCEL is a bug, what is it used for?
 
 ##### Helper Window
 - Designing the dock window
