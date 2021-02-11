@@ -65,8 +65,8 @@ namespace AsDocs2XML
 
 							foreach (ASOverload asOverload1 in allAsFunctions[asFunction.name].overloads)
 							{
-								string parameters1 = string.Join("", asOverload1.parameters.Select((parameter) => { return parameter.type + parameter.name + parameter.defaultValue; }));
-								string parameters2 = string.Join("", asOverload2.parameters.Select((parameter) => { return parameter.type + parameter.name + parameter.defaultValue; }));
+								string parameters1 = string.Join("", asOverload1.parameters.Select((parameter) => { return parameter.value; }));
+								string parameters2 = string.Join("", asOverload2.parameters.Select((parameter) => { return parameter.value; }));
 
 								bool returnTypeMatches = asOverload2.returnType == asOverload1.returnType;
 								bool nameMatches = asOverload2.name == asOverload1.name;
@@ -105,7 +105,7 @@ namespace AsDocs2XML
 					foreach (ASParameter asParameter in asOverload.parameters)
 					{
 						XmlElement xmlParam = xmlCalltipDefinition.CreateElement("Param");
-						xmlParam.SetAttribute("name", asParameter.type + (asParameter.name != "" ? " " + asParameter.name : "") + (asParameter.defaultValue != "" ? " = " + asParameter.defaultValue : ""));
+						xmlParam.SetAttribute("name", asParameter.value);
 						xmlOverload.AppendChild(xmlParam);
 					}
 				}

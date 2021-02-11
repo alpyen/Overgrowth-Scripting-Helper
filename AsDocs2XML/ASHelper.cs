@@ -20,7 +20,7 @@ namespace AsDocs2XML
         private static Regex rxScopeEnding = new Regex(@"^\s*\};?(?:\/\/.*)?\s*$");
 
         private static Regex rxParameters = new Regex(@"\s*((?:[^,\s]+\s*)+)\s*,?");
-        private static Regex rxParameter = new Regex(@"^\s*(?:(?:(.+)\s+(.+?)\s*=\s*(.+))|(?:(.+)\s+(.+))|(.+))\s*$");
+        private static Regex rxParameter = new Regex(@"^\s*(.+?)\s*$");
         private static Regex rxEnumerationValue = new Regex(@"^\s*([^,\s=]+)\s*=?\s*(-)?\s*(\d+)?\s*,?\s*$");
 
         public static void AppendScriptAsXmlElement(XmlElement nodeAppend, dynamic asElement)
@@ -127,9 +127,7 @@ namespace AsDocs2XML
                     foreach (ASParameter asParameter in asOverload.parameters)
                     {
                         XmlElement xmlParameter = xmlDocument.CreateElement("Parameter");
-                        xmlParameter.SetAttribute("Type", asParameter.type);
-                        xmlParameter.SetAttribute("Name", asParameter.name);
-                        xmlParameter.SetAttribute("Value", asParameter.defaultValue);
+                        xmlParameter.InnerText = asParameter.value;
                         xmlOverload.AppendChild(xmlParameter);
                     }
                 }
@@ -138,7 +136,6 @@ namespace AsDocs2XML
             {
                 ASVariable asVariable = (ASVariable)asElement;
                 XmlElement xmlVariable = xmlDocument.CreateElement("Variable");
-                xmlVariable.SetAttribute("Const", asVariable.isConst.ToString());
                 xmlVariable.SetAttribute("Type", asVariable.type);
                 xmlVariable.SetAttribute("Name", asVariable.name);
                 nodeAppend.AppendChild(xmlVariable);
@@ -327,25 +324,6 @@ namespace AsDocs2XML
             int bracketLevel = 0;
             int lastPos = 0;
 
-            /*
-             * rxParmeter matches different styles of parameters. If a certain style is not met the indices stay empty
-             * and it will fill the indices with the matching style.
-             * 
-             * 1st Style: int a = 5
-             * 2nd Style: int a
-             * 3rd Style: int
-             * 
-             * [1] = type
-             * [2] = name
-             * [3] = defaultValue
-             * 
-             * [4] = type
-             * [5] = name
-             * 
-             * [6] = type
-             * 
-            */
-
             for (int i = 0; i < parameters.Length; i++)
             {
                 if (parameters.Substring(i, 1) == "(")
@@ -356,7 +334,8 @@ namespace AsDocs2XML
                 {
                     bracketLevel--;
                 }
-                else if (parameters.Substring(i, 1) == "," || i == parameters.Length - 1)
+                
+                if (parameters.Substring(i, 1) == "," || i == parameters.Length - 1)
                 {
                     if (bracketLevel != 0) continue; // Check if we are inside brackets
 
@@ -365,36 +344,25 @@ namespace AsDocs2XML
 
                     Match matchParameter = rxParameter.Match(currentParameter);
 
-                    string type;
-                    string name;
-                    string defaultValue;
+                    // We are not parsing each element of the parameter because that would just take way too much time to write a parser for that.
+                    // Just clean it up (remove unnecessary spaces, move the ampersands around) and insert it completely.
 
-                    if (matchParameter.Groups[1].Value != "")
-                    {
-                        type = matchParameter.Groups[1].Value;
-                        name = matchParameter.Groups[2].Value;
-                        defaultValue = matchParameter.Groups[3].Value;
-                    }
-                    else if (matchParameter.Groups[4].Value != "")
-                    {
-                        type = matchParameter.Groups[4].Value;
-                        name = matchParameter.Groups[5].Value;
-                        defaultValue = "";
-                    }
-                    else // matchParameter.Groups[6].Value != ""
-                    {
-                        type = matchParameter.Groups[6].Value;
-                        name = "";
-                        defaultValue = "";
-                    }
+                    // Replacing it like this will modify strings which will make the default value invalid.
+                    // But the files have no strings with that would be affected by it, so whatever. The extra effort is not worth it.
 
-                    if (name.Length > 0 && (name.Substring(0, 1) == "&" || name.Substring(0, 1) == "@"))
-                    {
-                        type += name.Substring(0, 1);
-                        name = name.Substring(1);
-                    }
+                    string value = matchParameter.Groups[1].Value;
 
-                    ASParameter asParameter = new ASParameter(type, name, defaultValue);
+                    do
+                    {
+                        value = value.Replace("  ", " ");
+                    } while (value.Contains("  "));
+
+                    value = value.Replace("- ", "-");
+                    value = value.Replace("( ", "(").Replace(" )", ")");
+                    value = value.Replace(" &", "& ").Replace(" @", "@ ");
+                    value = value.Replace("&in", "& in").Replace("&out", "& out"); // Also gets &inout -> & inout
+
+                    ASParameter asParameter = new ASParameter(value);
                     asParameters.Add(asParameter);
                 }
             }
@@ -406,15 +374,13 @@ namespace AsDocs2XML
         {
             Match match = rxVariable.Match(script[lineIndex]);
 
-            bool isConst;
             string type;
             string name;
 
-            isConst = match.Groups[1].Value != "";
-            type = match.Groups[2].Value;
+            type = (match.Groups[1].Value != "" ? "const " : "") + match.Groups[2].Value;
             name = match.Groups[3].Value;
 
-            return new ASVariable(isConst, type, name);
+            return new ASVariable(type, name);
         }
 
         private static LineType GetLineType(string line)
@@ -501,16 +467,12 @@ namespace AsDocs2XML
 
     struct ASParameter
     {
-        public string type;
-        public string name;
-        public string defaultValue;
+        public string value;
 
 
-        public ASParameter(string type, string name, string defaultValue)
+        public ASParameter(string value)
         {
-            this.type = type;
-            this.name = name;
-            this.defaultValue = defaultValue;
+            this.value = value;
         }
     }
 
@@ -532,13 +494,11 @@ namespace AsDocs2XML
 
     struct ASVariable
     {
-        public bool isConst;
         public string type;
         public string name;
 
-        public ASVariable(bool isConst, string type, string name)
+        public ASVariable(string type, string name)
         {
-            this.isConst = isConst;
             this.type = type;
             this.name = name;
         }

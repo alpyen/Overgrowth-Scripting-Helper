@@ -44,32 +44,32 @@ class string {
 	void resize(uint) const;
 	bool isEmpty() const;
 
-	string substr(uint start = 0, int count = -1) const;
+	string substr(uint start = 0, int count = - 1) const;
 
 	void insert(uint pos, const string &in other);
 	void erase(uint pos, int count = -1);
 
 	string[]@ split(const string&in) const; // enabled from StdStringUtils (also requires ScriptArray)
 
-	int findFirst(const string &in str, uint start = 0) const;
-	int findLast(const string &in str, int start = -1) const;
+	int findFirst(const string&in, uint start = 0) const;
+	int findLast(const string&in, int start = - 1) const;
 
-	int findFirstOf(const string &in chars, int start = 0) const;
-	int findFirstNotOf(const string &in chars, int start = 0) const;
-	int findLastOf(const string &in chars, int start = -1) const;
-	int findLastNotOf(const string &in chars, int start = -1) const; // bugged in OG1.4 AS2.32.0, was fixed in AS2.33.0
+	int findFirstOf(const string&in, int start = 0) const;
+	int findFirstNotOf(const string&in, int start = 0) const;
+	int findLastOf(const string&in, int start = - 1) const;
+	int findLastNotOf(const string&in, int start = - 1) const; // bugged in OG1.4 AS2.32.0, was fixed in AS2.33.0
 };
 
 // Functions
 
-int64 parseInt(const string &in str, uint base = 10, uint &out byteCount = 0);
-uint64 parseUInt(const string &in str, uint base = 10, uint &out byteCount = 0);
+int64 parseInt(const string &in, uint base = 10, uint&out byteCount = 0);
+uint64 parseUInt(const string &in, uint base = 10, uint &out byteCount = 0);
 
 double parseFloat(const string &in, uint &out byteCount = 0);
 
-string formatInt(int64 val, const string &in options = '', uint width = 0);
-string formatUInt(uint64 val, const string &in options = '', uint width = 0);
-string formatFloat(double val, const string &in options = '', uint width = 0, uint precision = 0);
+string formatInt(int64 val, const string &in options = "", uint width = 0);
+string formatUInt(uint64 val, const string &in options = "", uint width = 0);
+string formatFloat(double val, const string &in options = "", uint width = 0, uint precision = 0);
 
 // ========================================
 // ScriptArray
@@ -87,13 +87,13 @@ class array<T> {
 	bool opEquals(const T[]&in) const;
 	
 	uint length() const;
-	void resize(uint);
+	void resize(uint length);
 	void reverse();
 
-	void insertAt(uint index, const T& in value);
-	void insertAt(uint index, const array<T>& arr);
+	void insertAt(uint index, const T&in value);
+	void insertAt(uint index, const T[]&inout arr);
 
-	void insertLast(const T& in);
+	void insertLast(const T&in value);
 
 	void removeAt(uint index);
 
@@ -107,13 +107,13 @@ class array<T> {
 	void sortDesc();
 	void sortDesc(uint startAt, uint count);
 
-	void sort(const less &in compareFunc, uint startAt = 0, uint count = uint(-1));
+	void sort(less&in, uint startAt = 0, uint count = uint( - 1 ));
 
-	int find(const T& in);
-	int find(uint startAt, const T& in);
+	int find(const T&in value);
+	int find(uint startAt, const T&in value);
 
-	int findByRef(const T& in);
-	int findByRef(uint startAt, const T& in);
+	int findByRef(const T&in value);
+	int findByRef(uint startAt, const T&in value);
 	
 	void push_back(const T&in);
 	uint size() const;
@@ -137,14 +137,23 @@ class dictionary {
 
 	dictionaryValue& opIndex(const string &in);
 	const dictionaryValue& opIndex(const string&in) const;
+		
+	string[]@ getKeys() const;
 
-	void set(const string &in key, ? &in value);
-	void set(const string &in key, int64 &in value);
-	void set(const string &in key, double &in value);
+	bool exists(const string&in) const;
+	bool delete(const string&in);
+	void deleteAll(); 
+	
+	void isEmpty() const;
+	uint getSize() const;
 
-	bool get(const string &in key, ? &out value) const;
-	bool get(const string &in key, int64 &out value) const;
-	bool get(const string &in key, double &out value) const;
+	void set(const string &in, ?&in);
+	void set(const string &in, int64&in);
+	void set(const string &in, double&in);
+
+	bool get(const string &in, ?&out) const;
+	bool get(const string &in, int64&out) const;
+	bool get(const string &in, double&out) const;
 };
 
 class dictionaryValue {
@@ -155,17 +164,11 @@ class dictionaryValue {
 	dictionaryValue& opAssign(double);
 	dictionaryValue& opAssign(int64);
 	
-	double& opConv();
+	void opConv(?&out)
 	int64 opConv();
-	void opCast(?&out);
+	double opConv();
 	
-	array<string> @getKeys() const;
-
-	bool exists(const string &in key) const;
-	bool delete(const string &in key);
-	void deleteAll();
-	bool isEmpty() const;
-	uint getSize() const;
+	void opCast(?&out);
 };
 
 

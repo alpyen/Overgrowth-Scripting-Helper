@@ -18,7 +18,6 @@ ToDo-List:
 ### Scripting Helper Plugin
 
 ##### AsDocs2XML
-- Some parameters are wrongly parsed when there are spaces. `<Parameter Type="const T&amp;" Name="in" Value="" /> ` The in is not the actual name.
 - (later?) Expand parsing to parse .as files rather than .h, this way we could parse the files from the Data\Scripts directory. But only do this when the classes are actually available in other scripts.
 
 ##### Angelscript UDL
