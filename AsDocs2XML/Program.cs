@@ -45,6 +45,7 @@ namespace AsDocs2XML
                 }
             }
 
+
             foreach (string file in args)
             {
                 string scriptName = Path.GetFileNameWithoutExtension(file);
@@ -54,6 +55,7 @@ namespace AsDocs2XML
                 ASScript currentScript = ASHelper.ParseScript(scriptName, stlContents.Concat(File.ReadAllLines(file)).ToArray());
                 database.Add(currentScript.name, currentScript);
             }
+
 
             XmlDocument xmlDatabase = new XmlDocument();
             XmlElement rootNode = xmlDatabase.CreateElement("Scripts");

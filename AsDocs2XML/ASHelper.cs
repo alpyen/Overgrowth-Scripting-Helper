@@ -17,11 +17,11 @@ namespace AsDocs2XML
         private static Regex rxVariable = new Regex(@"^\s*(const)?\s*([^,\s}]+?)\s*([^,\s*\(};]+?)\s*;\s*$");
         private static Regex rxClassBegin = new Regex(@"^\s*class\s*(.+?)\s*{\s*.*?$");
         private static Regex rxEnumerationBegin = new Regex(@"^\s*enum\s*(.+?)\s*{\s*.*?$");
-        private static Regex rxScopeEnding = new Regex(@"^\s*\};(?:\/\/.*)?\s*$");
+        private static Regex rxScopeEnding = new Regex(@"^\s*\};?(?:\/\/.*)?\s*$");
 
         private static Regex rxParameters = new Regex(@"\s*((?:[^,\s]+\s*)+)\s*,?");
         private static Regex rxParameter = new Regex(@"^\s*(?:(?:(.+)\s+(.+?)\s*=\s*(.+))|(?:(.+)\s+(.+))|(.+))\s*$");
-        private static Regex rxEnumerationValue = new Regex(@"^\s*([^,\s=]+)\s*=\s*-?(\d+)\s*,?\s*$");
+        private static Regex rxEnumerationValue = new Regex(@"^\s*([^,\s=]+)\s*=?\s*(-)?\s*(\d+)?\s*,?\s*$");
 
         public static void AppendScriptAsXmlElement(XmlElement nodeAppend, dynamic asElement)
         {
@@ -270,7 +270,7 @@ namespace AsDocs2XML
 
                 asEnumeration.enumerationMembers.Add(
                     matchEnumerationMember.Groups[1].Value,
-                    Convert.ToInt32(matchEnumerationMember.Groups[2].Value)
+                    Convert.ToInt32(matchEnumerationMember.Groups[2].Value + matchEnumerationMember.Groups[3].Value)
                 );
 
                 lineIndex++;
