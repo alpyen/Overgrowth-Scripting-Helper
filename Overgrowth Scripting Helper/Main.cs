@@ -9,146 +9,127 @@ using Overgrowth_Scripting_Helper.NppPluginNET.PluginInfrastructure;
 
 namespace Overgrowth_Scripting_Helper.NppPluginNET
 {
-    class Main
-    {
-        internal const string PluginName = "Overgrowth Scripting Helper";
+	class Main
+	{
+		internal const string PluginName = "Overgrowth Scripting Helper";
 
-        static frmMyDlg frmMyDlg = null;
-        static int idMyDlg = -1;
-        static Bitmap tbBmp = Properties.Resources.star;
-        static Bitmap tbBmp_tbTab = Properties.Resources.star_bmp;
-        static Icon tbIcon = null;
+		static bool showHelperWindow = false;
 
-        internal static void CommandMenuInit()
-        {
-            StringBuilder sbSettingsPath = new StringBuilder(Win32.MAX_PATH);
-            Win32.SendMessage(PluginBase.nppData._nppHandle, (uint) NppMsg.NPPM_GETPLUGINSCONFIGDIR, Win32.MAX_PATH, sbSettingsPath);
+		static SettingsWindow settingsWindow = null;
+		static HelperWindow helperWindow = null;
+		static Icon tabIcon = null;
+		static int idMyDlg = 0;
 
-            if (!Directory.Exists(sbSettingsPath.ToString()))
-                Directory.CreateDirectory(sbSettingsPath.ToString());
+		static ScintillaGateway sgEditor = null;
 
-            Config.Path = Path.Combine(sbSettingsPath.ToString(), PluginName + ".ini");
-            Config.Load();
+		internal static void CommandMenuInit()
+		{
+			sgEditor = new ScintillaGateway(PluginBase.nppData._scintillaMainHandle);
 
-            // TODO: Implement startup routine
+			// Load settings
+			StringBuilder settingsPath = new StringBuilder(Win32.MAX_PATH);
+			Win32.SendMessage(PluginBase.nppData._nppHandle, (uint)NppMsg.NPPM_GETPLUGINSCONFIGDIR, Win32.MAX_PATH, settingsPath);
 
-                // TODO: Check config if helper window should show on start and show it accordingly.
-                // TODO: Remove standard pictures, add the old pictures again, don't forget to credit Silk icons in About
+			if (!Directory.Exists(settingsPath.ToString()))
+				Directory.CreateDirectory(settingsPath.ToString());
 
-            PluginBase.SetCommand(0, "Toggle Helper Window", ToggleHelperWindow);
-            PluginBase.SetCommand(1, "Toggle Cheat Sheet Window", ToggleCheatSheetWindow);
-            PluginBase.SetCommand(2, "", null);
-            PluginBase.SetCommand(3, "Insert Camera Script Template", InsertCameraTemplate);
-            PluginBase.SetCommand(4, "Insert Character Script Template", InsertCharacterTemplate);
-            PluginBase.SetCommand(5, "Insert Hotspot Template", InsertHotspotTemplate);
-            PluginBase.SetCommand(6, "Insert Level Script Template", InsertLevelTemplate);
-            PluginBase.SetCommand(7, "Insert Scriptable Campaign Script Template", InsertScriptableCampaignTemplate);
-            PluginBase.SetCommand(8, "Insert Scriptable UI Script Template", InsertScriptableUiTemplate);
-            PluginBase.SetCommand(9, "", null);
-            PluginBase.SetCommand(10, "Settings", OpenSettingsWindow);
-            PluginBase.SetCommand(11, "About Overgrowth Scripting Helper", OpenAboutWindow);
+			Config.Path = Path.Combine(settingsPath.ToString(), PluginName + ".ini");
+			Config.Load();
 
-            idMyDlg = 1;
 
-            //PluginBase.SetCommand(0, "MyMenuCommand", myMenuFunction, new ShortcutKey(false, false, false, Keys.None));
-            //PluginBase.SetCommand(1, "MyDockableDialog", myDockableDialog); idMyDlg = 1;
-        }
+			// Initialize the windows and the window icons.
+			settingsWindow = new SettingsWindow();
+			helperWindow = new HelperWindow();
 
-        internal static void SetToolBarIcon()
-        {
-            toolbarIcons tbIcons = new toolbarIcons();
-            tbIcons.hToolbarBmp = tbBmp.GetHbitmap();
-            IntPtr pTbIcons = Marshal.AllocHGlobal(Marshal.SizeOf(tbIcons));
-            Marshal.StructureToPtr(tbIcons, pTbIcons, false);
-            Win32.SendMessage(PluginBase.nppData._nppHandle, (uint) NppMsg.NPPM_ADDTOOLBARICON, PluginBase._funcItems.Items[idMyDlg]._cmdID, pTbIcons);
-            Marshal.FreeHGlobal(pTbIcons);
-        }
+			DockHelperWindow();
+			showHelperWindow = Config.ShowHelperWindowOnStartup;
 
-        internal static void ToggleHelperWindow()
-        {
-            // TODO: implement
-        }
+			// We do not call ToggleHelperWindow here because we have to wait until NPPN_READY is sent,
+			// otherwise the window will show up, but the toolbar icon will not be pushed down.
+			// We are inverting the showHelperWindow boolean because the toggle function will invert it again.
+			// This way we don't need to implement more logic.
+			showHelperWindow = !showHelperWindow;
 
-        internal static void ToggleCheatSheetWindow()
-        {
-            // TODO: implement
-        }
+			// Set up the menu items.
+			PluginBase.SetCommand(0, "Toggle Helper Window", ToggleHelperWindow);
+			PluginBase.SetCommand(1, "Toggle Cheat Sheet Window", ToggleCheatSheetWindow);
+			PluginBase.SetCommand(2, "", null);
+			PluginBase.SetCommand(3, "Insert Camera Script Template", InsertCameraTemplate);
+			PluginBase.SetCommand(4, "Insert Character Script Template", InsertCharacterTemplate);
+			PluginBase.SetCommand(5, "Insert Hotspot Template", InsertHotspotTemplate);
+			PluginBase.SetCommand(6, "Insert Level Script Template", InsertLevelTemplate);
+			PluginBase.SetCommand(7, "", null);
+			PluginBase.SetCommand(8, "Settings", OpenSettingsWindow);
+			PluginBase.SetCommand(9, "About Overgrowth Scripting Helper", OpenAboutWindow);
+		}
 
-        internal static void InsertCameraTemplate()
-        {
-            // TODO: implement
-        }
+		internal static void SetToolBarIcon()
+		{
+			toolbarIcons tbIcons = new toolbarIcons();
+			tbIcons.hToolbarBmp = Properties.Resources.RabbitTransparent.GetHbitmap();
+			IntPtr pTbIcons = Marshal.AllocHGlobal(Marshal.SizeOf(tbIcons));
+			Marshal.StructureToPtr(tbIcons, pTbIcons, false);
+			Win32.SendMessage(PluginBase.nppData._nppHandle, (uint)NppMsg.NPPM_ADDTOOLBARICON, PluginBase._funcItems.Items[idMyDlg]._cmdID, pTbIcons);
+			Marshal.FreeHGlobal(pTbIcons);
+		}
 
-        internal static void InsertCharacterTemplate()
-        {
-            // TODO: implement
-        }
+		internal static void DockHelperWindow()
+		{
+			// Set the icon in the tab control that appears when multiple plugin windows are docked.
+			using (Bitmap newBmp = new Bitmap(16, 16))
+			{
+				Graphics g = Graphics.FromImage(newBmp);
+				ColorMap[] colorMap = new ColorMap[1];
+				colorMap[0] = new ColorMap();
+				colorMap[0].OldColor = Color.White;
+				colorMap[0].NewColor = Color.FromKnownColor(KnownColor.ButtonFace);
+				ImageAttributes attr = new ImageAttributes();
+				attr.SetRemapTable(colorMap);
+				g.DrawImage(Properties.Resources.RabbitWhite, new Rectangle(0, 0, 16, 16), 0, 0, 16, 16, GraphicsUnit.Pixel, attr);
+				tabIcon = Icon.FromHandle(newBmp.GetHicon());
+			}
 
-        internal static void InsertHotspotTemplate()
-        {
-            // TODO: implement
-        }
+			// Dock the window.
+			NppTbData _nppTbData = new NppTbData();
+			_nppTbData.hClient = helperWindow.Handle;
+			_nppTbData.pszName = helperWindow.Text;
+			_nppTbData.dlgID = idMyDlg;
+			_nppTbData.uMask = NppTbMsg.DWS_DF_CONT_RIGHT | NppTbMsg.DWS_ICONTAB | NppTbMsg.DWS_ICONBAR;
+			_nppTbData.hIconTab = (uint)tabIcon.Handle;
+			_nppTbData.pszModuleName = PluginName;
+			IntPtr _ptrNppTbData = Marshal.AllocHGlobal(Marshal.SizeOf(_nppTbData));
+			Marshal.StructureToPtr(_nppTbData, _ptrNppTbData, false);
 
-        internal static void InsertLevelTemplate()
-        {
-            // TODO: implement
-        }
+			Win32.SendMessage(PluginBase.nppData._nppHandle, (uint)NppMsg.NPPM_DMMREGASDCKDLG, 0, _ptrNppTbData);
+			Win32.SendMessage(PluginBase.nppData._nppHandle, (uint)NppMsg.NPPM_DMMHIDE, 0, helperWindow.Handle);
+		}
 
-        internal static void InsertScriptableCampaignTemplate()
-        {
-            // TODO: implement
-        }
+		internal static void ToggleHelperWindow()
+		{
+			showHelperWindow = !showHelperWindow;
 
-        internal static void InsertScriptableUiTemplate()
-        {
-            // TODO: implement
-        }
+			Win32.SendMessage(PluginBase.nppData._nppHandle, showHelperWindow ? (uint)NppMsg.NPPM_DMMSHOW : (uint)NppMsg.NPPM_DMMHIDE, 0, helperWindow.Handle);
+			Win32.SendMessage(PluginBase.nppData._nppHandle, (uint)NppMsg.NPPM_SETMENUITEMCHECK, PluginBase._funcItems.Items[idMyDlg]._cmdID, showHelperWindow ? 1 : 0);
+		}
 
-        internal static void OpenSettingsWindow()
-        {
-            // TODO: implement
-        }
+		internal static void ToggleCheatSheetWindow()
+		{
+			// TODO: implement
+		}
 
-        internal static void OpenAboutWindow()
-        {
-            // TODO: implement
-        }
+		internal static void InsertCameraTemplate() { sgEditor.InsertText(-1, Templates.CameraScript); }
+		internal static void InsertCharacterTemplate() { sgEditor.InsertText(-1, Templates.CharacterScript); }
+		internal static void InsertHotspotTemplate() { sgEditor.InsertText(-1, Templates.HotspotScript); }
+		internal static void InsertLevelTemplate()	{ sgEditor.InsertText(-1, Templates.LevelScript); }
 
-        internal static void myDockableDialog()
-        {
-            if (frmMyDlg == null)
-            {
-                frmMyDlg = new frmMyDlg();
+		internal static void OpenSettingsWindow()
+		{
+			settingsWindow.ShowDialog();
+		}
 
-                using (Bitmap newBmp = new Bitmap(16, 16))
-                {
-                    Graphics g = Graphics.FromImage(newBmp);
-                    ColorMap[] colorMap = new ColorMap[1];
-                    colorMap[0] = new ColorMap();
-                    colorMap[0].OldColor = Color.Fuchsia;
-                    colorMap[0].NewColor = Color.FromKnownColor(KnownColor.ButtonFace);
-                    ImageAttributes attr = new ImageAttributes();
-                    attr.SetRemapTable(colorMap);
-                    g.DrawImage(tbBmp_tbTab, new Rectangle(0, 0, 16, 16), 0, 0, 16, 16, GraphicsUnit.Pixel, attr);
-                    tbIcon = Icon.FromHandle(newBmp.GetHicon());
-                }
-
-                NppTbData _nppTbData = new NppTbData();
-                _nppTbData.hClient = frmMyDlg.Handle;
-                _nppTbData.pszName = "My dockable dialog";
-                _nppTbData.dlgID = idMyDlg;
-                _nppTbData.uMask = NppTbMsg.DWS_DF_CONT_RIGHT | NppTbMsg.DWS_ICONTAB | NppTbMsg.DWS_ICONBAR;
-                _nppTbData.hIconTab = (uint)tbIcon.Handle;
-                _nppTbData.pszModuleName = PluginName;
-                IntPtr _ptrNppTbData = Marshal.AllocHGlobal(Marshal.SizeOf(_nppTbData));
-                Marshal.StructureToPtr(_nppTbData, _ptrNppTbData, false);
-
-                Win32.SendMessage(PluginBase.nppData._nppHandle, (uint) NppMsg.NPPM_DMMREGASDCKDLG, 0, _ptrNppTbData);
-            }
-            else
-            {
-                Win32.SendMessage(PluginBase.nppData._nppHandle, (uint) NppMsg.NPPM_DMMSHOW, 0, frmMyDlg.Handle);
-            }
-        }
-    }
+		internal static void OpenAboutWindow()
+		{
+			// TODO: implement
+		}
+	}
 }

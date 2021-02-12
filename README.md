@@ -23,29 +23,24 @@ ToDo-List:
 ##### Angelscript UDL
 
 ##### Helper Window
-- Designing the dock window
 - Showing Definitions in Tabs
 - Filtering definitions with a search term
 
 ##### Settings
-- Show helper sidebar window on startup
+- Design
 - Live filtering mode
-- Hide parameter names in function signatures
 - Show icons for each node
 - Custom Font
+- Save on Button, Discard on Close
 
 ##### Cheat Sheet
 - Display root folders for various paths
 
 ##### Plugins Menu
-  - Toggle Helper Window
-  - Insert empty script templates
-    - Camera
-    - Character
-    - Hotspot
-    - Level
-    - Scriptable Campaign(?)
-    - Scriptable UI(?)
-  - Toggle Cheat Sheet
-  - Open Settings
-  - About
+- Script Templates
+  - missing some functions that were not listed on the documentation (like void Menu for Level)
+- Toggle Cheat Sheet
+- About
+
+##### Testing
+- Windows 10

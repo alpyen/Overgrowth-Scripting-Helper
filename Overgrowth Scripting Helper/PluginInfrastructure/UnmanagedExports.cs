@@ -56,6 +56,10 @@ namespace Overgrowth_Scripting_Helper.NppPluginNET
             {
                 Marshal.FreeHGlobal(_ptrPluginName);
             }
+			else if (notification.Header.Code == (uint)NppMsg.NPPN_READY)
+			{
+				Main.ToggleHelperWindow();
+			}
         }
     }
 }

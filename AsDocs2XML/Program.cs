@@ -8,77 +8,77 @@ using System.Xml;
 
 namespace AsDocs2XML
 {
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("AsDocs2XML - Convert Overgrowth Angelscript Docs to XML Database and Calltips.\n");
-            Console.WriteLine("If you pass a file with the name \"stl.txt\" it will be added to all scripts.\n");
+	class Program
+	{
+		static void Main(string[] args)
+		{
+			Console.WriteLine("AsDocs2XML - Convert Overgrowth Angelscript Docs to XML Database and Calltips.\n");
+			Console.WriteLine("If you pass a file with the name \"stl.txt\" it will be added to all scripts.\n");
 
-            if (args.Length == 0)
-            {
-                Console.WriteLine("No files have been passed -- pass them through the command line or drag them onto the exe directly.\n");
+			if (args.Length == 0)
+			{
+				Console.WriteLine("No files have been passed -- pass them through the command line or drag them onto the exe directly.\n");
 
-                Console.WriteLine("Press enter to exit.");
-                Console.ReadLine();
+				Console.WriteLine("Press enter to exit.");
+				Console.ReadLine();
 
-                return;
-            }
-
-
-            SortedList<string, ASScript> database = new SortedList<string, ASScript>();
-
-            string[] stlContents = new string[] { };
-            for (int i = 0; i < args.Length; i++)
-            {
-                if (Path.GetFileName(args[i]) == "stl.txt")
-                {
-                    Console.WriteLine("STL found: " + (Path.GetDirectoryName(args[i]) != "" ? "..." : "") + Path.GetFileName(args[i]));
-
-                    stlContents = File.ReadAllLines(args[i]);
-                    List<string> tmp_args = new List<string>(args);
-                    tmp_args.RemoveAt(i);
-
-                    args = tmp_args.ToArray();
-
-                    break;
-                }
-            }
+				return;
+			}
 
 
-            foreach (string file in args)
-            {
-                string scriptName = Path.GetFileNameWithoutExtension(file);
+			SortedList<string, ASScript> database = new SortedList<string, ASScript>();
 
-                Console.WriteLine("Parsing script [" + scriptName + "]: " + (Path.GetDirectoryName(file) != "" ? "..." : "") + Path.GetFileName(file));
+			string[] stlContents = new string[] { };
+			for (int i = 0; i < args.Length; i++)
+			{
+				if (Path.GetFileName(args[i]) == "stl.txt")
+				{
+					Console.WriteLine("STL found: " + (Path.GetDirectoryName(args[i]) != "" ? "..." : "") + Path.GetFileName(args[i]));
 
-                ASScript currentScript = ASHelper.ParseScript(scriptName, stlContents.Concat(File.ReadAllLines(file)).ToArray());
-                database.Add(currentScript.name, currentScript);
-            }
+					stlContents = File.ReadAllLines(args[i]);
+					List<string> tmp_args = new List<string>(args);
+					tmp_args.RemoveAt(i);
+
+					args = tmp_args.ToArray();
+
+					break;
+				}
+			}
 
 
-            XmlDocument xmlDatabase = new XmlDocument();
-            XmlElement rootNode = xmlDatabase.CreateElement("Scripts");
-            xmlDatabase.AppendChild(rootNode);
+			foreach (string file in args)
+			{
+				string scriptName = Path.GetFileNameWithoutExtension(file);
 
-            foreach (ASScript currentScript in database.Values)
-                ASHelper.AppendScriptAsXmlElement(rootNode, currentScript);
+				Console.WriteLine("Parsing script [" + scriptName + "]: " + (Path.GetDirectoryName(file) != "" ? "..." : "") + Path.GetFileName(file));
 
-            XmlDocument xmlCalltips = NppHelper.GenerateXmlCalltipDefinition(database.Values.ToList());
+				ASScript currentScript = ASHelper.ParseScript(scriptName, stlContents.Concat(File.ReadAllLines(file)).ToArray());
+				database.Add(currentScript.name, currentScript);
+			}
 
 
-            Console.WriteLine();
+			XmlDocument xmlDatabase = new XmlDocument();
+			XmlElement rootNode = xmlDatabase.CreateElement("Scripts");
+			xmlDatabase.AppendChild(rootNode);
 
-            Console.WriteLine("Writing database.xml (database for helper).");
-            xmlDatabase.Save("database.xml");
+			foreach (ASScript currentScript in database.Values)
+				ASHelper.AppendScriptAsXmlElement(rootNode, currentScript);
 
-            Console.WriteLine("Writing angelscript.xml (calltips definition).");
-            xmlCalltips.Save("angelscript.xml");
+			XmlDocument xmlCalltips = NppHelper.GenerateXmlCalltipDefinition(database.Values.ToList());
 
-            Console.WriteLine();
-            Console.WriteLine("Finished. Press enter to exit.");
 
-            Console.ReadLine();
-        }
-    }
+			Console.WriteLine();
+
+			Console.WriteLine("Writing database.xml (database for helper).");
+			xmlDatabase.Save("database.xml");
+
+			Console.WriteLine("Writing angelscript.xml (calltips definition).");
+			xmlCalltips.Save("angelscript.xml");
+
+			Console.WriteLine();
+			Console.WriteLine("Finished. Press enter to exit.");
+
+			Console.ReadLine();
+		}
+	}
 }
