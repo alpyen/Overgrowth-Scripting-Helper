@@ -14,6 +14,7 @@ ToDo-List:
   - angelscript.xml and database.xml are automoved into the N++ folders.
   - Docs in Overgrowth 1.4 lists push_back and size as functions, but they are methods from arrays.
   - Docs in Overgrowth 1.4 list vec4 mix as a method of vec4 but it is a function. The docs altogether are badly formatted. Pay close attention when you want to correct them for AsDocs2XML to parse.
+  - The pre-build command does not copy the files on Run when the files are already there (calltips + database). You need to rebuild the solution again, they are copied on build, not on run. When you modify your code and run it, it automatically rebuilds.
 ---
 ### Scripting Helper Plugin
 
@@ -23,7 +24,7 @@ ToDo-List:
 ##### Angelscript UDL
 
 ##### Helper Window
-- Filtering definitions with a search term
+- (later?) Save every step while live filtering for faster reconstruction
 
 ##### Settings
 - Design

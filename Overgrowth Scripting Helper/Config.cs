@@ -12,6 +12,9 @@ namespace Overgrowth_Scripting_Helper
 {
 	public static class Config
 	{
+		public static string PluginName = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
+		public static string PluginVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString(3);
+
 		public static string SettingsPath;
 		public static string DatabasePath;
 		public static XmlDocument DatabaseXml;

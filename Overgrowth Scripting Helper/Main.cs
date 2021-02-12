@@ -11,8 +11,6 @@ namespace Overgrowth_Scripting_Helper.NppPluginNET
 {
 	class Main
 	{
-		internal const string pluginName = "Overgrowth Scripting Helper";
-
 		static bool showHelperWindow = false;
 		static SettingsWindow settingsWindow = null;
 		static HelperWindow helperWindow = null;
@@ -25,7 +23,7 @@ namespace Overgrowth_Scripting_Helper.NppPluginNET
 		internal static void CommandMenuInit()
 		{
 			sgEditor = new ScintillaGateway(PluginBase.nppData._scintillaMainHandle);
-
+			
 			// Load settings
 			StringBuilder settingsPath = new StringBuilder(Win32.MAX_PATH);
 			Win32.SendMessage(PluginBase.nppData._nppHandle, (uint)NppMsg.NPPM_GETPLUGINSCONFIGDIR, Win32.MAX_PATH, settingsPath);
@@ -36,11 +34,10 @@ namespace Overgrowth_Scripting_Helper.NppPluginNET
 			StringBuilder pluginsPath = new StringBuilder(Win32.MAX_PATH);
 			Win32.SendMessage(PluginBase.nppData._nppHandle, (uint)NppMsg.NPPM_GETPLUGINHOMEPATH, Win32.MAX_PATH, pluginsPath);
 
-			Config.SettingsPath = Path.Combine(settingsPath.ToString(), pluginName + ".ini");
-			Config.DatabasePath = Path.Combine(pluginsPath.ToString(), pluginName, "database.xml");
+			Config.SettingsPath = Path.Combine(settingsPath.ToString(), Config.PluginName + ".ini");
+			Config.DatabasePath = Path.Combine(pluginsPath.ToString(), Config.PluginName, "database.xml");
 
 			Config.Load();
-
 
 			// Initialize the windows and the window icons.
 			settingsWindow = new SettingsWindow();
@@ -65,7 +62,7 @@ namespace Overgrowth_Scripting_Helper.NppPluginNET
 			PluginBase.SetCommand(6, "Insert Level Script Template", InsertLevelTemplate);
 			PluginBase.SetCommand(7, "", null);
 			PluginBase.SetCommand(8, "Settings", OpenSettingsWindow);
-			PluginBase.SetCommand(9, "About Overgrowth Scripting Helper", OpenAboutWindow);
+			PluginBase.SetCommand(9, "About " + Config.PluginName, OpenAboutWindow);
 		}
 
 		internal static void SetToolBarIcon()
@@ -101,7 +98,7 @@ namespace Overgrowth_Scripting_Helper.NppPluginNET
 			_nppTbData.dlgID = idMyDlg;
 			_nppTbData.uMask = NppTbMsg.DWS_DF_CONT_RIGHT | NppTbMsg.DWS_ICONTAB | NppTbMsg.DWS_ICONBAR;
 			_nppTbData.hIconTab = (uint)tabIcon.Handle;
-			_nppTbData.pszModuleName = pluginName;
+			_nppTbData.pszModuleName = Config.PluginName;
 			IntPtr _ptrNppTbData = Marshal.AllocHGlobal(Marshal.SizeOf(_nppTbData));
 			Marshal.StructureToPtr(_nppTbData, _ptrNppTbData, false);
 
@@ -114,10 +111,10 @@ namespace Overgrowth_Scripting_Helper.NppPluginNET
 			if (Config.DatabaseXml == null)
 			{
 				MessageBox.Show(
-						"Database.xml for Overgrowth Scripting Helper invalid or not found at:\n\"" +
+						"Database.xml for " + Config.PluginName + " invalid or not found at:\n\"" +
 						Path.GetDirectoryName(Config.DatabasePath) + "\\\"\n\n" +
 						"Please copy the database to the desired location and restart Notepad++ otherwise the Helper Window will not work.",
-						"Notepad++ Overgrowth Scripting Helper", MessageBoxButtons.OK, MessageBoxIcon.Exclamation
+						"Notepad++ " + Config.PluginName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation
 					);
 
 				return;
@@ -131,7 +128,7 @@ namespace Overgrowth_Scripting_Helper.NppPluginNET
 
 		internal static void ToggleCheatSheetWindow()
 		{
-			// TODO: implement
+			// TODO: ToggleCheatSheetWindow
 		}
 
 		internal static void InsertCameraTemplate() { sgEditor.InsertText(-1, Templates.CameraScript); }
@@ -146,7 +143,7 @@ namespace Overgrowth_Scripting_Helper.NppPluginNET
 
 		internal static void OpenAboutWindow()
 		{
-			// TODO: implement
+			// TODO: AboutWindow
 		}
 	}
 }
