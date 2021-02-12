@@ -104,7 +104,7 @@ namespace AsDocs2XML
 					elementsUsed[nextSmallestIndex] = true;
 					added++;
 
-					XmlElement xmlEnumerationMember = xmlDocument.CreateElement("EnumerationMember");
+					XmlElement xmlEnumerationMember = xmlDocument.CreateElement("Member");
 					xmlEnumerationMember.SetAttribute("Name", asEnumeration.enumerationMembers.Keys[nextSmallestIndex]);
 					xmlEnumerationMember.SetAttribute("Value", asEnumeration.enumerationMembers.Values[nextSmallestIndex].ToString());
 					xmlEnumeration.AppendChild(xmlEnumerationMember);
