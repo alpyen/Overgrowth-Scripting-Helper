@@ -39,7 +39,7 @@ namespace Overgrowth_Scripting_Helper.NppPluginNET
         static IntPtr getName()
         {
             if (_ptrPluginName == IntPtr.Zero)
-                _ptrPluginName = Marshal.StringToHGlobalUni(Main.PluginName);
+                _ptrPluginName = Marshal.StringToHGlobalUni(Main.pluginName);
             return _ptrPluginName;
         }
 

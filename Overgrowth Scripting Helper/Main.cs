@@ -11,12 +11,12 @@ namespace Overgrowth_Scripting_Helper.NppPluginNET
 {
 	class Main
 	{
-		internal const string PluginName = "Overgrowth Scripting Helper";
+		internal const string pluginName = "Overgrowth Scripting Helper";
 
 		static bool showHelperWindow = false;
-
 		static SettingsWindow settingsWindow = null;
 		static HelperWindow helperWindow = null;
+
 		static Icon tabIcon = null;
 		static int idMyDlg = 0;
 
@@ -29,11 +29,16 @@ namespace Overgrowth_Scripting_Helper.NppPluginNET
 			// Load settings
 			StringBuilder settingsPath = new StringBuilder(Win32.MAX_PATH);
 			Win32.SendMessage(PluginBase.nppData._nppHandle, (uint)NppMsg.NPPM_GETPLUGINSCONFIGDIR, Win32.MAX_PATH, settingsPath);
-
+			
 			if (!Directory.Exists(settingsPath.ToString()))
 				Directory.CreateDirectory(settingsPath.ToString());
 
-			Config.Path = Path.Combine(settingsPath.ToString(), PluginName + ".ini");
+			StringBuilder pluginsPath = new StringBuilder(Win32.MAX_PATH);
+			Win32.SendMessage(PluginBase.nppData._nppHandle, (uint)NppMsg.NPPM_GETPLUGINHOMEPATH, Win32.MAX_PATH, pluginsPath);
+
+			Config.SettingsPath = Path.Combine(settingsPath.ToString(), pluginName + ".ini");
+			Config.DatabasePath = Path.Combine(pluginsPath.ToString(), pluginName, "database.xml");
+
 			Config.Load();
 
 
@@ -41,13 +46,13 @@ namespace Overgrowth_Scripting_Helper.NppPluginNET
 			settingsWindow = new SettingsWindow();
 			helperWindow = new HelperWindow();
 
-			DockHelperWindow();
-			showHelperWindow = Config.ShowHelperWindowOnStartup;
-
 			// We do not call ToggleHelperWindow here because we have to wait until NPPN_READY is sent,
 			// otherwise the window will show up, but the toolbar icon will not be pushed down.
 			// We are inverting the showHelperWindow boolean because the toggle function will invert it again.
 			// This way we don't need to implement more logic.
+			DockHelperWindow();
+
+			showHelperWindow = Config.ShowHelperWindowOnStartup;
 			showHelperWindow = !showHelperWindow;
 
 			// Set up the menu items.
@@ -96,7 +101,7 @@ namespace Overgrowth_Scripting_Helper.NppPluginNET
 			_nppTbData.dlgID = idMyDlg;
 			_nppTbData.uMask = NppTbMsg.DWS_DF_CONT_RIGHT | NppTbMsg.DWS_ICONTAB | NppTbMsg.DWS_ICONBAR;
 			_nppTbData.hIconTab = (uint)tabIcon.Handle;
-			_nppTbData.pszModuleName = PluginName;
+			_nppTbData.pszModuleName = pluginName;
 			IntPtr _ptrNppTbData = Marshal.AllocHGlobal(Marshal.SizeOf(_nppTbData));
 			Marshal.StructureToPtr(_nppTbData, _ptrNppTbData, false);
 
@@ -106,6 +111,18 @@ namespace Overgrowth_Scripting_Helper.NppPluginNET
 
 		internal static void ToggleHelperWindow()
 		{
+			if (Config.DatabaseXml == null)
+			{
+				MessageBox.Show(
+						"Database.xml for Overgrowth Scripting Helper invalid or not found at:\n\"" +
+						Path.GetDirectoryName(Config.DatabasePath) + "\\\"\n\n" +
+						"Please copy the database to the desired location and restart Notepad++ otherwise the Helper Window will not work.",
+						"Notepad++ Overgrowth Scripting Helper", MessageBoxButtons.OK, MessageBoxIcon.Exclamation
+					);
+
+				return;
+			}
+
 			showHelperWindow = !showHelperWindow;
 
 			Win32.SendMessage(PluginBase.nppData._nppHandle, showHelperWindow ? (uint)NppMsg.NPPM_DMMSHOW : (uint)NppMsg.NPPM_DMMHIDE, 0, helperWindow.Handle);

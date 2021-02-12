@@ -5,12 +5,16 @@ using System.Text;
 
 using System.Drawing;
 using Overgrowth_Scripting_Helper.NppPluginNET.PluginInfrastructure;
+using System.Xml;
+using System.IO;
 
 namespace Overgrowth_Scripting_Helper
 {
 	public static class Config
 	{
-		public static string Path;
+		public static string SettingsPath;
+		public static string DatabasePath;
+		public static XmlDocument DatabaseXml;
 
 		public static bool ShowHelperWindowOnStartup = false;
 		public static bool LiveFilteringMode = false;
@@ -23,41 +27,49 @@ namespace Overgrowth_Scripting_Helper
 		{
 			StringBuilder readout = new StringBuilder();
 
-			Win32.GetPrivateProfileString("Settings", "ShowHelperWindowOnStartup", "False", readout, 20, Path);
+			Win32.GetPrivateProfileString("Settings", "ShowHelperWindowOnStartup", "False", readout, 20, SettingsPath);
 			ShowHelperWindowOnStartup = readout.ToString() == "True";
 
-			Win32.GetPrivateProfileString("Settings", "LiveFilteringMode", "False", readout, 20, Path);
+			Win32.GetPrivateProfileString("Settings", "LiveFilteringMode", "False", readout, 20, SettingsPath);
 			LiveFilteringMode = readout.ToString() == "True";
 
-			Win32.GetPrivateProfileString("Settings", "ShowIconsForEachNode", "True", readout, 20, Path);
+			Win32.GetPrivateProfileString("Settings", "ShowIconsForEachNode", "True", readout, 20, SettingsPath);
 			ShowIconsForEachNode = readout.ToString() == "True";
 
-			Win32.GetPrivateProfileString("Settings", "UseCustomFont", "False", readout, 20, Path);
+			Win32.GetPrivateProfileString("Settings", "UseCustomFont", "False", readout, 20, SettingsPath);
 			UseCustomFont = readout.ToString() == "True";
 
-			Win32.GetPrivateProfileString("Settings", "FontName", "Microsoft Sans Serif", readout, 20, Path);
+			Win32.GetPrivateProfileString("Settings", "FontName", "Microsoft Sans Serif", readout, 20, SettingsPath);
 			string fontName = readout.ToString();
 
-			Win32.GetPrivateProfileString("Settings", "FontSize", "8,25", readout, 20, Path);
+			Win32.GetPrivateProfileString("Settings", "FontSize", "8,25", readout, 20, SettingsPath);
 			float fontSize = Convert.ToSingle(readout.ToString());
 
-			Win32.GetPrivateProfileString("Settings", "FontStyle", "Regular", readout, 20, Path);
+			Win32.GetPrivateProfileString("Settings", "FontStyle", "Regular", readout, 20, SettingsPath);
 			FontStyle fontStyle = (FontStyle)Enum.Parse(typeof(FontStyle), readout.ToString());
 
 			CustomFont.Dispose();
 			CustomFont = new Font(fontName, fontSize, fontStyle);
+
+			if (File.Exists(DatabasePath))
+			{
+				DatabaseXml = new XmlDocument();
+
+				try { DatabaseXml.Load(DatabasePath); }
+				catch (Exception) { DatabaseXml = null; }
+			}
 		}
 
 		public static void Save()
 		{
-			Win32.WritePrivateProfileString("Settings", "ShowHelperWindowOnStartup", ShowHelperWindowOnStartup.ToString(), Path);
-			Win32.WritePrivateProfileString("Settings", "LiveFilteringMode", LiveFilteringMode.ToString(), Path);
-			Win32.WritePrivateProfileString("Settings", "ShowIconsForEachNode", ShowIconsForEachNode.ToString(), Path);
-			Win32.WritePrivateProfileString("Settings", "UseCustomFont", UseCustomFont.ToString(), Path);
+			Win32.WritePrivateProfileString("Settings", "ShowHelperWindowOnStartup", ShowHelperWindowOnStartup.ToString(), SettingsPath);
+			Win32.WritePrivateProfileString("Settings", "LiveFilteringMode", LiveFilteringMode.ToString(), SettingsPath);
+			Win32.WritePrivateProfileString("Settings", "ShowIconsForEachNode", ShowIconsForEachNode.ToString(), SettingsPath);
+			Win32.WritePrivateProfileString("Settings", "UseCustomFont", UseCustomFont.ToString(), SettingsPath);
 
-			Win32.WritePrivateProfileString("Settings", "FontName", CustomFont.Name, Path);
-			Win32.WritePrivateProfileString("Settings", "FontSize", CustomFont.Size.ToString(), Path);
-			Win32.WritePrivateProfileString("Settings", "FontStyle", CustomFont.Style.ToString(), Path);
+			Win32.WritePrivateProfileString("Settings", "FontName", CustomFont.Name, SettingsPath);
+			Win32.WritePrivateProfileString("Settings", "FontSize", CustomFont.Size.ToString(), SettingsPath);
+			Win32.WritePrivateProfileString("Settings", "FontStyle", CustomFont.Style.ToString(), SettingsPath);
 		}
 	}
 }
