@@ -71,7 +71,7 @@ namespace Overgrowth_Scripting_Helper.NppPluginNET
 		internal static void SetToolBarIcon()
 		{
 			toolbarIcons tbIcons = new toolbarIcons();
-			tbIcons.hToolbarBmp = Properties.Resources.RabbitTransparent.GetHbitmap();
+			tbIcons.hToolbarBmp = Properties.Resources.RabbitTransparent16x16.GetHbitmap();
 			IntPtr pTbIcons = Marshal.AllocHGlobal(Marshal.SizeOf(tbIcons));
 			Marshal.StructureToPtr(tbIcons, pTbIcons, false);
 			Win32.SendMessage(PluginBase.nppData._nppHandle, (uint)NppMsg.NPPM_ADDTOOLBARICON, PluginBase._funcItems.Items[idMyDlg]._cmdID, pTbIcons);
@@ -90,7 +90,7 @@ namespace Overgrowth_Scripting_Helper.NppPluginNET
 				colorMap[0].NewColor = Color.FromKnownColor(KnownColor.ButtonFace);
 				ImageAttributes attr = new ImageAttributes();
 				attr.SetRemapTable(colorMap);
-				g.DrawImage(Properties.Resources.RabbitWhite, new Rectangle(0, 0, 16, 16), 0, 0, 16, 16, GraphicsUnit.Pixel, attr);
+				g.DrawImage(Properties.Resources.RabbitWhite16x16, new Rectangle(0, 0, 16, 16), 0, 0, 16, 16, GraphicsUnit.Pixel, attr);
 				tabIcon = Icon.FromHandle(newBmp.GetHicon());
 			}
 

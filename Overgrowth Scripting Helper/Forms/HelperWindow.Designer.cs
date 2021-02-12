@@ -30,11 +30,8 @@ namespace Overgrowth_Scripting_Helper
 		private void InitializeComponent()
 		{
 			this.label1 = new System.Windows.Forms.Label();
-			this.textBox1 = new System.Windows.Forms.TextBox();
-			this.tabControl1 = new System.Windows.Forms.TabControl();
-			this.tabPage1 = new System.Windows.Forms.TabPage();
-			this.tabPage2 = new System.Windows.Forms.TabPage();
-			this.tabControl1.SuspendLayout();
+			this.tbFilter = new System.Windows.Forms.TextBox();
+			this.tabScripts = new System.Windows.Forms.TabControl();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -46,59 +43,36 @@ namespace Overgrowth_Scripting_Helper
 			this.label1.TabIndex = 0;
 			this.label1.Text = "Filter:";
 			// 
-			// textBox1
+			// tbFilter
 			// 
-			this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.tbFilter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox1.Location = new System.Drawing.Point(33, 3);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(458, 20);
-			this.textBox1.TabIndex = 1;
+			this.tbFilter.Location = new System.Drawing.Point(33, 3);
+			this.tbFilter.Name = "tbFilter";
+			this.tbFilter.Size = new System.Drawing.Size(458, 20);
+			this.tbFilter.TabIndex = 1;
 			// 
-			// tabControl1
+			// tabScripts
 			// 
-			this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+			this.tabScripts.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.tabControl1.Controls.Add(this.tabPage1);
-			this.tabControl1.Controls.Add(this.tabPage2);
-			this.tabControl1.Location = new System.Drawing.Point(0, 26);
-			this.tabControl1.Name = "tabControl1";
-			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(495, 645);
-			this.tabControl1.TabIndex = 2;
-			// 
-			// tabPage1
-			// 
-			this.tabPage1.Location = new System.Drawing.Point(4, 22);
-			this.tabPage1.Name = "tabPage1";
-			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(487, 619);
-			this.tabPage1.TabIndex = 0;
-			this.tabPage1.Text = "tabPage1";
-			this.tabPage1.UseVisualStyleBackColor = true;
-			// 
-			// tabPage2
-			// 
-			this.tabPage2.Location = new System.Drawing.Point(4, 22);
-			this.tabPage2.Name = "tabPage2";
-			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage2.Size = new System.Drawing.Size(487, 616);
-			this.tabPage2.TabIndex = 1;
-			this.tabPage2.Text = "tabPage2";
-			this.tabPage2.UseVisualStyleBackColor = true;
+			this.tabScripts.Location = new System.Drawing.Point(0, 26);
+			this.tabScripts.Name = "tabScripts";
+			this.tabScripts.SelectedIndex = 0;
+			this.tabScripts.Size = new System.Drawing.Size(495, 645);
+			this.tabScripts.TabIndex = 2;
 			// 
 			// HelperWindow
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(495, 675);
-			this.Controls.Add(this.tabControl1);
-			this.Controls.Add(this.textBox1);
+			this.Controls.Add(this.tabScripts);
+			this.Controls.Add(this.tbFilter);
 			this.Controls.Add(this.label1);
 			this.Name = "HelperWindow";
 			this.Text = "Overgrowth Scripting Helper";
-			this.tabControl1.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -107,9 +81,7 @@ namespace Overgrowth_Scripting_Helper
 		#endregion
 
 		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.TextBox textBox1;
-		private System.Windows.Forms.TabControl tabControl1;
-		private System.Windows.Forms.TabPage tabPage1;
-		private System.Windows.Forms.TabPage tabPage2;
+		private System.Windows.Forms.TextBox tbFilter;
+		private System.Windows.Forms.TabControl tabScripts;
 	}
 }

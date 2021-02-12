@@ -127,7 +127,7 @@ namespace AsDocs2XML
 					foreach (ASParameter asParameter in asOverload.parameters)
 					{
 						XmlElement xmlParameter = xmlDocument.CreateElement("Parameter");
-						xmlParameter.InnerText = asParameter.value;
+						xmlParameter.SetAttribute("Value", asParameter.value);
 						xmlOverload.AppendChild(xmlParameter);
 					}
 				}

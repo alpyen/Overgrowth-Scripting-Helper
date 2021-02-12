@@ -63,9 +63,9 @@ namespace Overgrowth_Scripting_Helper.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap RabbitTransparent {
+        internal static System.Drawing.Bitmap Class16x16 {
             get {
-                object obj = ResourceManager.GetObject("RabbitTransparent", resourceCulture);
+                object obj = ResourceManager.GetObject("Class16x16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,79 @@ namespace Overgrowth_Scripting_Helper.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap RabbitWhite {
+        internal static System.Drawing.Bitmap Enumeration16x16 {
             get {
-                object obj = ResourceManager.GetObject("RabbitWhite", resourceCulture);
+                object obj = ResourceManager.GetObject("Enumeration16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Function16x16 {
+            get {
+                object obj = ResourceManager.GetObject("Function16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Group16x16 {
+            get {
+                object obj = ResourceManager.GetObject("Group16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Member16x16 {
+            get {
+                object obj = ResourceManager.GetObject("Member16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Overload16x16 {
+            get {
+                object obj = ResourceManager.GetObject("Overload16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap RabbitTransparent16x16 {
+            get {
+                object obj = ResourceManager.GetObject("RabbitTransparent16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap RabbitWhite16x16 {
+            get {
+                object obj = ResourceManager.GetObject("RabbitWhite16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Variable16x16 {
+            get {
+                object obj = ResourceManager.GetObject("Variable16x16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -23,7 +23,6 @@ ToDo-List:
 ##### Angelscript UDL
 
 ##### Helper Window
-- Showing Definitions in Tabs
 - Filtering definitions with a search term
 
 ##### Settings
@@ -40,7 +39,7 @@ ToDo-List:
 - Script Templates
   - missing some functions that were not listed on the documentation (like void Menu for Level)
 - Toggle Cheat Sheet
-- About
+- About (don't forget to credit silk icons)
 
 ##### Testing
 - Windows 10
