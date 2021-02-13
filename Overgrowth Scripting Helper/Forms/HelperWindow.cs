@@ -76,7 +76,7 @@ namespace Overgrowth_Scripting_Helper
 				{
 					TreeNode scriptElementTreeNode = new TreeNode(scriptElementNode.Name);
 					currentScriptTreeView.Nodes.Add(scriptElementTreeNode);
-					
+
 					// Iterate through the elements in the 2nd level
 					foreach (XmlNode childElementNode in scriptElementNode.ChildNodes)
 						this.CreateTreeNode(childElementNode, scriptElementTreeNode);
@@ -118,7 +118,7 @@ namespace Overgrowth_Scripting_Helper
 					break;
 
 				case "Overload":
-					currentText = currentNode.Attributes["Type"].Value + " " + currentNode.ParentNode.Attributes["Name"].Value;
+					currentText = currentNode.Attributes["Type"].Value + " " + (Config.ShowFunctionNameInOverloadSignatures ? currentNode.ParentNode.Attributes["Name"].Value : "");
 					currentText += "(";
 
 					// Don't forget to add the parameters!
@@ -219,6 +219,12 @@ namespace Overgrowth_Scripting_Helper
 
 			foreach (TreeNode treeNode in this.BackupNodes[scriptName])
 				treeView.Nodes.Add((TreeNode)treeNode.Clone());
+		}
+
+		public void SetTreeViewFonts(Font font)
+		{
+			foreach (TabPage tabPage in tabScripts.TabPages)
+				tabPage.Controls[0].Font = font;
 		}
 	}
 }

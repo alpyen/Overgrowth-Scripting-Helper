@@ -14,6 +14,7 @@ namespace Overgrowth_Scripting_Helper
 	{
 		public static string PluginName = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
 		public static string PluginVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString(3);
+		public static string PluginRepositoryURL = "https://github.com/alpyen/Overgrowth-Scripting-Helper";
 
 		public static string SettingsPath;
 		public static string DatabasePath;
@@ -21,6 +22,7 @@ namespace Overgrowth_Scripting_Helper
 
 		public static bool ShowHelperWindowOnStartup = false;
 		public static bool LiveFilteringMode = false;
+		public static bool ShowFunctionNameInOverloadSignatures = true;
 		public static bool ShowIconsForEachNode = true;
 		public static bool UseCustomFont = false;
 
@@ -35,6 +37,9 @@ namespace Overgrowth_Scripting_Helper
 
 			Win32.GetPrivateProfileString("Settings", "LiveFilteringMode", "False", readout, 20, SettingsPath);
 			LiveFilteringMode = readout.ToString() == "True";
+
+			Win32.GetPrivateProfileString("Settings", "ShowFunctionNameInOverloadSignatures", "True", readout, 20, SettingsPath);
+			ShowFunctionNameInOverloadSignatures = readout.ToString() == "True";
 
 			Win32.GetPrivateProfileString("Settings", "ShowIconsForEachNode", "True", readout, 20, SettingsPath);
 			ShowIconsForEachNode = readout.ToString() == "True";
@@ -67,6 +72,7 @@ namespace Overgrowth_Scripting_Helper
 		{
 			Win32.WritePrivateProfileString("Settings", "ShowHelperWindowOnStartup", ShowHelperWindowOnStartup.ToString(), SettingsPath);
 			Win32.WritePrivateProfileString("Settings", "LiveFilteringMode", LiveFilteringMode.ToString(), SettingsPath);
+			Win32.WritePrivateProfileString("Settings", "ShowFunctionNameInOverloadSignatures", ShowFunctionNameInOverloadSignatures.ToString(), SettingsPath);
 			Win32.WritePrivateProfileString("Settings", "ShowIconsForEachNode", ShowIconsForEachNode.ToString(), SettingsPath);
 			Win32.WritePrivateProfileString("Settings", "UseCustomFont", UseCustomFont.ToString(), SettingsPath);
 

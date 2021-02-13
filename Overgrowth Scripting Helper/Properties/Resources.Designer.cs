@@ -63,6 +63,16 @@ namespace Overgrowth_Scripting_Helper.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Background {
+            get {
+                object obj = ResourceManager.GetObject("Background", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Class16x16 {
             get {
                 object obj = ResourceManager.GetObject("Class16x16", resourceCulture);
@@ -137,6 +147,16 @@ namespace Overgrowth_Scripting_Helper.Properties {
             get {
                 object obj = ResourceManager.GetObject("RabbitWhite16x16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Icon ähnlich wie (Symbol).
+        /// </summary>
+        internal static System.Drawing.Icon Settings16x16 {
+            get {
+                object obj = ResourceManager.GetObject("Settings16x16", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
         

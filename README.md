@@ -25,13 +25,10 @@ ToDo-List:
 
 ##### Helper Window
 - (later?) Save every step while live filtering for faster reconstruction
+- Hide function name in overloads (needs bugfix, searching for "object" doesnt expand anymore to its children, because the keyword is missing) Create a second structure to store the actual full names? Then it should be easy to also hide parameter names if wanted
 
 ##### Settings
-- Design
-- Live filtering mode
-- Show icons for each node
-- Custom Font
-- Save on Button, Discard on Close
+- Design!! It looks awful now.
 
 ##### Cheat Sheet
 - Display root folders for various paths

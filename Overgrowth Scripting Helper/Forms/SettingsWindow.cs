@@ -11,9 +11,87 @@ namespace Overgrowth_Scripting_Helper
 {
 	public partial class SettingsWindow : Form
 	{
-		public SettingsWindow()
+		private HelperWindow helperWindow;
+
+		public SettingsWindow(HelperWindow helperWindow)
 		{
 			InitializeComponent();
+
+			// We keep a reference to the helper window around to change the font of the tree view
+			// while adjusting it, because this is much better than restarting
+			// every time after changing the font slightly.
+			this.helperWindow = helperWindow;
+
+			// Set the window title.
+			this.Text = Config.PluginName + " - Settings";
+
+			// Setting the transparency in the designer is not enough.
+			// Achieving transparency with a picturebox as a background requires setting the parent control.
+			List<Control> transparentControls = new List<Control>() {
+				cbShowHelperWindowOnStartup, cbLiveFilteringMode, cbShowFunctionNameInOverloadSignatures,
+				cbShowIconsForEachNode, cbUseCustomFont, lblGithubRepository, lblProgrammedBy, lblPluginName, btnChangeFont
+			};
+
+			foreach (Control control in transparentControls)
+			{
+				control.BackColor = Color.Transparent;
+				control.Parent = pbBackground;
+			}
+
+			// Load the settings into the checkboxes.
+			cbShowHelperWindowOnStartup.Checked = Config.ShowHelperWindowOnStartup;
+			cbLiveFilteringMode.Checked = Config.LiveFilteringMode;
+			cbShowFunctionNameInOverloadSignatures.Checked = Config.ShowFunctionNameInOverloadSignatures;
+			cbShowIconsForEachNode.Checked = Config.ShowIconsForEachNode;
+			cbUseCustomFont.Checked = Config.UseCustomFont;
+			cbUseCustomFont.Text = "Use Custom Font - " + Config.CustomFont.Name + ", " + Config.CustomFont.Size + ", " + Config.CustomFont.Style;
+		}
+
+		private void lblGithubRepository_MouseEnter(object sender, EventArgs e)
+		{
+			lblGithubRepository.ForeColor = Color.Aqua;
+		}
+
+		private void lblGithubRepository_MouseLeave(object sender, EventArgs e)
+		{
+			lblGithubRepository.ForeColor = Color.White;
+		}
+
+		private void lblGithubRepository_MouseClick(object sender, MouseEventArgs e)
+		{
+			System.Diagnostics.Process.Start(Config.PluginRepositoryURL);
+		}
+
+		private void SettingsWindow_FormClosed(object sender, FormClosedEventArgs e)
+		{
+			Config.ShowHelperWindowOnStartup = cbShowHelperWindowOnStartup.Checked;
+			Config.LiveFilteringMode = cbLiveFilteringMode.Checked;
+			Config.ShowFunctionNameInOverloadSignatures = cbShowFunctionNameInOverloadSignatures.Checked;
+			Config.ShowIconsForEachNode = cbShowHelperWindowOnStartup.Checked;
+			Config.UseCustomFont = cbUseCustomFont.Checked;
+			// Saved when adjusting the font.
+			// Config.CustomFont = fontDialog.Font;
+
+			Config.Save();
+		}
+
+		private void btnChangeFont_Click(object sender, EventArgs e)
+		{
+			fontDialog.Font = Config.CustomFont;
+
+			if (fontDialog.ShowDialog() == DialogResult.OK)
+			{
+				Config.CustomFont = fontDialog.Font;
+
+				cbUseCustomFont.Text = "Use Custom Font - " + Config.CustomFont.Name + ", " + Config.CustomFont.Size + ", " + Config.CustomFont.Style;
+				helperWindow.SetTreeViewFonts(cbUseCustomFont.Checked ? Config.CustomFont : SystemFonts.DefaultFont);
+			}
+
+		}
+
+		private void cbUseCustomFont_CheckedChanged(object sender, EventArgs e)
+		{
+			helperWindow.SetTreeViewFonts(cbUseCustomFont.Checked ? Config.CustomFont : SystemFonts.DefaultFont);
 		}
 	}
 }

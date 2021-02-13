@@ -40,8 +40,8 @@ namespace Overgrowth_Scripting_Helper.NppPluginNET
 			Config.Load();
 
 			// Initialize the windows and the window icons.
-			settingsWindow = new SettingsWindow();
 			helperWindow = new HelperWindow();
+			settingsWindow = new SettingsWindow(helperWindow);
 
 			// We do not call ToggleHelperWindow here because we have to wait until NPPN_READY is sent,
 			// otherwise the window will show up, but the toolbar icon will not be pushed down.
