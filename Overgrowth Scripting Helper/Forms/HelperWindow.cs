@@ -77,6 +77,11 @@ namespace Overgrowth_Scripting_Helper
 					TreeNode scriptElementTreeNode = new TreeNode(scriptElementNode.Name);
 					currentScriptTreeView.Nodes.Add(scriptElementTreeNode);
 
+					// Attach the corresponding XmlNode to the TreeNode as the Tag. Why?
+					// Because when the user selects the option to hide information from the tree node texts
+					// like hide function names in overload signatures, we will expand/search/remove wrong elements!
+					scriptElementTreeNode.Tag = scriptElementNode.Name;
+
 					// Iterate through the elements in the 2nd level
 					foreach (XmlNode childElementNode in scriptElementNode.ChildNodes)
 						this.CreateTreeNode(childElementNode, scriptElementTreeNode);
@@ -92,7 +97,8 @@ namespace Overgrowth_Scripting_Helper
 
 		void CreateTreeNode(XmlNode currentNode, TreeNode parentTreeNode)
 		{
-			string currentText = "";
+			string currentText = ""; // Used for displaying.
+			string fullText = ""; // Used for searching.
 			
 			switch (currentNode.Name)
 			{
@@ -101,43 +107,60 @@ namespace Overgrowth_Scripting_Helper
 				case "Functions":
 				case "Variables":
 					currentText = currentNode.Name;
+					fullText = currentText;
 					break;
 
 				case "Class":
 				case "Enumeration":
 				case "Function":
 					currentText = currentNode.Attributes["Name"].Value;
+					fullText = currentText;
 					break;
 
 				case "Member":
 					currentText = currentNode.Attributes["Name"].Value + " = " + currentNode.Attributes["Value"].Value;
+					fullText = currentText;
 					break;
 
 				case "Variable":
 					currentText = currentNode.Attributes["Type"].Value + " " + currentNode.Attributes["Name"].Value;
+					fullText = currentText;
 					break;
 
 				case "Overload":
 					currentText = currentNode.Attributes["Type"].Value + " " + (Config.ShowFunctionNameInOverloadSignatures ? currentNode.ParentNode.Attributes["Name"].Value : "");
-					currentText += "(";
+					fullText = currentNode.Attributes["Type"].Value + " " + currentNode.ParentNode.Attributes["Name"].Value;
+
+					string parameters = "(";
 
 					// Don't forget to add the parameters!
 					for (int i = 0; i < currentNode.ChildNodes.Count; i++)
 					{
-						currentText += currentNode.ChildNodes[i].Attributes["Value"].Value;
-						if (i < currentNode.ChildNodes.Count - 1) currentText += ", ";
+						parameters += currentNode.ChildNodes[i].Attributes["Value"].Value;
+						if (i < currentNode.ChildNodes.Count - 1) parameters += ", ";
 					}
 
-					currentText += ")";
-					if (currentNode.Attributes["Const"].Value == "True") currentText += " const";
+					parameters += ")";
+
+					currentText += parameters;
+					fullText += parameters;
+
+					if (currentNode.Attributes["Const"].Value == "True")
+					{
+						currentText += " const";
+						fullText += " const";
+					}
+
 					break;
 
 				case "Parameter":
 					currentText = currentNode.Attributes["Value"].Value;
+					fullText = currentText;
 					break;
 			}
 
 			TreeNode currentTreeNode = new TreeNode(currentText);
+			currentTreeNode.Tag = fullText.ToLower();
 			currentTreeNode.ImageKey = currentNode.Name;
 			currentTreeNode.SelectedImageKey = currentNode.Name;
 
@@ -188,7 +211,7 @@ namespace Overgrowth_Scripting_Helper
 			{
 				for (int i = treeView.Nodes.Count - 1; i >= 0; i--)
 				{
-					bool childWillSurvive = treeView.Nodes[i].Text.ToLower().Contains(filterText);
+					bool childWillSurvive = ((string)treeView.Nodes[i].Tag).Contains(filterText);
 
 					FilterTreeNode(treeView.Nodes[i], filterText, childWillSurvive);
 				}
@@ -200,7 +223,7 @@ namespace Overgrowth_Scripting_Helper
 
 		private bool FilterTreeNode(TreeNode treeNode, string filterText, bool nodeWillSurvive)
 		{
-			bool keepNodeAlive = treeNode.Text.ToLower().Contains(filterText);
+			bool keepNodeAlive = ((string)treeNode.Tag).Contains(filterText);
 			bool childWillSurvive = keepNodeAlive | nodeWillSurvive;
 
 			for (int i = treeNode.Nodes.Count - 1; i >= 0; i--)
