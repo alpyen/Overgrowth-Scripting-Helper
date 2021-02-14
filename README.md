@@ -8,6 +8,15 @@ ToDo-List:
 - Requirements
   - NetFX 4
 - How to download and install
+  - head over to releases
+  - download the latest zip (32/64bit matters to notepad++)
+  - copy the "plugins" folder into the notepad++ root folder (C:\Program Files\Notepad++\ on 64bit) (C:\Program Files (x86)\Notepad++\ on 32bit)
+    - there is/mightbe already a plugins folder, just merge the contents (out of convenience)
+  - run notepad++ the plugin should be visible in the plugins menu (Overgrowth Scripting Helper) and there should be a rabbit button in the menu bar
+  - install the UDL (angelscript language definition) by going navigating through the menu: Lanugages > User Defined Languages > Open folder with user defined language
+  - paste the Angelscript UDL.xml in the folder and restart notepad++
+  - Notepad++ should now autodetect .as files correctly and use the added UDL. If it doesn't select Angelscript manually in the Languages menu.
+  - If the languages resets to Actionscript (because they share the same extension, you can disable the other language by Settings > Options > Languages and then shifting it from the left to the right.
 - How to develop
   - autoComplete & plugins folder needs to be set writable if you don't want to start VS as admin (or use a portable n++ installation and adjust the build/copy paths). this is done to automatically move the angelscript.xml (calltips) and the database.xml into the notepad++ directory. the dll is moved by the targets file in the PluginInfrastructure/DllExport folder. Make sure that you ran AsDocs2XML and generated these files before you try to run the plugin.
   - Solution of AsDocs2XML has the corrected docs for Overgrowth 1.4 passed as command line arguments
@@ -20,6 +29,7 @@ ToDo-List:
 
 ##### AsDocs2XML
 - (later?) Expand parsing to parse .as files rather than .h, this way we could parse the files from the Data\Scripts directory. But only do this when the classes are actually available in other scripts.
+- Supported scripts references the scripts from the function, not from the overload, void Update(int is_paused) is not available in Hotspot-Scripts.
 
 ##### Angelscript UDL
 
@@ -35,6 +45,7 @@ ToDo-List:
 ##### Plugins Menu
 - Script Templates
   - missing some functions that were not listed on the documentation (like void Menu for Level)
+  - (later?) Scriptable Campaign, Scriptable UI?
 
 ##### Testing
 - Windows 10

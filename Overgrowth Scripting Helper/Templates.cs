@@ -229,12 +229,62 @@ void Update()
 	
 }
 
+void LaunchCustomGUI()
+{
+	
+}
+
+bool ObjectInspectorReadOnly()
+{
+	return false;
+}
+
+void PostScriptReload()
+{
+	
+}
+
 void HandleEvent(string event, MovementObject @mo)
 {
 	
 }
 
 void HandleEventItem(string event, ItemObject @obj)
+{
+	
+}
+
+bool AcceptConnectionsFrom(ConnectionType type)
+{
+	return false;
+}
+
+bool AcceptConnectionsFrom(Object@ other)
+{
+	return false;
+}
+
+bool AcceptConnectionsTo(Object@ other)
+{
+	return false;
+}
+
+void ConnectedFrom(Object@ other)
+{
+	
+}
+
+bool ConnectTo(Object@ other)
+{
+	return false;
+}
+
+bool Disconnect(Object@ other)
+{
+	return false;
+}
+
+void DiconnectedFrom(Object@ other)
 {
 	
 }
@@ -283,12 +333,12 @@ void ReceiveMessage(string message)
 	
 }
 
-void HotspotExit(string str, MovementObject @mo)
+void HotspotEnter(string str, MovementObject @mo)
 {
 	
 }
 
-void HotspotEnter(string str, MovementObject @mo)
+void HotspotExit(string str, MovementObject @mo)
 {
 	
 }
@@ -296,6 +346,11 @@ void HotspotEnter(string str, MovementObject @mo)
 void DrawGUI()
 {
 	
+}
+
+bool DialogueCameraControl()
+{
+	return false;
 }
 
 bool HasFocus()
@@ -333,9 +388,14 @@ void DrawGUI3()
 	
 }
 
-bool DialogueCameraControl()
+void Menu()
 {
-	return false;
+	
+}
+
+void PostScriptReload()
+{
+	
 }
 ";
 	}
