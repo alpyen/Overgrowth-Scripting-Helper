@@ -131,6 +131,16 @@ namespace Overgrowth_Scripting_Helper.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Icon ähnlich wie (Symbol).
+        /// </summary>
+        internal static System.Drawing.Icon Rabbit16x16 {
+            get {
+                object obj = ResourceManager.GetObject("Rabbit16x16", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap RabbitTransparent16x16 {

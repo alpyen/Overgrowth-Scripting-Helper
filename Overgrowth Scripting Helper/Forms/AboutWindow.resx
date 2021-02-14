@@ -117,41 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Background" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Background.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="lblText.Text" xml:space="preserve">
+    <value>Thank you for using this plugin!
+
+
+If you have any feedback or bug reports, then let me know via GitHub or
+contact me directly per email: alpines [♥] ag.systems [♥] → @
+
+
+Some icons have been used (and modified) from the 'Silk Icon Set 1.3' by Mark James.
+https://www.famfamfam.com/lab/icons/silk/ Check them out, they are pretty neat!</value>
   </data>
-  <data name="Class16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Class16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Enumeration16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Enumeration16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Function16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Function16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Group16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Group16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Member16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Member16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Overload16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Overload16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Rabbit16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Rabbit16x16.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="RabbitTransparent16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\RabbitTransparent16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="RabbitWhite16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\RabbitWhite16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Settings16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Settings16x16.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Variable16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Variable16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAD+/v4A/v7+AAAAAAAAAAAAAAAAAJGRkQShoaEwrbKxV6a3tY5bZ2SgaW1sHgAAAAAAAAAAAAAAABYh
+        HQANFBMC/v7+AAAAAAAAAAAAAAAAACIiIgG9vr4sztLRsrjIxsdtg3/cBAcGmAgMCwcAAAAAAAAAAAAA
+        AAAaJyAAEh0XAAEBAQAPDw8AAAAAAB4eHgC3uLgvvcDAkcbLy67DzcvJUWBb5QEDAnwAAAAHAAAABQAA
+        AAEAAAAAAAAAAAAAAAAPDw8AXV1dAPX19QCtr68Ty9LSn7zLyr62vLyfm7a0xFdqZuAOFRSsHCUkeyQt
+        LIsBAwMsAAAAAwAAAAAAAAAAAAAAABAQEADR0dEAsczJT6i/va25yMe5tbu6pZayr8upubbQe5OQzoye
+        ndCUnpzUJi8tqQABAAoAAAAAAAAAAAAAAABDQ0MAAwYFAH6WklmEl5TPdoaC1rC+vby0ysfIuczKyo+w
+        r8mEnZvUj52b0SIrKIIAAAADAAAAAAAAAAAAAAAAEBAQAA0bFwAbJCJtHCQj6XiMh+DBzszJtcjFymV1
+        ct46SUjUKTUzyCs2NMcGCgkbAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAxQbGqNoenXkrcO+z5eo
+        pNUmLy7YHCQj7B8nJtQNExJMAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFCAdiQk9M6XmR
+        i9xhc2/jKTIxyx4nJtgOFRSJDBMTCAAAAABfX18A////AP///wAABwYAAAAAAAAAAAAAAAAAAAEBGCYv
+        LcFtgXvgNkI/6Cs1M8EIDQxeAAEBBwAAAAAAAAAA/v7+AP///wD///8AAAIBAQAAAAAAAAAAAAAAAAAA
+        AAATGhlHant321FeWtIAAAA0AAAAAQAAAAD+/v4A/v7+AAAAAAAAAAAAAAAAAAAAAQEAAAAAAAAAAAAA
+        AAAAAAAABAgIBzM9O5twg3/eCQ4NlgAAAA4AAAAA////AGFhYQAAAAAAAAAAAP///wAAAwMAAAMDAAAA
+        AAAAAAAAAAAAAAAAAAAJDw4sSVhVzUNRTuIAAAE/AAAAAf///wAAAAAAAAAAAP///wD///8AAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAQICABoiIWNfcGzjAwUEbAEBAQL///8A/v//AP///wD///8A////AAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHCwsIOkVCuxAWFYoEBAQE////APj//wD///8AAAAAAAAA
+        AAAAAAAAAAUFAAABAQAAAAAAAAAAAAAAAAAAAAAAAAEBABAXFiwMEhFrAAAAAwAAAAAAAAAAAAAAAAAA
+        AAAODg4A+B4AAPAfAADwBwAA4AMAAOADAADgAwAA4AcAAOAHAADwDwAA8B8AAHg/AAB4PwAA/B8AAP4f
+        AAD+HwAA/x8AAA==
+</value>
   </data>
 </root>

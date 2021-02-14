@@ -27,7 +27,6 @@ ToDo-List:
 - (later?) Save every step while live filtering for faster reconstruction
 
 ##### Settings
-- Design!! It looks awful now.
 
 ##### Cheat Sheet
 - Display root folders for various paths
@@ -36,7 +35,6 @@ ToDo-List:
 - Script Templates
   - missing some functions that were not listed on the documentation (like void Menu for Level)
 - Toggle Cheat Sheet
-- About (don't forget to credit silk icons)
 
 ##### Testing
 - Windows 10

@@ -28,14 +28,15 @@ namespace Overgrowth_Scripting_Helper
 			// Setting the transparency in the designer is not enough.
 			// Achieving transparency with a picturebox as a background requires setting the parent control.
 			List<Control> transparentControls = new List<Control>() {
+				groupGeneral, groupAppearance,
 				cbShowHelperWindowOnStartup, cbLiveFilteringMode, cbShowFunctionNameInOverloadSignatures,
-				cbShowIconsForEachNode, cbUseCustomFont, lblGithubRepository, lblProgrammedBy, lblPluginName, btnChangeFont
-			};
+				cbShowIconsForEachNode, cbUseCustomFont, btnChangeFont,
+			};	
 
 			foreach (Control control in transparentControls)
 			{
 				control.BackColor = Color.Transparent;
-				control.Parent = pbBackground;
+				if (!(control.Parent is GroupBox)) control.Parent = pbBackground;
 			}
 
 			// Load the settings into the checkboxes.
@@ -47,27 +48,12 @@ namespace Overgrowth_Scripting_Helper
 			cbUseCustomFont.Text = "Use Custom Font - " + Config.CustomFont.Name + ", " + Config.CustomFont.Size + ", " + Config.CustomFont.Style;
 		}
 
-		private void lblGithubRepository_MouseEnter(object sender, EventArgs e)
-		{
-			lblGithubRepository.ForeColor = Color.Aqua;
-		}
-
-		private void lblGithubRepository_MouseLeave(object sender, EventArgs e)
-		{
-			lblGithubRepository.ForeColor = Color.White;
-		}
-
-		private void lblGithubRepository_MouseClick(object sender, MouseEventArgs e)
-		{
-			System.Diagnostics.Process.Start(Config.PluginRepositoryURL);
-		}
-
 		private void SettingsWindow_FormClosed(object sender, FormClosedEventArgs e)
 		{
 			Config.ShowHelperWindowOnStartup = cbShowHelperWindowOnStartup.Checked;
 			Config.LiveFilteringMode = cbLiveFilteringMode.Checked;
 			Config.ShowFunctionNameInOverloadSignatures = cbShowFunctionNameInOverloadSignatures.Checked;
-			Config.ShowIconsForEachNode = cbShowHelperWindowOnStartup.Checked;
+			Config.ShowIconsForEachNode = cbShowIconsForEachNode.Checked;
 			Config.UseCustomFont = cbUseCustomFont.Checked;
 			// Saved when adjusting the font.
 			// Config.CustomFont = fontDialog.Font;
