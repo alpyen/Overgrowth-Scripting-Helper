@@ -15,6 +15,7 @@ namespace Overgrowth_Scripting_Helper.NppPluginNET
 		static SettingsWindow settingsWindow = null;
 		static HelperWindow helperWindow = null;
 		static AboutWindow aboutWindow = null;
+		static CheatSheetWindow cheatSheetWindow = null;
 
 		static Icon tabIcon = null;
 		static int idMyDlg = 0;
@@ -44,6 +45,7 @@ namespace Overgrowth_Scripting_Helper.NppPluginNET
 			helperWindow = new HelperWindow();
 			settingsWindow = new SettingsWindow(helperWindow);
 			aboutWindow = new AboutWindow();
+			cheatSheetWindow = new CheatSheetWindow();
 
 			// We do not call ToggleHelperWindow here because we have to wait until NPPN_READY is sent,
 			// otherwise the window will show up, but the toolbar icon will not be pushed down.
@@ -130,7 +132,17 @@ namespace Overgrowth_Scripting_Helper.NppPluginNET
 
 		internal static void ToggleCheatSheetWindow()
 		{
-			// TODO: ToggleCheatSheetWindow
+			if (!cheatSheetWindow.Visible)
+			{
+				cheatSheetWindow.Show();
+
+				// We do not to reshow the window minimized (if it was minimized), therefore we remove the minimized flag.
+				cheatSheetWindow.WindowState &= ~FormWindowState.Minimized;					
+			}
+			else
+			{
+				cheatSheetWindow.Hide();
+			}
 		}
 
 		internal static void InsertCameraTemplate() { sgEditor.InsertText(-1, Templates.CameraScript); }

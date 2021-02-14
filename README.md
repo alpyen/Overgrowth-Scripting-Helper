@@ -27,14 +27,14 @@ ToDo-List:
 - (later?) Save every step while live filtering for faster reconstruction
 
 ##### Settings
+- (later?) Set windows ontoppable
 
 ##### Cheat Sheet
-- Display root folders for various paths
+- (later?) StartLocation.CenterParent from Main.cs (need to get the location and size of the notepad++ window)
 
 ##### Plugins Menu
 - Script Templates
   - missing some functions that were not listed on the documentation (like void Menu for Level)
-- Toggle Cheat Sheet
 
 ##### Testing
 - Windows 10

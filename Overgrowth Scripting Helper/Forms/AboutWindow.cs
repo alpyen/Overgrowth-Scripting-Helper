@@ -19,11 +19,12 @@ namespace Overgrowth_Scripting_Helper
 			this.Text = "About " + Config.PluginName;
 
 			lblPluginName.Text = Config.PluginName + " " + Config.PluginVersion;
+			lblCompiledForOvergrowth.Text = "compiled for Overgrowth " + Config.CompiledForOvergrowthVersion;
 
 			// Setting the transparency in the designer is not enough.
 			// Achieving transparency with a picturebox as a background requires setting the parent control.
 			List<Control> transparentControls = new List<Control>() {
-				groupText, lblPluginName, lblProgrammedBy, lblGithubRepository, lblText
+				groupText, lblPluginName, lblCompiledForOvergrowth, lblProgrammedBy, lblGithubRepository, lblText
 			};
 
 			foreach (Control control in transparentControls)
@@ -47,6 +48,5 @@ namespace Overgrowth_Scripting_Helper
 		{
 			System.Diagnostics.Process.Start(Config.PluginRepositoryURL);
 		}
-
 	}
 }

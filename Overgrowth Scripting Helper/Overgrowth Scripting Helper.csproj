@@ -68,6 +68,12 @@
     <Compile Include="Forms\AboutWindow.Designer.cs">
       <DependentUpon>AboutWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\CheatSheetWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CheatSheetWindow.Designer.cs">
+      <DependentUpon>CheatSheetWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\HelperWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -108,6 +114,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Forms\AboutWindow.resx">
       <DependentUpon>AboutWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CheatSheetWindow.resx">
+      <DependentUpon>CheatSheetWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\HelperWindow.resx">
       <DependentUpon>HelperWindow.cs</DependentUpon>

@@ -16,6 +16,8 @@ namespace Overgrowth_Scripting_Helper
 		public static string PluginVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString(3);
 		public static string PluginRepositoryURL = "https://github.com/alpyen/Overgrowth-Scripting-Helper";
 
+		public static string CompiledForOvergrowthVersion = "1.4";
+
 		public static string SettingsPath;
 		public static string DatabasePath;
 		public static XmlDocument DatabaseXml;
