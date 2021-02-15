@@ -136,7 +136,10 @@ namespace Overgrowth_Scripting_Helper
 					// Don't forget to add the parameters!
 					for (int i = 0; i < currentNode.ChildNodes.Count; i++)
 					{
-						parameters += currentNode.ChildNodes[i].Attributes["Value"].Value;
+						parameters += currentNode.ChildNodes[i].Attributes["Type"].Value;
+						if (currentNode.ChildNodes[i].Attributes["Name"].Value != "") parameters += " " + currentNode.ChildNodes[i].Attributes["Name"].Value;
+						if (currentNode.ChildNodes[i].Attributes["Value"].Value != "") parameters += " = " + currentNode.ChildNodes[i].Attributes["Value"].Value;
+
 						if (i < currentNode.ChildNodes.Count - 1) parameters += ", ";
 					}
 
@@ -154,7 +157,10 @@ namespace Overgrowth_Scripting_Helper
 					break;
 
 				case "Parameter":
-					currentText = currentNode.Attributes["Value"].Value;
+					currentText = currentNode.Attributes["Type"].Value;
+					if (currentNode.Attributes["Name"].Value != "") currentText += " " + currentNode.Attributes["Name"].Value;
+					if (currentNode.Attributes["Value"].Value != "") currentText += " = " + currentNode.Attributes["Value"].Value;
+
 					fullText = currentText;
 					break;
 			}

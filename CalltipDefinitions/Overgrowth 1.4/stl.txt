@@ -44,7 +44,7 @@ class string {
 	void resize(uint) const;
 	bool isEmpty() const;
 
-	string substr(uint start = 0, int count = - 1) const;
+	string substr(uint start = 0, int count = -1) const;
 
 	void insert(uint pos, const string &in other);
 	void erase(uint pos, int count = -1);
@@ -52,12 +52,12 @@ class string {
 	string[]@ split(const string&in) const; // enabled from StdStringUtils (also requires ScriptArray)
 
 	int findFirst(const string&in, uint start = 0) const;
-	int findLast(const string&in, int start = - 1) const;
+	int findLast(const string&in, int start = -1) const;
 
 	int findFirstOf(const string&in, int start = 0) const;
 	int findFirstNotOf(const string&in, int start = 0) const;
-	int findLastOf(const string&in, int start = - 1) const;
-	int findLastNotOf(const string&in, int start = - 1) const; // bugged in OG1.4 AS2.32.0, was fixed in AS2.33.0
+	int findLastOf(const string&in, int start = -1) const;
+	int findLastNotOf(const string&in, int start = -1) const; // bugged in OG1.4 AS2.32.0, was fixed in AS2.33.0
 };
 
 // Functions
@@ -107,7 +107,7 @@ class array<T> {
 	void sortDesc();
 	void sortDesc(uint startAt, uint count);
 
-	void sort(less&in, uint startAt = 0, uint count = uint( - 1 ));
+	void sort(less&in, uint startAt = 0, uint count = uint(-1));
 
 	int find(const T&in value);
 	int find(uint startAt, const T&in value);

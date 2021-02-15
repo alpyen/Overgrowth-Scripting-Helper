@@ -29,9 +29,9 @@ ToDo-List:
 
 ##### AsDocs2XML
 - (later?) Expand parsing to parse .as files rather than .h, this way we could parse the files from the Data\Scripts directory. But only do this when the classes are actually available in other scripts.
-- Supported scripts references the scripts from the function, not from the overload, void Update(int is_paused) is not available in Hotspot-Scripts.
 
 ##### Angelscript UDL
+- Bug? There are no curly braces in the UDL.
 
 ##### Helper Window
 - (later?) Save every step while live filtering for faster reconstruction
@@ -44,7 +44,6 @@ ToDo-List:
 
 ##### Plugins Menu
 - Script Templates
-  - missing some functions that were not listed on the documentation (like void Menu for Level)
   - (later?) Scriptable Campaign, Scriptable UI?
 
 ##### Testing

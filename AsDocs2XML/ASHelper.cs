@@ -126,7 +126,9 @@ namespace AsDocs2XML
 					foreach (ASParameter asParameter in asOverload.parameters)
 					{
 						XmlElement xmlParameter = xmlDocument.CreateElement("Parameter");
-						xmlParameter.SetAttribute("Value", asParameter.value);
+						xmlParameter.SetAttribute("Type", asParameter.type);
+						xmlParameter.SetAttribute("Name", asParameter.name);
+						xmlParameter.SetAttribute("Value", asParameter.defaultValue);
 						xmlOverload.AppendChild(xmlParameter);
 					}
 				}
@@ -148,7 +150,6 @@ namespace AsDocs2XML
 			for (int lineIndex = 0; lineIndex < script.Length; lineIndex++)
 			{
 				LineType lineType = GetLineType(script[lineIndex]);
-				// Console.WriteLine("[" + (lineIndex + 1) + ", " + lineType + "] = " + script[lineIndex] + "");
 
 				switch (lineType)
 				{
@@ -205,8 +206,6 @@ namespace AsDocs2XML
 
 			while (lineType != LineType.ScopeEnding)
 			{
-				// Console.WriteLine("[" + (lineIndex + 1) + ", " + lineType + "] = " + script[lineIndex] + "");
-
 				switch (lineType)
 				{
 					case LineType.Unknown: break;
@@ -277,18 +276,6 @@ namespace AsDocs2XML
 
 		private static ASOverload ParseOverload(string[] script, ref int lineIndex)
 		{
-			/*
-			 *  void RibbonItemSetEnabled(const string &in, bool);
-			 *  const vec3 opMul(const vec3 &in) const;
-			 *  const string &GetString (const string &in key);
-			 *  const float &opIndex(uint) const;
-			 *  JSON& opAssign(const JSON &in other);
-			 *  
-			 *  const string &GetString (const string &in key);
-			 *  const string &GetString (const string &in key, const string &out bla);
-			 *  bool ImGui_Begin(const string &in name, bool &inout is_open, int flags = 0); // bool ImGui_Begin(const string &in name, bool &inout is_open, ImGuiWindowFlags flags = 0)
-			 *  bool ImGui_BeginChild(const string &in str_id, const vec2 &in size = vec2(0,0), bool border = false, int extra_flags = 0); // bool ImGui_BeginChild(const string &in str_id, const vec2 &in size = vec2(0,0), bool border = false, ImGuiWindowFlags extra_flags = 0)
-			 */
 			Match matchFunction = rxFunction.Match(script[lineIndex]);
 
 			string returnType;
@@ -317,54 +304,198 @@ namespace AsDocs2XML
 		{
 			List<ASParameter> asParameters = new List<ASParameter>();
 
-			// Don't parse if there are no parameters.
-			if (parameters.Replace(" ", "") == "") return asParameters;
+			// Parsing parameters to distinguish between their type, name and defaultValue is a hard thing to do.
+			// Explaining this is kinda complicated, basically we are going through the parameters
+			// and checking if we are in a string or not (to determine the actual function parameters)
+			// and then checking if the parameters have default values and names.
 
-			// Since parameters can have defaultValues which might contain commas we can't simply split by a comma.
-			// We need to split it by checking if the comma is inside a bracket, if it is, we don't split at that particular index.
+			// Sadly this impacts parsing speed, because this is probably not the fastest routine.
 
-			int bracketLevel = 0;
+			// Don't parse if there are no parameters, and don't make special cases for void as the sole parameter.
+			if (parameters.Replace(" ", "") == "" || parameters.Replace(" ", "").ToLower() == "void") return asParameters;
+
+			// < > [ ] ( ) { } " " ' '
+			int angleBracketLevel = 0;
+			int arrayBracketLevel = 0;
+			int normalBracketLevel = 0;
+			int curlyBracketLevel = 0;
+
+			bool inString = false;
+			string stringStyle = "";
+
 			int lastPos = 0;
 
 			for (int i = 0; i < parameters.Length; i++)
 			{
-				if (parameters.Substring(i, 1) == "(")
+				string currentChar = parameters.Substring(i, 1);
+
+				if (currentChar == "\"" || currentChar == "'")
 				{
-					bracketLevel++;
-				}
-				else if (parameters.Substring(i, 1) == ")")
-				{
-					bracketLevel--;
+					if (inString)
+					{
+						// If we are in a string and read a non-escaped string mark which is equal
+						// to the string style, then we have to leave the string.
+						// No explicit bound checking, because no parameter begins with a " or '
+						if (currentChar == stringStyle && parameters.Substring(i - 1, 1) != "\\")
+						{
+							inString = false;
+						}
+					}
+					else // !inString
+					{
+						inString = true;
+						stringStyle = currentChar;
+					}
 				}
 
-				if (parameters.Substring(i, 1) == "," || i == parameters.Length - 1)
-				{
-					if (bracketLevel != 0) continue; // Check if we are inside brackets
+				// Since we are in a string, we don't to check for the other conditions.
+				if (inString) continue;
 
+				switch (currentChar)
+				{
+					case "<": angleBracketLevel++; break;
+					case ">": angleBracketLevel--; break;
+
+					case "[": arrayBracketLevel++; break;
+					case "]": arrayBracketLevel--; break;
+
+					case "(": normalBracketLevel++; break;
+					case ")": normalBracketLevel--; break;
+
+					case "{": curlyBracketLevel++; break;
+					case "}": curlyBracketLevel--; break;
+				}
+
+				// I know we can't theoretically drop below 0 but this check shows what's going on.
+				bool bracketLevelZero = angleBracketLevel == 0 && arrayBracketLevel == 0 && normalBracketLevel == 0 && curlyBracketLevel == 0;
+
+				if (bracketLevelZero && (currentChar == "," || i == parameters.Length - 1))
+				{
 					string currentParameter = parameters.Substring(lastPos, i - lastPos + (i == parameters.Length - 1 ? 1 : 0));
 					lastPos = i + 1;
 
-					Match matchParameter = rxParameter.Match(currentParameter);
+					// Split the parameter by the delimeter =.
 
-					// We are not parsing each element of the parameter because that would just take way too much time to write a parser for that.
-					// Just clean it up (remove unnecessary spaces, move the ampersands around) and insert it completely.
+					// If it splits atleast once, it means there is a default value.
+					// Which means that [0] is the type + name (because they can't have an equal sign)
+					// and [1] - [n-1] is the defaultValue.
 
-					// Replacing it like this will modify strings which will make the default value invalid.
-					// But the files have no strings with that would be affected by it, so whatever. The extra effort is not worth it.
+					string[] splitParameter = currentParameter.Split('=');
 
-					string value = matchParameter.Groups[1].Value;
+					string typeAndName;
+
+					string type;
+					string name;
+					string defaultValue = "";
+
+					if (splitParameter.Length == 1) // No = found.
+					{
+						typeAndName = currentParameter;
+					}
+					else
+					{
+						typeAndName = splitParameter[0];
+						defaultValue = string.Join("", splitParameter, 1, splitParameter.Length - 1);
+					}
+
+					// Remove beginning and trailing whitespaces.
+					typeAndName = rxParameter.Match(typeAndName).Groups[1].Value;
+					defaultValue = rxParameter.Match(defaultValue).Groups[1].Value;
+
+					// Clean up the parameter because this is allowed (cleaning up the defaultValue might alter it)
+					// and because we need to check for the possible missing identifier later.
 
 					do
 					{
-						value = value.Replace("  ", " ");
-					} while (value.Contains("  "));
+						typeAndName = typeAndName.Replace("  ", " ");
+					} while (typeAndName.Contains("  "));
 
-					value = value.Replace("- ", "-");
-					value = value.Replace("( ", "(").Replace(" )", ")");
-					value = value.Replace(" &", "& ").Replace(" @", "@ ");
-					value = value.Replace("&in", "& in").Replace("&out", "& out"); // Also gets &inout -> & inout
+					typeAndName = typeAndName.Replace(" &", "& ").Replace(" @", "@ ");
+					typeAndName = typeAndName.Replace("&in", "& in").Replace("&out", "& out"); // Also gets &inout -> & inout
 
-					ASParameter asParameter = new ASParameter(value);
+					// Determine if typeAndName contains an identifier (name).
+					// Split by whitespaces, if it doesn't split, it doesnt contain an identifier.
+					// If it splits, check the last index, replace "&"and"@" with "", if it matches "in" "out" "inout" "const" or any reserved keyword (type) then it doesnt have an identifier
+
+					string[] splitName = typeAndName.Split(' ');
+
+					if (splitName.Length == 1) // Couldn't split.
+					{
+						type = typeAndName;
+						name = "";
+					}
+					else
+					{
+						string possibleIdentifier = splitName[splitName.Length - 1];
+
+						string[] typeOperators = new string[] { "&", "@", "<", ">", "?" };
+						bool containsOperator = false;
+
+						foreach (string typeOperator in typeOperators)
+						{
+							if (possibleIdentifier.Contains(typeOperator))
+							{
+								containsOperator = true;
+								break;
+							}
+						}
+
+						if (containsOperator) // -> possibleIdentifier is not an identifier, it is a type
+						{
+							type = typeAndName;
+							name = "";
+						}
+						else
+						{
+							// possibleIdentifier doesn't contain any of the symbols above, so we don't need to check for them.
+
+							// We should actually check every possible used name, but this would drastically reduce our performance.
+							// Just check the sane ones, like actual primitive types and classes.
+
+							// Overgrowth 1.4 types
+							string noIdentifiers =
+								"void bool int8 int16 int int64 uint8 uint16 uint uint64 float double auto function funcdef class interface" +
+								" enum namespace import const cast string array T BoneTransform C_ACCEL CItem CollisionPoint ConnectionType" +
+								" ContainerAlignment dictionary dictionaryValue DividerOrientation EntityType EnvObject FontSetup Hotspot HUDImage" +
+								" IMChangeImageFadeOutIn IMChangeTextFadeOutIn IMContainer IMDivider IMElement IMFadeIn IMFixedMessageOnClick" +
+								" IMFixedMessageOnMouseOver IMGUI IMImage IMMessage IMMouseClickBehavior IMMouseOverBehavior IMMouseOverFadeIn" +
+								" IMMouseOverMove IMMouseOverPulseBorder IMMouseOverPulseBorderAlpha IMMouseOverPulseColor IMMouseOverScale" +
+								" IMMouseOverShowBorder IMMoveIn IMPulseAlpha IMPulseBorderAlpha IMSpacer IMText IMTextSelectionList IMTweenType" +
+								" IMUIContext IMUIImage IMUIText IMUpdateBehavior ItemObject ivec2 ivec3 ivec4 JSON JSONValue JsonValueType" +
+								" LevelDetails LevelSetReader LogType mat3 mat4 ModID ModLevel MovementObject NavPath NavPoint Object Parameter" +
+								" PlaceholderObject quaternion RiggedObject SavedChunk SavedLevel ScriptParams SizePolicy Skeleton SplitScreenMode" +
+								" TextCanvasTexture TextMetrics TextureAssetRef UIMouseState UIState UserVote vec2 vec3 vec4 in out inout"
+							;
+
+							string[] splitNoIdentifiers = noIdentifiers.Split(' ');
+							bool containsType = false;
+
+							foreach (string noIdentifier in splitNoIdentifiers)
+							{
+								if (typeAndName.ToLower() == noIdentifier.ToLower())
+								{
+									containsType = true;
+									break;
+								}
+							}
+
+							if (containsType)
+							{
+								type = typeAndName;
+								name = "";
+							}
+							else
+							{
+								type = string.Join(" ", splitName, 0, splitName.Length - 1);
+								name = splitName[splitName.Length - 1];
+							}
+						}
+					}
+
+					// Cleaning up the defaultValue is not worth the extra effort.
+					// They are mostly fine, sometimes you find a uint ( - 1) or (vec2(0,0) and vec2(0, 0)) but that's about it
+
+					ASParameter asParameter = new ASParameter(type, name, defaultValue);
 					asParameters.Add(asParameter);
 				}
 			}
@@ -469,12 +600,14 @@ namespace AsDocs2XML
 
 	struct ASParameter
 	{
-		public string value;
-
-
-		public ASParameter(string value)
+		public string type;
+		public string name;
+		public string defaultValue;
+		public ASParameter(string type, string name, string defaultValue)
 		{
-			this.value = value;
+			this.type = type;
+			this.name = name;
+			this.defaultValue = defaultValue;
 		}
 	}
 

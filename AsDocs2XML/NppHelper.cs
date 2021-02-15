@@ -55,13 +55,12 @@ namespace AsDocs2XML
 						// Function exists already. Does it have new overloads?
 						foreach (ASOverload asOverload in asFunction.overloads)
 						{
-							string overloadSignature = asOverload.name + string.Join("", asOverload.parameters.Select((parameter) => { return parameter.value; }));
-
 							bool doesOverloadExist = false;
+							string overloadSignature = GetOverloadSignature(asOverload);
 
 							foreach (ASOverload asOverload2 in allAsFunctions[asFunction.name].overloads)
 							{
-								string overloadSignature2 = asOverload2.name + string.Join("", asOverload2.parameters.Select((parameter) => { return parameter.value; }));
+								string overloadSignature2 = GetOverloadSignature(asOverload2);
 
 								if (overloadSignature == overloadSignature2)
 								{
@@ -80,7 +79,7 @@ namespace AsDocs2XML
 					// Iterate through the overloads of the current function and save the script name they appeared in.
 					foreach (ASOverload asOverload in asFunction.overloads)
 					{
-						string overloadSignature = asOverload.name + string.Join("", asOverload.parameters.Select((parameter) => { return parameter.value; }));
+						string overloadSignature = GetOverloadSignature(asOverload);
 
 						if (!supportedScriptsByOverload.ContainsKey(overloadSignature))
 						{
@@ -105,7 +104,7 @@ namespace AsDocs2XML
 
 				foreach (ASOverload asOverload in asFunction.overloads)
 				{
-					string overloadSignature = asOverload.name + string.Join("", asOverload.parameters.Select((parameter) => { return parameter.value; }));
+					string overloadSignature = GetOverloadSignature(asOverload);
 
 					XmlElement xmlOverload = xmlCalltipDefinition.CreateElement("Overload");
 					xmlOverload.SetAttribute("retVal", asOverload.returnType);
@@ -115,7 +114,12 @@ namespace AsDocs2XML
 					foreach (ASParameter asParameter in asOverload.parameters)
 					{
 						XmlElement xmlParam = xmlCalltipDefinition.CreateElement("Param");
-						xmlParam.SetAttribute("name", asParameter.value);
+
+						string name = asParameter.type;
+						if (asParameter.name != "") name += " " + asParameter.name;
+						if (asParameter.defaultValue != "") name += " = " + asParameter.defaultValue;
+
+						xmlParam.SetAttribute("name", name);
 						xmlOverload.AppendChild(xmlParam);
 					}
 				}
@@ -124,10 +128,9 @@ namespace AsDocs2XML
 			return xmlCalltipDefinition;
 		}
 
-		private static string GetOverloadSignatureWithoutIdentifiers(ASOverload asOverload)
+		private static string GetOverloadSignature(ASOverload asOverload)
 		{
-
-			return "";
+			return asOverload.name + string.Join("", asOverload.parameters.Select((parameter) => { return parameter.type + parameter.name + parameter.defaultValue; }));
 		}
 	}
 }
