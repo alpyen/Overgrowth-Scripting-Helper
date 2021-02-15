@@ -128,25 +128,45 @@ namespace Overgrowth_Scripting_Helper
 					break;
 
 				case "Overload":
-					currentText = currentNode.Attributes["Type"].Value + " " + (Config.ShowFunctionNameInOverloadSignatures ? currentNode.ParentNode.Attributes["Name"].Value : "");
-					fullText = currentNode.Attributes["Type"].Value + " " + currentNode.ParentNode.Attributes["Name"].Value;
+					currentText = currentNode.Attributes["Type"].Value + " ";
+					fullText = currentNode.Attributes["Type"].Value + " ";
 
-					string parameters = "(";
+					// I know that this case could be compacted a little,
+					// but this way we highlight really what the difference between currentText and fullText is.
+
+					if (Config.ShowFunctionNameInOverloadSignatures) currentText += currentNode.ParentNode.Attributes["Name"].Value;
+					fullText += currentNode.ParentNode.Attributes["Name"].Value;
+
+					currentText += "(";
+					fullText += "(";
 
 					// Don't forget to add the parameters!
 					for (int i = 0; i < currentNode.ChildNodes.Count; i++)
 					{
-						parameters += currentNode.ChildNodes[i].Attributes["Type"].Value;
-						if (currentNode.ChildNodes[i].Attributes["Name"].Value != "") parameters += " " + currentNode.ChildNodes[i].Attributes["Name"].Value;
-						if (currentNode.ChildNodes[i].Attributes["Value"].Value != "") parameters += " = " + currentNode.ChildNodes[i].Attributes["Value"].Value;
+						currentText += currentNode.ChildNodes[i].Attributes["Type"].Value;
+						fullText += currentNode.ChildNodes[i].Attributes["Type"].Value;
 
-						if (i < currentNode.ChildNodes.Count - 1) parameters += ", ";
+						if (currentNode.ChildNodes[i].Attributes["Name"].Value != "")
+						{
+							if (Config.ShowParameterNamesInOverloadSignatures) currentText += " " + currentNode.ChildNodes[i].Attributes["Name"].Value;
+							fullText += " " + currentNode.ChildNodes[i].Attributes["Name"].Value;
+						}
+
+						if (currentNode.ChildNodes[i].Attributes["Value"].Value != "")
+						{
+							currentText += " = " + currentNode.ChildNodes[i].Attributes["Value"].Value;
+							fullText += " = " + currentNode.ChildNodes[i].Attributes["Value"].Value;
+						}
+						
+						if (i < currentNode.ChildNodes.Count - 1)
+						{
+							currentText += ", ";
+							fullText += ", ";
+						}
 					}
 
-					parameters += ")";
-
-					currentText += parameters;
-					fullText += parameters;
+					currentText += ")";
+					fullText += ")";
 
 					if (currentNode.Attributes["Const"].Value == "True")
 					{

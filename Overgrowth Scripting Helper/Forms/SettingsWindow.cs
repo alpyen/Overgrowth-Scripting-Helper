@@ -30,7 +30,7 @@ namespace Overgrowth_Scripting_Helper
 			List<Control> transparentControls = new List<Control>() {
 				groupGeneral, groupAppearance,
 				cbShowHelperWindowOnStartup, cbLiveFilteringMode, cbShowFunctionNameInOverloadSignatures,
-				cbShowIconsForEachNode, cbUseCustomFont, btnChangeFont,
+				cbShowParameterNamesInOverloadSignatures, cbShowIconsForEachNode, cbUseCustomFont, btnChangeFont,
 			};	
 
 			foreach (Control control in transparentControls)
@@ -43,6 +43,7 @@ namespace Overgrowth_Scripting_Helper
 			cbShowHelperWindowOnStartup.Checked = Config.ShowHelperWindowOnStartup;
 			cbLiveFilteringMode.Checked = Config.LiveFilteringMode;
 			cbShowFunctionNameInOverloadSignatures.Checked = Config.ShowFunctionNameInOverloadSignatures;
+			cbShowParameterNamesInOverloadSignatures.Checked = Config.ShowParameterNamesInOverloadSignatures;
 			cbShowIconsForEachNode.Checked = Config.ShowIconsForEachNode;
 			cbUseCustomFont.Checked = Config.UseCustomFont;
 			cbUseCustomFont.Text = "Use Custom Font - " + Config.CustomFont.Name + ", " + Config.CustomFont.Size + ", " + Config.CustomFont.Style;
@@ -53,6 +54,7 @@ namespace Overgrowth_Scripting_Helper
 			Config.ShowHelperWindowOnStartup = cbShowHelperWindowOnStartup.Checked;
 			Config.LiveFilteringMode = cbLiveFilteringMode.Checked;
 			Config.ShowFunctionNameInOverloadSignatures = cbShowFunctionNameInOverloadSignatures.Checked;
+			Config.ShowParameterNamesInOverloadSignatures = cbShowParameterNamesInOverloadSignatures.Checked;
 			Config.ShowIconsForEachNode = cbShowIconsForEachNode.Checked;
 			Config.UseCustomFont = cbUseCustomFont.Checked;
 			// Saved when adjusting the font.

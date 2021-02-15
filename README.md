@@ -35,6 +35,7 @@ ToDo-List:
 
 ##### Helper Window
 - (later?) Save every step while live filtering for faster reconstruction
+- Maybe do not attach fulltext for searching and just the necessary keywords?
 
 ##### Settings
 - (later?) Set windows ontoppable

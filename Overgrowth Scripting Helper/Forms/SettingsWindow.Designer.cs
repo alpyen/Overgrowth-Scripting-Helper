@@ -40,6 +40,7 @@ namespace Overgrowth_Scripting_Helper
 			this.cbUseCustomFont = new System.Windows.Forms.CheckBox();
 			this.cbShowIconsForEachNode = new System.Windows.Forms.CheckBox();
 			this.cbShowFunctionNameInOverloadSignatures = new System.Windows.Forms.CheckBox();
+			this.cbShowParameterNamesInOverloadSignatures = new System.Windows.Forms.CheckBox();
 			((System.ComponentModel.ISupportInitialize)(this.pbBackground)).BeginInit();
 			this.groupGeneral.SuspendLayout();
 			this.groupAppearance.SuspendLayout();
@@ -87,20 +88,21 @@ namespace Overgrowth_Scripting_Helper
 			// 
 			// groupAppearance
 			// 
+			this.groupAppearance.Controls.Add(this.cbShowParameterNamesInOverloadSignatures);
 			this.groupAppearance.Controls.Add(this.btnChangeFont);
 			this.groupAppearance.Controls.Add(this.cbUseCustomFont);
 			this.groupAppearance.Controls.Add(this.cbShowIconsForEachNode);
 			this.groupAppearance.Controls.Add(this.cbShowFunctionNameInOverloadSignatures);
 			this.groupAppearance.Location = new System.Drawing.Point(12, 99);
 			this.groupAppearance.Name = "groupAppearance";
-			this.groupAppearance.Size = new System.Drawing.Size(434, 132);
+			this.groupAppearance.Size = new System.Drawing.Size(434, 156);
 			this.groupAppearance.TabIndex = 25;
 			this.groupAppearance.TabStop = false;
 			this.groupAppearance.Text = "Appearance";
 			// 
 			// btnChangeFont
 			// 
-			this.btnChangeFont.Location = new System.Drawing.Point(17, 93);
+			this.btnChangeFont.Location = new System.Drawing.Point(17, 116);
 			this.btnChangeFont.Name = "btnChangeFont";
 			this.btnChangeFont.Size = new System.Drawing.Size(86, 23);
 			this.btnChangeFont.TabIndex = 33;
@@ -110,7 +112,7 @@ namespace Overgrowth_Scripting_Helper
 			// cbUseCustomFont
 			// 
 			this.cbUseCustomFont.AutoSize = true;
-			this.cbUseCustomFont.Location = new System.Drawing.Point(17, 70);
+			this.cbUseCustomFont.Location = new System.Drawing.Point(17, 93);
 			this.cbUseCustomFont.Name = "cbUseCustomFont";
 			this.cbUseCustomFont.Size = new System.Drawing.Size(107, 17);
 			this.cbUseCustomFont.TabIndex = 32;
@@ -120,7 +122,7 @@ namespace Overgrowth_Scripting_Helper
 			// cbShowIconsForEachNode
 			// 
 			this.cbShowIconsForEachNode.AutoSize = true;
-			this.cbShowIconsForEachNode.Location = new System.Drawing.Point(17, 47);
+			this.cbShowIconsForEachNode.Location = new System.Drawing.Point(17, 70);
 			this.cbShowIconsForEachNode.Name = "cbShowIconsForEachNode";
 			this.cbShowIconsForEachNode.Size = new System.Drawing.Size(284, 17);
 			this.cbShowIconsForEachNode.TabIndex = 31;
@@ -136,6 +138,16 @@ namespace Overgrowth_Scripting_Helper
 			this.cbShowFunctionNameInOverloadSignatures.TabIndex = 28;
 			this.cbShowFunctionNameInOverloadSignatures.Text = "Show function names in overload signatures (requires Notepad++ restart)";
 			this.cbShowFunctionNameInOverloadSignatures.UseVisualStyleBackColor = true;
+			// 
+			// cbShowParameterNamesInOverloadSignatures
+			// 
+			this.cbShowParameterNamesInOverloadSignatures.AutoSize = true;
+			this.cbShowParameterNamesInOverloadSignatures.Location = new System.Drawing.Point(17, 47);
+			this.cbShowParameterNamesInOverloadSignatures.Name = "cbShowParameterNamesInOverloadSignatures";
+			this.cbShowParameterNamesInOverloadSignatures.Size = new System.Drawing.Size(377, 17);
+			this.cbShowParameterNamesInOverloadSignatures.TabIndex = 34;
+			this.cbShowParameterNamesInOverloadSignatures.Text = "Show parameter names in overload signatures (requires Notepad++ restart)";
+			this.cbShowParameterNamesInOverloadSignatures.UseVisualStyleBackColor = false;
 			// 
 			// SettingsWindow
 			// 
@@ -173,5 +185,6 @@ namespace Overgrowth_Scripting_Helper
 		private System.Windows.Forms.CheckBox cbUseCustomFont;
 		private System.Windows.Forms.CheckBox cbShowIconsForEachNode;
 		private System.Windows.Forms.CheckBox cbShowFunctionNameInOverloadSignatures;
+		private System.Windows.Forms.CheckBox cbShowParameterNamesInOverloadSignatures;
 	}
 }
