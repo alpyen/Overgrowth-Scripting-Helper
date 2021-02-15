@@ -36,11 +36,11 @@ namespace Overgrowth_Scripting_Helper
 			this.cbLiveFilteringMode = new System.Windows.Forms.CheckBox();
 			this.cbShowHelperWindowOnStartup = new System.Windows.Forms.CheckBox();
 			this.groupAppearance = new System.Windows.Forms.GroupBox();
+			this.cbShowParameterNamesInOverloadSignatures = new System.Windows.Forms.CheckBox();
 			this.btnChangeFont = new System.Windows.Forms.Button();
 			this.cbUseCustomFont = new System.Windows.Forms.CheckBox();
 			this.cbShowIconsForEachNode = new System.Windows.Forms.CheckBox();
 			this.cbShowFunctionNameInOverloadSignatures = new System.Windows.Forms.CheckBox();
-			this.cbShowParameterNamesInOverloadSignatures = new System.Windows.Forms.CheckBox();
 			((System.ComponentModel.ISupportInitialize)(this.pbBackground)).BeginInit();
 			this.groupGeneral.SuspendLayout();
 			this.groupAppearance.SuspendLayout();
@@ -100,6 +100,16 @@ namespace Overgrowth_Scripting_Helper
 			this.groupAppearance.TabStop = false;
 			this.groupAppearance.Text = "Appearance";
 			// 
+			// cbShowParameterNamesInOverloadSignatures
+			// 
+			this.cbShowParameterNamesInOverloadSignatures.AutoSize = true;
+			this.cbShowParameterNamesInOverloadSignatures.Location = new System.Drawing.Point(17, 47);
+			this.cbShowParameterNamesInOverloadSignatures.Name = "cbShowParameterNamesInOverloadSignatures";
+			this.cbShowParameterNamesInOverloadSignatures.Size = new System.Drawing.Size(377, 17);
+			this.cbShowParameterNamesInOverloadSignatures.TabIndex = 34;
+			this.cbShowParameterNamesInOverloadSignatures.Text = "Show parameter names in overload signatures (requires Notepad++ restart)";
+			this.cbShowParameterNamesInOverloadSignatures.UseVisualStyleBackColor = false;
+			// 
 			// btnChangeFont
 			// 
 			this.btnChangeFont.Location = new System.Drawing.Point(17, 116);
@@ -108,6 +118,7 @@ namespace Overgrowth_Scripting_Helper
 			this.btnChangeFont.TabIndex = 33;
 			this.btnChangeFont.Text = "Change Font";
 			this.btnChangeFont.UseVisualStyleBackColor = true;
+			this.btnChangeFont.Click += new System.EventHandler(this.btnChangeFont_Click);
 			// 
 			// cbUseCustomFont
 			// 
@@ -118,6 +129,7 @@ namespace Overgrowth_Scripting_Helper
 			this.cbUseCustomFont.TabIndex = 32;
 			this.cbUseCustomFont.Text = "Use Custom Font";
 			this.cbUseCustomFont.UseVisualStyleBackColor = false;
+			this.cbUseCustomFont.Click += new System.EventHandler(this.cbUseCustomFont_CheckedChanged);
 			// 
 			// cbShowIconsForEachNode
 			// 
@@ -138,16 +150,6 @@ namespace Overgrowth_Scripting_Helper
 			this.cbShowFunctionNameInOverloadSignatures.TabIndex = 28;
 			this.cbShowFunctionNameInOverloadSignatures.Text = "Show function names in overload signatures (requires Notepad++ restart)";
 			this.cbShowFunctionNameInOverloadSignatures.UseVisualStyleBackColor = true;
-			// 
-			// cbShowParameterNamesInOverloadSignatures
-			// 
-			this.cbShowParameterNamesInOverloadSignatures.AutoSize = true;
-			this.cbShowParameterNamesInOverloadSignatures.Location = new System.Drawing.Point(17, 47);
-			this.cbShowParameterNamesInOverloadSignatures.Name = "cbShowParameterNamesInOverloadSignatures";
-			this.cbShowParameterNamesInOverloadSignatures.Size = new System.Drawing.Size(377, 17);
-			this.cbShowParameterNamesInOverloadSignatures.TabIndex = 34;
-			this.cbShowParameterNamesInOverloadSignatures.Text = "Show parameter names in overload signatures (requires Notepad++ restart)";
-			this.cbShowParameterNamesInOverloadSignatures.UseVisualStyleBackColor = false;
 			// 
 			// SettingsWindow
 			// 

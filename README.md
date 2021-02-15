@@ -35,6 +35,8 @@ ToDo-List:
 
 ##### Helper Window
 - (later?) Save every step while live filtering for faster reconstruction
+- (later?) Nightmode for the treeview?
+  - Change the transparency of the treeview icons to the treeview's BackColor so it doesn't look glitched.
 - Maybe do not attach fulltext for searching and just the necessary keywords?
 
 ##### Settings
