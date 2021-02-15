@@ -19,7 +19,6 @@ namespace AsDocs2XML
 		private static Regex rxEnumerationBegin = new Regex(@"^\s*enum\s*(.+?)\s*{\s*.*?$");
 		private static Regex rxScopeEnding = new Regex(@"^\s*\};?(?:\/\/.*)?\s*$");
 
-		private static Regex rxParameters = new Regex(@"\s*((?:[^,\s]+\s*)+)\s*,?");
 		private static Regex rxParameter = new Regex(@"^\s*(.+?)\s*$");
 		private static Regex rxEnumerationValue = new Regex(@"^\s*([^,\s=]+)\s*=?\s*(-)?\s*(\d+)?\s*,?\s*$");
 
@@ -317,6 +316,9 @@ namespace AsDocs2XML
 		private static List<ASParameter> ParseParameters(string parameters)
 		{
 			List<ASParameter> asParameters = new List<ASParameter>();
+
+			// Don't parse if there are no parameters.
+			if (parameters.Replace(" ", "") == "") return asParameters;
 
 			// Since parameters can have defaultValues which might contain commas we can't simply split by a comma.
 			// We need to split it by checking if the comma is inside a bracket, if it is, we don't split at that particular index.

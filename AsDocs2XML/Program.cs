@@ -25,7 +25,6 @@ namespace AsDocs2XML
 				return;
 			}
 
-
 			SortedList<string, ASScript> database = new SortedList<string, ASScript>();
 
 			string[] stlContents = new string[] { };

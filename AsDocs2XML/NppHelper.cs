@@ -36,20 +36,14 @@ namespace AsDocs2XML
 			// distinguish on an object what type it is and display the correct calltips like Visual Studio!
 
 			SortedList<string, ASFunction> allAsFunctions = new SortedList<string, ASFunction>();
-			SortedList<string, List<string>> supportedScriptsByFunction = new SortedList<string, List<string>>();
+			SortedList<string, List<string>> supportedScriptsByOverload = new SortedList<string, List<string>>();
 
 			foreach (ASScript asScript in scripts)
 			{
 				foreach (ASFunction asFunction in asScript.functions.Values)
 				{
-					if (!supportedScriptsByFunction.ContainsKey(asFunction.name))
-					{
-						supportedScriptsByFunction.Add(asFunction.name, new List<string>() { asScript.name });
-					}
-					else
-					{
-						supportedScriptsByFunction[asFunction.name].Add(asScript.name);
-					}
+					// Iterate through all functions from all scripts and attach all the possible overloads to the function
+					// in the list allAsFunctions.
 
 					// Does the function exist already?
 					if (!allAsFunctions.ContainsKey(asFunction.name))
@@ -59,20 +53,17 @@ namespace AsDocs2XML
 					else
 					{
 						// Function exists already. Does it have new overloads?
-						foreach (ASOverload asOverload2 in asFunction.overloads)
+						foreach (ASOverload asOverload in asFunction.overloads)
 						{
+							string overloadSignature = asOverload.name + string.Join("", asOverload.parameters.Select((parameter) => { return parameter.value; }));
+
 							bool doesOverloadExist = false;
 
-							foreach (ASOverload asOverload1 in allAsFunctions[asFunction.name].overloads)
+							foreach (ASOverload asOverload2 in allAsFunctions[asFunction.name].overloads)
 							{
-								string parameters1 = string.Join("", asOverload1.parameters.Select((parameter) => { return parameter.value; }));
-								string parameters2 = string.Join("", asOverload2.parameters.Select((parameter) => { return parameter.value; }));
+								string overloadSignature2 = asOverload2.name + string.Join("", asOverload2.parameters.Select((parameter) => { return parameter.value; }));
 
-								bool returnTypeMatches = asOverload2.returnType == asOverload1.returnType;
-								bool nameMatches = asOverload2.name == asOverload1.name;
-								bool parametersMatches = parameters1 == parameters2;
-
-								if (returnTypeMatches && nameMatches && parametersMatches)
+								if (overloadSignature == overloadSignature2)
 								{
 									doesOverloadExist = true;
 									break;
@@ -81,13 +72,30 @@ namespace AsDocs2XML
 
 							if (!doesOverloadExist)
 							{
-								allAsFunctions[asFunction.name].overloads.Add(asOverload2);
+								allAsFunctions[asFunction.name].overloads.Add(asOverload);
 							}
+						}
+					}
+
+					// Iterate through the overloads of the current function and save the script name they appeared in.
+					foreach (ASOverload asOverload in asFunction.overloads)
+					{
+						string overloadSignature = asOverload.name + string.Join("", asOverload.parameters.Select((parameter) => { return parameter.value; }));
+
+						if (!supportedScriptsByOverload.ContainsKey(overloadSignature))
+						{
+							supportedScriptsByOverload.Add(overloadSignature, new List<string>() { asScript.name });
+						}
+						else
+						{
+							supportedScriptsByOverload[overloadSignature].Add(asScript.name);
 						}
 					}
 				}
 			}
 
+			// Run through all found functions and create the xml elements.
+			// Check on each overload which scripts are supported and attach them.
 			foreach (ASFunction asFunction in allAsFunctions.Values)
 			{
 				XmlElement xmlKeyWord = xmlCalltipDefinition.CreateElement("KeyWord");
@@ -97,9 +105,11 @@ namespace AsDocs2XML
 
 				foreach (ASOverload asOverload in asFunction.overloads)
 				{
+					string overloadSignature = asOverload.name + string.Join("", asOverload.parameters.Select((parameter) => { return parameter.value; }));
+
 					XmlElement xmlOverload = xmlCalltipDefinition.CreateElement("Overload");
 					xmlOverload.SetAttribute("retVal", asOverload.returnType);
-					xmlOverload.SetAttribute("descr", "" + Environment.NewLine + "Supported Scripts: " + string.Join(", ", supportedScriptsByFunction[asFunction.name]));
+					xmlOverload.SetAttribute("descr", "" + Environment.NewLine + "Supported Scripts: " + string.Join(", ", supportedScriptsByOverload[overloadSignature]));
 					xmlKeyWord.AppendChild(xmlOverload);
 
 					foreach (ASParameter asParameter in asOverload.parameters)
@@ -112,6 +122,12 @@ namespace AsDocs2XML
 			}
 
 			return xmlCalltipDefinition;
+		}
+
+		private static string GetOverloadSignatureWithoutIdentifiers(ASOverload asOverload)
+		{
+
+			return "";
 		}
 	}
 }
