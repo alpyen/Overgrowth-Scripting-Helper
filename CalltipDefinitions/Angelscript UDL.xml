@@ -6,11 +6,11 @@
         </Settings>
         <KeywordLists>
             <Keywords name="Comments">00// 01 02 03/* 04*/</Keywords>
-            <Keywords name="Numbers, prefix1"></Keywords>
-            <Keywords name="Numbers, prefix2">0x</Keywords>
+            <Keywords name="Numbers, prefix1">0b 0B 0o 0O</Keywords>
+            <Keywords name="Numbers, prefix2">0x 0X</Keywords>
             <Keywords name="Numbers, extras1">a b c d e f A B C D E F</Keywords>
             <Keywords name="Numbers, extras2"></Keywords>
-            <Keywords name="Numbers, suffix1">f</Keywords>
+            <Keywords name="Numbers, suffix1">f F</Keywords>
             <Keywords name="Numbers, suffix2"></Keywords>
             <Keywords name="Numbers, range"></Keywords>
             <Keywords name="Operators1">@ ( ) + - * / % ^ = &lt; &gt; , [ ] ~ : ! &amp; | ; .</Keywords>
