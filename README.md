@@ -20,11 +20,12 @@ ToDo-List:
 - How to develop
   - autoComplete & plugins folder needs to be set writable if you don't want to start VS as admin (or use a portable n++ installation and adjust the build/copy paths). this is done to automatically move the angelscript.xml (calltips) and the database.xml into the notepad++ directory. the dll is moved by the targets file in the PluginInfrastructure/DllExport folder. Make sure that you ran AsDocs2XML and generated these files before you try to run the plugin.
   - Solution of AsDocs2XML has the corrected docs for Overgrowth 1.4 passed as command line arguments
-  - angelscript.xml and database.xml are automoved into the N++ folders.
+  - angelscript.xml and database.xml are automoved into the N++ folders, but Angelscript UDL.xml isn't.
   - Docs in Overgrowth 1.4 lists push_back and size as functions, but they are methods from arrays.
   - Docs in Overgrowth 1.4 list vec4 mix as a method of vec4 but it is a function. The docs altogether are badly formatted. Pay close attention when you want to correct them for AsDocs2XML to parse.
   - The pre-build command does not copy the files on Run when the files are already there (calltips + database). You need to rebuild the solution again, they are copied on build, not on run. When you modify your code and run it, it automatically rebuilds.
----
+  - The name attribute in the UDL references the actual filename (not the language attribute referenced in it) of the autocompletion (angelscript.xml) otherwise I would've named it Overgrowth Angelscript 1.4 (adding the version number) without running the risk of having multiple UDLs or autocompletions.
+
 ### Scripting Helper Plugin
 
 ##### AsDocs2XML
