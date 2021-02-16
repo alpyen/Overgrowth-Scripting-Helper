@@ -39,7 +39,7 @@ ToDo-List:
   - Change the transparency of the treeview icons to the treeview's BackColor so it doesn't look glitched.
 - Maybe do not attach fulltext for searching and just the necessary keywords?
 - Search only on the visible text and not on the full text?
-  - This implies that overloads will not expand if the function name is not visible.
+  - This implies that overloads will not expand if the function name is not visible. However someone might want to hide parameter names to not search for them?
 
 ##### Settings
 - (later?) Set windows ontoppable
