@@ -16,7 +16,8 @@ ToDo-List:
   - install the UDL (angelscript language definition) by going navigating through the menu: Lanugages > User Defined Languages > Open folder with user defined language
   - paste the Angelscript UDL.xml in the folder and restart notepad++
   - Notepad++ should now autodetect .as files correctly and use the added UDL. If it doesn't select Angelscript manually in the Languages menu.
-  - If the languages resets to Actionscript (because they share the same extension, you can disable the other language by Settings > Options > Languages and then shifting it from the left to the right.
+  - If the languages resets to Actionscript (because they share the same extension), you can disable the other language by Settings > Options > Languages and then shifting it from the left to the right.
+  - if you had an as file open it might start again with actionscript, either disable the language or manually switch once to Angelscript, after that only Angelscript should trigger even on other files
 - How to develop
   - autoComplete & plugins folder needs to be set writable if you don't want to start VS as admin (or use a portable n++ installation and adjust the build/copy paths). this is done to automatically move the angelscript.xml (calltips) and the database.xml into the notepad++ directory. the dll is moved by the targets file in the PluginInfrastructure/DllExport folder. Make sure that you ran AsDocs2XML and generated these files before you try to run the plugin.
   - Solution of AsDocs2XML has the corrected docs for Overgrowth 1.4 passed as command line arguments
@@ -25,6 +26,8 @@ ToDo-List:
   - Docs in Overgrowth 1.4 list vec4 mix as a method of vec4 but it is a function. The docs altogether are badly formatted. Pay close attention when you want to correct them for AsDocs2XML to parse.
   - The pre-build command does not copy the files on Run when the files are already there (calltips + database). You need to rebuild the solution again, they are copied on build, not on run. When you modify your code and run it, it automatically rebuilds.
   - The name attribute in the UDL references the actual filename (not the language attribute referenced in it) of the autocompletion (angelscript.xml) otherwise I would've named it Overgrowth Angelscript 1.4 (adding the version number) without running the risk of having multiple UDLs or autocompletions.
+  - The helper plugin will not build if there are no AsDocs2XML outputs (angelscript.xml and database.xml)
+  - Build is configured for 64 Bit, if you are developing on 32 Bit, make sure you adjust the paths in the pre-build command to Program Files under 32 bit
 
 ### Scripting Helper Plugin
 

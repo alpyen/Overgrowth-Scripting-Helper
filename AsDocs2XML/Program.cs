@@ -12,7 +12,8 @@ namespace AsDocs2XML
 	{
 		static void Main(string[] args)
 		{
-			Console.WriteLine("AsDocs2XML - Convert Overgrowth Angelscript Docs to XML Database and Calltips.\n");
+			Console.WriteLine("AsDocs2XML - Convert Overgrowth Angelscript Docs to XML Database and Calltips.");
+			Console.WriteLine("Compiled for Overgrowth 1.4\n");
 			Console.WriteLine("If you pass a file with the name \"stl.txt\" it will be added to all scripts.\n");
 
 			if (args.Length == 0)
@@ -69,10 +70,10 @@ namespace AsDocs2XML
 			Console.WriteLine();
 
 			Console.WriteLine("Writing database.xml (database for helper).");
-			xmlDatabase.Save("database.xml");
+			xmlDatabase.Save("..\\..\\database.xml");
 
 			Console.WriteLine("Writing angelscript.xml (calltips definition).");
-			xmlCalltips.Save("angelscript.xml");
+			xmlCalltips.Save("..\\..\\angelscript.xml");
 
 			Console.WriteLine();
 			Console.WriteLine("Finished. Press enter to exit.");
