@@ -95,6 +95,33 @@ namespace Overgrowth_Scripting_Helper
 			}
 		}
 
+		// Handles the closing of helper window when the X is pressed.
+		// Method is based on MarkdownViewer++'s implementation.
+		protected override void WndProc(ref Message m)
+		{
+			base.WndProc(ref m);
+
+			const int WM_NOTIFY = 0x004E;
+
+			if (m.Msg == WM_NOTIFY)
+			{
+				NMHDR notification = (NMHDR)System.Runtime.InteropServices.Marshal.PtrToStructure(m.LParam, typeof(NMHDR));
+
+				if (notification.code == (int)NppPluginNET.PluginInfrastructure.DockMgrMsg.DMN_CLOSE)
+				{
+					NppPluginNET.Main.ToggleHelperWindow();
+				}
+			}
+		}
+
+		[System.Runtime.InteropServices.StructLayout(System.Runtime.InteropServices.LayoutKind.Sequential)]
+		struct NMHDR
+		{
+			public IntPtr hwndFrom;
+			public IntPtr idFrom;
+			public uint code;
+		}
+
 		void CreateTreeNode(XmlNode currentNode, TreeNode parentTreeNode)
 		{
 			string currentText = ""; // Used for displaying.
