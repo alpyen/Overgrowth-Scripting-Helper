@@ -10,13 +10,29 @@ A Notepad++ plugin, calltip and language definitions to enhance scripting for Ov
 
 ## Navigation
 1. [Feature List](#feature-list)
-2. [Requirements](#requirements)
-3. [Installation Guide](#installation-guide)
-4. [Troubleshooting & FAQ](#troubleshooting-and-faq)
-5. [Developing](#developing)
-6. [Stuff for the future](#stuff-for-the-future)
+2. [Preview](#preview)
+3. [Requirements](#requirements)
+4. [Installation Guide](#installation-guide)
+5. [Troubleshooting & FAQ](#troubleshooting-and-faq)
+6. [Developing](#developing)
+7. [Stuff for the future](#stuff-for-the-future)
 8. [Known Bugs](#known-bugs)
-7. [Licensing and Credits](#licensing-and-credits)
+9. [Licensing and Credits](#licensing-and-credits)
+
+## Preview<a id="preview"></a>
+Check parameters of function overloads with the Notepad++ calltips for the available Overgrowth and Angelscript standard library functions.
+
+<img src="ReadmeContents/Calltip.gif" />
+<br><br>
+
+Browse through all available classes, enumerations, functions and variables.
+
+<img src="ReadmeContents/BrowsingHelperWindow.gif" />
+<br><br>
+
+Start off new scripts with a template and have every script function ready to go.
+
+<img src="ReadmeContents/InsertingScriptTemplate.gif" />
 
 ## Requirements<a id="requirements"></a>
 - .NET Framework 4 (comes preinstalled on Windows 10)
@@ -36,7 +52,7 @@ A Notepad++ plugin, calltip and language definitions to enhance scripting for Ov
 - *Notepad++ shows the error "Cannot load 32-bit plugin." on startup*
   - It seems like you downloaded the wrong version of the plugin.<br>Run Notepad++ and check the version through the menu `? > About Notepad++`.<br>You have to download exactly the same version as the application regardless of your operating system.<br><br>
 - *The syntax highlighting is incorrect, it uses ActionScript*
-  - This can happen the first time you're launching Notepad++ with the new language definition and had already an \*.as file open. Just switch once to Angelscript by selecting it in the Language menu.<br>It shouldn't happen again, if it does you can disable ActionScript in the settings.<br><br>
+  - This can happen the first time you're launching Notepad++ with the new language definition and had already an \*.as file open. Just switch once to Angelscript by selecting it in the language menu.<br>It shouldn't happen again, if it does you can disable ActionScript in the settings.<br><br>
 - *Notepad++ takes ages to start after installing the plugin*
   - This is because the plugin has to load and parse the database file. Since the file is almost 2 MB it might take a second or two on startup.
 
