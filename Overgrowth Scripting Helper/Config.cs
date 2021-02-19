@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 
 using System.Drawing;
-using Overgrowth_Scripting_Helper.NppPluginNET.PluginInfrastructure;
+using Kbg.NppPluginNET.PluginInfrastructure;
 using System.Xml;
 using System.IO;
 

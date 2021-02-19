@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
-namespace Overgrowth_Scripting_Helper.NppPluginNET.PluginInfrastructure
+namespace Kbg.NppPluginNET.PluginInfrastructure
 {
     [StructLayout(LayoutKind.Sequential)]
     public struct NppData

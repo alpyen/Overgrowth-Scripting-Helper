@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
-namespace Overgrowth_Scripting_Helper.NppPluginNET.PluginInfrastructure
+namespace Kbg.NppPluginNET.PluginInfrastructure
 {
     public class ClikeStringArray : IDisposable
     {

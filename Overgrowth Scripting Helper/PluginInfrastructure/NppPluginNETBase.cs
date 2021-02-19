@@ -1,7 +1,7 @@
 ﻿// NPP plugin platform for .Net v0.94.00 by Kasper B. Graversen etc.
 using System;
 
-namespace Overgrowth_Scripting_Helper.NppPluginNET.PluginInfrastructure
+namespace Kbg.NppPluginNET.PluginInfrastructure
 {
     class PluginBase
     {

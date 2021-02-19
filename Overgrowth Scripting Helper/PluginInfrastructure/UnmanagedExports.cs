@@ -1,10 +1,13 @@
 ﻿// NPP plugin platform for .Net v0.94.00 by Kasper B. Graversen etc.
+// modified by alpines - 2021
 using System;
 using System.Runtime.InteropServices;
-using Overgrowth_Scripting_Helper.NppPluginNET.PluginInfrastructure;
+using Kbg.NppPluginNET.PluginInfrastructure;
 using NppPlugin.DllExport;
 
-namespace Overgrowth_Scripting_Helper.NppPluginNET
+using Overgrowth_Scripting_Helper;
+
+namespace Kbg.NppPluginNET
 {
     class UnmanagedExports
     {

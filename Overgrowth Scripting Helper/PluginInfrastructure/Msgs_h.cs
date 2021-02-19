@@ -7,7 +7,7 @@
 
 using System;
 
-namespace Overgrowth_Scripting_Helper.NppPluginNET.PluginInfrastructure
+namespace Kbg.NppPluginNET.PluginInfrastructure
 {
     class Constants
     {

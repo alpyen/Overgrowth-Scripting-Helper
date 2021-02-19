@@ -107,9 +107,9 @@ namespace Overgrowth_Scripting_Helper
 			{
 				NMHDR notification = (NMHDR)System.Runtime.InteropServices.Marshal.PtrToStructure(m.LParam, typeof(NMHDR));
 
-				if (notification.code == (int)NppPluginNET.PluginInfrastructure.DockMgrMsg.DMN_CLOSE)
+				if (notification.code == (int)Kbg.NppPluginNET.PluginInfrastructure.DockMgrMsg.DMN_CLOSE)
 				{
-					NppPluginNET.Main.ToggleHelperWindow();
+					Main.ToggleHelperWindow();
 				}
 			}
 		}

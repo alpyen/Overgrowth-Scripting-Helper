@@ -1,58 +1,88 @@
-Scripting Helper for the Overgrowth API as a Notepad++ plugin.
-<br><br>
+# <img width="48" height="48" src="ReadmeContents/rabbit.png" />Overgrowth Scripting Helper
+A Notepad++ plugin, calltip and language definitions to enhance scripting for Overgrowth in Angelscript.
 
-ToDo-List:
----
-### README.md
-- Introduction
-- Requirements
-  - NetFX 4
-- How to download and install
-  - head over to releases
-  - download the latest zip (32/64bit matters to notepad++)
-  - copy the "plugins" folder into the notepad++ root folder (C:\Program Files\Notepad++\ on 64bit) (C:\Program Files (x86)\Notepad++\ on 32bit)
-    - there is/mightbe already a plugins folder, just merge the contents (out of convenience)
-  - run notepad++ the plugin should be visible in the plugins menu (Overgrowth Scripting Helper) and there should be a rabbit button in the menu bar
-  - install the UDL (angelscript language definition) by going navigating through the menu: Lanugages > User Defined Languages > Open folder with user defined language
-  - paste the Angelscript UDL.xml in the folder and restart notepad++
-  - Notepad++ should now autodetect .as files correctly and use the added UDL. If it doesn't select Angelscript manually in the Languages menu.
-  - If the languages resets to Actionscript (because they share the same extension), you can disable the other language by Settings > Options > Languages and then shifting it from the left to the right.
-  - if you had an as file open it might start again with actionscript, either disable the language or manually switch once to Angelscript, after that only Angelscript should trigger even on other files
-- How to develop
-  - autoComplete & plugins folder needs to be set writable if you don't want to start VS as admin (or use a portable n++ installation and adjust the build/copy paths). this is done to automatically move the angelscript.xml (calltips) and the database.xml into the notepad++ directory. the dll is moved by the targets file in the PluginInfrastructure/DllExport folder. Make sure that you ran AsDocs2XML and generated these files before you try to run the plugin.
-  - Solution of AsDocs2XML has the corrected docs for Overgrowth 1.4 passed as command line arguments
-  - angelscript.xml and database.xml are automoved into the N++ folders, but Angelscript UDL.xml isn't.
-  - Docs in Overgrowth 1.4 lists push_back and size as functions, but they are methods from arrays.
-  - Docs in Overgrowth 1.4 list vec4 mix as a method of vec4 but it is a function. The docs altogether are badly formatted. Pay close attention when you want to correct them for AsDocs2XML to parse.
-  - The pre-build command does not copy the files on Run when the files are already there (calltips + database). You need to rebuild the solution again, they are copied on build, not on run. When you modify your code and run it, it automatically rebuilds.
-  - The name attribute in the UDL references the actual filename (not the language attribute referenced in it) of the autocompletion (angelscript.xml) otherwise I would've named it Overgrowth Angelscript 1.4 (adding the version number) without running the risk of having multiple UDLs or autocompletions.
-  - The helper plugin will not build if there are no AsDocs2XML outputs (angelscript.xml and database.xml)
-  - Build is configured for 64 Bit, if you are developing on 32 Bit, make sure you adjust the paths in the pre-build command to Program Files under 32 bit
+## Feature List<a id="feature-list"></a>
+- Angelscript Syntax Highlighting extended with Overgrowth Type Support
+- Function Calltips for every script type and enabled Angelscript standard library functions
+- Customizable Helper Window to browse and filter Classes, Enumerations, Functions and Variables
+- Script Templates for Camera, Character, Hotspot and Level scripts
+- Cheat Sheet to check root folders for specific paths
 
-### Scripting Helper Plugin
+## Navigation
+1. [Feature List](#feature-list)
+2. [Requirements](#requirements)
+3. [Installation Guide](#installation-guide)
+4. [Troubleshooting & FAQ](#troubleshooting-and-faq)
+5. [Developing](#developing)
+6. [Stuff for the future](#stuff-for-the-future)
+8. [Known Bugs](#known-bugs)
+7. [Licensing and Credits](#licensing-and-credits)
 
-##### AsDocs2XML
-- (later?) Expand parsing to parse .as files rather than .h, this way we could parse the files from the Data\Scripts directory. But only do this when the classes are actually available in other scripts.
+## Requirements<a id="requirements"></a>
+- .NET Framework 4 (comes preinstalled on Windows 10)
+- Notepad++ 32 bit or 64 bit
+- Windows
 
-##### Angelscript UDL
+## Installation Guide<a id="installation-guide"></a>
+> All steps can be also reproduced on the portable version of Notepad++
+1. Download the <a href="https://github.com/alpyen/Overgrowth-Scripting-Helper/releases">latest release</a> which matches your Notepad++ installation (32 bit or 64 bit)
+2. Extract the archive and merge the `autoComplete` and the `plugins` folders into the root folder of your Notepad++ installation in Program Files.
+3. Start Notepad++ and a rabbit icon should appear in the toolbar.
+4. Open the folder for the user defined languages by navigating through the menu <br>`Language > User Defined Language > Open User Defined Language folder...`
+5. Copy the `Angelscript UDL.xml` file into the folder and restart Notepad++.
+6. That's it, enjoy!
 
-##### Helper Window
-- (later?) Save every step while live filtering for faster reconstruction
-- (later?) Nightmode for the treeview?
-  - Change the transparency of the treeview icons to the treeview's BackColor so it doesn't look glitched.
-- Maybe do not attach fulltext for searching and just the necessary keywords?
-- Search only on the visible text and not on the full text?
-  - This implies that overloads will not expand if the function name is not visible. However someone might want to hide parameter names to not search for them?
+## Troubleshooting & FAQ<a id="troubleshooting-and-faq"></a>
+- *Notepad++ shows the error "Cannot load 32-bit plugin." on startup*
+  - It seems like you downloaded the wrong version of the plugin.<br>Run Notepad++ and check the version through the menu `? > About Notepad++`.<br>You have to download exactly the same version as the application regardless of your operating system.<br><br>
+- *The syntax highlighting is incorrect, it uses ActionScript*
+  - This can happen the first time you're launching Notepad++ with the new language definition and had already an \*.as file open. Just switch once to Angelscript by selecting it in the Language menu.<br>It shouldn't happen again, if it does you can disable ActionScript in the settings.<br><br>
+- *Notepad++ takes ages to start after installing the plugin*
+  - This is because the plugin has to load and parse the database file. Since the file is almost 2 MB it might take a second or two on startup.
 
-##### Settings
-- (later?) Set windows ontoppable
+## Developing<a id="developing"></a>
+The project consists of two solutions: `AsDocs2XML` and `Overgrowth Scripting Helper`.
 
-##### Cheat Sheet
-- (later?) StartLocation.CenterParent from Main.cs (need to get the location and size of the notepad++ window)
+**AsDocs2XML** is used to parse the header files the game outputs into the XML file format so the plugin can load it.
+However the original *_docs.h files are as of right now (Overgrowth 1.4) malformatted and also incorrect which will make them not compliant with the the parser, they'll flat out crash it.
 
-##### Plugins Menu
-- Script Templates
-  - (later?) Scriptable Campaign, Scriptable UI?
+I sanitized and corrected all header files and saved them at `CalltipDefinitions\Overgrowth 1.4`, these files are also references as the command line parameters for the parser.
 
-##### Testing
-- Windows 10
+When successfully built and run, AsDocs2XML will output the Notepad++ calltips file `angelscript.xml` and the database file `database.xml` into `AsDocs2XML\bin`.
+
+**Overgrowth Scripting Helper** is the actual plugin and uses post-build commands to move the two files, mentioned above, into their respective folders.
+Since these folders are in Program Files, they might be write protected.
+
+If you don't want to run Visual Studio with elevated privileges
+you have the option to either use a portable Notepad++ instance, or set the `autoComplete` and the `plugins` folders (and their subfolders) writable as the user you're logged in as.
+
+This is done to streamline the development process, if you are fine with moving the files manually you can simply disable the post-build commands.
+> Note that the language definition `Angelscript UDL.xml` is not moved on build since this files does not change.
+> It has to be moved once manually.
+
+When successfully built and run, Notepad++ should start with the plugin enabled and ready to test.
+> Changes made in the settings will remain because the config file stored in AppData will not be deleted.
+
+## Stuff for the future<a id="stuff-for-the-future"></a>
+#### Helper Window
+- Save the steps while filtering so the tree view can be rebuilt faster
+- Nightmode
+
+#### Settings
+- Set Cheat Sheet and Helper Window OnToppable
+
+#### Plugins Menu
+- Script Templates for `Scriptable Campaign` and `Scriptable UI`
+
+## Known Bugs<a id="known-bugs"></a>
+- Notepad++ shows the wrong calltip if previously a calltip with the same prefix has been opened:
+  - Open DebugDrawLine, try to open DebugDrawLines, it will still show DebugDrawLine.
+
+## Licensing and Credits<a id="licensing-and-credits"></a>
+Overgrowth Scripting Helper is released under the MIT license.
+
+This project includes various other projects which made this project possible in the first place. Thanks to:
+
+- The rabbit icon has been taken off the Overgrowth game files created by <a href="https://www.wolfire.com/">Wolfire Games</a>.
+- The Notepad++ plugin base <a href="https://github.com/kbilsted/NotepadPlusPlusPluginPack.Net">NotepadPlusPlusPluginPack.Net</a> version 0.95.00 was developed by kbilsted and provided under the Apache-2.0 license.
+- Some icons have been used and modified from the <a href="https://www.famfamfam.com/lab/icons/silk/">Silk Icon Set 1.3</a> by Mark James and provided under the CC-BY-2.5 license.

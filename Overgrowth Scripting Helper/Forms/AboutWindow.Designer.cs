@@ -106,7 +106,7 @@ namespace Overgrowth_Scripting_Helper
 			this.lblText.AutoSize = true;
 			this.lblText.Location = new System.Drawing.Point(6, 16);
 			this.lblText.Name = "lblText";
-			this.lblText.Size = new System.Drawing.Size(414, 117);
+			this.lblText.Size = new System.Drawing.Size(434, 117);
 			this.lblText.TabIndex = 28;
 			this.lblText.Text = resources.GetString("lblText.Text");
 			// 

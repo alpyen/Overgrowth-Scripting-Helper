@@ -5,9 +5,9 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
-using Overgrowth_Scripting_Helper.NppPluginNET.PluginInfrastructure;
+using Kbg.NppPluginNET.PluginInfrastructure;
 
-namespace Overgrowth_Scripting_Helper.NppPluginNET
+namespace Overgrowth_Scripting_Helper
 {
 	class Main
 	{
@@ -18,7 +18,7 @@ namespace Overgrowth_Scripting_Helper.NppPluginNET
 		static CheatSheetWindow cheatSheetWindow = null;
 
 		static Icon tabIcon = null;
-		static int idMyDlg = 0;
+		static int dialogueCommandId = 0;
 
 		static ScintillaGateway sgEditor = null;
 
@@ -75,7 +75,7 @@ namespace Overgrowth_Scripting_Helper.NppPluginNET
 			tbIcons.hToolbarBmp = Properties.Resources.RabbitTransparent16x16.GetHbitmap();
 			IntPtr pTbIcons = Marshal.AllocHGlobal(Marshal.SizeOf(tbIcons));
 			Marshal.StructureToPtr(tbIcons, pTbIcons, false);
-			Win32.SendMessage(PluginBase.nppData._nppHandle, (uint)NppMsg.NPPM_ADDTOOLBARICON, PluginBase._funcItems.Items[idMyDlg]._cmdID, pTbIcons);
+			Win32.SendMessage(PluginBase.nppData._nppHandle, (uint)NppMsg.NPPM_ADDTOOLBARICON, PluginBase._funcItems.Items[dialogueCommandId]._cmdID, pTbIcons);
 			Marshal.FreeHGlobal(pTbIcons);
 		}
 
@@ -99,7 +99,7 @@ namespace Overgrowth_Scripting_Helper.NppPluginNET
 			NppTbData _nppTbData = new NppTbData();
 			_nppTbData.hClient = helperWindow.Handle;
 			_nppTbData.pszName = helperWindow.Text;
-			_nppTbData.dlgID = idMyDlg;
+			_nppTbData.dlgID = dialogueCommandId;
 			_nppTbData.uMask = NppTbMsg.DWS_DF_CONT_RIGHT | NppTbMsg.DWS_ICONTAB | NppTbMsg.DWS_ICONBAR;
 			_nppTbData.hIconTab = (uint)tabIcon.Handle;
 			_nppTbData.pszModuleName = Config.PluginName;
@@ -127,7 +127,7 @@ namespace Overgrowth_Scripting_Helper.NppPluginNET
 			showHelperWindow = !showHelperWindow;
 
 			Win32.SendMessage(PluginBase.nppData._nppHandle, showHelperWindow ? (uint)NppMsg.NPPM_DMMSHOW : (uint)NppMsg.NPPM_DMMHIDE, 0, helperWindow.Handle);
-			Win32.SendMessage(PluginBase.nppData._nppHandle, (uint)NppMsg.NPPM_SETMENUITEMCHECK, PluginBase._funcItems.Items[idMyDlg]._cmdID, showHelperWindow ? 1 : 0);
+			Win32.SendMessage(PluginBase.nppData._nppHandle, (uint)NppMsg.NPPM_SETMENUITEMCHECK, PluginBase._funcItems.Items[dialogueCommandId]._cmdID, showHelperWindow ? 1 : 0);
 		}
 
 		internal static void ToggleCheatSheetWindow()

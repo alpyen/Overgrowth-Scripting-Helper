@@ -170,19 +170,19 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildProjectDirectory)\PluginInfrastructure\DllExport\NppPlugin.DllExport.targets" />
   <PropertyGroup>
-    <PreBuildEvent>if $(PlatformName) == x86 (
-	xcopy /Y "$(SolutionDir)AsDocs2XML\bin\angelscript.xml" "C:\Program Files (x86)\Notepad++\autoCompletion\angelscript.xml"*
-	xcopy /Y "$(SolutionDir)AsDocs2XML\bin\database.xml" "C:\Program Files (x86)\Notepad++\plugins\Overgrowth Scripting Helper\database.xml"*	
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>if $(PlatformName) == x86 (
+	xcopy /Y "$(SolutionDir)AsDocs2XML\bin\angelscript.xml" "$(MSBuildProgramFiles32)Notepad++\autoCompletion\angelscript.xml"*
+	xcopy /Y "$(SolutionDir)AsDocs2XML\bin\database.xml" "$(MSBuildProgramFiles32)Notepad++\plugins\Overgrowth Scripting Helper\database.xml"*	
 )
 
 if $(PlatformName) == x64 (
-	xcopy /Y "$(SolutionDir)AsDocs2XML\bin\angelscript.xml" "C:\Program Files\Notepad++\autoCompletion\angelscript.xml"*
-	xcopy /Y "$(SolutionDir)AsDocs2XML\bin\database.xml" "C:\Program Files\Notepad++\plugins\Overgrowth Scripting Helper\database.xml"*
-)</PreBuildEvent>
-  </PropertyGroup>
-  <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+	xcopy /Y "$(SolutionDir)AsDocs2XML\bin\angelscript.xml" "$(ProgramW6432)Notepad++\autoCompletion\angelscript.xml"*
+	xcopy /Y "$(SolutionDir)AsDocs2XML\bin\database.xml" "$(ProgramW6432)Notepad++\plugins\Overgrowth Scripting Helper\database.xml"*
+)</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

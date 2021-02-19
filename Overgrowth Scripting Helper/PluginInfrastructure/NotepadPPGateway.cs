@@ -3,7 +3,7 @@ using System;
 using System.Text;
 using NppPluginNET.PluginInfrastructure;
 
-namespace Overgrowth_Scripting_Helper.NppPluginNET.PluginInfrastructure
+namespace Kbg.NppPluginNET.PluginInfrastructure
 {
 	public interface INotepadPPGateway
 	{

@@ -2,9 +2,9 @@
 using System;
 using System.Runtime.InteropServices;
 using System.Text;
-using static Overgrowth_Scripting_Helper.NppPluginNET.PluginInfrastructure.Win32;
+using static Kbg.NppPluginNET.PluginInfrastructure.Win32;
 
-namespace Overgrowth_Scripting_Helper.NppPluginNET.PluginInfrastructure
+namespace Kbg.NppPluginNET.PluginInfrastructure
 {
     /// <summary>
     /// This it the plugin-writers primary interface to Notepad++/Scintilla.
