@@ -28,32 +28,31 @@ namespace Overgrowth_Scripting_Helper
 
 			// Set the window title.
 			this.Text = Config.PluginName;
+		}
 
-			// The helper window will not be set visible even when it's forced on startup
-			// when the database is invalid or missing, therefore we can just return here.
-			if (Config.DatabaseXml == null) return;
-
+		public void ParseDatabase()
+		{
 			// Setup the icons for the tree view (arranging this in a for loop doesn't save any real space if you want it readable.)
-			this.TreeViewImageList.Images.Add("Classes",		Properties.Resources.Group16x16);
-			this.TreeViewImageList.Images.Add("Enumerations",	Properties.Resources.Group16x16);
-			this.TreeViewImageList.Images.Add("Functions",		Properties.Resources.Group16x16);
-			this.TreeViewImageList.Images.Add("Variables",		Properties.Resources.Group16x16);
-			this.TreeViewImageList.Images.Add("Class",			Properties.Resources.Class16x16);
-			this.TreeViewImageList.Images.Add("Function",		Properties.Resources.Function16x16);
-			this.TreeViewImageList.Images.Add("Overload",		Properties.Resources.Overload16x16);
-			this.TreeViewImageList.Images.Add("Parameter",		Properties.Resources.Variable16x16);
-			this.TreeViewImageList.Images.Add("Enumeration",	Properties.Resources.Enumeration16x16);
-			this.TreeViewImageList.Images.Add("Member",			Properties.Resources.Member16x16);
-			this.TreeViewImageList.Images.Add("Variable",		Properties.Resources.Variable16x16);
+			this.TreeViewImageList.Images.Add("Classes", Properties.Resources.Group16x16);
+			this.TreeViewImageList.Images.Add("Enumerations", Properties.Resources.Group16x16);
+			this.TreeViewImageList.Images.Add("Functions", Properties.Resources.Group16x16);
+			this.TreeViewImageList.Images.Add("Variables", Properties.Resources.Group16x16);
+			this.TreeViewImageList.Images.Add("Class", Properties.Resources.Class16x16);
+			this.TreeViewImageList.Images.Add("Function", Properties.Resources.Function16x16);
+			this.TreeViewImageList.Images.Add("Overload", Properties.Resources.Overload16x16);
+			this.TreeViewImageList.Images.Add("Parameter", Properties.Resources.Variable16x16);
+			this.TreeViewImageList.Images.Add("Enumeration", Properties.Resources.Enumeration16x16);
+			this.TreeViewImageList.Images.Add("Member", Properties.Resources.Member16x16);
+			this.TreeViewImageList.Images.Add("Variable", Properties.Resources.Variable16x16);
 
 			// Create Tab Controls and TreeViews
 			XmlNodeList scriptNodes = Config.DatabaseXml.SelectNodes("/Scripts/*");
-			
+
 			// Iterate through every available script type (Camera, Character, Hotspot, Level, Scriptable Campaign, Scriptable UI)
 			foreach (XmlNode currentScriptNode in scriptNodes)
 			{
 				TabPage currentScriptTabPage = new TabPage(currentScriptNode.Attributes["Name"].Value);
-				
+
 				TreeView currentScriptTreeView = new TreeView();
 				currentScriptTreeView.Dock = DockStyle.Fill;
 				if (Config.ShowIconsForEachNode) currentScriptTreeView.ImageList = this.TreeViewImageList;

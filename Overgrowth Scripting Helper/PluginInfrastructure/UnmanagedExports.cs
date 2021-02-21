@@ -61,7 +61,7 @@ namespace Kbg.NppPluginNET
             }
 			else if (notification.Header.Code == (uint)NppMsg.NPPN_READY)
 			{
-				Main.ToggleHelperWindow();
+				Main.OnNppReady();
 			}
         }
     }

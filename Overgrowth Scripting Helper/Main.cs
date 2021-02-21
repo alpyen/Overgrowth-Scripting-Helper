@@ -11,6 +11,7 @@ namespace Overgrowth_Scripting_Helper
 {
 	class Main
 	{
+		static bool databaseLoaded = false;
 		static bool showHelperWindow = false;
 		static SettingsWindow settingsWindow = null;
 		static HelperWindow helperWindow = null;
@@ -47,14 +48,7 @@ namespace Overgrowth_Scripting_Helper
 			aboutWindow = new AboutWindow();
 			cheatSheetWindow = new CheatSheetWindow();
 
-			// We do not call ToggleHelperWindow here because we have to wait until NPPN_READY is sent,
-			// otherwise the window will show up, but the toolbar icon will not be pushed down.
-			// We are inverting the showHelperWindow boolean because the toggle function will invert it again.
-			// This way we don't need to implement more logic.
 			DockHelperWindow();
-
-			showHelperWindow = Config.ShowHelperWindowOnStartup;
-			showHelperWindow = !showHelperWindow;
 
 			// Set up the menu items.
 			PluginBase.SetCommand(0, "Toggle Helper Window", ToggleHelperWindow);
@@ -110,7 +104,7 @@ namespace Overgrowth_Scripting_Helper
 			Win32.SendMessage(PluginBase.nppData._nppHandle, (uint)NppMsg.NPPM_DMMHIDE, 0, helperWindow.Handle);
 		}
 
-		internal static void ToggleHelperWindow()
+		internal static void SetHelperWindowVisibility(bool visible)
 		{
 			if (Config.DatabaseXml == null)
 			{
@@ -124,10 +118,27 @@ namespace Overgrowth_Scripting_Helper
 				return;
 			}
 
-			showHelperWindow = !showHelperWindow;
+			showHelperWindow = visible;
+
+			if (showHelperWindow && !databaseLoaded)
+			{
+				databaseLoaded = true;
+				helperWindow.ParseDatabase();
+			}
 
 			Win32.SendMessage(PluginBase.nppData._nppHandle, showHelperWindow ? (uint)NppMsg.NPPM_DMMSHOW : (uint)NppMsg.NPPM_DMMHIDE, 0, helperWindow.Handle);
 			Win32.SendMessage(PluginBase.nppData._nppHandle, (uint)NppMsg.NPPM_SETMENUITEMCHECK, PluginBase._funcItems.Items[dialogueCommandId]._cmdID, showHelperWindow ? 1 : 0);
+		}
+
+		internal static void OnNppReady()
+		{
+			if (Config.ShowHelperWindowOnStartup)
+				SetHelperWindowVisibility(true);
+		}
+
+		internal static void ToggleHelperWindow()
+		{
+			SetHelperWindowVisibility(!showHelperWindow);
 		}
 
 		internal static void ToggleCheatSheetWindow()
