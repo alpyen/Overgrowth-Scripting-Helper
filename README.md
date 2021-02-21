@@ -83,6 +83,7 @@ When successfully built and run, Notepad++ should start with the plugin enabled 
 #### Helper Window
 - Save the steps while filtering so the tree view can be rebuilt faster
 - Nightmode
+- Load database.xml on the first time the window is being shown to not increase Notepad++'s startup time.
 
 #### Settings
 - Set Cheat Sheet and Helper Window OnToppable

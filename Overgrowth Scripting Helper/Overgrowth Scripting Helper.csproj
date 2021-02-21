@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <PlatformTarget>x86</PlatformTarget>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DebugSymbols>false</DebugSymbols>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <RegisterForComInterop>false</RegisterForComInterop>
   </PropertyGroup>
   <PropertyGroup>
     <!-- Default values for debugging so it start correct version of Notepad++
@@ -176,13 +179,15 @@
   <PropertyGroup>
     <PostBuildEvent>if $(PlatformName) == x86 (
 	xcopy /Y "$(SolutionDir)AsDocs2XML\bin\angelscript.xml" "$(MSBuildProgramFiles32)\Notepad++\autoCompletion\angelscript.xml"*
-	xcopy /Y "$(SolutionDir)AsDocs2XML\bin\database.xml" "$(MSBuildProgramFiles32)\Notepad++\plugins\Overgrowth Scripting Helper\database.xml"*	
+	xcopy /Y "$(SolutionDir)AsDocs2XML\bin\database.xml" "$(MSBuildProgramFiles32)\Notepad++\plugins\Overgrowth Scripting Helper\database.xml"*
 )
 
 if $(PlatformName) == x64 (
 	xcopy /Y "$(SolutionDir)AsDocs2XML\bin\angelscript.xml" "$(ProgramW6432)\Notepad++\autoCompletion\angelscript.xml"*
 	xcopy /Y "$(SolutionDir)AsDocs2XML\bin\database.xml" "$(ProgramW6432)\Notepad++\plugins\Overgrowth Scripting Helper\database.xml"*
-)</PostBuildEvent>
+)
+
+exit 0</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

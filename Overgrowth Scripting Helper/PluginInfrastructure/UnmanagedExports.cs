@@ -11,7 +11,7 @@ namespace Kbg.NppPluginNET
 {
     class UnmanagedExports
     {
-        [DllExport(CallingConvention=CallingConvention.Cdecl)]
+        [DllExport(CallingConvention = CallingConvention.Cdecl)]
         static bool isUnicode()
         {
             return true;
