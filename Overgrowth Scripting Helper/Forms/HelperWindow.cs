@@ -79,7 +79,7 @@ namespace Overgrowth_Scripting_Helper
 					// Attach the corresponding XmlNode to the TreeNode as the Tag. Why?
 					// Because when the user selects the option to hide information from the tree node texts
 					// like hide function names in overload signatures, we will expand/search/remove wrong elements!
-					scriptElementTreeNode.Tag = scriptElementNode.Name;
+					scriptElementTreeNode.Tag = scriptElementNode.Name.ToLower();
 
 					// Iterate through the elements in the 2nd level
 					foreach (XmlNode childElementNode in scriptElementNode.ChildNodes)

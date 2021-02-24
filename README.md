@@ -83,6 +83,7 @@ When successfully built and run, Notepad++ should start with the plugin enabled 
 #### Helper Window
 - Save the steps while filtering so the tree view can be rebuilt faster
 - Nightmode
+- Option to hide empty groups
 
 #### Settings
 - Set Cheat Sheet and Helper Window OnToppable
