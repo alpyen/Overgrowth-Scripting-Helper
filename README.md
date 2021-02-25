@@ -84,6 +84,7 @@ When successfully built and run, Notepad++ should start with the plugin enabled 
 - Save the steps while filtering so the tree view can be rebuilt faster
 - Nightmode
 - Option to hide empty groups
+- Some classes are undocumented but used in other classes like MouseButton or ControllerInput
 
 #### Settings
 - Set Cheat Sheet and Helper Window OnToppable
