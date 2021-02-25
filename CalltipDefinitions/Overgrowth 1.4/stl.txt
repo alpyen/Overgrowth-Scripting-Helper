@@ -2,13 +2,13 @@
 
 // Note that string is not a real class and has no specific constructor or supports object handles.
 class string {
-	string opAssign(const string&in);
-	string opAssign(double);
-	string opAssign(float);
-	string opAssign(int64);
-	string opAssign(uint64);
-	string opAssign(bool);
-	string opAssign(vec3);
+	string& opAssign(const string&in);
+	string& opAssign(double);
+	string& opAssign(float);
+	string& opAssign(int64);
+	string& opAssign(uint64);
+	string& opAssign(bool);
+	string& opAssign(vec3);
 
 	string opAdd(const string&in) const;
 	string opAdd(double) const;
@@ -25,13 +25,13 @@ class string {
 	string opAdd_r(bool) const;
 	string opAdd_r(vec3) const;
 
-	string opAddAssign(const string&in);
-	string opAddAssign(double);
-	string opAddAssign(float);
-	string opAddAssign(int64);
-	string opAddAssign(uint64);
-	string opAddAssign(bool);
-	string opAddAssign(vec3);
+	string& opAddAssign(const string&in);
+	string& opAddAssign(double);
+	string& opAddAssign(float);
+	string& opAddAssign(int64);
+	string& opAddAssign(uint64);
+	string& opAddAssign(bool);
+	string& opAddAssign(vec3);
 
 	bool opEquals(const string&in) const;
 

@@ -1,79 +1,3 @@
-﻿// ----- VARIABLES -----
-
-uint UINT32MAX;
-float time_step; // Time in seconds between engine time steps
-float the_time; // The current time in seconds since engine started (in-game time)
-float ui_time; // The current time in seconds since engine started (absolute time)
-
-const int _collectable;
-const int _misc;
-const int _weapon;
-const int _item_no_type;
-
-const int _sound_priority_max;
-const int _sound_priority_very_high;
-const int _sound_priority_high;
-const int _sound_priority_med;
-const int _sound_priority_low;
-
-
-const int _delete_on_update;
-const int _fade;
-const int _delete_on_draw;
-const int _persistent;
-
-ASContext context;
-
-uint GetInputMode();
-
-
-float last_keyboard_event_time;
-float last_mouse_event_time;
-float last_controller_event_time;
-
-Camera camera;
-Physics physics;
-Level level;
-
-
-int _plant_movement_msg;
-int _editor_msg;
-
-
-const int _high;
-const int _medium;
-const int _low;
-const int _right;
-const int _front;
-const int _left;
-ScriptParams params;
-
-
-ASCollisions col; // Used to access collision functions
-SphereCollision sphere_col; // Stores results of collision functions
-
-
-const int _awake;
-const int _unconscious;
-const int _dead;
-
-
-MovementObject this_mo;
-const int _at_grip;
-const int _at_sheathe;
-const uint8 _ANM_MIRRORED;
-const uint8 _ANM_MOBILE;
-const uint8 _ANM_SUPER_MOBILE;
-const uint8 _ANM_SWAP;
-const uint8 _ANM_FROM_START;
-
-
-CharacterScriptGetter character_getter;
-
-ReactionScriptGetter reaction_getter;
-
-// ----- FUNCTIONS -----
-
 //Mandatory functions in script
 bool Init(string)
 void SetParameters()
@@ -112,14 +36,13 @@ void ResetWaypointTarget()
 void Dispose()
 
 //Interface
-// These two are methods from generic arrays. You can find them in stl.txt
-//void push_back(const T&in);
-//uint size() const;
+    void push_back(const T&in);
+    uint size() const;
 void StartStopwatch();
 uint64 StopAndReportStopwatch();
 void EnterTelemetryZone(const string& in name);
 void LeaveTelemetryZone();
-
+uint UINT32MAX;
 float fpFromIEEE(uint);
 uint fpToIEEE(float);
 double fpFromIEEE(uint64);
@@ -145,8 +68,24 @@ float RangedRandomFloat(float min, float max);
 float ceil(float);
 float abs(float);
 float floor(float);
-
-
+class vec2 {
+    float x;
+    float y;
+    void f();
+    void f(const vec2 &in);
+    void f(float, float);
+    void f(float);
+    vec2 &opAddAssign(const vec2 &in);
+    vec2 &opSubAssign(const vec2 &in);
+    vec2 &opMulAssign(float);
+    vec2 &opDivAssign(float);
+    bool opEquals(const vec2 &in) const;
+    vec2 opAdd(const vec2 &in) const;
+    vec2 opSub(const vec2 &in) const;
+    vec2 opMul(float) const;
+    vec2 opMul_r(float) const;
+    vec2 opDiv(float) const;
+};
 float length(const vec2 &in);
 float length_squared(const vec2 &in);
 float dot(const vec2 &in, const vec2 &in);
@@ -155,8 +94,27 @@ float distance_squared(const vec2 &in, const vec2 &in);
 vec2 normalize(const vec2 &in);
 vec2 reflect(const vec2 &in vec, const vec2 &in normal);
 vec2 mix(vec2 a,vec2 b,float alpha);
-
-
+class vec3 {
+    float x;
+    float y;
+    float z;
+    void f();
+    void f(const vec3 &in);
+    void f(float, float, float);
+    void f(float);
+    vec3 &opAddAssign(const vec3 &in);
+    vec3 &opSubAssign(const vec3 &in);
+    vec3 &opMulAssign(float);
+    vec3 &opDivAssign(float);
+    bool opEquals(const vec3 &in) const;
+    vec3 opAdd(const vec3 &in) const;
+    vec3 opSub(const vec3 &in) const;
+    vec3 opMul(float) const;
+    vec3 opMul(const vec3& in) const;
+    vec3 opMul_r(float) const;
+    vec3 opDiv(float) const;
+    float &opIndex(int);
+};
 float length(const vec3 &in);
 float length_squared(const vec3 &in);
 float dot(const vec3 &in, const vec3 &in);
@@ -168,29 +126,123 @@ vec3 normalize(const vec3 &in);
 vec3 cross(const vec3 &in, const vec3 &in);
 vec3 reflect(const vec3 &in vec, const vec3 &in normal);
 vec3 mix(vec3 a,vec3 b,float alpha);
-
+class vec4 {
+    float x;
+    float y;
+    float z;
+    float a;
+    void f();
+    void f(const vec4 &in);
+    void f(float, float, float, float);
+    void f(const vec3 &in, float);
+    void f(float);
 vec4 mix(vec4 a,vec4 b,float alpha);
-
-
+};
+class ivec2 {
+    int x;
+    int y;
+    void f();
+    void f(const ivec2 &in);
+    void f(int, int);
+    void f(int);
+    ivec2 &opAddAssign(const ivec2 &in);
+    ivec2 &opSubAssign(const ivec2 &in);
+    ivec2 &opMulAssign(int);
+    ivec2 &opDivAssign(int);
+    ivec2 opAdd(const ivec2 &in) const;
+    ivec2 opSub(const ivec2 &in) const;
+    ivec2 opMul(int) const;
+    ivec2 opDiv(int) const;
+};
+class ivec3 {
+    int x;
+    int y;
+    void f();
+    void f(const ivec3 &in);
+    void f(int, int, int);
+    void f(int);
+};
+class ivec4 {
+    int x;
+    int y;
+    void f();
+    void f(const ivec4 &in);
+    void f(int, int, int, int);
+    void f(int);
+};
+class quaternion {
+    float x;
+    float y;
+    float z;
+    float w;
+    void f();
+    void f(const quaternion &in);
+    void f(float, float, float, float);
+    void f(vec4); // Axis-angle (axis.x, axis.y, axis.z, angle_radians)
+    void f();
+    quaternion &opAssign(const quaternion &in);
+    quaternion &opAddAssign(const quaternion &in);
+    bool opEquals(const quaternion &in) const;
+    quaternion opAdd(const quaternion &in) const;
+    quaternion opMul(const quaternion &in) const;
+    vec3 opMul(const vec3 &in) const;
+};
 vec3 Mult(quaternion, vec3); // Applies a quaternion rotation to a vector
 quaternion mix(const quaternion &in a, const quaternion &in b, float alpha);
 quaternion invert(quaternion quat);
 void GetRotationBetweenVectors(const vec3 &in start, const vec3 &in end, quaternion &out rotation);
-
-
+class mat4 {
+    void f();
+    void f(const mat4 &in);
+    float &opIndex(uint);
+    const float &opIndex(uint) const;
+    mat4 opMul(mat4) const;
+    vec3 opMul(vec3) const;
+    vec3 opMul(vec4) const;
+    void SetTranslationPart(vec3);
+    vec3 GetTranslationPart() const;
+    void SetRotationPart(mat4);
+    mat4 GetRotationPart() const;
+    void SetRotationX(float);
+    void SetRotationY(float);
+    void SetRotationZ(float);
+    void SetColumn(int, vec3);
+    vec3 GetColumn(int);
+};
 mat4 transpose(mat4);
 mat4 invert(mat4);
 mat4 mix(const mat4 &in a, const mat4 &in b, float alpha);
-
-
-
+class mat3 {
+    void f();
+    void f(const mat3 &in);
+    float &opIndex(uint);
+    const float &opIndex(uint) const;
+    vec3 opMul(const vec3 &in) const;
+};
+class BoneTransform { // An efficient way to define an unscaled transformation
+    quaternion rotation;
+    vec3 origin;
+    void f();
+    void f(const mat4 &in);
+    void f(const BoneTransform &in);
+    bool opEquals(const BoneTransform &in) const;
+    BoneTransform opMul(const BoneTransform &in) const;
+    BoneTransform opMul(const BoneTransform &in) const;
+    vec3 opMul(const vec3 &in) const;
+    mat4 GetMat4() const;
+};
 BoneTransform invert(const BoneTransform &in);
 BoneTransform mix(const BoneTransform &in a, const BoneTransform &in b, float alpha);
 mat4 Mat4FromQuaternion(const quaternion &in);
 mat3 Mat3FromQuaternion(const quaternion &in);
 quaternion QuaternionFromMat4(const mat4 &in);
-
-
+    string &opAssign(vec3); // These 4 functions allow us to append vec3s to strings
+    string &opAddAssign(vec3);
+    string opAdd(vec3) const;
+    string opAdd_r(vec3) const;
+float time_step; // Time in seconds between engine time steps
+float the_time; // The current time in seconds since engine started (in-game time)
+float ui_time; // The current time in seconds since engine started (absolute time)
 void TimedSlowMotion(float target_time_scale, float how_long, float delay); // Used to trigger brief periods of slow motion
 uint64 GetPerformanceCounter(); // Get high precision time info for profiling
 uint64 GetPerformanceFrequency(); // Used to convert PerformanceCounter into seconds
@@ -210,8 +262,11 @@ int PlaySoundGroup(string path, vec3 position);
 int PlaySoundGroup(string path, vec3 position, float gain);
 int PlaySoundGroup(string path, vec3 position, int priority);
 void SetAirWhoosh(float volume, float pitch);
-
-
+const int _sound_priority_max;
+const int _sound_priority_very_high;
+const int _sound_priority_high;
+const int _sound_priority_med;
+const int _sound_priority_low;
 bool AddMusic(const string& in);
 bool RemoveMusic(const string& in);
 void PlaySong(const string& in);
@@ -245,8 +300,10 @@ void SetHDRBloomMult(float);
 float GetHDRWhitePoint(void);
 float GetHDRBlackPoint(void);
 float GetHDRBloomMult(void);
-
-
+const int _delete_on_update;
+const int _fade;
+const int _delete_on_draw;
+const int _persistent;
 int DebugDrawLine(vec3 start, vec3 end, vec3 color, int lifespan);
 int DebugDrawBillboard(const string &in path, vec3 center, float scale, vec4 color, int lifespan);
 int DebugDrawLine(vec3 start, vec3 end, vec3 start_color, vec3 end_color, int lifespan);
@@ -270,14 +327,82 @@ string FloatString(float val, int digits);
 int DebugDrawPoint(vec3 pos, vec4 color, int lifespan);
 void ClearTemporaryDecals(); // Like blood splats and footprints
 void DisplayError(const string &in title, const string &in contents);
-
-
+enum LogType {
+    fatal = 32,
+    error = 16,
+    warning = 8,
+    info = 4,
+    debug = 2,
+    spam = 1,
 void Log( LogType level, const string &in str );
 string GetBuildVersionShort( );
 string GetBuildVersionFull( );
 string GetBuildTimestamp( );
-
-
+enum JsonValueType {
+    JSONnullValue = 0,
+    JSONintValue = 1,
+    JSONuintValue = 2,
+    JSONrealValue = 3,
+    JSONstringValue = 4,
+    JSONbooleanValue = 5,
+    JSONarrayValue = 6,
+    JSONobjectValue = 7,
+class JSONValue {
+    void JSONValue();
+    void JSONValue( JsonValueType &in );
+    void JSONValue( int &in );
+    void JSONValue( uint &in);
+    void JSONValue( int64 &in);
+    void JSONValue( uint64 &in );
+    void JSONValue( double &in );
+    void JSONValue( string &in );
+    void JSONValue( bool &in );
+    void JSONValue( JSONValue &in );
+    void JSONValue();
+    JSONValue& opAssign(const JSONValue &in other);
+    JSONValue& opIndex( const string &in );
+    JSONValue& opIndex( const int &in );
+    string asString();
+    JsonValueType type();
+    string typeName();
+    int asInt();
+    uint asUInt();
+    int64 asInt64();
+    uint64 asUInt64();
+    float asFloat();
+    double asDouble();
+    bool asBool();
+    bool isNull();
+    bool isBool();
+    bool isInt();
+    bool isInt64();
+    bool isUInt();
+    bool isUInt64();
+    bool isIntegral();
+    bool isDouble();
+    bool isNumeric();
+    bool isString();
+    bool isArray();
+    bool isObject();
+    bool isConvertibleTo(JsonValueType type);
+    uint size();
+    bool empty();
+    void clear();
+    void resize(uint64);
+    bool isValidIndex(uint64);
+    JSONValue& append(const JSONValue &in);
+    bool removeMember( const string &in );
+    bool removeIndex( uint  i );
+    bool isMember(const string &in);
+    array<string>@ getMemberNames();
+class JSON {
+    void JSON();
+    void JSON();
+    JSON& opAssign(const JSON &in other);
+    bool parseString(string &in);
+    bool parseFile(string &in);
+    string writeString(bool=false);
+    JSONValue& getRoot();
 string GetConfigValueString(string index);
 array<string>@ GetConfigValueOptions(string index);
 float GetConfigValueFloat(string index);
@@ -306,7 +431,79 @@ uint GetLengthInBytesForNCodepoints( const string& in, uint codepoint_index );
 uint GetCodepointCount( const string& in );
 bool DirectoryExists(string& in);
 bool FileExists(string& in);
-
+class LevelDetails {
+    void f();
+    string GetName();
+};
+enum UserVote {
+    k_VoteUnknown = 0,
+    k_VoteNone = 1,
+    k_VoteUp = 2,
+    k_VoteDown = 3,
+class Parameter {
+    void f();
+    void f(const Parameter &in other);
+    void f();
+    Parameter& opAssign(const Parameter &in other);
+    Parameter opIndex( const string &in );
+    Parameter opIndex( const int &in );
+    string getName();
+    bool isEmpty();
+    bool isString();
+    bool isArray();
+    bool isTable();
+    uint size();
+    string asString();
+    bool contains(const string &in value);
+    bool containsName(const string &in value);
+class ModID {
+    void f();
+    void f();
+    bool Valid();
+};
+class MenuItem {
+    void f();
+    void f();
+    string GetTitle();
+    string GetCategory();
+    string GetPath();
+    string GetThumbnail();
+};
+class SpawnerItem {
+    void SpawnerItem();
+    void SpawnerItem();
+    string GetTitle();
+    string GetCategory();
+    string GetPath();
+    string GetThumbnail();
+};
+class ModLevel {
+    void f();
+    void f(const ModLevel &in other);
+    void f();
+    ModLevel& opAssign(const ModLevel &in other);
+    string GetTitle();
+    string GetID();
+    string GetThumbnail();
+    string GetPath();
+    LevelDetails GetDetails();
+    bool CompletionOptional();
+    Parameter GetParameter();
+};
+class Campaign {
+    void f();
+    void f(const Campaign &in other);
+    void f();
+    Campaign& opAssign(const Campaign &in other);
+    string GetID();
+    string GetTitle();
+    string GetThumbnail();
+    string GetMainScript();
+    string GetMenuScript();
+    string GetAttribute(string &in id);
+    array<ModLevel>@ GetLevels();
+    ModLevel GetLevel(string &in id);
+    Parameter GetParameter();
 Campaign GetCampaign(string& campaign_id);
 array<Campaign>@ GetCampaigns();
 bool ModIsActive(ModID& id);
@@ -358,8 +555,10 @@ void StorageSetInt32(string index, int value);
 bool StorageHasInt32(string index);
 int StorageGetInt32(string index);
 void PrintCallstack();
-
-
+class ASContext {
+    void PrintGlobalVars();
+};
+ASContext context;
 bool GetInputDown(int controller_id, const string &in input_label);
 bool GetInputDownFiltered(int controller_id, const string &in input_label, uint filter);
 bool GetInputPressed(int controller_id, const string &in input_label);
@@ -383,154 +582,6 @@ string GetLocaleStringForScancode(int scancode);
 string GetStringForMouseButton(int button);
 string GetStringForControllerInput(int input);
 string GetStringForMouseString(const string& text);
-
-array<KeyboardPress>@ GetRawKeyboardInputs();
-
-array<MousePress>@ GetRawMouseInputs();
-
-
-array<ControllerPress>@ GetRawControllerInputs(int which);
-bool IsControllerConnected();
-
-
-bool GetSplitscreen();
-int GetBloodLevel();
-const vec3 &GetBloodTint();
-
-int GetScreenWidth();
-int GetScreenHeight();
-
-
-int GetFontFaceID(const string &in path, int pixel_height);
-void DisposeTextAtlases();
-void DrawTextAtlas(const string &in path, int pixel_height, int flags, const string &in txt, int x, int y, vec4 color);
-void DrawTextAtlas2(const string &in path, int pixel_height, int flags, const string &in txt, int x, int y, vec4 color, uint char_limit);
-TextMetrics GetTextAtlasMetrics(const string &in path, int pixel_height, int flags, const string &in txt );
-TextMetrics GetTextAtlasMetrics2(const string &in path, int pixel_height, int flags, const string &in txt, uint char_limit );
-
-
-bool CheckSaveLevelChanges();
-void ClearUndoHistory();
-void RibbonItemSetEnabled(const string &in, bool);
-void RibbonItemSetToggled(const string &in, bool);
-void RibbonItemFlash(const string &in);
-bool MediaMode();
-void SetMediaMode(bool);
-void SetInterlevelData(const string &in, const string &in);
-string GetInterlevelData(const string &in);
-
-
-NavPath GetPath(vec3 start, vec3 end);
-NavPath GetPath(vec3 start, vec3 end, uint16 include_poly_flags, uint16 exclude_poly_flags);
-vec3 NavRaycast(vec3 start, vec3 end);
-vec3 NavRaycastSlide(vec3 start, vec3 end, int depth);
-NavPoint GetNavPoint(vec3);
-vec3 GetNavPointPos(vec3);
-void SendMessage(int target, int type, vec3 vec_a, vec3 vec_b);
-void SendMessage(int type, string msg);
-void SendGlobalMessage(string msg);
-
-
-void Breakpoint(int);
-
-
-float atof(const string &in str);
-int atoi(const string &in str);
-
-
-vec3 LineLineIntersect(vec3 start_a, vec3 end_a, vec3 start_b, vec3 end_b); // Get closest point between two line segments
-
-
-void LoadLevel(string level_path);
-void LoadLevelID(string id);
-void SetCampaignID(string id);
-string GetCurrLevelAbsPath();
-string GetCurrLevel();
-string GetCurrLevelRelPath();
-string GetLevelName(const string& path);
-string GetCurrLevelName();
-string GetCurrLevelID();
-string GetCurrCampaignID();
-string GetCurrentMenuModsourceID();
-string GetCurrentLevelModsourceID();
-bool EditorModeActive();
-void assert(bool val);
-void SetSplitScreenMode(SplitScreenMode mode);
-int GetNumCharacters();
-int GetNumHotspots();
-int GetNumItems();
-void GetCharactersInSphere(vec3 position, float radius, array<int>@ id_array);
-void GetCharacters(array<int>@ id_array);
-void GetCharactersInHull(string model_path, mat4, array<int>@ id_array);
-void GetObjectsInHull(string model_path, mat4, array<int>@ id_array);
-void ResetLevel();
-bool DoesItemFitInItem(int item_id, int holster_item_id);
-float GetFriction(const vec3 &in position);
-void CreateCustomHull(const string &in key, const array<vec3> &vertices);
-
-Object@ ReadObjectFromID(int);
-bool ObjectExists();
-array<int> @GetObjectIDs();
-array<int> @GetObjectIDsType(int type);
-void DeleteObjectID(int);
-void QueueDeleteObjectID(int);
-int CreateObject(const string &in path, bool exclude_from_save);
-int CreateObject(const string &in path);
-int DuplicateObject(Object@ obj);
-void DeselectAll();
-
-
-array<int> @GetSelected();
-
-
-MovementObject@ ReadCharacter(int index); // e.g. first character in scene
-MovementObject@ ReadCharacterID(int id); // e.g. character with object ID 39
-Hotspot@ ReadHotspot(int index);
-ItemObject@ ReadItem(int index);
-ItemObject@ ReadItemID(int id);
-EnvObject@ ReadEnvObjectID(int id);
-bool ObjectExists(int id);
-bool MovementObjectExists(int id);
-bool IsGroupDerived(int id);
-void SetPaused(bool paused);
-int FindFirstCharacterInGroup(int id);
-float GetAnimationEventTime( string &in anim_path, string &in event_label );
-
-void CFireRibbonUpdate(C_ACCEL @, float delta_time, float curr_game_time, vec3 &in pos);
-void CFireRibbonPreDraw(C_ACCEL @, float curr_game_time);
-
-// ----- ENUMS -----
-
-enum LogType {
-    fatal = 32,
-    error = 16,
-    warning = 8,
-    info = 4,
-    debug = 2,
-    spam = 1
-};
-
-
-enum JsonValueType {
-    JSONnullValue = 0,
-    JSONintValue = 1,
-    JSONuintValue = 2,
-    JSONrealValue = 3,
-    JSONstringValue = 4,
-    JSONbooleanValue = 5,
-    JSONarrayValue = 6,
-    JSONobjectValue = 7
-};
-
-
-enum UserVote {
-    k_VoteUnknown = 0,
-    k_VoteNone = 1,
-    k_VoteUp = 2,
-    k_VoteDown = 3
-};
-
-
 enum KeyboardInputModeFlag {
     KIMF_NO = 0,
     KIMF_MENU = 1,
@@ -538,10 +589,7 @@ enum KeyboardInputModeFlag {
     KIMF_LEVEL_EDITOR_GENERAL = 4,
     KIMF_LEVEL_EDITOR_DIALOGUE_EDITOR = 8,
     KIMF_GUI_GENERAL = 16,
-    KIMF_ANY = 268435455
-};
-
-
+    KIMF_ANY = 268435455,
 enum SDLNumeric {
     K_ESCAPE = 27,
     K_ENTER = 13,
@@ -567,10 +615,17 @@ enum SDLNumeric {
     KP_6 = 1073741918,
     KP_7 = 1073741919,
     KP_8 = 1073741920,
-    KP_9 = 1073741921
-};
-
-
+    KP_9 = 1073741921,
+uint GetInputMode();
+class KeyboardPress {
+    uint16 s_id;
+    uint32 keycode;
+    uint32 scancode;
+    uint16 mod;
+float last_keyboard_event_time;
+float last_mouse_event_time;
+float last_controller_event_time;
+array<KeyboardPress>@ GetRawKeyboardInputs();
 enum MouseButton {
     LEFT = 0,
     MIDDLE = 1,
@@ -582,10 +637,11 @@ enum MouseButton {
     EIGHT = 7,
     NINTH = 8,
     TENTH = 9,
-    TWELFTH = 10
-};
-
-
+    TWELFTH = 10,
+class MousePress {
+    uint16 s_id;
+    MouseButton button;
+array<MousePress>@ GetRawMouseInputs();
 enum ControllerInput {
     A = 0,
     B = 1,
@@ -611,430 +667,13 @@ enum ControllerInput {
     R_STICK_YN = 28,
     R_STICK_YP = 29,
     L_TRIGGER = 19,
-    R_TRIGGER = 20
-};
-
-
-enum CameraFlags {
-    kEditorCamera = 1,
-    kPreviewCamera = 2,
-};
-
-
-enum TextAtlasFlags {
-    kSmallLowercase = 1,
-};
-
-
-enum SamplePolyFlag {
-    POLYFLAGS_NONE = 0,
-    POLYFLAGS_WALK = 1,
-    POLYFLAGS_SWIM = 2,
-    POLYFLAGS_DOOR = 4,
-    POLYFLAGS_JUMP1 = 8,
-    POLYFLAGS_JUMP2 = 16,
-    POLYFLAGS_JUMP3 = 32,
-    POLYFLAGS_JUMP4 = 64,
-    POLYFLAGS_JUMP5 = 128,
-    POLYFLAGS_JUMP_ALL = 248,
-    POLYFLAGS_DISABLED = 256,
-    POLYFLAGS_ALL = 255
-};
-
-
-enum NavPathFlag {
-    DT_STRAIGHTPATH_START = 1,
-    DT_STRAIGHTPATH_END = 2,
-    DT_STRAIGHTPATH_OFFMESH_CONNECTION = 4
-};
-
-
-enum CollisionSides {
-    DOUBLE_SIDED = 1,
-    SINGLE_SIDED = 0,
-};
-
-
-enum EngineState {
-    kEngineNoState = 0,
-    kEngineLevelState = 1,
-    kEngineEditorLevelState = 2,
-    kEngineEngineScriptableUIState = 3,
-    kEngineCampaignState = 4
-};
-
-
-enum SplitScreenMode {
-    kModeNone = 0,
-    kModeFull = 1,
-    kModeSplit = 2
-};
-
-enum EntityType {
-	_any_type = 0,
-	_no_type = 1,
-	_camera_type = 2,
-	_terrain_type = 11,
-	_env_object = 20,
-	_movement_object = 21,
-	_spawn_point = 23,
-	_decal_object = 24,
-	_hotspot_object = 26,
-	_group = 29,
-	_rigged_object = 30,
-	_item_object = 32,
-	_path_point_object = 33,
-	_ambient_sound_object = 34,
-	_placeholder_object = 35,
-	_light_probe_object = 36,
-	_dynamic_light_object = 37,
-	_navmesh_hint_object = 38,
-	_navmesh_region_object = 39,
-	_navmesh_connection_object = 40,
-	_reflection_capture_object = 41,
-	_light_volume_object = 42,
-	_prefab = 43,
-};
-
-enum AttachmentType {
-	_at_attachment = 2,
-	_at_grip = 0,
-	_at_sheathe = 1,
-	_at_unspecified = 3,
-};
-
-enum ConnectionType {
-	kCTNone = 0,
-	kCTMovementObjects = 1,
-	kCTItemObjects = 2,
-	kCTEnvObjectsAndGroups = 3,
-	kCTPathPoints = 4,
-	kCTPlaceholderObjects = 5,
-	kCTNavmeshConnections = 6,
-	kCTHotspots = 7,
-};
-
-// ----- CLASSES -----
-
-class vec2 {
-    float x;
-    float y;
-    void f();
-    void f(const vec2 &in);
-    void f(float, float);
-    void f(float);
-    vec2 &opAddAssign(const vec2 &in);
-    vec2 &opSubAssign(const vec2 &in);
-    vec2 &opMulAssign(float);
-    vec2 &opDivAssign(float);
-    bool opEquals(const vec2 &in) const;
-    vec2 opAdd(const vec2 &in) const;
-    vec2 opSub(const vec2 &in) const;
-    vec2 opMul(float) const;
-    vec2 opMul_r(float) const;
-    vec2 opDiv(float) const;
-};
-
-
-class vec3 {
-    float x;
-    float y;
-    float z;
-    void f();
-    void f(const vec3 &in);
-    void f(float, float, float);
-    void f(float);
-    vec3 &opAddAssign(const vec3 &in);
-    vec3 &opSubAssign(const vec3 &in);
-    vec3 &opMulAssign(float);
-    vec3 &opDivAssign(float);
-    bool opEquals(const vec3 &in) const;
-    vec3 opAdd(const vec3 &in) const;
-    vec3 opSub(const vec3 &in) const;
-    vec3 opMul(float) const;
-    vec3 opMul(const vec3& in) const;
-    vec3 opMul_r(float) const;
-    vec3 opDiv(float) const;
-    float &opIndex(int);
-};
-
-class vec4 {
-    float x;
-    float y;
-    float z;
-    float a;
-    void f();
-    void f(const vec4 &in);
-    void f(float, float, float, float);
-    void f(const vec3 &in, float);
-    void f(float);
-};
-
-class ivec2 {
-    int x;
-    int y;
-    void f();
-    void f(const ivec2 &in);
-    void f(int, int);
-    void f(int);
-    ivec2 &opAddAssign(const ivec2 &in);
-    ivec2 &opSubAssign(const ivec2 &in);
-    ivec2 &opMulAssign(int);
-    ivec2 &opDivAssign(int);
-    ivec2 opAdd(const ivec2 &in) const;
-    ivec2 opSub(const ivec2 &in) const;
-    ivec2 opMul(int) const;
-    ivec2 opDiv(int) const;
-};
-
-
-class ivec3 {
-    int x;
-    int y;
-    void f();
-    void f(const ivec3 &in);
-    void f(int, int, int);
-    void f(int);
-};
-
-class ivec4 {
-    int x;
-    int y;
-    void f();
-    void f(const ivec4 &in);
-    void f(int, int, int, int);
-    void f(int);
-};
-
-class quaternion {
-    float x;
-    float y;
-    float z;
-    float w;
-    void f();
-    void f(const quaternion &in);
-    void f(float, float, float, float);
-    void f(vec4); // Axis-angle (axis.x, axis.y, axis.z, angle_radians)
-    void f();
-    quaternion &opAssign(const quaternion &in);
-    quaternion &opAddAssign(const quaternion &in);
-    bool opEquals(const quaternion &in) const;
-    quaternion opAdd(const quaternion &in) const;
-    quaternion opMul(const quaternion &in) const;
-    vec3 opMul(const vec3 &in) const;
-};
-
-class mat4 {
-    void f();
-    void f(const mat4 &in);
-    float &opIndex(uint);
-    const float &opIndex(uint) const;
-    mat4 opMul(mat4) const;
-    vec3 opMul(vec3) const;
-    vec3 opMul(vec4) const;
-    void SetTranslationPart(vec3);
-    vec3 GetTranslationPart() const;
-    void SetRotationPart(mat4);
-    mat4 GetRotationPart() const;
-    void SetRotationX(float);
-    void SetRotationY(float);
-    void SetRotationZ(float);
-    void SetColumn(int, vec3);
-    vec3 GetColumn(int);
-};
-
-
-class mat3 {
-    void f();
-    void f(const mat3 &in);
-    float &opIndex(uint);
-    const float &opIndex(uint) const;
-    vec3 opMul(const vec3 &in) const;
-};
-
-class BoneTransform { // An efficient way to define an unscaled transformation
-    quaternion rotation;
-    vec3 origin;
-    void f();
-    void f(const mat4 &in);
-    void f(const BoneTransform &in);
-    bool opEquals(const BoneTransform &in) const;
-    BoneTransform opMul(const BoneTransform &in) const;
-    BoneTransform opMul(const BoneTransform &in) const;
-    vec3 opMul(const vec3 &in) const;
-    mat4 GetMat4() const;
-};
-
-
-class JSONValue {
-    void JSONValue();
-    void JSONValue( JsonValueType &in );
-    void JSONValue( int &in );
-    void JSONValue( uint &in);
-    void JSONValue( int64 &in);
-    void JSONValue( uint64 &in );
-    void JSONValue( double &in );
-    void JSONValue( string &in );
-    void JSONValue( bool &in );
-    void JSONValue( JSONValue &in );
-    void JSONValue();
-    JSONValue& opAssign(const JSONValue &in other);
-    JSONValue& opIndex( const string &in );
-    JSONValue& opIndex( const int &in );
-    string asString();
-    JsonValueType type();
-    string typeName();
-    int asInt();
-    uint asUInt();
-    int64 asInt64();
-    uint64 asUInt64();
-    float asFloat();
-    double asDouble();
-    bool asBool();
-    bool isNull();
-    bool isBool();
-    bool isInt();
-    bool isInt64();
-    bool isUInt();
-    bool isUInt64();
-    bool isIntegral();
-    bool isDouble();
-    bool isNumeric();
-    bool isString();
-    bool isArray();
-    bool isObject();
-    bool isConvertibleTo(JsonValueType type);
-    uint size();
-    bool empty();
-    void clear();
-    void resize(uint64);
-    bool isValidIndex(uint64);
-    JSONValue& append(const JSONValue &in);
-    bool removeMember( const string &in );
-    bool removeIndex( uint  i );
-    bool isMember(const string &in);
-    array<string>@ getMemberNames();
-};
-
-
-class JSON {
-    void JSON();
-    void JSON();
-    JSON& opAssign(const JSON &in other);
-    bool parseString(string &in);
-    bool parseFile(string &in);
-    string writeString(bool=false);
-    JSONValue& getRoot();
-};
-
-
-class LevelDetails {
-    void f();
-    string GetName();
-};
-
-
-class Parameter {
-    void f();
-    void f(const Parameter &in other);
-    void f();
-    Parameter& opAssign(const Parameter &in other);
-    Parameter opIndex( const string &in );
-    Parameter opIndex( const int &in );
-    string getName();
-    bool isEmpty();
-    bool isString();
-    bool isArray();
-    bool isTable();
-    uint size();
-    string asString();
-    bool contains(const string &in value);
-    bool containsName(const string &in value);
-};
-
-
-class ModID {
-    void f();
-    void f();
-    bool Valid();
-};
-
-
-class MenuItem {
-    void f();
-    void f();
-    string GetTitle();
-    string GetCategory();
-    string GetPath();
-    string GetThumbnail();
-};
-
-class SpawnerItem {
-    void SpawnerItem();
-    void SpawnerItem();
-    string GetTitle();
-    string GetCategory();
-    string GetPath();
-    string GetThumbnail();
-};
-
-class ModLevel {
-    void f();
-    void f(const ModLevel &in other);
-    void f();
-    ModLevel& opAssign(const ModLevel &in other);
-    string GetTitle();
-    string GetID();
-    string GetThumbnail();
-    string GetPath();
-    LevelDetails GetDetails();
-    bool CompletionOptional();
-    Parameter GetParameter();
-};
-
-class Campaign {
-    void f();
-    void f(const Campaign &in other);
-    void f();
-    Campaign& opAssign(const Campaign &in other);
-    string GetID();
-    string GetTitle();
-    string GetThumbnail();
-    string GetMainScript();
-    string GetMenuScript();
-    string GetAttribute(string &in id);
-    array<ModLevel>@ GetLevels();
-    ModLevel GetLevel(string &in id);
-    Parameter GetParameter();
-};
-
-
-class ASContext {
-    void PrintGlobalVars();
-};
-
-
-class KeyboardPress {
-    uint16 s_id;
-    uint32 keycode;
-    uint32 scancode;
-    uint16 mod;
-};
-
-
-class MousePress {
-    uint16 s_id;
-    MouseButton button;
-};
-
-
+    R_TRIGGER = 20,
 class ControllerPress {
     uint32 s_id;
     ControllerInput input;
     float depth;
-};
-
-
+array<ControllerPress>@ GetRawControllerInputs(int which);
+bool IsControllerConnected();
 class Camera {
     vec3 &GetTint();
     void SetTint(const vec3 &in);
@@ -1068,21 +707,26 @@ class Camera {
     void CalcUp();
     void SetDOF(float near_blur, float near_dist, float near_transition, float far_blur, float far_dist, float far_transition);
 };
-
-
+Camera camera;
+bool GetSplitscreen();
+int GetBloodLevel();
+const vec3 &GetBloodTint();
+enum CameraFlags {
+    kEditorCamera = 1,
+    kPreviewCamera = 2,
+};
+int GetScreenWidth();
+int GetScreenHeight();
 class Physics {
     vec3 gravity_vector;
 };
-
-
+Physics physics;
 class TextStyle {
     int font_face_id;
     void f();
     void f();
     void SetAlignment(int i);
 };
-
-
 class TextMetrics {
     int advance_x;
     int advance_y;
@@ -1090,7 +734,6 @@ class TextMetrics {
     int bounds_y;
     float ascenderRatio;
 };
-
 class TextCanvasTexture {
     void Create(int width, int height);
     void ClearTextCanvas();
@@ -1103,8 +746,15 @@ class TextCanvasTexture {
     void SetPenColor(int r, int g, int b, int a);
     void SetPenRotation(float rotation);
 };
-
-
+enum TextAtlasFlags {
+    kSmallLowercase = 1,
+};
+int GetFontFaceID(const string &in path, int pixel_height);
+void DisposeTextAtlases();
+void DrawTextAtlas(const string &in path, int pixel_height, int flags, const string &in txt, int x, int y, vec4 color);
+void DrawTextAtlas2(const string &in path, int pixel_height, int flags, const string &in txt, int x, int y, vec4 color, uint char_limit);
+TextMetrics GetTextAtlasMetrics(const string &in path, int pixel_height, int flags, const string &in txt );
+TextMetrics GetTextAtlasMetrics2(const string &in path, int pixel_height, int flags, const string &in txt, uint char_limit );
 class ScriptParams {
     const string &GetString (const string &in key);
     float GetFloat (const string &in key);
@@ -1128,7 +778,6 @@ class ScriptParams {
     bool IsParamString(const string &in key);
     bool IsParamJSON(const string &in key);
 };
-
 class Level {
     bool HasFunction(const string &in function_definition);
     int QueryIntFunction(const string &in function);
@@ -1156,8 +805,33 @@ class Level {
     bool WaitingForInput();
     ScriptParams@ GetScriptParams();
 };
-
-
+Level level;
+bool CheckSaveLevelChanges();
+void ClearUndoHistory();
+void RibbonItemSetEnabled(const string &in, bool);
+void RibbonItemSetToggled(const string &in, bool);
+void RibbonItemFlash(const string &in);
+bool MediaMode();
+void SetMediaMode(bool);
+void SetInterlevelData(const string &in, const string &in);
+string GetInterlevelData(const string &in);
+enum SamplePolyFlag {
+    POLYFLAGS_NONE = 0,
+    POLYFLAGS_WALK = 1,
+    POLYFLAGS_SWIM = 2,
+    POLYFLAGS_DOOR = 4,
+    POLYFLAGS_JUMP1 = 8,
+    POLYFLAGS_JUMP2 = 16,
+    POLYFLAGS_JUMP3 = 32,
+    POLYFLAGS_JUMP4 = 64,
+    POLYFLAGS_JUMP5 = 128,
+    POLYFLAGS_JUMP_ALL = 248,
+    POLYFLAGS_DISABLED = 256,
+    POLYFLAGS_ALL = 255,
+enum NavPathFlag {
+    DT_STRAIGHTPATH_START = 1,
+    DT_STRAIGHTPATH_END = 2,
+    DT_STRAIGHTPATH_OFFMESH_CONNECTION = 4,
 class NavPath {
     void NavPath();
     void NavPath(const NavPath &in other);
@@ -1168,7 +842,6 @@ class NavPath {
     vec3 GetPoint(int);
     uint8 GetFlag(int);
 };
-
 class NavPoint {
     void NavPoint();
     void NavPoint(const NavPoint &in other);
@@ -1177,15 +850,23 @@ class NavPoint {
     bool IsSuccess();
     vec3 GetPoint();
 };
-
-
+NavPath GetPath(vec3 start, vec3 end);
+NavPath GetPath(vec3 start, vec3 end, uint16 include_poly_flags, uint16 exclude_poly_flags);
+vec3 NavRaycast(vec3 start, vec3 end);
+vec3 NavRaycastSlide(vec3 start, vec3 end, int depth);
+NavPoint GetNavPoint(vec3);
+vec3 GetNavPointPos(vec3);
+void SendMessage(int target, int type, vec3 vec_a, vec3 vec_b);
+void SendMessage(int type, string msg);
+void SendGlobalMessage(string msg);
+int _plant_movement_msg;
+int _editor_msg;
 class TokenIterator {
     void Init();
     bool FindNextToken(const string& in);
     string GetToken(const string& in);
 };
-
-
+void Breakpoint(int);
 class AttackScriptGetter { // Used to query information from an attack xml file
     AttackScriptGetter@ f();
     void AttackScriptGetter();
@@ -1223,8 +904,19 @@ class AttackScriptGetter { // Used to query information from an attack xml file
     int GetMirrored();
     int GetMobile();
 };
-
-
+const int _high;
+const int _medium;
+const int _low;
+const int _right;
+const int _front;
+const int _left;
+ScriptParams params;
+float atof(const string &in str);
+int atoi(const string &in str);
+enum CollisionSides {
+    DOUBLE_SIDED = 1,
+    SINGLE_SIDED = 0,
+};
 class CollisionPoint {
     vec3 position;
     vec3 normal;
@@ -1232,7 +924,6 @@ class CollisionPoint {
     int id;
     int tri;
 };
-
 class SphereCollision {
     vec3 position;
     vec3 adjusted_position;
@@ -1240,7 +931,6 @@ class SphereCollision {
     int NumContacts();
     CollisionPoint GetContact(int);
 };
-
 class ASCollisions {
     vec3 GetSlidingCapsuleCollision(vec3 start, vec3 end, float radius);
     void GetSlidingSphereCollision(vec3 pos, float radius);
@@ -1261,8 +951,9 @@ class ASCollisions {
     void GetPlantRayCollision(vec3 start, vec3 end);
     void GetObjectsInSphere(vec3 pos, float radius);
 };
-
-
+ASCollisions col; // Used to access collision functions
+SphereCollision sphere_col; // Stores results of collision functions
+vec3 LineLineIntersect(vec3 start_a, vec3 end_a, vec3 start_b, vec3 end_b); // Get closest point between two line segments
 class AnimationClient {
     float GetAnimationEventTime(const string &in event);
     float GetTimeUntilEvent(const string &in event);
@@ -1282,7 +973,6 @@ class AnimationClient {
     void RemoveAllLayers();
     void Reset();
 };
-
 class Skeleton {
     vec3 GetCenterOfMass();
     void SetBoneInflate(int bone_id, float amount);
@@ -1303,8 +993,6 @@ class Skeleton {
     array<float> @GetConvexHullPoints(int bone_id);
     BoneTransform ApplyParentRotations(const array<BoneTransform> &in matrices, int id);
 };
-
-
 class RiggedObject {
     bool ik_enabled;
     int anim_update_period;
@@ -1368,8 +1056,9 @@ class RiggedObject {
     Skeleton &skeleton();
     AnimationClient &anim_client();
 };
-
-
+const int _awake;
+const int _unconscious;
+const int _dead;
 class MovementObject {
     vec3 position;
     vec3 velocity;
@@ -1448,8 +1137,152 @@ class MovementObject {
     void CDrawTail(int num_frames);
     void CFireRibbonUpdate(C_ACCEL @, float delta_time, float curr_game_time);
 };
-
+enum EngineState {
+    kEngineNoState = 0,
+    kEngineLevelState = 1,
+    kEngineEditorLevelState = 2,
+    kEngineEngineScriptableUIState = 3,
+    kEngineCampaignState = 4,
+enum SplitScreenMode {
+    kModeNone = 0,
+    kModeFull = 1,
+    kModeSplit = 2,
+void LoadLevel(string level_path);
+void LoadLevelID(string id);
+void SetCampaignID(string id);
+string GetCurrLevelAbsPath();
+string GetCurrLevel();
+string GetCurrLevelRelPath();
+string GetLevelName(const string& path);
+string GetCurrLevelName();
+string GetCurrLevelID();
+string GetCurrCampaignID();
+string GetCurrentMenuModsourceID();
+string GetCurrentLevelModsourceID();
+bool EditorModeActive();
+void assert(bool val);
+void SetSplitScreenMode(SplitScreenMode mode);
+int GetNumCharacters();
+int GetNumHotspots();
+int GetNumItems();
+void GetCharactersInSphere(vec3 position, float radius, array<int>@ id_array);
+void GetCharacters(array<int>@ id_array);
+void GetCharactersInHull(string model_path, mat4, array<int>@ id_array);
+void GetObjectsInHull(string model_path, mat4, array<int>@ id_array);
+void ResetLevel();
+bool DoesItemFitInItem(int item_id, int holster_item_id);
+float GetFriction(const vec3 &in position);
+void CreateCustomHull(const string &in key, const array<vec3> &vertices);
 class Object {
+class ItemObject {
+    vec3 GetPhysicsPosition();
+    vec3 GetLinearVelocity();
+    vec3 GetAngularVelocity();
+    void SetAngularVelocity(vec3);
+    void AddBloodDecal(vec3 position, vec3 direction, float size);
+    void CleanBlood();
+    mat4 GetPhysicsTransform();
+    mat4 GetPhysicsTransformIncludeOffset();
+    void SetPhysicsTransform(const mat4 &in);
+    void ActivatePhysics();
+    bool IsHeld();
+    int StuckInWhom();
+    int HeldByWhom();
+    int GetID();
+    void SetLinearVelocity(vec3);
+    const string& GetLabel();
+    void SetThrown();
+    void SetThrownStraight();
+    float GetMass();
+    bool HasSheatheAttachment();
+    int GetNumHands();
+    int GetType();
+    vec3 GetPoint(string label);
+    int GetNumLines();
+    vec3 GetLineStart(int line_index);
+    vec3 GetLineEnd(int line_index);
+    string GetLineMaterial(int line_index);
+    const string &GetSoundModifier();
+    float GetRangeExtender();
+    float GetRangeMultiplier();
+    bool CheckThrownSafe();
+    void SetSafe();
+    ScriptParams@ GetScriptParams();
+    int last_held_char_id_;
+};
+const int _collectable;
+const int _misc;
+const int _weapon;
+const int _item_no_type;
+class EnvObject {
+    int GetID();
+    void CreateLeaf(vec3 target_position, vec3 velocity, int iterations); // Spawn leaf particles from random point on object's surface; more iterations = closer to target_position
+    int GetCollisionFace(int index);
+    vec3 GetCollisionVertex(int index);
+    int GetNumLedgeLines();
+    int GetLedgeLine(int index);
+};
+class Hotspot {
+    int GetID();
+    string GetTypeString();
+    bool HasVar(string& in name);
+    bool GetBoolVar(string& in name);
+    int GetIntVar(string& in name);
+    int GetArrayIntVar(const string &in name, int index);
+    float GetFloatVar(string& in name);
+    array<int> @GetConnectedObjects();
+    bool HasFunction(const string &in function_definition);
+    int QueryIntFunction(const string &in function);
+    bool QueryBoolFunction(const string &in function);
+    float QueryFloatFunction(const string &in function);
+    string QueryStringFunction(const string &in function);
+    void SetCollisionEnabled(bool);
+    bool ConnectTo(Object@);
+    bool Disconnect(Object@);
+void CFireRibbonUpdate(C_ACCEL @, float delta_time, float curr_game_time, vec3 &in pos);
+void CFireRibbonPreDraw(C_ACCEL @, float curr_game_time);
+};
+enum EntityType {
+    _any_type = 0,
+    _no_type = 1,
+    _camera_type = 2,
+    _terrain_type = 11,
+    _env_object = 20,
+    _movement_object = 21,
+    _spawn_point = 23,
+    _decal_object = 24,
+    _hotspot_object = 26,
+    _group = 29,
+    _rigged_object = 30,
+    _item_object = 32,
+    _path_point_object = 33,
+    _ambient_sound_object = 34,
+    _placeholder_object = 35,
+    _light_probe_object = 36,
+    _dynamic_light_object = 37,
+    _navmesh_hint_object = 38,
+    _navmesh_region_object = 39,
+    _navmesh_connection_object = 40,
+    _reflection_capture_object = 41,
+    _light_volume_object = 42,
+    _prefab = 43,
+};
+enum AttachmentType {
+    _at_attachment = 2,
+    _at_grip = 0,
+    _at_sheathe = 1,
+    _at_unspecified = 3,
+};
+enum ConnectionType {
+    kCTNone = 0,
+    kCTMovementObjects = 1,
+    kCTItemObjects = 2,
+    kCTEnvObjectsAndGroups = 3,
+    kCTPathPoints = 4,
+    kCTPlaceholderObjects = 5,
+    kCTNavmeshConnections = 6,
+    kCTHotspots = 7,
+};
     int GetID();
     string GetName();
     void SetName(const string &in);
@@ -1500,82 +1333,44 @@ class Object {
     bool IsExcludedFromUndo();
     int GetParent();
     array<int>@ GetChildren();
-	PathPointObject@ opCast();
-    Hotspot@ opCast();
 };
-
-class ItemObject {
-	vec3 GetPhysicsPosition();
-	vec3 GetLinearVelocity();
-	vec3 GetAngularVelocity();
-	void SetAngularVelocity(vec3);
-	void AddBloodDecal(vec3 position, vec3 direction, float size);
-	void CleanBlood();
-	mat4 GetPhysicsTransform();
-	mat4 GetPhysicsTransformIncludeOffset();
-	void SetPhysicsTransform(const mat4 &in);
-	void ActivatePhysics();
-	bool IsHeld();
-	int StuckInWhom();
-	int HeldByWhom();
-	int GetID();
-	void SetLinearVelocity(vec3);
-	const string& GetLabel();
-	void SetThrown();
-	void SetThrownStraight();
-	float GetMass();
-	bool HasSheatheAttachment();
-	int GetNumHands();
-	int GetType();
-	vec3 GetPoint(string label);
-	int GetNumLines();
-	vec3 GetLineStart(int line_index);
-	vec3 GetLineEnd(int line_index);
-	string GetLineMaterial(int line_index);
-	const string &GetSoundModifier();
-	float GetRangeExtender();
-	float GetRangeMultiplier();
-	bool CheckThrownSafe();
-	void SetSafe();
-	ScriptParams@ GetScriptParams();
-	int last_held_char_id_;
-};
-
-
-class EnvObject {
-	int GetID();
-	void CreateLeaf(vec3 target_position, vec3 velocity, int iterations); // Spawn leaf particles from random point on object's surface; more iterations = closer to target_position
-	int GetCollisionFace(int index);
-	vec3 GetCollisionVertex(int index);
-	int GetNumLedgeLines();
-	int GetLedgeLine(int index);
-};
-
-class Hotspot {
-	int GetID();
-	string GetTypeString();
-	bool HasVar(string& in name);
-	bool GetBoolVar(string& in name);
-	int GetIntVar(string& in name);
-	int GetArrayIntVar(const string &in name, int index);
-	float GetFloatVar(string& in name);
-	array<int> @GetConnectedObjects();
-	bool HasFunction(const string &in function_definition);
-	int QueryIntFunction(const string &in function);
-	bool QueryBoolFunction(const string &in function);
-	float QueryFloatFunction(const string &in function);
-	string QueryStringFunction(const string &in function);
-	void SetCollisionEnabled(bool);
-	bool ConnectTo(Object@);
-	bool Disconnect(Object@);
-};
-
+Object@ ReadObjectFromID(int);
+bool ObjectExists();
+array<int> @GetObjectIDs();
+array<int> @GetObjectIDsType(int type);
+void DeleteObjectID(int);
+void QueueDeleteObjectID(int);
+int CreateObject(const string &in path, bool exclude_from_save);
+int CreateObject(const string &in path);
+int DuplicateObject(Object@ obj);
+void DeselectAll();
+array<int> @GetSelected();
 class PathPointObject {
     int NumConnectionIDs();
     int GetConnectionID(int which);
 };
-
-
+    PathPointObject@ opCast();
+    Hotspot@ opCast();
+MovementObject@ ReadCharacter(int index); // e.g. first character in scene
+MovementObject@ ReadCharacterID(int id); // e.g. character with object ID 39
+Hotspot@ ReadHotspot(int index);
+ItemObject@ ReadItem(int index);
+ItemObject@ ReadItemID(int id);
+EnvObject@ ReadEnvObjectID(int id);
+bool ObjectExists(int id);
+bool MovementObjectExists(int id);
+bool IsGroupDerived(int id);
+void SetPaused(bool paused);
+int FindFirstCharacterInGroup(int id);
+float GetAnimationEventTime( string &in anim_path, string &in event_label );
+MovementObject this_mo;
+const int _at_grip;
+const int _at_sheathe;
+const uint8 _ANM_MIRRORED;
+const uint8 _ANM_MOBILE;
+const uint8 _ANM_SUPER_MOBILE;
+const uint8 _ANM_SWAP;
+const uint8 _ANM_FROM_START;
 class CharacterScriptGetter { // Can load a character xml and provide access to its data
     bool Load(const string &in); // Load a character xml file (e.g. "Data/Characters/guard.xml")
     string GetObjPath();
@@ -1588,10 +1383,10 @@ class CharacterScriptGetter { // Can load a character xml and provide access to 
     const string& GetChannel(int which_channel); // Get type of given color channel (e.g. "fur", "cloth")
     bool GetMorphMetaPoints(const string &in label, vec3 &out start, vec3 &out end);
 };
-
-
+CharacterScriptGetter character_getter;
 class ReactionScriptGetter {
     void Load(string path);
     string GetAnimPath(float severity);
     int GetMirrored();
 };
+ReactionScriptGetter reaction_getter;

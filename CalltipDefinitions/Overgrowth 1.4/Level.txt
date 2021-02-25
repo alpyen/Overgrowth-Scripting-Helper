@@ -1712,6 +1712,8 @@ class Object {
     bool IsExcludedFromUndo();
     int GetParent();
     array<int>@ GetChildren();
+	PathPointObject@ opCast();
+    Hotspot@ opCast();
 };
 
 class AnimationClient {
