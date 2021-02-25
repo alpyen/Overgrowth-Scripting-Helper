@@ -454,17 +454,22 @@ namespace AsDocs2XML
 
 							// Overgrowth 1.4 types
 							string noIdentifiers =
-								"void bool int8 int16 int int64 uint8 uint16 uint uint64 float double auto function funcdef class interface" +
-								" enum namespace import const cast string array T BoneTransform C_ACCEL CItem CollisionPoint ConnectionType" +
-								" ContainerAlignment dictionary dictionaryValue DividerOrientation EntityType EnvObject FontSetup Hotspot HUDImage" +
-								" IMChangeImageFadeOutIn IMChangeTextFadeOutIn IMContainer IMDivider IMElement IMFadeIn IMFixedMessageOnClick" +
-								" IMFixedMessageOnMouseOver IMGUI IMImage IMMessage IMMouseClickBehavior IMMouseOverBehavior IMMouseOverFadeIn" +
-								" IMMouseOverMove IMMouseOverPulseBorder IMMouseOverPulseBorderAlpha IMMouseOverPulseColor IMMouseOverScale" +
-								" IMMouseOverShowBorder IMMoveIn IMPulseAlpha IMPulseBorderAlpha IMSpacer IMText IMTextSelectionList IMTweenType" +
-								" IMUIContext IMUIImage IMUIText IMUpdateBehavior ItemObject ivec2 ivec3 ivec4 JSON JSONValue JsonValueType" +
-								" LevelDetails LevelSetReader LogType mat3 mat4 ModID ModLevel MovementObject NavPath NavPoint Object Parameter" +
-								" PlaceholderObject quaternion RiggedObject SavedChunk SavedLevel ScriptParams SizePolicy Skeleton SplitScreenMode" +
-								" TextCanvasTexture TextMetrics TextureAssetRef UIMouseState UIState UserVote vec2 vec3 vec4 in out inout"
+								"void bool int int8 int16 int32 int64 uint uint8 uint16 uint32 uint64 float double auto function funcdef class interface" +
+								" enum namespace import const cast string array T AnimationClient ASCollisions ASContext AttachmentType AttackScriptGetter" +
+								" BoneTransform Camera CameraFlags CameraObject Campaign CharacterScriptGetter CItem CollisionPoint CollisionSides ConnectionType" +
+								" ContainerAlignment ControllerInput ControllerPress C_ACCEL dictionary dictionaryValue DividerOrientation EngineState EntityType" +
+								" EnvObject ExpansionPolicy FontSetup GUIState Hotspot HUDImage HUDImages IMChangeImageFadeOutIn IMChangeTextFadeOutIn IMContainer" +
+								" IMDivider ImDrawCornerFlags_ IMElement IMFadeIn IMFixedMessageOnClick IMFixedMessageOnMouseOver IMGUI ImGuiColorEditFlags_" +
+								" ImGuiColorEditMode_ ImGuiCol_ ImGuiComboFlags_ ImGuiInputTextFlags_ ImGuiKey_ ImGuiSelectableFlags_ ImGuiSetCond_ ImGuiStyleVar_" +
+								" ImGuiTreeNodeFlags_ ImGuiWindowFlags_ IMImage IMMessage IMMouseClickBehavior IMMouseOverBehavior IMMouseOverFadeIn IMMouseOverMove" +
+								" IMMouseOverPulseBorder IMMouseOverPulseBorderAlpha IMMouseOverPulseColor IMMouseOverScale IMMouseOverShowBorder IMMoveIn IMPulseAlpha" +
+								" IMPulseBorderAlpha IMSpacer IMText IMTextSelectionList IMTweenType IMUIContext IMUIImage IMUIText IMUpdateBehavior ItemObject ivec2" +
+								" ivec3 ivec4 JSON JSONValue JsonValueType KeyboardInputModeFlag KeyboardPress Level LevelDetails LevelInfoReader LevelSetReader LogType" +
+								" mat3 mat4 MenuItem ModID ModLevel MouseButton MousePress MovementObject NavPath NavPathFlag NavPoint Object Parameter PathPointObject" +
+								" Physics PlaceholderObject PlaceholderObjectType quaternion ReactionScriptGetter RiggedObject SamplePolyFlag SavedChunk SavedLevel" +
+								" SaveFile ScreenMetrics ScriptableUI ScriptParams SDLNumeric SizePolicy Skeleton SpawnerItem SphereCollision SplitScreenMode" +
+								" TextAtlasFlags TextCanvasTexture TextFlags TextMetrics TextStyle TextureAssetRef TextureLoadFlags TokenIterator UIMouseState" +
+								" UIState UserVote vec2 vec3 vec4 in out inout"
 							;
 
 							string[] splitNoIdentifiers = noIdentifiers.Split(' ');
