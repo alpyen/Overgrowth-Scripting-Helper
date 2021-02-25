@@ -85,6 +85,10 @@ When successfully built and run, Notepad++ should start with the plugin enabled 
 - Nightmode
 - Option to hide empty groups
 - Some classes are undocumented but used in other classes like MouseButton or ControllerInput
+- IM stuff seems to inherit from a base class or interface (IMText / IMElement or IMMessage for example)
+  - It is possible to cast between them so they are parent/child class
+  - Correct Docs and add children as subclass (meaning they inherit)
+  - Extend AsDocs2XML to distinguish between inherited function and new function
 
 #### Settings
 - Set Cheat Sheet and Helper Window OnToppable
