@@ -388,6 +388,10 @@ int atoi(const string &in str);
 
 vec3 LineLineIntersect(vec3 start_a, vec3 end_a, vec3 start_b, vec3 end_b); // Get closest point between two line segments
 
+void CFireRibbonUpdate(C_ACCEL @, float delta_time, float curr_game_time, vec3 &in pos);
+void CFireRibbonPreDraw(C_ACCEL @, float curr_game_time);
+
+
 // ============= ENUMS ==============
 
 enum LogType {
@@ -535,6 +539,50 @@ enum CollisionSides {
     SINGLE_SIDED = 0
 };
 
+
+enum EntityType {
+	_any_type = 0,
+	_no_type = 1,
+	_camera_type = 2,
+	_terrain_type = 11,
+	_env_object = 20,
+	_movement_object = 21,
+	_spawn_point = 23,
+	_decal_object = 24,
+	_hotspot_object = 26,
+	_group = 29,
+	_rigged_object = 30,
+	_item_object = 32,
+	_path_point_object = 33,
+	_ambient_sound_object = 34,
+	_placeholder_object = 35,
+	_light_probe_object = 36,
+	_dynamic_light_object = 37,
+	_navmesh_hint_object = 38,
+	_navmesh_region_object = 39,
+	_navmesh_connection_object = 40,
+	_reflection_capture_object = 41,
+	_light_volume_object = 42,
+	_prefab = 43,
+};
+
+enum AttachmentType {
+	_at_attachment = 2,
+	_at_grip = 0,
+	_at_sheathe = 1,
+	_at_unspecified = 3,
+};
+
+enum ConnectionType {
+	kCTNone = 0,
+	kCTMovementObjects = 1,
+	kCTItemObjects = 2,
+	kCTEnvObjectsAndGroups = 3,
+	kCTPathPoints = 4,
+	kCTPlaceholderObjects = 5,
+	kCTNavmeshConnections = 6,
+	kCTHotspots = 7,
+};
 
 // ============= VARIABLES ================
 
@@ -948,337 +996,290 @@ class Physics {
 
 
 class Object {
-	class AnimationClient {
-		float GetAnimationEventTime(const string &in event);
-		float GetTimeUntilEvent(const string &in event);
-		void SetAnimationCallback(const string &in function);
-		void AddAnimationOffset(const vec3 &in);
-		void AddAnimationRotOffset(float radians);
-		int AddLayer(const string &in anim_path, float transition_speed, int8 flags);
-		int RemoveLayer(int id, float transition_speed);
-		void SetBlendCoord(const string &in coord_label, float coord_value);
-		void SetLayerOpacity(int id, float opacity);
-		void SetSpeedMult(float);
-		void SetAnimatedItemID(int index, int id);
-		void SetLayerItemID(int layer, int index, int id);
-		const string& GetCurrAnim();
-		float GetNormalizedAnimTime();
-		float GetAnimationSpeed();
-		void RemoveAllLayers();
-		void Reset();
-	};
-	
-	class Skeleton {
-		vec3 GetCenterOfMass();
-		void SetBoneInflate(int bone_id, float amount);
-		int GetParent(int bone_id);
-		bool IKBoneExists(const string& in);
-		float GetBoneMass(int bone_id);
-		int IKBoneStart(const string& in IK_label);
-		int IKBoneLength(const string& in IK_label);
-		int NumBones();
-		vec3 GetBoneLinearVelocity(int which);
-		mat4 GetBoneTransform(int bone_id);
-		void SetBoneTransform(int bone_id, const mat4 &in transform);
-		vec3 GetPointPos(int bone_id);
-		int GetBonePoint(int bone_id, int which_point);
-		void AddVelocity(const vec3 &in vel);
-		mat4 GetBindMatrix(int bone_id);
-		bool HasPhysics(int bone_id);
-		array<float> @GetConvexHullPoints(int bone_id);
-		BoneTransform ApplyParentRotations(const array<BoneTransform> &in matrices, int id);
-	};
-	
-	class RiggedObject {
-		bool ik_enabled;
-		int anim_update_period;
-		int curr_anim_update_time;
-		vec3 GetBonePosition(int bone);
-		void AddWaterCube(const mat4 &in transform);
-		void Ignite();
-		void Extinguish();
-		void SetFire(float fire);
-		void SetWet(float wet);
-		BoneTransform GetFrameMatrix(int which);
-		void SetFrameMatrix(int which, const BoneTransform &in transform);
-		float GetCharScale();
-		float GetRelativeCharScale();
-		void Draw();
-		void CutPlane(const vec3 &in normal, const vec3 &in position, const vec3 &in direction, int type, int depth);
-		void Stab(const vec3 &in position, const vec3 &in direction, int type, int depth);
-		void SetRagdollStrength(float);
-		void RefreshRagdoll();
-		void SetRagdollDamping(float);
-		void ApplyForceToRagdoll(const vec3 &in force, const vec3 &in position);
-		void ApplyForceToBone(const vec3 &in force, const int &in bone);
-		void ApplyForceLineToRagdoll(const vec3 &in force, const vec3 &in position, const vec3 &in line_direction);
-		void MoveRagdollPart(const string &in, const vec3 &in, float);
-		void FixedRagdollPart(int boneID, const vec3 &in);
-		void SpikeRagdollPart(int boneID, const vec3 &start, const vec3 &end, const vec3 &pos);
-		void ClearBoneConstraints();
-		vec3 GetAvgPosition();
-		vec3 GetAvgVelocity();
-		void CleanBlood();
-		void CreateBloodDrip(const string &in IK_label, int IK_link, const vec3 &in raycast_direction);
-		void CreateBloodDripAtBone(int bone_id, int IK_link, const vec3 &in raycast_direction);
-		vec3 GetAvgAngularVelocity();
-		vec3 GetIKTargetPosition(const string &in IK_label);
-		float GetIKWeight(const string &in IK_label);
-		BoneTransform GetIKTransform(const string &in IK_label);
-		mat4 GetUnmodifiedIKTransform(const string &in IK_label);
-		mat4 GetIKTargetTransform(const string &in IK_label);
-		void SetMorphTargetWeight(const string &in morph_label, float weight, float weight_weight);
-		float GetStatusKeyValue(const string &in status_key_label);
-		vec3 GetIKTargetAnimPosition(const string &in IK_label);
-		mat4 GetAvgIKChainTransform(const string &in IK_label);
-		mat4 GetIKChainTransform(const string &in IK_label, int IK_link);
-		vec3 GetIKChainPos(const string &in IK_label, int IK_link);
-		void DisableSleep();
-		void EnableSleep();
-		vec3 GetAvgIKChainPos(const string &in IK_label);
-		void SetAnimUpdatePeriod(int steps); // Animation is updated every N engine time steps
-		void SheatheItem(int item_id, bool on_right);
-		void UnSheatheItem(int item_id, bool on_right);
-		void UnStickItem(int item_id);
-		void SetPrimaryWeaponID(int item_id);
-		vec3 GetModelCenter();
-		void RotateBoneToMatchVec(const vec3 &in a, const vec3 &in b, int bone);
-		void RotateBonesToMatchVec(const vec3 &in a, const vec3 &in c, int bone, int bone2, float weight);
-		void TransformAllFrameMats(const BoneTransform &in transform);
-		vec3 GetFrameCenterOfMass();
-		vec3 GetTransformedBonePoint(int bone, int point);
-		mat4 GetDisplayBoneMatrix(int bone);
-		void SetDisplayBoneMatrix(int bone, const mat4 &in transform);
-		Skeleton &skeleton();
-		AnimationClient &anim_client();
-	};
-	
-	class MovementObject {
-		vec3 position;
-		vec3 velocity;
-		bool visible;
-		int no_grab;
-		string char_path;
-		bool controlled;
-		bool is_player;
-		bool static_char;
-		int controller_id;
-		int update_script_counter;
-		int update_script_period;
-		bool focused_character;
-		RiggedObject@ rigged_object();
-		void SetScriptUpdatePeriod(int steps); // Script update() is called every X engine timesteps
-		bool HasFunction(const string &in function_definition);
-		int QueryIntFunction(string function);
-		void Execute(string code);
-		bool HasVar(string var_name);
-		int GetIntVar(string var_name);
-		int GetArrayIntVar(const string &in var_name, int index);
-		float GetFloatVar(string var_name);
-		bool GetBoolVar(string var_name);
-		bool OnSameTeam(MovementObject@ other);
-		void ReceiveMessage(const string &in);
-		void ReceiveScriptMessage(const string &in);
-		void QueueScriptMessage(const string &in);
-		int GetID();
-		void SetRotationFromFacing(vec3 facing);
-		void FixDiscontinuity();
-		string GetCurrentControlScript();
-		string GetActorScript();
-		string GetNPCObjectScript();
-		string GetPCObjectScript();
-		string GetNPCScript();
-		string GetPCScript();
-		void ChangeControlScript(const string &path);
-	};
-	
-	class ScriptParams {
-		const string &GetString (const string &in key);
-		float GetFloat (const string &in key);
-		int GetInt (const string &in key);
-		float SetFloat (const string &in key, float val);
-		int SetInt (const string &in key, int);
-		void SetString (const string &in key, const string &in val);
-		void AddInt (const string &in key, int default_val);
-		void AddIntSlider (const string &in key, int default_val, const string &in bounds);
-		void AddFloatSlider (const string &in key, float default_val, const string &in bounds);
-		void AddIntCheckbox (const string &in key, bool default_val);
-		void AddFloat (const string &in key, float default_val);
-		void AddString (const string &in key, const string &in default_val);
-		void ASAddJSONFromString (const string &in key, const string &in default_val);
-		void AddJSON (const string &in key, JSON &in default_val);
-		JSON GetJSON (const string &in key);
-		void Remove (const string &in key);
-		bool HasParam (const string &in key);
-		bool IsParamInt(const string &in key);
-		bool IsParamFloat(const string &in key);
-		bool IsParamString(const string &in key);
-		bool IsParamJSON(const string &in key);
-	};
-	
-	class ItemObject {
-		vec3 GetPhysicsPosition();
-		vec3 GetLinearVelocity();
-		vec3 GetAngularVelocity();
-		void SetAngularVelocity(vec3);
-		void AddBloodDecal(vec3 position, vec3 direction, float size);
-		void CleanBlood();
-		mat4 GetPhysicsTransform();
-		mat4 GetPhysicsTransformIncludeOffset();
-		void SetPhysicsTransform(const mat4 &in);
-		void ActivatePhysics();
-		bool IsHeld();
-		int StuckInWhom();
-		int HeldByWhom();
-		int GetID();
-		void SetLinearVelocity(vec3);
-		const string& GetLabel();
-		void SetThrown();
-		void SetThrownStraight();
-		float GetMass();
-		bool HasSheatheAttachment();
-		int GetNumHands();
-		int GetType();
-		vec3 GetPoint(string label);
-		int GetNumLines();
-		vec3 GetLineStart(int line_index);
-		vec3 GetLineEnd(int line_index);
-		string GetLineMaterial(int line_index);
-		const string &GetSoundModifier();
-		float GetRangeExtender();
-		float GetRangeMultiplier();
-		bool CheckThrownSafe();
-		void SetSafe();
-		ScriptParams@ GetScriptParams();
-		int last_held_char_id_;
-	};
-	
-	class EnvObject {
-		int GetID();
-		void CreateLeaf(vec3 target_position, vec3 velocity, int iterations); // Spawn leaf particles from random point on object's surface; more iterations = closer to target_position
-		int GetCollisionFace(int index);
-		vec3 GetCollisionVertex(int index);
-		int GetNumLedgeLines();
-		int GetLedgeLine(int index);
-	};
-	
-	class Hotspot {
-		int GetID();
-		string GetTypeString();
-		bool HasVar(string& in name);
-		bool GetBoolVar(string& in name);
-		int GetIntVar(string& in name);
-		int GetArrayIntVar(const string &in name, int index);
-		float GetFloatVar(string& in name);
-		array<int> @GetConnectedObjects();
-		bool HasFunction(const string &in function_definition);
-		int QueryIntFunction(const string &in function);
-		bool QueryBoolFunction(const string &in function);
-		float QueryFloatFunction(const string &in function);
-		string QueryStringFunction(const string &in function);
-		void SetCollisionEnabled(bool);
-		bool ConnectTo(Object@);
-		bool Disconnect(Object@);
-		void CFireRibbonUpdate(C_ACCEL @, float delta_time, float curr_game_time, vec3 &in pos);
-		void CFireRibbonPreDraw(C_ACCEL @, float curr_game_time);
-	};
-	
-	enum EntityType {
-		_any_type = 0,
-		_no_type = 1,
-		_camera_type = 2,
-		_terrain_type = 11,
-		_env_object = 20,
-		_movement_object = 21,
-		_spawn_point = 23,
-		_decal_object = 24,
-		_hotspot_object = 26,
-		_group = 29,
-		_rigged_object = 30,
-		_item_object = 32,
-		_path_point_object = 33,
-		_ambient_sound_object = 34,
-		_placeholder_object = 35,
-		_light_probe_object = 36,
-		_dynamic_light_object = 37,
-		_navmesh_hint_object = 38,
-		_navmesh_region_object = 39,
-		_navmesh_connection_object = 40,
-		_reflection_capture_object = 41,
-		_light_volume_object = 42,
-		_prefab = 43,
-	};
-	
-	enum AttachmentType {
-		_at_attachment = 2,
-		_at_grip = 0,
-		_at_sheathe = 1,
-		_at_unspecified = 3,
-	};
-	
-	enum ConnectionType {
-		kCTNone = 0,
-		kCTMovementObjects = 1,
-		kCTItemObjects = 2,
-		kCTEnvObjectsAndGroups = 3,
-		kCTPathPoints = 4,
-		kCTPlaceholderObjects = 5,
-		kCTNavmeshConnections = 6,
-		kCTHotspots = 7,
-	};
-	
-		int GetID();
-		string GetName();
-		void SetName(const string &in);
-		bool IsSelected();
-		void SetSelected(bool);
-		void SetEnabled(bool);
-		void SetCollisionEnabled(bool);
-		bool GetEnabled();
-		void SetTranslation(const vec3 &in);
-		vec3 GetTranslation();
-		void SetScale(const vec3 &in);
-		mat4 GetTransform();
-		vec3 GetScale();
-		void SetRotation(const quaternion &in);
-		void SetTranslationRotationFast(const vec3 &in, const quaternion &in);
-		quaternion GetRotation();
-		vec4 GetRotationVec4();
-		EntityType GetType();
-		void SetPlayer(bool);
-		bool GetPlayer();
-		int GetNumPaletteColors();
-		vec3 GetPaletteColor(int which);
-		void SetPaletteColor(int which, const vec3 &in color);
-		vec3 GetTint();
-		void SetTint(const vec3 &in);
-		bool ConnectTo(Object@);
-		bool Disconnect(Object@);
-		void AttachItem(Object@, AttachmentType, bool mirrored);
-		void ReceiveScriptMessage(const string &in);
-		void QueueScriptMessage(const string &in);
-		void UpdateScriptParams();
-		void SetCopyable(bool);
-		void SetSelectable(bool);
-		void SetDeletable(bool);
-		void SetScalable(bool);
-		void SetTranslatable(bool);
-		void SetRotatable(bool);
-		void SetEditorLabel(string);
-		string GetEditorLabel();
-		void SetEditorLabelOffset(vec3);
-		vec3 GetEditorLabelOffset();
-		void SetEditorLabelScale(float);
-		float GetEditorLabelScale();
-		ScriptParams@ GetScriptParams();
-		string GetLabel();
-		vec3 GetBoundingBox();
-		bool IsExcludedFromSave();
-		bool IsExcludedFromUndo();
-		int GetParent();
-		array<int>@ GetChildren();
+	int GetID();
+	string GetName();
+	void SetName(const string &in);
+	bool IsSelected();
+	void SetSelected(bool);
+	void SetEnabled(bool);
+	void SetCollisionEnabled(bool);
+	bool GetEnabled();
+	void SetTranslation(const vec3 &in);
+	vec3 GetTranslation();
+	void SetScale(const vec3 &in);
+	mat4 GetTransform();
+	vec3 GetScale();
+	void SetRotation(const quaternion &in);
+	void SetTranslationRotationFast(const vec3 &in, const quaternion &in);
+	quaternion GetRotation();
+	vec4 GetRotationVec4();
+	EntityType GetType();
+	void SetPlayer(bool);
+	bool GetPlayer();
+	int GetNumPaletteColors();
+	vec3 GetPaletteColor(int which);
+	void SetPaletteColor(int which, const vec3 &in color);
+	vec3 GetTint();
+	void SetTint(const vec3 &in);
+	bool ConnectTo(Object@);
+	bool Disconnect(Object@);
+	void AttachItem(Object@, AttachmentType, bool mirrored);
+	void ReceiveScriptMessage(const string &in);
+	void QueueScriptMessage(const string &in);
+	void UpdateScriptParams();
+	void SetCopyable(bool);
+	void SetSelectable(bool);
+	void SetDeletable(bool);
+	void SetScalable(bool);
+	void SetTranslatable(bool);
+	void SetRotatable(bool);
+	void SetEditorLabel(string);
+	string GetEditorLabel();
+	void SetEditorLabelOffset(vec3);
+	vec3 GetEditorLabelOffset();
+	void SetEditorLabelScale(float);
+	float GetEditorLabelScale();
+	ScriptParams@ GetScriptParams();
+	string GetLabel();
+	vec3 GetBoundingBox();
+	bool IsExcludedFromSave();
+	bool IsExcludedFromUndo();
+	int GetParent();
+	array<int>@ GetChildren();
 };
 
+class AnimationClient {
+	float GetAnimationEventTime(const string &in event);
+	float GetTimeUntilEvent(const string &in event);
+	void SetAnimationCallback(const string &in function);
+	void AddAnimationOffset(const vec3 &in);
+	void AddAnimationRotOffset(float radians);
+	int AddLayer(const string &in anim_path, float transition_speed, int8 flags);
+	int RemoveLayer(int id, float transition_speed);
+	void SetBlendCoord(const string &in coord_label, float coord_value);
+	void SetLayerOpacity(int id, float opacity);
+	void SetSpeedMult(float);
+	void SetAnimatedItemID(int index, int id);
+	void SetLayerItemID(int layer, int index, int id);
+	const string& GetCurrAnim();
+	float GetNormalizedAnimTime();
+	float GetAnimationSpeed();
+	void RemoveAllLayers();
+	void Reset();
+};
+
+class Skeleton {
+	vec3 GetCenterOfMass();
+	void SetBoneInflate(int bone_id, float amount);
+	int GetParent(int bone_id);
+	bool IKBoneExists(const string& in);
+	float GetBoneMass(int bone_id);
+	int IKBoneStart(const string& in IK_label);
+	int IKBoneLength(const string& in IK_label);
+	int NumBones();
+	vec3 GetBoneLinearVelocity(int which);
+	mat4 GetBoneTransform(int bone_id);
+	void SetBoneTransform(int bone_id, const mat4 &in transform);
+	vec3 GetPointPos(int bone_id);
+	int GetBonePoint(int bone_id, int which_point);
+	void AddVelocity(const vec3 &in vel);
+	mat4 GetBindMatrix(int bone_id);
+	bool HasPhysics(int bone_id);
+	array<float> @GetConvexHullPoints(int bone_id);
+	BoneTransform ApplyParentRotations(const array<BoneTransform> &in matrices, int id);
+};
+
+class RiggedObject {
+	bool ik_enabled;
+	int anim_update_period;
+	int curr_anim_update_time;
+	vec3 GetBonePosition(int bone);
+	void AddWaterCube(const mat4 &in transform);
+	void Ignite();
+	void Extinguish();
+	void SetFire(float fire);
+	void SetWet(float wet);
+	BoneTransform GetFrameMatrix(int which);
+	void SetFrameMatrix(int which, const BoneTransform &in transform);
+	float GetCharScale();
+	float GetRelativeCharScale();
+	void Draw();
+	void CutPlane(const vec3 &in normal, const vec3 &in position, const vec3 &in direction, int type, int depth);
+	void Stab(const vec3 &in position, const vec3 &in direction, int type, int depth);
+	void SetRagdollStrength(float);
+	void RefreshRagdoll();
+	void SetRagdollDamping(float);
+	void ApplyForceToRagdoll(const vec3 &in force, const vec3 &in position);
+	void ApplyForceToBone(const vec3 &in force, const int &in bone);
+	void ApplyForceLineToRagdoll(const vec3 &in force, const vec3 &in position, const vec3 &in line_direction);
+	void MoveRagdollPart(const string &in, const vec3 &in, float);
+	void FixedRagdollPart(int boneID, const vec3 &in);
+	void SpikeRagdollPart(int boneID, const vec3 &start, const vec3 &end, const vec3 &pos);
+	void ClearBoneConstraints();
+	vec3 GetAvgPosition();
+	vec3 GetAvgVelocity();
+	void CleanBlood();
+	void CreateBloodDrip(const string &in IK_label, int IK_link, const vec3 &in raycast_direction);
+	void CreateBloodDripAtBone(int bone_id, int IK_link, const vec3 &in raycast_direction);
+	vec3 GetAvgAngularVelocity();
+	vec3 GetIKTargetPosition(const string &in IK_label);
+	float GetIKWeight(const string &in IK_label);
+	BoneTransform GetIKTransform(const string &in IK_label);
+	mat4 GetUnmodifiedIKTransform(const string &in IK_label);
+	mat4 GetIKTargetTransform(const string &in IK_label);
+	void SetMorphTargetWeight(const string &in morph_label, float weight, float weight_weight);
+	float GetStatusKeyValue(const string &in status_key_label);
+	vec3 GetIKTargetAnimPosition(const string &in IK_label);
+	mat4 GetAvgIKChainTransform(const string &in IK_label);
+	mat4 GetIKChainTransform(const string &in IK_label, int IK_link);
+	vec3 GetIKChainPos(const string &in IK_label, int IK_link);
+	void DisableSleep();
+	void EnableSleep();
+	vec3 GetAvgIKChainPos(const string &in IK_label);
+	void SetAnimUpdatePeriod(int steps); // Animation is updated every N engine time steps
+	void SheatheItem(int item_id, bool on_right);
+	void UnSheatheItem(int item_id, bool on_right);
+	void UnStickItem(int item_id);
+	void SetPrimaryWeaponID(int item_id);
+	vec3 GetModelCenter();
+	void RotateBoneToMatchVec(const vec3 &in a, const vec3 &in b, int bone);
+	void RotateBonesToMatchVec(const vec3 &in a, const vec3 &in c, int bone, int bone2, float weight);
+	void TransformAllFrameMats(const BoneTransform &in transform);
+	vec3 GetFrameCenterOfMass();
+	vec3 GetTransformedBonePoint(int bone, int point);
+	mat4 GetDisplayBoneMatrix(int bone);
+	void SetDisplayBoneMatrix(int bone, const mat4 &in transform);
+	Skeleton &skeleton();
+	AnimationClient &anim_client();
+};
+
+class MovementObject {
+	vec3 position;
+	vec3 velocity;
+	bool visible;
+	int no_grab;
+	string char_path;
+	bool controlled;
+	bool is_player;
+	bool static_char;
+	int controller_id;
+	int update_script_counter;
+	int update_script_period;
+	bool focused_character;
+	RiggedObject@ rigged_object();
+	void SetScriptUpdatePeriod(int steps); // Script update() is called every X engine timesteps
+	bool HasFunction(const string &in function_definition);
+	int QueryIntFunction(string function);
+	void Execute(string code);
+	bool HasVar(string var_name);
+	int GetIntVar(string var_name);
+	int GetArrayIntVar(const string &in var_name, int index);
+	float GetFloatVar(string var_name);
+	bool GetBoolVar(string var_name);
+	bool OnSameTeam(MovementObject@ other);
+	void ReceiveMessage(const string &in);
+	void ReceiveScriptMessage(const string &in);
+	void QueueScriptMessage(const string &in);
+	int GetID();
+	void SetRotationFromFacing(vec3 facing);
+	void FixDiscontinuity();
+	string GetCurrentControlScript();
+	string GetActorScript();
+	string GetNPCObjectScript();
+	string GetPCObjectScript();
+	string GetNPCScript();
+	string GetPCScript();
+	void ChangeControlScript(const string &path);
+};
+
+class ScriptParams {
+	const string &GetString (const string &in key);
+	float GetFloat (const string &in key);
+	int GetInt (const string &in key);
+	float SetFloat (const string &in key, float val);
+	int SetInt (const string &in key, int);
+	void SetString (const string &in key, const string &in val);
+	void AddInt (const string &in key, int default_val);
+	void AddIntSlider (const string &in key, int default_val, const string &in bounds);
+	void AddFloatSlider (const string &in key, float default_val, const string &in bounds);
+	void AddIntCheckbox (const string &in key, bool default_val);
+	void AddFloat (const string &in key, float default_val);
+	void AddString (const string &in key, const string &in default_val);
+	void ASAddJSONFromString (const string &in key, const string &in default_val);
+	void AddJSON (const string &in key, JSON &in default_val);
+	JSON GetJSON (const string &in key);
+	void Remove (const string &in key);
+	bool HasParam (const string &in key);
+	bool IsParamInt(const string &in key);
+	bool IsParamFloat(const string &in key);
+	bool IsParamString(const string &in key);
+	bool IsParamJSON(const string &in key);
+};
+
+class ItemObject {
+	vec3 GetPhysicsPosition();
+	vec3 GetLinearVelocity();
+	vec3 GetAngularVelocity();
+	void SetAngularVelocity(vec3);
+	void AddBloodDecal(vec3 position, vec3 direction, float size);
+	void CleanBlood();
+	mat4 GetPhysicsTransform();
+	mat4 GetPhysicsTransformIncludeOffset();
+	void SetPhysicsTransform(const mat4 &in);
+	void ActivatePhysics();
+	bool IsHeld();
+	int StuckInWhom();
+	int HeldByWhom();
+	int GetID();
+	void SetLinearVelocity(vec3);
+	const string& GetLabel();
+	void SetThrown();
+	void SetThrownStraight();
+	float GetMass();
+	bool HasSheatheAttachment();
+	int GetNumHands();
+	int GetType();
+	vec3 GetPoint(string label);
+	int GetNumLines();
+	vec3 GetLineStart(int line_index);
+	vec3 GetLineEnd(int line_index);
+	string GetLineMaterial(int line_index);
+	const string &GetSoundModifier();
+	float GetRangeExtender();
+	float GetRangeMultiplier();
+	bool CheckThrownSafe();
+	void SetSafe();
+	ScriptParams@ GetScriptParams();
+	int last_held_char_id_;
+};
+
+class EnvObject {
+	int GetID();
+	void CreateLeaf(vec3 target_position, vec3 velocity, int iterations); // Spawn leaf particles from random point on object's surface; more iterations = closer to target_position
+	int GetCollisionFace(int index);
+	vec3 GetCollisionVertex(int index);
+	int GetNumLedgeLines();
+	int GetLedgeLine(int index);
+};
+
+class Hotspot {
+	int GetID();
+	string GetTypeString();
+	bool HasVar(string& in name);
+	bool GetBoolVar(string& in name);
+	int GetIntVar(string& in name);
+	int GetArrayIntVar(const string &in name, int index);
+	float GetFloatVar(string& in name);
+	array<int> @GetConnectedObjects();
+	bool HasFunction(const string &in function_definition);
+	int QueryIntFunction(const string &in function);
+	bool QueryBoolFunction(const string &in function);
+	float QueryFloatFunction(const string &in function);
+	string QueryStringFunction(const string &in function);
+	void SetCollisionEnabled(bool);
+	bool ConnectTo(Object@);
+	bool Disconnect(Object@);
+};
 
 class PathPointObject {
     int NumConnectionIDs();

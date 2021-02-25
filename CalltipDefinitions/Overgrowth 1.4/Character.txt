@@ -5,6 +5,10 @@ float time_step; // Time in seconds between engine time steps
 float the_time; // The current time in seconds since engine started (in-game time)
 float ui_time; // The current time in seconds since engine started (absolute time)
 
+const int _collectable;
+const int _misc;
+const int _weapon;
+const int _item_no_type;
 
 const int _sound_priority_max;
 const int _sound_priority_very_high;
@@ -492,6 +496,9 @@ void SetPaused(bool paused);
 int FindFirstCharacterInGroup(int id);
 float GetAnimationEventTime( string &in anim_path, string &in event_label );
 
+void CFireRibbonUpdate(C_ACCEL @, float delta_time, float curr_game_time, vec3 &in pos);
+void CFireRibbonPreDraw(C_ACCEL @, float curr_game_time);
+
 // ----- ENUMS -----
 
 enum LogType {
@@ -661,6 +668,50 @@ enum SplitScreenMode {
     kModeNone = 0,
     kModeFull = 1,
     kModeSplit = 2
+};
+
+enum EntityType {
+	_any_type = 0,
+	_no_type = 1,
+	_camera_type = 2,
+	_terrain_type = 11,
+	_env_object = 20,
+	_movement_object = 21,
+	_spawn_point = 23,
+	_decal_object = 24,
+	_hotspot_object = 26,
+	_group = 29,
+	_rigged_object = 30,
+	_item_object = 32,
+	_path_point_object = 33,
+	_ambient_sound_object = 34,
+	_placeholder_object = 35,
+	_light_probe_object = 36,
+	_dynamic_light_object = 37,
+	_navmesh_hint_object = 38,
+	_navmesh_region_object = 39,
+	_navmesh_connection_object = 40,
+	_reflection_capture_object = 41,
+	_light_volume_object = 42,
+	_prefab = 43,
+};
+
+enum AttachmentType {
+	_at_attachment = 2,
+	_at_grip = 0,
+	_at_sheathe = 1,
+	_at_unspecified = 3,
+};
+
+enum ConnectionType {
+	kCTNone = 0,
+	kCTMovementObjects = 1,
+	kCTItemObjects = 2,
+	kCTEnvObjectsAndGroups = 3,
+	kCTPathPoints = 4,
+	kCTPlaceholderObjects = 5,
+	kCTNavmeshConnections = 6,
+	kCTHotspots = 7,
 };
 
 // ----- CLASSES -----
@@ -1399,122 +1450,6 @@ class MovementObject {
 };
 
 class Object {
-	class ItemObject {
-		vec3 GetPhysicsPosition();
-		vec3 GetLinearVelocity();
-		vec3 GetAngularVelocity();
-		void SetAngularVelocity(vec3);
-		void AddBloodDecal(vec3 position, vec3 direction, float size);
-		void CleanBlood();
-		mat4 GetPhysicsTransform();
-		mat4 GetPhysicsTransformIncludeOffset();
-		void SetPhysicsTransform(const mat4 &in);
-		void ActivatePhysics();
-		bool IsHeld();
-		int StuckInWhom();
-		int HeldByWhom();
-		int GetID();
-		void SetLinearVelocity(vec3);
-		const string& GetLabel();
-		void SetThrown();
-		void SetThrownStraight();
-		float GetMass();
-		bool HasSheatheAttachment();
-		int GetNumHands();
-		int GetType();
-		vec3 GetPoint(string label);
-		int GetNumLines();
-		vec3 GetLineStart(int line_index);
-		vec3 GetLineEnd(int line_index);
-		string GetLineMaterial(int line_index);
-		const string &GetSoundModifier();
-		float GetRangeExtender();
-		float GetRangeMultiplier();
-		bool CheckThrownSafe();
-		void SetSafe();
-		ScriptParams@ GetScriptParams();
-		int last_held_char_id_;
-	};
-	
-	const int _collectable;
-	const int _misc;
-	const int _weapon;
-	const int _item_no_type;
-
-	class EnvObject {
-		int GetID();
-		void CreateLeaf(vec3 target_position, vec3 velocity, int iterations); // Spawn leaf particles from random point on object's surface; more iterations = closer to target_position
-		int GetCollisionFace(int index);
-		vec3 GetCollisionVertex(int index);
-		int GetNumLedgeLines();
-		int GetLedgeLine(int index);
-	};
-	
-	class Hotspot {
-		int GetID();
-		string GetTypeString();
-		bool HasVar(string& in name);
-		bool GetBoolVar(string& in name);
-		int GetIntVar(string& in name);
-		int GetArrayIntVar(const string &in name, int index);
-		float GetFloatVar(string& in name);
-		array<int> @GetConnectedObjects();
-		bool HasFunction(const string &in function_definition);
-		int QueryIntFunction(const string &in function);
-		bool QueryBoolFunction(const string &in function);
-		float QueryFloatFunction(const string &in function);
-		string QueryStringFunction(const string &in function);
-		void SetCollisionEnabled(bool);
-		bool ConnectTo(Object@);
-		bool Disconnect(Object@);
-		void CFireRibbonUpdate(C_ACCEL @, float delta_time, float curr_game_time, vec3 &in pos);
-		void CFireRibbonPreDraw(C_ACCEL @, float curr_game_time);
-	};
-	
-	enum EntityType {
-		_any_type = 0,
-		_no_type = 1,
-		_camera_type = 2,
-		_terrain_type = 11,
-		_env_object = 20,
-		_movement_object = 21,
-		_spawn_point = 23,
-		_decal_object = 24,
-		_hotspot_object = 26,
-		_group = 29,
-		_rigged_object = 30,
-		_item_object = 32,
-		_path_point_object = 33,
-		_ambient_sound_object = 34,
-		_placeholder_object = 35,
-		_light_probe_object = 36,
-		_dynamic_light_object = 37,
-		_navmesh_hint_object = 38,
-		_navmesh_region_object = 39,
-		_navmesh_connection_object = 40,
-		_reflection_capture_object = 41,
-		_light_volume_object = 42,
-		_prefab = 43,
-	};
-	
-	enum AttachmentType {
-		_at_attachment = 2,
-		_at_grip = 0,
-		_at_sheathe = 1,
-		_at_unspecified = 3,
-	};
-	
-	enum ConnectionType {
-		kCTNone = 0,
-		kCTMovementObjects = 1,
-		kCTItemObjects = 2,
-		kCTEnvObjectsAndGroups = 3,
-		kCTPathPoints = 4,
-		kCTPlaceholderObjects = 5,
-		kCTNavmeshConnections = 6,
-		kCTHotspots = 7,
-	};
-	
     int GetID();
     string GetName();
     void SetName(const string &in);
@@ -1567,6 +1502,71 @@ class Object {
     array<int>@ GetChildren();
 };
 
+class ItemObject {
+	vec3 GetPhysicsPosition();
+	vec3 GetLinearVelocity();
+	vec3 GetAngularVelocity();
+	void SetAngularVelocity(vec3);
+	void AddBloodDecal(vec3 position, vec3 direction, float size);
+	void CleanBlood();
+	mat4 GetPhysicsTransform();
+	mat4 GetPhysicsTransformIncludeOffset();
+	void SetPhysicsTransform(const mat4 &in);
+	void ActivatePhysics();
+	bool IsHeld();
+	int StuckInWhom();
+	int HeldByWhom();
+	int GetID();
+	void SetLinearVelocity(vec3);
+	const string& GetLabel();
+	void SetThrown();
+	void SetThrownStraight();
+	float GetMass();
+	bool HasSheatheAttachment();
+	int GetNumHands();
+	int GetType();
+	vec3 GetPoint(string label);
+	int GetNumLines();
+	vec3 GetLineStart(int line_index);
+	vec3 GetLineEnd(int line_index);
+	string GetLineMaterial(int line_index);
+	const string &GetSoundModifier();
+	float GetRangeExtender();
+	float GetRangeMultiplier();
+	bool CheckThrownSafe();
+	void SetSafe();
+	ScriptParams@ GetScriptParams();
+	int last_held_char_id_;
+};
+
+
+class EnvObject {
+	int GetID();
+	void CreateLeaf(vec3 target_position, vec3 velocity, int iterations); // Spawn leaf particles from random point on object's surface; more iterations = closer to target_position
+	int GetCollisionFace(int index);
+	vec3 GetCollisionVertex(int index);
+	int GetNumLedgeLines();
+	int GetLedgeLine(int index);
+};
+
+class Hotspot {
+	int GetID();
+	string GetTypeString();
+	bool HasVar(string& in name);
+	bool GetBoolVar(string& in name);
+	int GetIntVar(string& in name);
+	int GetArrayIntVar(const string &in name, int index);
+	float GetFloatVar(string& in name);
+	array<int> @GetConnectedObjects();
+	bool HasFunction(const string &in function_definition);
+	int QueryIntFunction(const string &in function);
+	bool QueryBoolFunction(const string &in function);
+	float QueryFloatFunction(const string &in function);
+	string QueryStringFunction(const string &in function);
+	void SetCollisionEnabled(bool);
+	bool ConnectTo(Object@);
+	bool Disconnect(Object@);
+};
 
 class PathPointObject {
     int NumConnectionIDs();
