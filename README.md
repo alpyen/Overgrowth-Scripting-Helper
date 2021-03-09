@@ -57,6 +57,8 @@ Start off new scripts with a template and have every script function ready to go
   - This is because the plugin has to load and parse the database file. Since the file is almost 2 MB it might take a second or two on startup.
 
 ## Developing<a id="developing"></a>
+> Development requires to enable .NET Framework 3.5 from the windows features because one of the N++ Plugin Build DLLs depends on an older version, this is only needed to build the plugin.
+
 The project consists of two solutions: `AsDocs2XML` and `Overgrowth Scripting Helper`.
 
 **AsDocs2XML** is used to parse the header files the game outputs into the XML file format so the plugin can load it.
