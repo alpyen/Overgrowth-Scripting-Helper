@@ -1404,7 +1404,7 @@ class quaternion {
     void f(const quaternion &in);
     void f(float, float, float, float);
     void f(vec4); // Axis-angle (axis.x, axis.y, axis.z, angle_radians)
-    void f();
+    void ~f();
     quaternion &opAssign(const quaternion &in);
     quaternion &opAddAssign(const quaternion &in);
     bool opEquals(const quaternion &in) const;
@@ -1526,7 +1526,7 @@ class LevelDetails {
 class Parameter {
     void f();
     void f(const Parameter &in other);
-    void f();
+    void ~f();
     Parameter& opAssign(const Parameter &in other);
     Parameter opIndex( const string &in );
     Parameter opIndex( const int &in );
@@ -1544,12 +1544,12 @@ class Parameter {
 
 class ModID {
     void f();
-    void f();
+    void ~f();
     bool Valid();
 };
 class MenuItem {
     void f();
-    void f();
+    void ~f();
     string GetTitle();
     string GetCategory();
     string GetPath();
@@ -1566,7 +1566,7 @@ class SpawnerItem {
 class ModLevel {
     void f();
     void f(const ModLevel &in other);
-    void f();
+    void ~f();
     ModLevel& opAssign(const ModLevel &in other);
     string GetTitle();
     string GetID();
@@ -1581,7 +1581,7 @@ class ModLevel {
 class Campaign {
     void f();
     void f(const Campaign &in other);
-    void f();
+    void ~f();
     Campaign& opAssign(const Campaign &in other);
     string GetID();
     string GetTitle();
@@ -1965,7 +1965,7 @@ class PathPointObject {
 class TextStyle {
     int font_face_id;
     void f();
-    void f();
+    void ~f();
     void SetAlignment(int i);
 };
 class TextMetrics {
@@ -2028,7 +2028,7 @@ class IMUIImage {
     void f( string filename );
     void f( const IMUIImage &in other );
     IMUIImage& opAssign(const IMUIImage &in other);
-    void f();
+    void ~f();
     bool loadImage( string filename );
     bool isValid() const;
     float getTextureWidth() const;
@@ -2047,7 +2047,7 @@ class IMUIText {
     void f();
     void f( const IMUIText &in other );
     IMUIText& opAssign(const IMUIText &in other);
-    void f();
+    void ~f();
     vec2 getDimensions() const;
     vec2 getBoundingBoxDimensions() const;
     void setText( const string &in _text );
@@ -2072,7 +2072,7 @@ class IMUIContext {
 
 class IMMessage {
     void f();
-    void f();
+    void ~f();
     string name;
     IMMessage@ f( const string &in name);
     IMMessage@ f( const string &in name, int param );
@@ -2093,7 +2093,7 @@ class IMMessage {
 class CItem {
     CItem@ f();
     void f();
-    void f();
+    void ~f();
     bool execute_on_select;
     bool skip_show_border;
     void setMessage(IMMessage@ message);
@@ -2120,7 +2120,7 @@ class FontSetup {
     void f( const string &in _name, int32 _size, vec4 _color, bool _shadowed = false );
     void f( const FontSetup &in other );
     FontSetup& opAssign(const FontSetup &in other);
-    void f();
+    void ~f();
     string fontName;
     int size;
     vec4 color;
@@ -2132,7 +2132,7 @@ class FontSetup {
 class SizePolicy {
     void f();
     void f( float _defaultSize );
-    void f();
+    void ~f();
     void f( const SizePolicy &in other );
     IMUIText& opAssign(const SizePolicy &in other);
     SizePolicy expand( float _maxSize = UNDEFINEDSIZE );
@@ -2145,115 +2145,115 @@ class SizePolicy {
 class IMUpdateBehavior {
     IMUpdateBehavior@ f();
     void f();
-    void f();
+    void ~f();
 };
 class IMMouseOverBehavior {
     IMMouseOverBehavior@ f();
     void f();
-    void f();
+    void ~f();
 };
 class IMMouseClickBehavior {
     IMMouseClickBehavior@ f();
     void f();
-    void f();
+    void ~f();
 };
 class IMFadeIn {
     IMFadeIn@ f(uint64 time, IMTweenType _tweener);
     IMFadeIn@ opCast();
     IMUpdateBehavior@ opImplCast();
     void f();
-    void f();
+    void ~f();
 };
 class IMMoveIn {
     IMMoveIn@ f(uint64 time, vec2 offset, IMTweenType _tweener);
     IMMoveIn@ opCast();
     IMUpdateBehavior@ opImplCast();
     void f();
-    void f();
+    void ~f();
 };
 class IMChangeTextFadeOutIn {
     IMChangeTextFadeOutIn@ f(uint64 time, const string &in _targetText, IMTweenType _tweenerOut, IMTweenType _tweenerIn);
     IMChangeTextFadeOutIn@ opCast();
     IMUpdateBehavior@ opImplCast();
     void f();
-    void f();
+    void ~f();
 };
 class IMChangeImageFadeOutIn {
     IMChangeImageFadeOutIn@ f(uint64 time, const string &in _targetImage, IMTweenType _tweenerOut, IMTweenType _tweenerIn);
     IMChangeImageFadeOutIn@ opCast();
     IMUpdateBehavior@ opImplCast();
     void f();
-    void f();
+    void ~f();
 };
 class IMPulseAlpha {
     IMPulseAlpha@ f(float lower, float upper, float _speed);
     IMPulseAlpha@ opCast();
     IMUpdateBehavior@ opImplCast();
     void f();
-    void f();
+    void ~f();
 };
 class IMPulseBorderAlpha {
     IMPulseBorderAlpha@ f(float lower, float upper, float _speed);
     IMPulseBorderAlpha@ opCast();
     IMUpdateBehavior@ opImplCast();
     void f();
-    void f();
+    void ~f();
 };
 class IMMouseOverScale {
     IMMouseOverScale@ f(uint64 time, float offset, IMTweenType _tweener);
     IMMouseOverScale@ opCast();
     IMMouseOverBehavior@ opImplCast();
     void f();
-    void f();
+    void ~f();
 };
 class IMMouseOverMove {
     IMMouseOverMove@ f(uint64 time, vec2 offset, IMTweenType _tweener);
     IMMouseOverMove@ opCast();
     IMMouseOverBehavior@ opImplCast();
     void f();
-    void f();
+    void ~f();
 };
 class IMMouseOverShowBorder {
     IMMouseOverShowBorder@ f();
     IMMouseOverShowBorder@ opCast();
     IMMouseOverBehavior@ opImplCast();
     void f();
-    void f();
+    void ~f();
 };
 class IMMouseOverPulseColor {
     IMMouseOverPulseColor@ f(vec4 first, vec4 second, float _speed);
     IMMouseOverPulseColor@ opCast();
     IMMouseOverBehavior@ opImplCast();
     void f();
-    void f();
+    void ~f();
 };
 class IMMouseOverPulseBorder {
     IMMouseOverPulseBorder@ f(vec4 first, vec4 second, float _speed);
     IMMouseOverPulseBorder@ opCast();
     IMMouseOverBehavior@ opImplCast();
     void f();
-    void f();
+    void ~f();
 };
 class IMMouseOverPulseBorderAlpha {
     IMMouseOverPulseBorderAlpha@ f(vec4 first, vec4 second, float _speed);
     IMMouseOverPulseBorderAlpha@ opCast();
     IMMouseOverBehavior@ opImplCast();
     void f();
-    void f();
+    void ~f();
 };
 class IMFixedMessageOnMouseOver {
     IMFixedMessageOnMouseOver@ f(IMMessage@ _enterMessage, IMMessage@ _overMessage, IMMessage@ _leaveMessage);
     IMFixedMessageOnMouseOver@ opCast();
     IMMouseOverBehavior@ opImplCast();
     void f();
-    void f();
+    void ~f();
 };
 class IMMouseOverFadeIn {
     IMMouseOverFadeIn@ f(uint64 time, IMTweenType _tweener, float targetAlpha = 1.0f);
     IMMouseOverFadeIn@ opCast();
     IMMouseOverBehavior@ opImplCast();
     void f();
-    void f();
+    void ~f();
 };
 
 
@@ -2267,14 +2267,14 @@ class IMFixedMessageOnClick {
     IMFixedMessageOnClick@ opCast();
     IMMouseClickBehavior@ opImplCast();
     void f();
-    void f();
+    void ~f();
 };
 
 
 class IMElement {
     CItem controllerItem;
     void f();
-    void f();
+    void ~f();
     string getElementTypeName();
     void setColor( vec4 _color );
     vec4 getColor();
@@ -2368,7 +2368,7 @@ class IMElement {
 class IMSpacer {
     CItem controllerItem;
     void f();
-    void f();
+    void ~f();
     string getElementTypeName();
     void setColor( vec4 _color );
     vec4 getColor();
@@ -2464,7 +2464,7 @@ class IMSpacer {
 class IMContainer {
     CItem controllerItem;
     void f();
-    void f();
+    void ~f();
     string getElementTypeName();
     void setColor( vec4 _color );
     vec4 getColor();
@@ -2573,7 +2573,7 @@ class IMContainer {
 class IMDivider {
     CItem controllerItem;
     void f();
-    void f();
+    void ~f();
     string getElementTypeName();
     void setColor( vec4 _color );
     vec4 getColor();
@@ -2680,7 +2680,7 @@ class IMDivider {
 class IMTextSelectionList {
     CItem controllerItem;
     void f();
-    void f();
+    void ~f();
     string getElementTypeName();
     void setColor( vec4 _color );
     vec4 getColor();
@@ -2779,7 +2779,7 @@ class IMTextSelectionList {
 class IMImage {
     CItem controllerItem;
     void f();
-    void f();
+    void ~f();
     string getElementTypeName();
     void setColor( vec4 _color );
     vec4 getColor();
@@ -2882,7 +2882,7 @@ class IMImage {
 class IMText {
     CItem controllerItem;
     void f();
-    void f();
+    void ~f();
     string getElementTypeName();
     void setColor( vec4 _color );
     vec4 getColor();
@@ -3001,7 +3001,7 @@ class ScreenMetrics {
 
 class IMGUI {
     void f();
-    void f();
+    void ~f();
     GUIState guistate;
     void setBackgroundLayers( uint numLayers );
     void setForegroundLayers( uint numLayers );

@@ -815,7 +815,7 @@ class quaternion {
     void f(const quaternion &in);
     void f(float, float, float, float);
     void f(vec4); // Axis-angle (axis.x, axis.y, axis.z, angle_radians)
-    void f();
+    void ~f();
     quaternion &opAssign(const quaternion &in);
     quaternion &opAddAssign(const quaternion &in);
     bool opEquals(const quaternion &in) const;
@@ -937,7 +937,7 @@ class LevelDetails {
 class Parameter {
     void f();
     void f(const Parameter &in other);
-    void f();
+    void ~f();
     Parameter& opAssign(const Parameter &in other);
     Parameter opIndex( const string &in );
     Parameter opIndex( const int &in );
@@ -955,14 +955,14 @@ class Parameter {
 
 class ModID {
     void f();
-    void f();
+    void ~f();
     bool Valid();
 };
 
 
 class MenuItem {
     void f();
-    void f();
+    void ~f();
     string GetTitle();
     string GetCategory();
     string GetPath();
@@ -981,7 +981,7 @@ class SpawnerItem {
 class ModLevel {
     void f();
     void f(const ModLevel &in other);
-    void f();
+    void ~f();
     ModLevel& opAssign(const ModLevel &in other);
     string GetTitle();
     string GetID();
@@ -995,7 +995,7 @@ class ModLevel {
 class Campaign {
     void f();
     void f(const Campaign &in other);
-    void f();
+    void ~f();
     Campaign& opAssign(const Campaign &in other);
     string GetID();
     string GetTitle();
@@ -1078,7 +1078,7 @@ class Physics {
 class TextStyle {
     int font_face_id;
     void f();
-    void f();
+    void ~f();
     void SetAlignment(int i);
 };
 
