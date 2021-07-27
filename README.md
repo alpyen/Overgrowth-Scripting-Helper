@@ -87,9 +87,11 @@ When successfully built and run, Notepad++ should start with the plugin enabled 
 - Nightmode
 - Option to hide empty groups
 - Contextmenu options to collapse levels
+- Add col/sphere_col as variables
 
 #### Settings
 - Set Cheat Sheet and Helper Window OnToppable
+- PreScriptReload
 
 #### Plugins Menu
 - Script Templates for `Scriptable Campaign` and `Scriptable UI`
