@@ -87,7 +87,6 @@ When successfully built and run, Notepad++ should start with the plugin enabled 
 - Nightmode
 - Option to hide empty groups
 - Contextmenu options to collapse levels
-- Add col/sphere_col as variables
 
 #### Settings
 - Set Cheat Sheet and Helper Window OnToppable
@@ -99,6 +98,7 @@ When successfully built and run, Notepad++ should start with the plugin enabled 
 ## Known Bugs<a id="known-bugs"></a>
 - Notepad++ shows the wrong calltip if previously a calltip with the same prefix has been opened:
   - Open DebugDrawLine, try to open DebugDrawLines, it will still show DebugDrawLine.
+- col / sphere_col do not show up on the helper window although they are in the calltip definitions
 
 ## Licensing and Credits<a id="licensing-and-credits"></a>
 Overgrowth Scripting Helper is released under the MIT license.
