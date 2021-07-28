@@ -14,7 +14,7 @@ namespace AsDocs2XML
 
 		private static Regex rxIgnorable = new Regex(@"^\s*(?:\/\/.*)?$");
 		private static Regex rxFunction = new Regex(@"^\s*((?:const)?\s*[^,\s]+?)\s*([^,\s]+?)\s*\(([^\/]*)\)\s*(const)?.*?$");
-		private static Regex rxVariable = new Regex(@"^\s*(const)?\s*([^,\s}]+?)\s*([^,\s*\(};]+?)\s*;\s*$");
+		private static Regex rxVariable = new Regex(@"^\s*(const)?\s*([^,\s}]+?)\s*([^,\s*\(};]+?)\s*;\s*.*?$");
 		private static Regex rxClassBegin = new Regex(@"^\s*class\s*(.+?)\s*{\s*.*?$");
 		private static Regex rxEnumerationBegin = new Regex(@"^\s*enum\s*(.+?)\s*{\s*.*?$");
 		private static Regex rxScopeEnding = new Regex(@"^\s*\};?(?:\/\/.*)?\s*$");

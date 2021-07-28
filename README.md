@@ -65,6 +65,7 @@ The project consists of two solutions: `AsDocs2XML` and `Overgrowth Scripting He
 However the original *_docs.h files are as of right now (Overgrowth 1.4) malformatted and also incorrect which will make them not compliant with the the parser, they'll flat out crash it.
 
 I sanitized and corrected all header files and saved them at `CalltipDefinitions\Overgrowth 1.4`, these files are also references as the command line parameters for the parser.
+Sadly VS does not save the command line parameters, so here's an example one: `"../../../CalltipDefinitions/Overgrowth1.4/Camera.txt" `. Just concatenate them all one after the other.
 
 When successfully built and run, AsDocs2XML will output the Notepad++ calltips file `angelscript.xml` and the database file `database.xml` into `AsDocs2XML\bin`.
 
@@ -98,7 +99,6 @@ When successfully built and run, Notepad++ should start with the plugin enabled 
 ## Known Bugs<a id="known-bugs"></a>
 - Notepad++ shows the wrong calltip if previously a calltip with the same prefix has been opened:
   - Open DebugDrawLine, try to open DebugDrawLines, it will still show DebugDrawLine.
-- col / sphere_col do not show up on the helper window although they are in the calltip definitions
 
 ## Licensing and Credits<a id="licensing-and-credits"></a>
 Overgrowth Scripting Helper is released under the MIT license.
