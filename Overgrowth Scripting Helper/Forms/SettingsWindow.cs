@@ -12,8 +12,9 @@ namespace Overgrowth_Scripting_Helper
 	public partial class SettingsWindow : Form
 	{
 		private HelperWindow helperWindow;
+		private CheatSheetWindow cheatSheetWindow;
 
-		public SettingsWindow(HelperWindow helperWindow)
+		public SettingsWindow(HelperWindow helperWindow, CheatSheetWindow cheatSheetWindow)
 		{
 			InitializeComponent();
 
@@ -21,6 +22,7 @@ namespace Overgrowth_Scripting_Helper
 			// while adjusting it, because this is much better than restarting
 			// every time after changing the font slightly.
 			this.helperWindow = helperWindow;
+			this.cheatSheetWindow = cheatSheetWindow;
 
 			// Set the window title.
 			this.Text = Config.PluginName + " - Settings";
@@ -87,6 +89,7 @@ namespace Overgrowth_Scripting_Helper
 		private void cbUseDarkMode_CheckedChanged(object sender, EventArgs e)
 		{
 			helperWindow.SetWindowTheme(cbUseDarkMode.Checked);
+			cheatSheetWindow.SetWindowTheme(cbUseDarkMode.Checked);
 		}
 	}
 }

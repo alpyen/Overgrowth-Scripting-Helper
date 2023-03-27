@@ -36,7 +36,6 @@ namespace Overgrowth_Scripting_Helper
 			Color foreColor = useDarkMode ? Color.FromArgb(0xDD, 0xDD, 0xDD) : Color.Black;
 			Color backColor = useDarkMode ? Color.FromArgb(0x22, 0x22, 0x22) : Color.White;
 
-			// Auch für CheatSheetWindow
 			this.ForeColor = useDarkMode ? foreColor : DefaultForeColor;
 			this.BackColor = useDarkMode ? backColor : DefaultBackColor;
 
@@ -60,9 +59,6 @@ namespace Overgrowth_Scripting_Helper
 					}
 				}
 			}
-
-			this.tbFilter.BackColor = Color.Black;
-			this.tbFilter.ForeColor = Color.Black;
 		}
 
 		public void ParseDatabase()

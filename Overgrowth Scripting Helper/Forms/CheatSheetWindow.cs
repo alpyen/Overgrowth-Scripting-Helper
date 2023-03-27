@@ -24,5 +24,19 @@ namespace Overgrowth_Scripting_Helper
 			e.Cancel = true;
 			Main.ToggleCheatSheetWindow();
 		}
+
+		public void SetWindowTheme(bool useDarkMode)
+		{
+			Color foreColor = useDarkMode ? Color.FromArgb(0xDD, 0xDD, 0xDD) : Color.Black;
+			Color backColor = useDarkMode ? Color.FromArgb(0x22, 0x22, 0x22) : Color.White;
+
+			this.ForeColor = useDarkMode ? foreColor : DefaultForeColor;
+			this.BackColor = useDarkMode ? backColor : DefaultBackColor;
+
+			lvCheatSheet.ForeColor = foreColor;
+			lvCheatSheet.BackColor = backColor;
+
+			
+		}
 	}
 }

@@ -44,9 +44,9 @@ namespace Overgrowth_Scripting_Helper
 
 			// Initialize the windows and the window icons.
 			helperWindow = new HelperWindow();
-			settingsWindow = new SettingsWindow(helperWindow);
-			aboutWindow = new AboutWindow();
 			cheatSheetWindow = new CheatSheetWindow();
+			settingsWindow = new SettingsWindow(helperWindow, cheatSheetWindow);
+			aboutWindow = new AboutWindow();
 
 			DockHelperWindow();
 
