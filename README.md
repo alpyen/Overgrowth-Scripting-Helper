@@ -85,7 +85,6 @@ When successfully built and run, Notepad++ should start with the plugin enabled 
 ## Stuff for the future<a id="stuff-for-the-future"></a>
 #### Helper Window
 - Save the steps while filtering so the tree view can be rebuilt faster
-- Nightmode (Highlighting)
 - Option to hide empty groups
 - Contextmenu options to collapse levels
 
