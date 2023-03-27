@@ -62,10 +62,6 @@ namespace Overgrowth_Scripting_Helper
             "Data/Levels/",
             "Path to the level file."}, -1);
 			System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem(new string[] {
-            "MenuItem.Thumbnail",
-            "Data/",
-            "Thumbnail image for a menu item."}, -1);
-			System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem(new string[] {
             "Script.InnerText",
             "Data/Scripts/",
             "Path to the level script file."}, -1);
@@ -105,8 +101,7 @@ namespace Overgrowth_Scripting_Helper
 			listViewItem5.Group = listViewGroup1;
 			listViewItem6.Group = listViewGroup1;
 			listViewItem7.Group = listViewGroup1;
-			listViewItem8.Group = listViewGroup1;
-			listViewItem9.Group = listViewGroup2;
+			listViewItem8.Group = listViewGroup2;
 			this.lvCheatSheet.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
             listViewItem1,
             listViewItem2,
@@ -115,8 +110,7 @@ namespace Overgrowth_Scripting_Helper
             listViewItem5,
             listViewItem6,
             listViewItem7,
-            listViewItem8,
-            listViewItem9});
+            listViewItem8});
 			this.lvCheatSheet.Location = new System.Drawing.Point(0, 0);
 			this.lvCheatSheet.Name = "lvCheatSheet";
 			this.lvCheatSheet.Size = new System.Drawing.Size(601, 350);
