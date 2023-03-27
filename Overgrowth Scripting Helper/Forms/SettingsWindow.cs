@@ -83,5 +83,10 @@ namespace Overgrowth_Scripting_Helper
 		{
 			helperWindow.SetTreeViewFonts(cbUseCustomFont.Checked ? Config.CustomFont : SystemFonts.DefaultFont);
 		}
+
+		private void cbUseDarkMode_CheckedChanged(object sender, EventArgs e)
+		{
+			helperWindow.SetWindowTheme(cbUseDarkMode.Checked);
+		}
 	}
 }

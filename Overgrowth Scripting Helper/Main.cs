@@ -13,13 +13,13 @@ namespace Overgrowth_Scripting_Helper
 	{
 		static bool databaseLoaded = false;
 		static bool showHelperWindow = false;
+		static bool showCheatSheetWindow = false;
 		static SettingsWindow settingsWindow = null;
 		static HelperWindow helperWindow = null;
 		static AboutWindow aboutWindow = null;
 		static CheatSheetWindow cheatSheetWindow = null;
 
 		static Icon tabIcon = null;
-		static int dialogueCommandId = 0;
 
 		static ScintillaGateway sgEditor = null;
 
@@ -69,7 +69,7 @@ namespace Overgrowth_Scripting_Helper
 			tbIcons.hToolbarBmp = Properties.Resources.RabbitTransparent16x16.GetHbitmap();
 			IntPtr pTbIcons = Marshal.AllocHGlobal(Marshal.SizeOf(tbIcons));
 			Marshal.StructureToPtr(tbIcons, pTbIcons, false);
-			Win32.SendMessage(PluginBase.nppData._nppHandle, (uint)NppMsg.NPPM_ADDTOOLBARICON, PluginBase._funcItems.Items[dialogueCommandId]._cmdID, pTbIcons);
+			Win32.SendMessage(PluginBase.nppData._nppHandle, (uint)NppMsg.NPPM_ADDTOOLBARICON, PluginBase._funcItems.Items[0]._cmdID, pTbIcons);
 			Marshal.FreeHGlobal(pTbIcons);
 		}
 
@@ -93,7 +93,7 @@ namespace Overgrowth_Scripting_Helper
 			NppTbData _nppTbData = new NppTbData();
 			_nppTbData.hClient = helperWindow.Handle;
 			_nppTbData.pszName = helperWindow.Text;
-			_nppTbData.dlgID = dialogueCommandId;
+			_nppTbData.dlgID = 0;
 			_nppTbData.uMask = NppTbMsg.DWS_DF_CONT_RIGHT | NppTbMsg.DWS_ICONTAB | NppTbMsg.DWS_ICONBAR;
 			_nppTbData.hIconTab = (uint)tabIcon.Handle;
 			_nppTbData.pszModuleName = Config.PluginName;
@@ -124,10 +124,11 @@ namespace Overgrowth_Scripting_Helper
 			{
 				databaseLoaded = true;
 				helperWindow.ParseDatabase();
+				helperWindow.SetWindowTheme(Config.UseDarkMode);
 			}
 
 			Win32.SendMessage(PluginBase.nppData._nppHandle, showHelperWindow ? (uint)NppMsg.NPPM_DMMSHOW : (uint)NppMsg.NPPM_DMMHIDE, 0, helperWindow.Handle);
-			Win32.SendMessage(PluginBase.nppData._nppHandle, (uint)NppMsg.NPPM_SETMENUITEMCHECK, PluginBase._funcItems.Items[dialogueCommandId]._cmdID, showHelperWindow ? 1 : 0);
+			Win32.SendMessage(PluginBase.nppData._nppHandle, (uint)NppMsg.NPPM_SETMENUITEMCHECK, PluginBase._funcItems.Items[0]._cmdID, showHelperWindow ? 1 : 0);
 		}
 
 		internal static void OnNppReady()
@@ -143,17 +144,12 @@ namespace Overgrowth_Scripting_Helper
 
 		internal static void ToggleCheatSheetWindow()
 		{
-			if (!cheatSheetWindow.Visible)
-			{
-				cheatSheetWindow.Show();
+			showCheatSheetWindow = !showCheatSheetWindow;
 
-				// We do not to reshow the window minimized (if it was minimized), therefore we remove the minimized flag.
-				cheatSheetWindow.WindowState &= ~FormWindowState.Minimized;					
-			}
-			else
-			{
-				cheatSheetWindow.Hide();
-			}
+			if (showCheatSheetWindow) cheatSheetWindow.Show();
+			else cheatSheetWindow.Hide();
+
+			Win32.SendMessage(PluginBase.nppData._nppHandle, (uint)NppMsg.NPPM_SETMENUITEMCHECK, PluginBase._funcItems.Items[1]._cmdID, showCheatSheetWindow ? 1 : 0);
 		}
 
 		internal static void InsertCameraTemplate() { sgEditor.InsertText(-1, Templates.CameraScript); }

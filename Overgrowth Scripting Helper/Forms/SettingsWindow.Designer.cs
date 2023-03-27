@@ -36,12 +36,12 @@ namespace Overgrowth_Scripting_Helper
 			this.cbLiveFilteringMode = new System.Windows.Forms.CheckBox();
 			this.cbShowHelperWindowOnStartup = new System.Windows.Forms.CheckBox();
 			this.groupAppearance = new System.Windows.Forms.GroupBox();
+			this.cbUseDarkMode = new System.Windows.Forms.CheckBox();
 			this.cbShowParameterNamesInOverloadSignatures = new System.Windows.Forms.CheckBox();
 			this.btnChangeFont = new System.Windows.Forms.Button();
 			this.cbUseCustomFont = new System.Windows.Forms.CheckBox();
 			this.cbShowIconsForEachNode = new System.Windows.Forms.CheckBox();
 			this.cbShowFunctionNameInOverloadSignatures = new System.Windows.Forms.CheckBox();
-			this.cbUseDarkMode = new System.Windows.Forms.CheckBox();
 			((System.ComponentModel.ISupportInitialize)(this.pbBackground)).BeginInit();
 			this.groupGeneral.SuspendLayout();
 			this.groupAppearance.SuspendLayout();
@@ -102,6 +102,17 @@ namespace Overgrowth_Scripting_Helper
 			this.groupAppearance.TabStop = false;
 			this.groupAppearance.Text = "Appearance";
 			// 
+			// cbUseDarkMode
+			// 
+			this.cbUseDarkMode.AutoSize = true;
+			this.cbUseDarkMode.Location = new System.Drawing.Point(17, 93);
+			this.cbUseDarkMode.Name = "cbUseDarkMode";
+			this.cbUseDarkMode.Size = new System.Drawing.Size(101, 17);
+			this.cbUseDarkMode.TabIndex = 35;
+			this.cbUseDarkMode.Text = "Use Dark Mode";
+			this.cbUseDarkMode.UseVisualStyleBackColor = false;
+			this.cbUseDarkMode.CheckedChanged += new System.EventHandler(this.cbUseDarkMode_CheckedChanged);
+			// 
 			// cbShowParameterNamesInOverloadSignatures
 			// 
 			this.cbShowParameterNamesInOverloadSignatures.AutoSize = true;
@@ -152,16 +163,6 @@ namespace Overgrowth_Scripting_Helper
 			this.cbShowFunctionNameInOverloadSignatures.TabIndex = 28;
 			this.cbShowFunctionNameInOverloadSignatures.Text = "Show function names in overload signatures (requires Notepad++ restart)";
 			this.cbShowFunctionNameInOverloadSignatures.UseVisualStyleBackColor = true;
-			// 
-			// cbUseDarkMode
-			// 
-			this.cbUseDarkMode.AutoSize = true;
-			this.cbUseDarkMode.Location = new System.Drawing.Point(17, 93);
-			this.cbUseDarkMode.Name = "cbUseDarkMode";
-			this.cbUseDarkMode.Size = new System.Drawing.Size(101, 17);
-			this.cbUseDarkMode.TabIndex = 35;
-			this.cbUseDarkMode.Text = "Use Dark Mode";
-			this.cbUseDarkMode.UseVisualStyleBackColor = false;
 			// 
 			// SettingsWindow
 			// 

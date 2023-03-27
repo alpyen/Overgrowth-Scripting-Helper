@@ -22,7 +22,7 @@ namespace Overgrowth_Scripting_Helper
 		private void CheatSheetWindow_FormClosing(object sender, FormClosingEventArgs e)
 		{
 			e.Cancel = true;
-			this.Hide();
+			Main.ToggleCheatSheetWindow();
 		}
 	}
 }

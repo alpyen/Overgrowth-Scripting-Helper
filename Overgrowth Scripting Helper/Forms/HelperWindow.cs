@@ -8,12 +8,13 @@ using System.Text;
 using System.Windows.Forms;
 
 using System.Xml;
+using System.Runtime.InteropServices;
 
 namespace Overgrowth_Scripting_Helper
 {
 	public partial class HelperWindow : Form
 	{
-		private ImageList TreeViewImageList = new ImageList();
+		private ImageList TreeViewImageList = new ImageList() { ColorDepth = ColorDepth.Depth32Bit };
 		private bool HoldingEnterKey = false;
 
 		// Hold a list of the complete tree nodes of each script type because when we are filtering,
@@ -28,6 +29,40 @@ namespace Overgrowth_Scripting_Helper
 
 			// Set the window title.
 			this.Text = Config.PluginName;
+		}
+
+		public void SetWindowTheme(bool useDarkMode)
+		{
+			Color foreColor = useDarkMode ? Color.FromArgb(0xDD, 0xDD, 0xDD) : Color.Black;
+			Color backColor = useDarkMode ? Color.FromArgb(0x22, 0x22, 0x22) : Color.White;
+
+			// Auch für CheatSheetWindow
+			this.ForeColor = useDarkMode ? foreColor : DefaultForeColor;
+			this.BackColor = useDarkMode ? backColor : DefaultBackColor;
+
+			foreach (Control pluginControl in this.Controls)
+			{
+				pluginControl.ForeColor = useDarkMode ? foreColor : DefaultForeColor;
+				pluginControl.BackColor = useDarkMode ? backColor : DefaultBackColor;
+
+				if (pluginControl.GetType() == typeof(TabControl))
+				{
+					foreach (Control tabPage in pluginControl.Controls)
+					{
+						tabPage.ForeColor = useDarkMode ? foreColor : DefaultForeColor;
+						tabPage.BackColor = useDarkMode ? backColor : DefaultBackColor;
+
+						foreach (Control tabPageContent in tabPage.Controls)
+						{
+							tabPageContent.ForeColor = useDarkMode ? foreColor : DefaultForeColor;
+							tabPageContent.BackColor = useDarkMode ? backColor : Color.White;
+						}
+					}
+				}
+			}
+
+			this.tbFilter.BackColor = Color.Black;
+			this.tbFilter.ForeColor = Color.Black;
 		}
 
 		public void ParseDatabase()
@@ -60,7 +95,7 @@ namespace Overgrowth_Scripting_Helper
 
 				currentScriptTabPage.Controls.Add(currentScriptTreeView);
 				tabScripts.TabPages.Add(currentScriptTabPage);
-
+				
 				// The reason we have this code sort of duplicated is that we want to have
 				// multiple root nodes in the treeview. However, moving tree nodes is not possible.
 				// So we treat those cases explicitly, and then parse the rest recursively.
@@ -104,7 +139,7 @@ namespace Overgrowth_Scripting_Helper
 
 			if (m.Msg == WM_NOTIFY)
 			{
-				NMHDR notification = (NMHDR)System.Runtime.InteropServices.Marshal.PtrToStructure(m.LParam, typeof(NMHDR));
+				NMHDR notification = (NMHDR)Marshal.PtrToStructure(m.LParam, typeof(NMHDR));
 
 				if (notification.code == (int)Kbg.NppPluginNET.PluginInfrastructure.DockMgrMsg.DMN_CLOSE)
 				{
@@ -113,7 +148,7 @@ namespace Overgrowth_Scripting_Helper
 			}
 		}
 
-		[System.Runtime.InteropServices.StructLayout(System.Runtime.InteropServices.LayoutKind.Sequential)]
+		[StructLayout(LayoutKind.Sequential)]
 		struct NMHDR
 		{
 			public IntPtr hwndFrom;
