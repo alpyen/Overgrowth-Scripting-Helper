@@ -29,6 +29,8 @@ namespace Overgrowth_Scripting_Helper
 		public static bool ShowIconsForEachNode = true;
 		public static bool UseCustomFont = false;
 
+		public static bool UseDarkMode = false;
+
 		public static Font CustomFont = new Font("Microsoft Sans Serif", 8.25f, FontStyle.Regular);
 
 		public static void Load()
@@ -49,6 +51,9 @@ namespace Overgrowth_Scripting_Helper
 
 			Win32.GetPrivateProfileString("Settings", "ShowIconsForEachNode", "True", readout, 20, SettingsPath);
 			ShowIconsForEachNode = readout.ToString() == "True";
+
+			Win32.GetPrivateProfileString("Settings", "UseDarkMode", "False", readout, 20, SettingsPath);
+			UseDarkMode = readout.ToString() == "True";
 
 			Win32.GetPrivateProfileString("Settings", "UseCustomFont", "False", readout, 20, SettingsPath);
 			UseCustomFont = readout.ToString() == "True";
@@ -81,6 +86,7 @@ namespace Overgrowth_Scripting_Helper
 			Win32.WritePrivateProfileString("Settings", "ShowFunctionNameInOverloadSignatures", ShowFunctionNameInOverloadSignatures.ToString(), SettingsPath);
 			Win32.WritePrivateProfileString("Settings", "ShowParameterNamesInOverloadSignatures", ShowParameterNamesInOverloadSignatures.ToString(), SettingsPath);
 			Win32.WritePrivateProfileString("Settings", "ShowIconsForEachNode", ShowIconsForEachNode.ToString(), SettingsPath);
+			Win32.WritePrivateProfileString("Settings", "UseDarkMode", UseDarkMode.ToString(), SettingsPath);
 			Win32.WritePrivateProfileString("Settings", "UseCustomFont", UseCustomFont.ToString(), SettingsPath);
 
 			Win32.WritePrivateProfileString("Settings", "FontName", CustomFont.Name, SettingsPath);

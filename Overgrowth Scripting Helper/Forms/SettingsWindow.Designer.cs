@@ -41,6 +41,7 @@ namespace Overgrowth_Scripting_Helper
 			this.cbUseCustomFont = new System.Windows.Forms.CheckBox();
 			this.cbShowIconsForEachNode = new System.Windows.Forms.CheckBox();
 			this.cbShowFunctionNameInOverloadSignatures = new System.Windows.Forms.CheckBox();
+			this.cbUseDarkMode = new System.Windows.Forms.CheckBox();
 			((System.ComponentModel.ISupportInitialize)(this.pbBackground)).BeginInit();
 			this.groupGeneral.SuspendLayout();
 			this.groupAppearance.SuspendLayout();
@@ -88,6 +89,7 @@ namespace Overgrowth_Scripting_Helper
 			// 
 			// groupAppearance
 			// 
+			this.groupAppearance.Controls.Add(this.cbUseDarkMode);
 			this.groupAppearance.Controls.Add(this.cbShowParameterNamesInOverloadSignatures);
 			this.groupAppearance.Controls.Add(this.btnChangeFont);
 			this.groupAppearance.Controls.Add(this.cbUseCustomFont);
@@ -95,7 +97,7 @@ namespace Overgrowth_Scripting_Helper
 			this.groupAppearance.Controls.Add(this.cbShowFunctionNameInOverloadSignatures);
 			this.groupAppearance.Location = new System.Drawing.Point(12, 99);
 			this.groupAppearance.Name = "groupAppearance";
-			this.groupAppearance.Size = new System.Drawing.Size(434, 156);
+			this.groupAppearance.Size = new System.Drawing.Size(434, 179);
 			this.groupAppearance.TabIndex = 25;
 			this.groupAppearance.TabStop = false;
 			this.groupAppearance.Text = "Appearance";
@@ -112,7 +114,7 @@ namespace Overgrowth_Scripting_Helper
 			// 
 			// btnChangeFont
 			// 
-			this.btnChangeFont.Location = new System.Drawing.Point(17, 116);
+			this.btnChangeFont.Location = new System.Drawing.Point(17, 139);
 			this.btnChangeFont.Name = "btnChangeFont";
 			this.btnChangeFont.Size = new System.Drawing.Size(86, 23);
 			this.btnChangeFont.TabIndex = 33;
@@ -123,7 +125,7 @@ namespace Overgrowth_Scripting_Helper
 			// cbUseCustomFont
 			// 
 			this.cbUseCustomFont.AutoSize = true;
-			this.cbUseCustomFont.Location = new System.Drawing.Point(17, 93);
+			this.cbUseCustomFont.Location = new System.Drawing.Point(17, 116);
 			this.cbUseCustomFont.Name = "cbUseCustomFont";
 			this.cbUseCustomFont.Size = new System.Drawing.Size(107, 17);
 			this.cbUseCustomFont.TabIndex = 32;
@@ -150,6 +152,16 @@ namespace Overgrowth_Scripting_Helper
 			this.cbShowFunctionNameInOverloadSignatures.TabIndex = 28;
 			this.cbShowFunctionNameInOverloadSignatures.Text = "Show function names in overload signatures (requires Notepad++ restart)";
 			this.cbShowFunctionNameInOverloadSignatures.UseVisualStyleBackColor = true;
+			// 
+			// cbUseDarkMode
+			// 
+			this.cbUseDarkMode.AutoSize = true;
+			this.cbUseDarkMode.Location = new System.Drawing.Point(17, 93);
+			this.cbUseDarkMode.Name = "cbUseDarkMode";
+			this.cbUseDarkMode.Size = new System.Drawing.Size(101, 17);
+			this.cbUseDarkMode.TabIndex = 35;
+			this.cbUseDarkMode.Text = "Use Dark Mode";
+			this.cbUseDarkMode.UseVisualStyleBackColor = false;
 			// 
 			// SettingsWindow
 			// 
@@ -188,5 +200,6 @@ namespace Overgrowth_Scripting_Helper
 		private System.Windows.Forms.CheckBox cbShowIconsForEachNode;
 		private System.Windows.Forms.CheckBox cbShowFunctionNameInOverloadSignatures;
 		private System.Windows.Forms.CheckBox cbShowParameterNamesInOverloadSignatures;
+		private System.Windows.Forms.CheckBox cbUseDarkMode;
 	}
 }
