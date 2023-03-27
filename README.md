@@ -85,7 +85,7 @@ When successfully built and run, Notepad++ should start with the plugin enabled 
 ## Stuff for the future<a id="stuff-for-the-future"></a>
 #### Helper Window
 - Save the steps while filtering so the tree view can be rebuilt faster
-- Nightmode (HelperWindow (Investigate why the TextBox wont work), Highlighting)
+- Nightmode (Highlighting)
 - Option to hide empty groups
 - Contextmenu options to collapse levels
 
@@ -99,6 +99,9 @@ When successfully built and run, Notepad++ should start with the plugin enabled 
 ## Known Bugs<a id="known-bugs"></a>
 - Notepad++ shows the wrong calltip if previously a calltip with the same prefix has been opened:
   - Open DebugDrawLine, try to open DebugDrawLines, it will still show DebugDrawLine.
+
+- The filter textbox retains its colors when the plugin is in Dark Mode.
+  - This is a bug with .NET which usually appears when the box is ReadOnly, but its the otherway round here.
 
 ## Licensing and Credits<a id="licensing-and-credits"></a>
 Overgrowth Scripting Helper is released under the MIT license.
