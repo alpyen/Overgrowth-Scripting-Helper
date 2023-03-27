@@ -18,5 +18,11 @@ namespace Overgrowth_Scripting_Helper
 			// Set the window title.
 			this.Text = Config.PluginName + " - Cheat Sheet for Overgrowth " + Config.CompiledForOvergrowthVersion;
 		}
+
+		private void CheatSheetWindow_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			e.Cancel = true;
+			this.Hide();
+		}
 	}
 }

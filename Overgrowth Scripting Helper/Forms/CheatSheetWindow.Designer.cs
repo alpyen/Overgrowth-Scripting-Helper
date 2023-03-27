@@ -141,8 +141,9 @@ namespace Overgrowth_Scripting_Helper
 			this.Controls.Add(this.lvCheatSheet);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "CheatSheetWindow";
-			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "CheatSheetWindow";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CheatSheetWindow_FormClosing);
 			this.ResumeLayout(false);
 
 		}
