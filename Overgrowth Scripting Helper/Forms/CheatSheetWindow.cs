@@ -35,8 +35,6 @@ namespace Overgrowth_Scripting_Helper
 
 			lvCheatSheet.ForeColor = foreColor;
 			lvCheatSheet.BackColor = backColor;
-
-			
 		}
 	}
 }
